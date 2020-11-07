@@ -1,0 +1,16 @@
+{
+  "pages":[
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "nprogress",
+    "navigationBarTextStyle":"black"
+  },
+  "usingComponents": {
+    "nprogress": "components/nprogress/nprogress"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

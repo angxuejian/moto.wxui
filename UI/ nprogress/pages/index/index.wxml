@@ -1,0 +1,17 @@
+
+<view>
+      <nprogress id='nprogress' ></nprogress>
+
+
+      <view class="title">欢迎使用 Nprogress</view>
+
+      <view class="button">
+            <button bindtap="_loadData">模拟请求</button>
+            <button bindtap="_loadDatawx">顶部加载 + loading加载</button>
+      </view>
+      
+      <view class="button">
+            <button bindtap="onSetSetting">黑色 + 无遮罩</button>
+            <button bindtap="onSetDefaults">默认颜色 + 遮罩</button>
+      </view>
+</view>
