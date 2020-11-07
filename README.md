@@ -4,7 +4,7 @@
 
 ### UI
 
-- [nprogress](./UI/nprogress) 进度条
+- [nprogress](./UI) 进度条
 
 
 ### 使用
