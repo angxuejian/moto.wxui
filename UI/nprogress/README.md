@@ -6,45 +6,70 @@
 
 ### 使用
 
-1. 获取源码，请使用 版本号 1.02.1812180 以上的 IDE 打开代码片段
+#### 1. 获取源码，请使用 版本号 1.02.1812180 以上的 IDE 打开代码片段
+
+    代码片段：https://developers.weixin.qq.com/s/6V0uPGmQ7Xlx
+
+
+#### 2. 获取 components 文件下的 nprogress 文件夹 并放在自己项目中; 然后将 nprogress 组件 注册为全局组件或单独组件; 
+```
+// app.json 或 index.json
+
+"usingComponents": {
+    "nprogress": "components/nprogress/nprogress" // 你的实际路径
+},
+```
     
-    [代码片段](https://developers.weixin.qq.com/s/6V0uPGmQ7Xlx)
+#### 3. index.wxml页面中使用
+```
+// index.wxml
+
+<view>
+    <nprogress id='nprogress' ></nprogress>
+</view>
+```
+
+#### 4. index.js方法中使用; 通过 selectComponent 方法获取组件实例
+
+```
+// index.js
+
+onShow: function() {
+    this.getLoadData() // 请求接口数据
+}
+
+getLoadData: function() {
+    this.selectComponent('#nprogress').start()  // 开始加载进度, 但不会加载到 100%
+
+    wx.request({
+        url: 'https:www.baidu.com',
+        method: 'POST',
+        data: {},
+        success: res => {
+            this.selectComponent('#nprogress').done()   // 完成加载, 加载到 100%
+
+            // something...
+        }
+    })
+}
+```
+
+#### 5. 全部nprogress组件实例方法
+
+   - **start()** 开始加载
+   
+     ```
+     this.selectComponent('#nprogress').start()
+     ```
     
-    // 防止打不开, 可手动复制到 IDE 代码片段 打开
-    https://developers.weixin.qq.com/s/6V0uPGmQ7Xlx
+   - **done()** 完成加载
+   
+     ```
+     this.selectComponent('#nprogress').done()
+     ```
 
-2. 获取 components 文件下的 nprogress 组件 并放在自己项目中
-
-3. 将 nprogress组件 注册为全局组件或单独组件; 
-    ```
-    // app.json 或 index.json
-    "usingComponents": {
-        "nprogress": "components/nprogress/nprogress" // 你的实际路径
-    },
-    ```
-4. 将注册的组件使用在页面上即可; **id不要忘了**
-    ```
-    // index.wxml
-    <view>
-        <nprogress id='nprogress' ></nprogress>
-    </view>
-    ```
-
-5. 在 js 中 操作组件的方法即可; 下面的 #nprogress 就是 组件的 id 哦！
-    - **start()** 开始加载进度, 但不会加载到 100%
-
-        ```
-        this.selectComponent('#nprogress').start()
-        ```
-    .
-
-    - **done()** 完成加载, 加载到 100%
-
-        ```
-        this.selectComponent('#nprogress').done()
-        ```
-6. 更多配置; 也可根据项目需求 更改 nprogress 配置
-    - **setting(Object object)** 更改配置
+   - **setting(Object object)** 更改配置
+   
         ```
         this.selectComponent('#nprogress').setting({
             bColor: '#4EC520',
