@@ -1,0 +1,70 @@
+/* components/calendar/calendar.wxss */
+page {
+  padding-top: 30px;
+}
+
+.year {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.year .solar {
+  font-size: 20px;
+  color: #373C52;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.year .lunar {
+  font-size: 15px;
+  color: #333;
+}
+
+.date {
+  width: 100%;
+  padding: 5px 0;
+}
+.date .week {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.date .title {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.date .content {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-weight: 550;
+  font-size: 16px;
+  border-radius: 50%;
+  margin: 5px 0;
+  margin-left: calc((100% - (45px * 7)) / 7 / 2);
+  margin-right: calc((100% - (45px * 7)) / 7 / 2);
+}
+
+.date .item-week {
+  color: #333;
+  font-weight: 100;
+  font-size: 12px;
+  border-radius: 0;
+  height: 40px;
+  line-height: 40px;
+}
+
+.date .item-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.date .item-day view:nth-of-type(2) {
+  font-size: 13px;
+  color: #C2C1C1;
+  font-weight: 100;
+}
