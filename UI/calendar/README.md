@@ -183,3 +183,9 @@ xxxx | xxxx | xxxx | xxxx | xxxx
 **本文农历知识均为以上文章提供**
 
 [闰年-百度百科](https://baike.baidu.com/item/%E9%97%B0%E5%B9%B4/27098)
+
+### 具体实现
+    
+    代码片段：https://developers.weixin.qq.com/s/yxztqTm97Ula
+    
+    github: https://github.com/angxuejian/moto.wxui/tree/main/UI/calendar
