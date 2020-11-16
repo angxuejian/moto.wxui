@@ -9,6 +9,8 @@
 #### 1. 获取源码，请使用 版本号 1.02.1812180 以上的 IDE 打开代码片段
 
     代码片段：https://developers.weixin.qq.com/s/6V0uPGmQ7Xlx
+    
+    github: https://github.com/angxuejian/moto.wxui/tree/main/UI/nprogress
 
 
 #### 2. 获取 components 文件下的 nprogress 文件夹 并放在自己项目中; 然后将 nprogress 组件 注册为全局组件或单独组件; 
