@@ -1,0 +1,13 @@
+
+.item{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+}
+.item > view:nth-of-type(1){
+      font-size: 17px;
+      /* font-weight: 700; */
+      margin-right: 20px;
+}

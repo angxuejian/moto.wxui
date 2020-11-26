@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2020/11/26
+- add colorPicker v1.0
+
 ### 2020/11/15
 - add calendar v0.5
 

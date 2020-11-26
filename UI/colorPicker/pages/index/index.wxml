@@ -1,0 +1,17 @@
+<view>
+
+      <view class="item">
+            <view>自定义宽高</view>
+            <color-picker width='{{30}}' height='{{50}}'></color-picker>
+      </view>
+
+      <view class="item">
+            <view>自定义颜色</view>
+            <color-picker predefined='rgb(150,50, 30)' ></color-picker>
+      </view>
+
+      <view class="item">
+            <view>监听确认回调</view>
+            <color-picker  bindchange="onCallBackColor"></color-picker>
+      </view>
+</view>
