@@ -169,8 +169,13 @@ xxxx | xxxx | xxxx | xxxx | xxxx
 --- | ---| ---| ---| ---| ---| ---| ---| ---| --- | ---| ---| ---
 余数   | 4  | 5  | 6  | 7  |  8 | 9  | 10 | 11 | 12  | 1  | 2  | 3 
 
+### 具体实现
 
-### 提供帮助的博客-不分先后
+github: https://github.com/angxuejian/moto.wxui/tree/main/UI/calendar
+
+
+
+### 参考文献
 [limengwe-关于日历实现代码里0x04bd8, 0x04ae0, 0x0a570的解释](https://blog.csdn.net/onlyonecoder/article/details/8484118)
 
 [xm2by-日历的公历转农历](https://blog.csdn.net/XuM222222/article/details/82012802)
@@ -183,9 +188,3 @@ xxxx | xxxx | xxxx | xxxx | xxxx
 **本文农历知识均为以上文章提供**
 
 [闰年-百度百科](https://baike.baidu.com/item/%E9%97%B0%E5%B9%B4/27098)
-
-### 具体实现
-    
-    代码片段：https://developers.weixin.qq.com/s/yxztqTm97Ula
-    
-    github: https://github.com/angxuejian/moto.wxui/tree/main/UI/calendar

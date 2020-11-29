@@ -29,14 +29,14 @@
       "outputPath": ""
     },
     "useIsolateContext": true,
-    "useCompilerModule": false,
+    "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.0",
-  "appid": "touristappid",
+  "appid": "wxfba5043cf98b89f9",
   "projectname": "calendar",
   "debugOptions": {
     "hidedInDevtools": []

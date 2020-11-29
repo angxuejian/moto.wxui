@@ -8,8 +8,8 @@
 
 #### 1. 获取源码，请使用 版本号 1.02.1812180 以上的 IDE 打开代码片段
 
-    代码片段：https://developers.weixin.qq.com/s/6V0uPGmQ7Xlx
-    
+    代码片段：https://developers.weixin.qq.com/s/emHiNdmh7qm2
+
     github: https://github.com/angxuejian/moto.wxui/tree/main/UI/nprogress
 
 

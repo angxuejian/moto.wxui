@@ -1,8 +1,9 @@
 App({
   onLaunch: function () {
-  },
-
-  version: '1.0'                                          ,
-  desc   : '小程序版本的UI进度条'                          ,
-  pc     : 'PC端版本 https://github.com/rstacruz/nprogress',
+    console.log('- github: https://github.com/angxuejian/moto.wxui/tree/main/UI/nprogress')
+    console.log('- 思路与用法  详看 README.md')
+    console.log('- 有问题也可以  issues  或者 QQ: 1251537708 找我哦!')
+    console.log('- v1.0')
+    console.log('\n')
+  }
 })

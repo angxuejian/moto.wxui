@@ -17,6 +17,7 @@
 2. 坐标模型有很多, 在此使用的是 [HSV颜色模型](https://baike.baidu.com/item/HSV%E9%A2%9C%E8%89%B2%E6%A8%A1%E5%9E%8B/21501482)
 
     Q: 为什么使用 HSV ?
+
     A: HSV色系对用户来说是一种直观的颜色模型, 主要由 **色调(Hue, 简H)、饱和度(Saturation, 简S)、色明度(Value, 简V)**
 
 3. 将 HSV六角锥体模型 转为 直观的数学坐标系
@@ -53,7 +54,8 @@
 ### 实例用法
 详细注释在 代码中...
 
-    代码片段: https://developers.weixin.qq.com/s/Zc7qb9m77EmE
+    代码片段: https://developers.weixin.qq.com/s/rRHvfdmx79mR
+
     github: https://github.com/angxuejian/moto.wxui/tree/main/UI/colorPicker
 
 

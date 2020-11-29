@@ -1,12 +1,7 @@
-const app = getApp()
 import { get } from '../../utils/request'
 Page({
   data: {
 
-  },
-  onLoad: function () {
-    console.log(`${app.desc}; v${app.version}`)
-    console.log(app.pc)
   },
 
   // 开始加载

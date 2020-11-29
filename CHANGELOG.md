@@ -2,6 +2,10 @@
 
 ## v0.1
 
+### 2020/11/29
+- update calendar v0.7; [添加节气](./calendar/components/calendar/config.js)
+- update 代码风格
+
 ### 2020/11/26
 - add colorPicker v1.0
 

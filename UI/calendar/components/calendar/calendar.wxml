@@ -21,7 +21,7 @@
       <block wx:for="{{days}}" wx:key='index'>
         <view style="color:{{item.color}}; background-color:{{item.bColor}}" class="content item-day">
           <view>{{item.solar}}</view>
-          <view style="{{item.bColor && 'color:#fff'}}">{{item.lunar}}</view>
+          <view style="{{item.bColor && 'color:#fff'}}">{{item.terms || item.lunar}}</view>
         </view>
       </block>
     </view>
