@@ -3,7 +3,7 @@
 ## v0.1
 
 ### 2020/11/29
-- update calendar v0.7; [添加节气](https://github.com/angxuejian/moto.wxui/blob/main/UI/calendar/components/calendar/config.js)
+- update calendar v0.7; [添加节气 #72](https://github.com/angxuejian/moto.wxui/blob/main/UI/calendar/components/calendar/config.js)
 - update 代码风格
 
 ### 2020/11/26
