@@ -141,9 +141,14 @@ class Canlendar {
       sx = SHENGXIAO[ly % 12]
       cy = `${tg}${dz}${sx}年`
 
+      let m = lm
+      if(/闰/g.test(lm)) m = lm.split('闰')[1]
 
 
-      if (!done) return cd
+      if (!done) return {
+        fes: [this.padStart(m), this.padStart(ld)],
+        day: cd
+      }
       else return `${cy} ${cm}${cd}`
     }
 

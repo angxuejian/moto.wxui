@@ -64,7 +64,7 @@ page {
 }
 
 .date .item-day view:nth-of-type(2) {
-  font-size: 13px;
+  font-size: 20rpx;
   color: #C2C1C1;
   font-weight: 100;
 }

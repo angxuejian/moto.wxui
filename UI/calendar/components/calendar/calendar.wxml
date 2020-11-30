@@ -5,6 +5,7 @@
   <view class="year">
     <view class="solar">{{year}}.{{month}}</view>
     <view class="lunar">{{lunar}}</view>
+    <view class="lunar">{{festival}}</view>
   </view>
 
 
@@ -21,7 +22,7 @@
       <block wx:for="{{days}}" wx:key='index'>
         <view style="color:{{item.color}}; background-color:{{item.bColor}}" class="content item-day">
           <view>{{item.solar}}</view>
-          <view style="{{item.bColor && 'color:#fff'}}">{{item.terms || item.lunar}}</view>
+          <view  style="color:{{item.l_color}};{{item.bColor && 'color:' + default}}">{{item.today[item.today.length - 1]}}</view>
         </view>
       </block>
     </view>
