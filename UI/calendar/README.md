@@ -11,4 +11,4 @@
 
 ## 如何实现
 
-- [如何实现 日历(含农历)](https://github.com/angxuejian/how-to-achieve/blob/main/dosc/HTA-1-201210.md)
+- [如何实现 日历(含农历)](https://github.com/angxuejian/how-to-achieve/blob/main/docs/HTA-1-201210.md)
