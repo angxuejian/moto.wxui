@@ -25,4 +25,4 @@ change  | 当前颜色 |当修改绑定值时触发
 
 ## 如何实现
 
-- [如何实现 拾色器](https://github.com/angxuejian/how-to-achieve/blob/main/dosc/HTA-2-201210.md)
+- [如何实现 拾色器](https://github.com/angxuejian/how-to-achieve/blob/main/docs/HTA-2-201210.md)
