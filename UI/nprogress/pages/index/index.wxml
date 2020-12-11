@@ -1,5 +1,6 @@
 
 <view>
+      <!-- 这里引入的是全局组件  app.json 中-->
       <nprogress id='nprogress' ></nprogress>
 
 
