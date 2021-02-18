@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/02/18
+- add All.ui小程序
+
 ### 2020/11/30
 - update calendar v0.7; [添加节日 #79](https://github.com/angxuejian/moto.wxui/blob/main/UI/calendar/components/calendar/config.js)
 
