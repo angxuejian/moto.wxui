@@ -2,14 +2,15 @@
 微信小程序的UI库
 
 
-### UI组件
-[也可以只看代码片段哦！](LIST.md)
+## UI组件
+[UI组件-代码片段！](LIST.md)
 
-- [nprogress](./UI/nprogress) 进度条
-- [calendar](./UI/calendar) 日历
-- [colorPicker](./UI/colorPicker) 颜色拾色器
+- [nprogress](UI/nprogress) 进度条
 
-### 使用
+- [calendar](UI/calendar) 日历
+- [colorPicker](UI/colorPicker) 颜色拾色器
+
+## 使用
 
 将UI组件引用到项目中
 ```

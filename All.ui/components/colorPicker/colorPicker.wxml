@@ -1,0 +1,24 @@
+<!--components/colorPicker/colorPicker.wxml-->
+
+<view>
+	<view style="width:{{width}}px; height:{{height}}px" bindtap="showColorPicker" class="color-picker_trigger">
+		<view style="background-color:{{predefined}}; border:1px solid {{predefined}}" class="color-picker_selected-color"></view>
+	</view>
+
+	<view>
+		<view style="background-color:{{ouColor.hex}}" bindtap="showColorPicker" class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}"></view>
+		<view class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : isShow === 2 ? 'color-picker_block-hide' : 'color-picker_block-none'}}">
+			<movable-area style='background-color:{{bcColor}}' class='movable'>
+				<movable-view class="white"></movable-view>
+				<movable-view class="black"></movable-view>
+				<movable-view bindchange='onTouchMoveSV' x='{{x}}' y='{{y}}' inertia='true' direction='all' class="circle"></movable-view>
+			</movable-area>
+
+			<slider value='{{hValue}}' bindchanging='onTouchMoveH' activeColor="transparent" backgroundColor="transparent" class="line" block-size='18' max="360"></slider>
+			<view class="color-picker_show-hex">
+				<view bindtap="onCopyHex" class="hex">{{ouColor.hex || default}}</view>
+				<view bindtap="onConfirm" style='background-color:{{ouColor.hex}}' hover-class="confirm-hover" class="confirm">确认</view>
+			</view>
+		</view>
+	</view>
+</view>
