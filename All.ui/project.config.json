@@ -37,7 +37,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.15.0",
   "appid": "wxfba5043cf98b89f9",
-  "projectname": "All.ui",
+  "projectname": "moto.wxui",
   "debugOptions": {
     "hidedInDevtools": []
   },

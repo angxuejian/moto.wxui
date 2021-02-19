@@ -1,21 +1,51 @@
 /**index.wxss**/
-.userinfo {
+
+.item-ui {
+  width: 90%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 10px auto;
+  padding: 10px 2.5%;
+}
+.item-ui-title {
+  font-size: 16px;
+  color: #555;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.all-component {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.item-component {
+  width: 16%;
+  margin: 0 2%;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 3px;
+  padding: 3px 0;
+}
+.item-component .image {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+  background-size: cover;
+	display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg t='1613739551787' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2084' width='200' height='200'%3E%3Cpath d='M367.5136 371.6096a46.08 46.08 0 1 0 46.08 46.08 46.08 46.08 0 0 0-46.08-46.08zM252.672 480.512a46.08 46.08 0 1 0 46.08 46.08 46.08 46.08 0 0 0-46.08-46.08zM528.3328 419.84a46.08 46.08 0 1 0-46.08-46.08 46.08 46.08 0 0 0 46.08 46.08z m51.7632 200.0896a80.4352 80.4352 0 1 0 40.192 69.6832 80.6912 80.6912 0 0 0-40.192-69.6832zM493.8752 202.1888C254.72 228.096 38.0928 379.3408 46.08 635.136c2.1504 71.68 76.4416 98.5088 160.8192 80.3328 67.3792-14.592 72.7552 49.2544 86.7328 94.1568 16.2816 52.4288 121.856 86.7328 212.7872 86.7328 235.9808 0 408.9344-173.4656 433.3056-359.2192 30.72-234.5984-212.2752-360.1408-445.44-334.9504z m397.824 347.392C864.3072 720.384 690.3808 855.04 503.1424 855.04c-101.888 0-169.4208-36.608-175.6672-84.1728-10.24-77.6704-71.68-99.1744-121.344-93.1328-74.2912 8.9088-116.6336 14.2848-116.6336-58.3168 0-201.3696 192.9728-354.1504 401.2032-375.9616 206.6944-21.8624 437.2992 79.4624 400.9984 306.0224z m-202.496-177.9712a46.08 46.08 0 1 0 46.08 46.08 46.08 46.08 0 0 0-46.08-46.08z' fill='%23333333' p-id='2085'%3E%3C/path%3E%3C/svg%3E");
+}
+.item-component text {
+  color: #404040;
+  font-size: 11px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
 
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
