@@ -1,16 +1,16 @@
 <!--index.wxml-->
 <view>
   <view class="all-ui">
-    <block wx:for="{{1}}" wx:key='index'>
+    <block wx:for="{{list}}" wx:key='index'>
       <view class="item-ui">
-        <view class="item-ui-title">UI组件</view>
+        <view class="item-ui-title">{{ item.title }}</view>
 
         <view class="all-component">
-          <block wx:for='{{3}}' wx:key='index'>
+          <block wx:for='{{item.list}}' wx:for-item='sub' wx:for-index='i' wx:key='i'>
 
             <view hover-class="hover" class="item-component">
-              <view class="image"></view>
-              <text>自定义</text>
+              <view style='background-image: url("{{ sub.svg }}")' class="image"></view>
+              <text>{{ sub.name }}</text>
             </view>
           </block>
         </view>
