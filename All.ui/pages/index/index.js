@@ -8,4 +8,11 @@ Page({
   },
   onLoad() {
   },
+
+  gotoUI: function({ currentTarget }) {
+    const { url } = currentTarget.dataset
+    wx.navigateTo({
+      url,
+    })
+  }
 })
