@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/02/23
+- create removeBG component
+
 ### 2021/02/21
 - use calendar component
 

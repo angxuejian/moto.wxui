@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "remove-bg": "/components/removeBG/removeBG"
+  },
+  "navigationBarTitleText": "消除背景-RemoveBG"
+}

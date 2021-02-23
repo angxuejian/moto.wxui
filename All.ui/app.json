@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/UI-Pages/ui.calendar/ui.calendar"
+    "pages/UI-Pages/ui.calendar/ui.calendar",
+    "pages/UI-Pages/ui.removeBG/ui.removeBG"
   ],
   "window": {
     "backgroundTextStyle": "light",
