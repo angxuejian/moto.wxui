@@ -4,6 +4,7 @@
   <view class="remove {{isRBG && 'blur'}}">
     <!-- 左边颜色区域 -->
     <view class="background {{isRBG && 'animation_background'}}"></view>
+    <view class="background {{isRBG && 'animation_strong'}}"></view>
 
 
     <!-- 中间 最终展示区域  -->
@@ -22,7 +23,7 @@
           1. contrast() 图片对比度
           2. blur() 高斯模糊
 
-        2. z-index 图层 控制
-          1. 图层一：背景图 在上
+        2. z-index + opacity 控制
+          1. 图层一：背景图 在上 需要设置 opacity
           2. 图层二：图片   在下
  -->

@@ -37,8 +37,13 @@ page{
   background-color: #438EDB;
   z-index: 4;
 }
+/* 左边正常动画 */
 .animation_background {
   animation: mybackground 3s 1 forwards;
+}
+/* 左边延迟动画 */
+.animation_strong {
+  animation: mybackground 1.5s 0.5s forwards;
 }
 @keyframes mybackground {
   to {
