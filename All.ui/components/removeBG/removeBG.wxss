@@ -1,4 +1,83 @@
 /* components/removeBG/removeBG.wxss */
-/* page{
+page{
+  background-color: #f8f8f8;
+}
+
+.remove-bg {
+  width: 100%;
+  height: 55vh;
+}
+.contrast {
+  filter: contrast(10);
+}
+
+.remove {
+  width: 90%;
+  padding: 0 5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
   background-color: #fff;
-} */
+}
+.blur {
+  filter: blur(5px);
+}
+.remove > view {
+  width: 40%;
+  height: 50%;
+  border-radius: 4px;
+}
+
+/* 左边 */
+.remove .background {
+  position: absolute;
+  left: 10px;
+  background-color: #438EDB;
+  z-index: 4;
+}
+.animation_background {
+  animation: mybackground 3s 1 forwards;
+}
+@keyframes mybackground {
+  to {
+    width: 45%;
+    height: 55%;
+    left: calc((100% - 45%) / 2);
+    opacity: 0.3;
+  }
+}
+
+
+/* 中间 */
+.remove .background-photo {
+  border: 1px solid red;
+  z-index: 3;
+  position: absolute;
+  left: calc((100% - 40%) / 2);
+}
+
+
+
+/* 右边 */
+.remove .photo {
+  position: absolute;
+  right: 10px;
+  z-index: 3;
+}
+.remove .photo image {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.animation_photo {
+  animation: myphoto 3s forwards;
+}
+@keyframes myphoto {
+  to {
+    width: 45%;
+    height: 55%;
+    right: calc((100% - 45%) / 2);
+  }
+}

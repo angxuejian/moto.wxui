@@ -1,2 +1,28 @@
 <!--components/removeBG/removeBG.wxml-->
-<text>components/removeBG/removeBG.wxml</text>
+<view class="remove-bg {{isRBG && 'contrast'}}">
+
+  <view class="remove {{isRBG && 'blur'}}">
+    <!-- 左边颜色区域 -->
+    <view class="background {{isRBG && 'animation_background'}}"></view>
+
+
+    <!-- 中间 最终展示区域  -->
+    <!-- <view class="background-photo"></view> -->
+
+
+    <!-- 右边图片区域 -->
+    <view class="photo {{isRBG && 'animation_photo'}}">
+      <image mode="aspectFill" src="http://b230.photo.store.qq.com/psb?/V137jxAm36USXG/6Q*0EpyGtOFocpJBLOjr3fr*17JWY*I3M7kEPcAfRqU!/b/dOYAAAAAAAAA&bo=OAQ4BDgEOAQRBzA!&rf=viewer_4"></image>
+    </view>
+  </view>
+</view>
+
+<!-- Q 如何实现 背景 + 图片 的合成效果？-->
+<!-- A  1. CSS filter滤镜
+          1. contrast() 图片对比度
+          2. blur() 高斯模糊
+
+        2. z-index 图层 控制
+          1. 图层一：背景图 在上
+          2. 图层二：图片   在下
+ -->

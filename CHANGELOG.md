@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/02/24
+- edit removeBG component
+
 ### 2021/02/23
 - create removeBG component
 
