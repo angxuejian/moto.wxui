@@ -1,0 +1,25 @@
+<!--pages/UI-Pages/ui.colorPicker/ui.colorPicker.wxml-->
+<view>
+
+  <view class="item-btn">
+    <text>默认样式</text>
+    <view>
+      <color-picker></color-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>自定义样式</text>
+    <view>
+      <color-picker predefined='#affffa' width='150'></color-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>Change事件</text>
+    <view>
+      <color-picker bindchange='onCallbackChange' predefined='#ffaa99' width='150'></color-picker>
+    </view>
+  </view>
+
+</view>

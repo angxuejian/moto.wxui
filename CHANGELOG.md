@@ -2,6 +2,11 @@
 
 ## v0.1
 
+### 2021/02/25
+- create ui.colorPicker page
+- edit docs style
+- delete README.md in All.ui file
+
 ### 2021/02/24
 - edit removeBG component
 

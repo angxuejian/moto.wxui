@@ -21,16 +21,16 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
     "useIsolateContext": true,
-    "useCompilerModule": false,
+    "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
     "packNpmManually": false,
     "packNpmRelationList": []
   },
@@ -70,9 +70,10 @@
       "current": -1,
       "list": [
         {
-          "id": -1,
-          "name": "pages/UI-Pages/ui.removeBG/ui.removeBG",
-          "pathName": "pages/UI-Pages/ui.removeBG/ui.removeBG",
+          "id": 0,
+          "name": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
+          "pathName": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
+          "query": "",
           "scene": null
         }
       ]

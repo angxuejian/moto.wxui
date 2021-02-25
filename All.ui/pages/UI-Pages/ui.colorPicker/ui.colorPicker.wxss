@@ -1,0 +1,23 @@
+/* pages/UI-Pages/ui.colorPicker/ui.colorPicker.wxss */
+page {
+  padding-top: 15px;
+}
+.item-btn {
+  height: 50px;
+  width: 90%;
+  padding: 0 5%;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.item-btn > text {
+  font-size: 16px;
+  color: #555;
+  font-weight: 400;
+  width: 30%;
+  text-align: start;
+}
+.item-btn > view {
+  width: 70%;
+}

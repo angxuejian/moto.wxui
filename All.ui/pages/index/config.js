@@ -28,7 +28,8 @@ export const list = [
       },
       {
         svg: SVG.colorPicker,
-        name: '颜色选择器'
+        name: '颜色选择器',
+        url: `${BASE}/ui.colorPicker/ui.colorPicker`
       }
     ]
   },
