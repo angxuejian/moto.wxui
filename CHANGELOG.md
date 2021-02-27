@@ -2,6 +2,11 @@
 
 ## v0.1
 
+### 2021/02/(26 and 27)
+- edit nprogress component
+- create ui.nprogress page
+- edit docs style
+
 ### 2021/02/25
 - create ui.colorPicker page
 - edit docs style

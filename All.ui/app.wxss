@@ -7,3 +7,6 @@ page {
 .hover {
   background-color: #dedede;
 }
+
+/* 主题色 */
+/* #438EDB */

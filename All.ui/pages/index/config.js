@@ -24,7 +24,7 @@ export const list = [
       {
         svg: SVG.nprogress,
         name: '顶部加载',
-        url: `${BASE}/ui.calendar/ui.calendar`
+        url: `${BASE}/ui.nprogress/ui.nprogress`
       },
       {
         svg: SVG.colorPicker,

@@ -9,6 +9,10 @@
       width: 0;
       /* background-color: #4EC520; */
 }
+.none {
+      width: 0;
+      opacity: 0;
+}
 
 .npr-mask {
       position: fixed;

@@ -3,7 +3,7 @@
 import Color from './color'
 
 const svRange = 100 // S、V 取值范围为 0.0 - 1.0(转为百分制)
-const deColor = '#409EFF' // 默认颜色
+const deColor = '#438EDB' // 默认颜色
 
 const app = {
       h: 0, // 0 - 360

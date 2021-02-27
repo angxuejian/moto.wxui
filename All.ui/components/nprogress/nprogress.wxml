@@ -2,5 +2,4 @@
 <view wx:if='{{isShowView}}'>
       <view  bindtransitionend='onTransition' animation='{{AData}}' class="npr" style="background-color:{{setting.bColor}}; height: {{setting.height}}px;"></view>
 
-      <view wx:if='{{isShowMask}}' class="npr-mask"></view>
 </view>

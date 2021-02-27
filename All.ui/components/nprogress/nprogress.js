@@ -1,21 +1,20 @@
 // components/nprogress/nprogress.js
 
 const MAX     = 95 // start状态下 进度最大值
-const BIG     = 5  // 步长 >= 0  && 步长 < 30 自增的值
+const BIG     = 4  // 步长 >= 0  && 步长 < 30 自增的值
 const LARGER  = 3  // 步长 >= 30 && 步长 < 60 自增的值
 const SMALL   = 2  // 步长 >= 60 && 步长 < 80 自增的值
 const LITTLE  = 1  // 步长 >= 80 && 步长 < 95 自增的值
 const SETTING = {
-      bColor         : '#4EC520', // 进度条的颜色
+      bColor         : '#438EDB', // 进度条的颜色
       height         : 2        , // 进度条的高度
-      duration       : 2000     , // 动画完成时间
+      duration       : 300     , // 动画完成时间
       timingFunction : 'linear' , // 动画的效果
       speed          : 10       , // 起始步长
-      mask           : true     , // 是否显示透明遮罩层
 }
 Component({
       /**
-       * 组件的属性列表
+       * 组件的属性列表S
        */
       properties: {
 
@@ -28,8 +27,7 @@ Component({
             AData      : ''   , // document上的动画样式
             speed      : 0    , // 进度步长
             setting    : {}   , // 配置信息
-            isShowView : false, // 是否显示 view; 用于刷新document节点
-            isShowMask : false, // 是否显示透明遮罩层
+            isShowView : true, // 是否显示 view; 用于刷新document节点
       },
 
       lifetimes: {
@@ -71,13 +69,16 @@ Component({
 
             // 开始加载进度条
             start: function () {
-                  const { speed, mask } = this.data.setting
+                  const { speed } = this.data.setting
                   this.data.speed = speed
                   this.setData({ 
                         isShowView: true,
-                        isShowMask: mask,
                   })
-                  this.setAnimation(1, this.data.speed)
+                  
+                  // 等待 dom渲染完成后 执行动画
+                  setTimeout(() => {
+                        this.setAnimation(1, this.data.speed)
+                  }, 100);
             },
 
             // 自增进度条
@@ -120,8 +121,7 @@ Component({
                         AData: animation.export(),
                   })
 
-                  // 需要自增，小于 最大值 需要自增到步长最大值
-                  if (width < MAX) this.inc()
+
             },
 
             // 监听动画完成事件
@@ -129,10 +129,12 @@ Component({
                   if (this.data.speed > MAX) {
                         // 刷新document
                         this.setData({ 
-                              isShowView : false, 
                               AData      : null ,
-                              isShowMask : false, 
+                              isShowView : false, 
                         })
+                  } else {
+                        // 需要自增，小于 最大值 需要自增到步长最大值
+                        this.inc()
                   }
             },
 

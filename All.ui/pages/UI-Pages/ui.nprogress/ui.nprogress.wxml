@@ -1,0 +1,21 @@
+<!--pages/UI-Pages/ui.nprogress/ui.nprogress.wxml-->
+<view>
+
+  <view class="item-btn">
+    <text>开始加载</text>
+    <view bindtap="nprStart">start</view>
+  </view>
+
+  <view class="item-btn">
+    <text>结束加载</text>
+    <view bindtap="nprDone">done</view>
+  </view>
+
+  <view class="item-btn">
+    <text>自定义颜色</text>
+    <view bindtap="nprSetting">setting</view>
+  </view>
+
+
+  <nprogress id="nprogress"></nprogress>
+</view>

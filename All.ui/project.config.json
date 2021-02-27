@@ -71,8 +71,8 @@
       "list": [
         {
           "id": 0,
-          "name": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
-          "pathName": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         }

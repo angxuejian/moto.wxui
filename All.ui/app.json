@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/UI-Pages/ui.calendar/ui.calendar",
     "pages/UI-Pages/ui.removeBG/ui.removeBG",
-    "pages/UI-Pages/ui.colorPicker/ui.colorPicker"
+    "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
+    "pages/UI-Pages/ui.nprogress/ui.nprogress"
   ],
   "window": {
     "backgroundTextStyle": "light",
