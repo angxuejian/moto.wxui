@@ -31,4 +31,7 @@
 
 - **具体属性和方法** 详看docs文件夹下的 .md文件
 
+## 许可
+[MIT License](LICENSE)
 
+moto.wxui Copyright © 2019-2020 angxuejian

@@ -6,6 +6,7 @@
 - edit nprogress component
 - create ui.nprogress page
 - edit docs style
+- add license in readme.md
 
 ### 2021/02/25
 - create ui.colorPicker page
