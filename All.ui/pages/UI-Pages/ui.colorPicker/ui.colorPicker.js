@@ -20,6 +20,7 @@ Page({
    * @param {Object} event 
    */
   onCallbackChange: function({ detail }) {
+
     wx.showModal({
       title: 'Change事件',
       content: `颜色：${detail.hex}`,

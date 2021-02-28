@@ -4,8 +4,9 @@
  * @param {number} h 色调 0 - 360
  * @param {number} s 饱和度 0 - 100
  * @param {number} v 明度 0 - 100
+ * @param {number} a 透明度 0 - 1
  */
-const hsv_rgb = (h, s, v) => {
+const hsv_rgb = (h, s, v, a = 1) => {
 
   // 将 坐标值 转换为 百分比 0% - 100%
   s = s / 100
@@ -28,8 +29,9 @@ const hsv_rgb = (h, s, v) => {
 
   const rgb = list[i % 6].map(hr_round) // i mod 6: 是因为有六种可能性
   const data = {
-    rgb: `rgb(${rgb.join()})`,
-    hex: rgb_hex(rgb)
+    rgb : `rgb(${rgb.join()})`,
+    hex : rgb_hex(rgb),
+    rgba: `rgba(${rgb.join()}, ${a})`
   }
   return data 
 }
@@ -105,16 +107,6 @@ const hex_rgb = hex => {
 
 
 /**
- * 防止出现 0 / 0 = NaN 情况出现
- * @param {number} x 被除数 
- * @param {number} y 除数 
- */
-const clearNaN = (x, y) => {
-  if (x === 0 && y === 0) return 0
-  else return x / y
-}
-
-/**
  * hsv 转 rgb | 转为rgb范围
  * @param {number} n [0-1]
  */
@@ -123,6 +115,7 @@ const hr_round = n => {
   // 依次 * 255 后 转为rgb 0-255 的范围 [0-255, 0-255, 0-255]
   return Math.round(n * 255)
 }
+
 
 /**
  * rgb 转 hsv | 转为hsv范围
@@ -134,6 +127,7 @@ const rh_range = n => {
   return n / 255
 }
 
+
 /**
  * rgb 转 hex | 转为hex范围
  * @param {number} s [0-255]
@@ -144,6 +138,7 @@ const rh_string = s => {
   return str.padStart(2, '0').toUpperCase()
 }
 
+
 /**
  * hex 转 rgb | 转为rgb范围
  * @param {string} s [0-9a-fA-F] 
@@ -151,6 +146,17 @@ const rh_string = s => {
 const hr_number = s => {
   // 将 [0-9a-fA-F] 转为 0-255
   return parseInt(s, 16)
+}
+
+
+/**
+ * 防止出现 0 / 0 = NaN 情况出现
+ * @param {number} x 被除数 
+ * @param {number} y 除数 
+ */
+const clearNaN = (x, y) => {
+  if (x === 0 && y === 0) return 0
+  else return x / y
 }
 
 

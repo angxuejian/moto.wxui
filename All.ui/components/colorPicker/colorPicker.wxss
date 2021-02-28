@@ -50,7 +50,7 @@
   background-color: #fff;
   border-radius: 30px;
   z-index: 999999;
-  height: 70vh;
+  /* height: 75vh; */
 }
 
 .color-picker_block-show {
@@ -136,14 +136,20 @@
   border-radius: 2px;
 }
 
+.line-opacity {
+  background: -webkit-linear-gradient(left,rgba(255, 00, 00, 0), rgba(255, 00,00, 1)) !important;
+}
+
 .color-picker_show-hex{
   width: 85vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
+  /* position: absolute;
   bottom: 30px;
-  left: 7.5vw;
+  left: 7.5vw; */
+  height: 40px;
+  margin: 25px auto;
 }
 .hex{
   padding: 5px 10px;

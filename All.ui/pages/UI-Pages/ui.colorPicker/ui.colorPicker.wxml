@@ -16,6 +16,13 @@
   </view>
 
   <view class="item-btn">
+    <text>带透明度</text>
+    <view>
+      <color-picker predefined='rgba(90, 200 ,10, 0.5)' show-alpha='{{true}}' ></color-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
     <text>自定义样式</text>
     <view>
       <color-picker predefined='#0ECFC2' width='150'></color-picker>

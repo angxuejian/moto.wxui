@@ -10,7 +10,7 @@
 
 	<!-- 弹出view -->
 	<view>
-		<view style="background-color:{{ouColor.hex}}" bindtap="showColorPicker"
+		<view style="background-color:{{prColor}}" bindtap="showColorPicker"
 			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}">
 		</view>
 
@@ -25,12 +25,15 @@
 			</movable-area>
 
 			<!-- 颜色 h 区域 -->
-			<slider value='{{hValue}}' bindchanging='onTouchMoveH' activeColor="transparent" backgroundColor="transparent"
+			<slider value='{{hValue}}' bindchange="onTouchMoveH" bindchanging='onTouchMoveH' activeColor="transparent" backgroundColor="transparent"
 				class="line" block-size='18' max="360"></slider>
+			
+			<!-- 透明区域 -->
+			<slider wx:if="{{showAlpha}}" value="{{aValue}}" bindchange="onTouchMoveA" bindchanging='onTouchMoveA' activeColor="transparent" backgroundColor="transparent"
+				class="line" style="background: -webkit-linear-gradient(left, {{alphaC}})" block-size='18' max="100"></slider>
 
 			<view class="color-picker_show-hex">
-				<view bindtap="onCopyHex" class="hex">{{ouColor.hex || seColor}}</view>
-				
+				<view bindtap="onCopyHex" class="hex">{{prColor}}</view>
 				<view class="btn">
 					<view bindtap="onClear" class="clear" hover-class="clear-hover">清空</view>
 					<view bindtap="onConfirm" hover-class="confirm-hover" class="confirm">

@@ -7,6 +7,8 @@
 - fixed the hsv_rgb and rgb_hsv problem of the colorPicker component
 - edit code comments and indentation
 - add `清空` and `默认值` functions to the colorPicker component
+- add `透明度` function to the colorPicker component
+- fixed the prompt error message of the colorPicker components
 
 ### 2021/02/(26 and 27)
 - edit nprogress component
