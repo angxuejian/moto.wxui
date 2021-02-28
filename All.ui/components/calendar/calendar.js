@@ -11,7 +11,7 @@ const time = new Date(`${year}-${month + 1}-${day}`).getTime() // 获取当天�
 
 let index = 0 // 获取当天的索引
 
-const sColor = '#5B7CFF' // 选择的颜色
+const sColor = '#438EDB' // 选择的颜色
 const nColor = '#c8ccd6' // 非当月颜色
 const tColor = '#373C52' // 当月的颜色
 const wColor = '#ffffff' // 选中的字体颜色
@@ -49,13 +49,12 @@ Component({
    */
   methods: {
 
-    // 初始化 阳历 + 获取农历
+    /**
+     * 初始化 阳历 + 获取农历
+     * @param {number} y 年份
+     * @param {number} m 月份 0-11
+     */
     init: function (y, m) {
-      /*
-        y: number => 年份
-        m: number => 月份 0-11
-      */
-
       if (m === 1) this.leapMonth()
       const monday = new Date(`${y}-${m + 1}-01`).getDay()
 
@@ -89,22 +88,23 @@ Component({
       }
     },
 
-    // 阳历 确认二月份 是28天还是29天
+    /**
+     * 阳历 确认二月份 是28天还是29天
+     */
     leapMonth: function () {
       if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
         this.data.months[1] = 29
       }
     },
 
-    // 获取阳历 + 合并农历 + 并渲染数据
+    /**
+     * 获取阳历 + 合并农历 + 并渲染数据
+     * @param {object} params 
+     * @param {number} params.m 月
+     * @param {number} params.d 日
+     * @param {string} params.color 颜色代码
+     */
     domCalendar: function (params) {
-      /*
-        params: {
-          m    : number  => 月
-          d    : number  => 日
-          color: string  => 颜色代码
-        }
-      */
       const { m, d } = params
       const t = new Date(`${year}-${m}-${d}`).getTime()
 
@@ -161,14 +161,13 @@ Component({
     },
 
   
-    // 渲染当天的阳历、农历日期
+    /**
+     * 渲染当天的阳历、农历日期
+     * @param {number | string} y 阳历年
+     * @param {number | string} m 阳历月
+     * @param {number | string} d 阳历日
+     */
     domTotalCalendar: function(y = year, m = month + 1, d = day) {
-      /*
-        y: number | string => 阳历年
-        m: number | string => 阳历月
-        d: number | string => 阳历日
-      */
-
       this.setData({ 
         year : y                                 ,
         month: m                                 ,

@@ -9,9 +9,16 @@
   </view>
 
   <view class="item-btn">
+    <text>无默认值</text>
+    <view>
+      <color-picker default='{{false}}' ></color-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
     <text>自定义样式</text>
     <view>
-      <color-picker predefined='#affffa' width='150'></color-picker>
+      <color-picker predefined='#0ECFC2' width='150'></color-picker>
     </view>
   </view>
 

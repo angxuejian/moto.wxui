@@ -5,7 +5,11 @@ page {
 
 /* hover-class */
 .hover {
-  background-color: #dedede;
+  background-color: #dedede !important;
+}
+
+.hover-font {
+  color: #dedede !important;
 }
 
 /* 主题色 */

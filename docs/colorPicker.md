@@ -26,3 +26,7 @@ bindchange  | eventhandler | 无    | 否   |当修改绑定值时触发, 返回
 ## 如何实现
 
 - [如何实现 拾色器](https://github.com/angxuejian/how-to-achieve/blob/main/docs/HTA-2-201210.md)
+
+## 提示
+- hsv 与 rgb 互转个别颜色会出现小**误差情况**。并非每次都相等
+- hsv 与 rgb 互转时 会出现 **0 / 0 = NaN 情况**。

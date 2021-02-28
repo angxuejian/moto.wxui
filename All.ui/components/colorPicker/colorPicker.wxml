@@ -1,23 +1,41 @@
 <!--components/colorPicker/colorPicker.wxml-->
 
 <view>
+
+	<!-- 显示view -->
 	<view style="width:{{width}}px; height:{{height}}px" bindtap="showColorPicker" class="color-picker_trigger">
-		<view style="background-color:{{predefined}}; border:1px solid {{predefined}}" class="color-picker_selected-color"></view>
+		<view style="background-color:{{isClear ? noColor : predefined}}; border:1px solid {{isClear ? noColor : predefined}}" class="color-picker_selected-color">
+		</view>
 	</view>
 
+	<!-- 弹出view -->
 	<view>
-		<view style="background-color:{{ouColor.hex}}" bindtap="showColorPicker" class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}"></view>
-		<view class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : isShow === 2 ? 'color-picker_block-hide' : 'color-picker_block-none'}}">
+		<view style="background-color:{{ouColor.hex}}" bindtap="showColorPicker"
+			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}">
+		</view>
+
+		<!-- 颜色 s, v 区域 -->
+		<view
+			class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : isShow === 2 ? 'color-picker_block-hide' : 'color-picker_block-none'}}">
 			<movable-area style='background-color:{{bcColor}}' class='movable'>
 				<movable-view class="white"></movable-view>
 				<movable-view class="black"></movable-view>
-				<movable-view bindchange='onTouchMoveSV' x='{{x}}' y='{{y}}' inertia='true' direction='all' class="circle"></movable-view>
+				<movable-view  bindchange='onTouchMoveSV' x='{{x}}' y='{{y}}' inertia='true' direction='all' class="circle">
+				</movable-view>
 			</movable-area>
 
-			<slider value='{{hValue}}' bindchanging='onTouchMoveH' activeColor="transparent" backgroundColor="transparent" class="line" block-size='18' max="360"></slider>
+			<!-- 颜色 h 区域 -->
+			<slider value='{{hValue}}' bindchanging='onTouchMoveH' activeColor="transparent" backgroundColor="transparent"
+				class="line" block-size='18' max="360"></slider>
+
 			<view class="color-picker_show-hex">
-				<view bindtap="onCopyHex" class="hex">{{ouColor.hex || default}}</view>
-				<view bindtap="onConfirm" style='background-color:{{ouColor.hex}}' hover-class="confirm-hover" class="confirm">确认</view>
+				<view bindtap="onCopyHex" class="hex">{{ouColor.hex || seColor}}</view>
+				
+				<view class="btn">
+					<view bindtap="onClear" class="clear" hover-class="clear-hover">清空</view>
+					<view bindtap="onConfirm" hover-class="confirm-hover" class="confirm">
+					确认</view>
+				</view>
 			</view>
 		</view>
 	</view>

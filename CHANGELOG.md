@@ -2,6 +2,12 @@
 
 ## v0.1
 
+### 2021/02/(27 and 28)
+- fixed the NaN problem of the colorPicker component
+- fixed the hsv_rgb and rgb_hsv problem of the colorPicker component
+- edit code comments and indentation
+- add `清空` and `默认值` functions in colorPicker component
+
 ### 2021/02/(26 and 27)
 - edit nprogress component
 - create ui.nprogress page
