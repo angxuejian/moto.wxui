@@ -1,22 +1,20 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": []
-  },
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
     "urlCheck": true,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
-    "newFeature": false,
+    "newFeature": true,
     "coverView": true,
     "nodeModules": false,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
-    "uglifyFileName": false,
+    "uglifyFileName": true,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
@@ -34,15 +32,9 @@
     "packNpmManually": false,
     "packNpmRelationList": []
   },
-  "compileType": "miniprogram",
-  "libVersion": "2.14.4",
-  "appid": "wxfba5043cf98b89f9",
+  "appid": "wx2dd2fc66d02ac16d",
   "projectname": "moto.wxui",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "scripts": {},
-  "isGameTourist": false,
+  "libVersion": "2.14.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
@@ -59,22 +51,15 @@
       "list": []
     },
     "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "current": -1,
+      "current": 0,
       "list": [
         {
-          "id": 0,
-          "name": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
-          "pathName": "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
-          "query": "",
-          "scene": null
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index"
         }
       ]
     }
