@@ -6,7 +6,7 @@
 组件 | 文档
 --- | ---
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
-颜色选择器-ColorPicker | [ >>> ](doc/colorPicker.md)
+颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 
 [全部组件 - 在这里！](LIST.md)
 
