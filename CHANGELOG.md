@@ -2,6 +2,15 @@
 
 ## v0.1
 
+### 2021/03/03
+- add `showPred` properties to the colorPicker component
+
+### 2021/03/02
+- create cloud function getRomveBG
+
+### 2021/03/01
+- init wx cloud development and create appid
+
 ### 2021/02/(27 and 28)
 - fixed the NaN problem of the colorPicker component
 - fixed the hsv_rgb and rgb_hsv problem of the colorPicker component

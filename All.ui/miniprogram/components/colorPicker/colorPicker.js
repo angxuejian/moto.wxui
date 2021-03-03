@@ -37,6 +37,10 @@ Component({
     showAlpha: {
       type: Boolean,
       value: false
+    },
+    showPred: {
+      type: Boolean,
+      value: true
     }
 
   },
@@ -82,6 +86,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
+    // 对外实例方法 - 调用实例打开组件
+    open: function() {
+      this.showColorPicker()
+    },
+
+    /**
+     * -------------------------------
+     * -------------------------------
+     * -------------------------------
+     * -------------------------------
+     * 分割线 - 分割线
+     * 
+     * 下面是 私有方法！ 不要随意调用哦！！！
+     */
 
     // 打开 或 关闭 colorPicker 组件
     showColorPicker: function () {
