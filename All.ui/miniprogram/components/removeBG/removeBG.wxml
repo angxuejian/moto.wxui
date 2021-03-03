@@ -3,8 +3,8 @@
 
   <view class="remove {{isRBG && 'blur'}}">
     <!-- 左边颜色区域 -->
-    <view class="background {{isRBG && 'animation_background'}}"></view>
-    <view class="background {{isRBG && 'animation_strong'}}"></view>
+    <view style="background-color: {{deColor}}" class="background {{isRBG && 'animation_background'}}"></view>
+    <view bindtap="selectColor" style="background-color: {{deColor}}" class="background {{isRBG && 'animation_strong'}}"></view>
 
 
     <!-- 中间 最终展示区域  -->
@@ -16,6 +16,8 @@
       <image mode="aspectFill" src="http://b230.photo.store.qq.com/psb?/V137jxAm36USXG/6Q*0EpyGtOFocpJBLOjr3fr*17JWY*I3M7kEPcAfRqU!/b/dOYAAAAAAAAA&bo=OAQ4BDgEOAQRBzA!&rf=viewer_4"></image>
     </view>
   </view>
+
+  <color-picker id='colorPicker' showPred='{{false}}' bindchange='onCallbackChange'></color-picker>
 </view>
 
 <!-- Q 如何实现 背景 + 图片 的合成效果？-->

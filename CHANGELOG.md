@@ -4,6 +4,7 @@
 
 ### 2021/03/03
 - add `showPred` properties to the colorPicker component
+- edit removeBG component
 
 ### 2021/03/02
 - create cloud function getRomveBG
