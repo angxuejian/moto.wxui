@@ -1,4 +1,5 @@
 // components/removeBG/removeBG.js
+import { BASE_IMG } from './config'
 Component({
   /**
    * 组件的属性列表
@@ -13,6 +14,8 @@ Component({
   data: {
     isRBG: false, // 是否开始消除背景
     deColor: '#438EDB', // 默认颜色
+    
+    photo: BASE_IMG
   },
 
   attached() {
@@ -45,7 +48,23 @@ Component({
         this.setData({
           isRBG: true
         })
-    }, 2000)
+      }, 2000)
+    },
+
+    
+    /**
+     * 选择图片
+     */
+    selectPhoto: function() {
+      wx.chooseImage({
+        count: 1,
+        success: ({ tempFilePaths }) => {
+          this.data.photo = tempFilePaths[0]
+          this.setData({
+            photo: this.data.photo
+          })
+        }
+      })
     }
   }
 })

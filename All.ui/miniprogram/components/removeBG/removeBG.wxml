@@ -12,8 +12,8 @@
 
 
     <!-- 右边图片区域 -->
-    <view class="photo {{isRBG && 'animation_photo'}}">
-      <image mode="aspectFill" src="http://b230.photo.store.qq.com/psb?/V137jxAm36USXG/6Q*0EpyGtOFocpJBLOjr3fr*17JWY*I3M7kEPcAfRqU!/b/dOYAAAAAAAAA&bo=OAQ4BDgEOAQRBzA!&rf=viewer_4"></image>
+    <view bindtap="selectPhoto" class="photo {{isRBG && 'animation_photo'}}">
+      <image mode="aspectFill" src="{{photo}}"></image>
     </view>
   </view>
 
