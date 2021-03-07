@@ -2,6 +2,10 @@
 
 ## v0.1
 
+### 2021/03/07
+- version v0.0.9 completed
+- add remove api to the removeBG component
+
 ### 2021/03/03
 - add `showPred` properties to the colorPicker component
 - edit removeBG component
