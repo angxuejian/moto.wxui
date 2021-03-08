@@ -2,6 +2,10 @@
 
 ## v0.1
 
+### 2021/03/08
+- create a `remove-key` database
+- diff cloud env
+
 ### 2021/03/07
 - version v0.0.9 completed
 - add remove api to the removeBG component

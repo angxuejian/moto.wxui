@@ -6,8 +6,8 @@ App({
     } else {
       wx.cloud.init({
 
-        env: 'mt-produce-8g711n3jaf11de66',
-        // env: 'mt-develop-6g6cszyd02a5bf13',
+        env: 'mt-develop-6g6cszyd02a5bf13',
+        // env: 'mt-produce-8g711n3jaf11de66',
         traceUser: true,
       })
     }

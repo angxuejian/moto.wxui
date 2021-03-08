@@ -128,17 +128,18 @@ Component({
         },
         success: ({ result }) => {
 
-          if (!result) {
-            this.onErrorModel()
-            return false
+          if (result.status === 200) {
+            
+            this.data.predPhoto = `${BASE64} ${wx.arrayBufferToBase64(result.data)}`
+            this.data.isMask = false
+            this.data.isRBG = false
+
+          } else {
+            this.onErrorModel(result.message)
           }
           
-          this.data.predPhoto = `${BASE64} ${wx.arrayBufferToBase64(result)}`
-          this.data.isMask = false
-          this.data.isRBG = false
         },
         fail: err => {
-          console.log(err, '失败？')
           this.onErrorModel()
         }
       })
@@ -148,11 +149,11 @@ Component({
      * 错误提示
      */
 
-    onErrorModel: function() {
+    onErrorModel: function(content) {
       wx.hideLoading()
       wx.showModal({
         title: '提示',
-        content: '服务器错误、请稍后再试',
+        content: content || '服务器错误、请稍后再试',
         showCancel: false,
         success: () => {
           wx.navigateBack({
