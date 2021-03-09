@@ -2,6 +2,7 @@
 
 ## v0.1
 ### 2021/03/0
+- add `selectDate` function to the calendar component
 - create cloud function resetRemoveKey
 
 ### 2021/03/08

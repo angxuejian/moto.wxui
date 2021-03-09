@@ -20,9 +20,9 @@
 
     <view class="title">
       <block wx:for="{{days}}" wx:key='index'>
-        <view style="color:{{item.color}}; background-color:{{item.bColor}}" class="content item-day">
+        <view bindtap="selectDate" data-index='{{index}}' style="color: {{item.color}}" class="content item-day {{itoday === index && 'select-item'}}">
           <view>{{item.solar}}</view>
-          <view  style="color:{{item.l_color}};{{item.bColor && 'color:' + default}}">{{item.today[item.today.length - 1]}}</view>
+          <view style="color:{{item.l_color}};">{{item.today[item.today.length - 1]}}</view>
         </view>
       </block>
     </view>

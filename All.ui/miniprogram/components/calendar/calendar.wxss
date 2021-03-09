@@ -68,3 +68,11 @@ page {
   color: #C2C1C1;
   font-weight: 100;
 }
+
+.select-item {
+  background-color: #438EDB !important;
+  color: #fff !important;
+}
+.select-item view {
+  color: #fff !important;
+}

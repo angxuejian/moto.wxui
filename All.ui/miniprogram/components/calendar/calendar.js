@@ -14,7 +14,6 @@ let index = 0 // 获取当天的索引
 const sColor = '#438EDB' // 选择的颜色
 const nColor = '#c8ccd6' // 非当月颜色
 const tColor = '#373C52' // 当月的颜色
-const wColor = '#ffffff' // 选中的字体颜色
 
 const SOLAR_TERMS = Canlr.getSolarTerms(year) // 24节气 对应时间表
 import { LUNAR_FESTIVAL, SOLAR_FESTIVAL } from './config'
@@ -36,7 +35,6 @@ Component({
     days    : [], // 日期数组
     itoday  : 0 , // 今天的索引
     festival: '', // 节日
-    default : wColor,
   },
 
 
@@ -108,15 +106,16 @@ Component({
       const { m, d } = params
       const t = new Date(`${year}-${m}-${d}`).getTime()
 
-      let bColor    = ''     // 背景颜色
       let { color } = params // 阳历字体颜色
       let l_color   = ''     // 节假日字体颜色
       
       if (t === time) {
-        color  = wColor
-        bColor = sColor
+        color  = tColor
 
         this.data.itoday = index
+        this.setData({
+          itoday: this.data.itoday
+        })
         index = 0
       } else {
         index += 1
@@ -142,7 +141,6 @@ Component({
         time   : t      ,
         color  : color  ,
         today  : today  ,
-        bColor : bColor ,
         l_color: l_color,
       })
 
@@ -174,5 +172,18 @@ Component({
         lunar: Canlr.solar_to_lunar(y, m, d, true),
       })
     },
+
+
+    /**
+     * 选择日期
+     */
+    selectDate: function(event) {
+      const { index } = event.currentTarget.dataset
+
+      this.data.itoday = index
+      this.setData({
+        itoday: this.data.itoday
+      })
+    }
   }
 })
