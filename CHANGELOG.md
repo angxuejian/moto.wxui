@@ -1,6 +1,8 @@
 # 版本更新 
 
 ## v0.1
+### 2021/03/0
+- create cloud function resetRemoveKey
 
 ### 2021/03/08
 - create a `remove-key` database
@@ -15,7 +17,7 @@
 - edit removeBG component
 
 ### 2021/03/02
-- create cloud function getRomveBG
+- create cloud function getReomveBG
 
 ### 2021/03/01
 - init wx cloud development and create appid

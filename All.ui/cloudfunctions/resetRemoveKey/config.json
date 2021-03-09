@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "openapi": [
+    ]
+  },
+  "triggers": [{
+    "name": "resetRemoveKey",
+    "type": "timer",
+    "config": "0 0 8 1 * * *"
+  }]
+}

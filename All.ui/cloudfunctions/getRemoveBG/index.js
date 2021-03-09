@@ -1,12 +1,10 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-const $ = require('request')
-cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV
-})
+const $     = require('request')
+cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 
-const db = cloud.database()
-const _ = db.command
+const db   = cloud.database()
+const _    = db.command
 const r_db = db.collection('remove-key')
 
 
