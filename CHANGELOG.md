@@ -1,7 +1,12 @@
 # 版本更新 
 
 ## v0.1
-### 2021/03/0
+
+### 2021/03/10
+- fixed the issue of calendar display index
+- create `datePicker component` 
+
+### 2021/03/09
 - add `selectDate` function to the calendar component
 - create cloud function resetRemoveKey
 

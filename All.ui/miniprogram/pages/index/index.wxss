@@ -27,12 +27,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border-radius: 3px;
   padding: 3px 0;
 }
 .item-component .image {
   width: 30px;
   height: 30px;
+  /* background-color: red; */
   margin-bottom: 5px;
   background-size: cover;
 }

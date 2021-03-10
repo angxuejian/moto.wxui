@@ -1,0 +1,30 @@
+<!--components/datePicker/datePicker.wxml-->
+
+<view>
+
+<view class="year">
+  <view class="solar">{{year}}.{{month}}</view>
+  <view class="lunar">{{lunar}}</view>
+  <view class="lunar">{{festival}}</view>
+</view>
+
+
+<view class="date">
+  <view class="week">
+    <view class="title">
+      <block wx:for="{{weeks}}" wx:key='index'>
+        <view class="content item-week">{{item}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view class="title">
+    <block wx:for="{{days}}" wx:key='index'>
+      <view bindtap="selectDate" data-index='{{index}}' style="color: {{item.color}}" class="content item-day {{itoday === index && 'select-item'}}">
+        <view>{{item.solar}}</view>
+        <view style="color:{{item.l_color}};">{{item.today[item.today.length - 1]}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+</view>

@@ -21,6 +21,12 @@ export const list = [
   {
     title: 'UI组件',
     list: [
+      
+      {
+        svg: SVG.datePicker,
+        name: '日期选择器',
+        url: `${BASE}/ui.datePicker/ui.datePicker`
+      },
       {
         svg: SVG.nprogress,
         name: '顶部加载',
@@ -30,7 +36,7 @@ export const list = [
         svg: SVG.colorPicker,
         name: '颜色选择器',
         url: `${BASE}/ui.colorPicker/ui.colorPicker`
-      }
+      },
     ]
   },
 

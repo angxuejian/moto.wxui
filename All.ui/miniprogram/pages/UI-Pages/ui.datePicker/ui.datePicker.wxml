@@ -1,0 +1,12 @@
+<!--miniprogram/pages/UI-Pages/ui.datePicker/ui.datePicker.wxml-->
+
+<view>
+  <view class="item-btn">
+    <text>默认样式</text>
+    <view>
+      <!-- <color-picker></color-picker> -->
+    </view>
+  </view>
+</view>
+
+<date-pciker></date-pciker>
