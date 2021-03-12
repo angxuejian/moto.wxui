@@ -34,4 +34,4 @@
 ## 许可
 [MIT License](LICENSE)
 
-moto.wxui Copyright © 2019-2020 angxuejian
+moto.wxui Copyright © 2020-2021 angxuejian
