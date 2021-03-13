@@ -76,3 +76,7 @@ page {
 .select-item view {
   color: #fff !important;
 }
+
+.hover-font {
+  color: #dedede;
+}

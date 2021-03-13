@@ -2,6 +2,15 @@
 
 <view>
 
+  <!-- 对外显示view -->
+  <view hover-class="hover-font">{{year}}.{{month}} {{lunar}}</view>
+
+</view>
+
+
+<!-- 
+<view>
+
 <view class="year">
   <view class="solar">{{year}}.{{month}}</view>
   <view class="lunar">{{lunar}}</view>
@@ -27,4 +36,4 @@
     </block>
   </view>
 </view>
-</view>
+</view> -->

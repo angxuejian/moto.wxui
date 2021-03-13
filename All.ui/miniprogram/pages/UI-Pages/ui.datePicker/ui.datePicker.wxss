@@ -21,3 +21,8 @@ page {
 .item-btn > view {
   width: 70%;
 }
+
+.date-picker {
+  font-size: 16px;
+  color: #333;
+}

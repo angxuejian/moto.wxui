@@ -4,9 +4,8 @@
   <view class="item-btn">
     <text>默认样式</text>
     <view>
-      <!-- <color-picker></color-picker> -->
+      <date-picker class="date-picker"></date-picker>
     </view>
   </view>
 </view>
 
-<date-pciker></date-pciker>

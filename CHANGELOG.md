@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/03/13
+- edit datePicker component
+
 ### 2021/03/10
 - fixed the issue of calendar display index
 - create `datePicker component` 
