@@ -174,9 +174,9 @@
   border-radius: 3px;
   font-size: 15px;
 }
-.confirm-hover{
+.hover{
   box-shadow:0px 0px 10px #bbbec4 inset; 
 }
-.clear-hover {
+.hover-font {
   color: #dedede;
 }

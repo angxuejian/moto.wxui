@@ -111,8 +111,9 @@ Component({
      * @param {string} params.color 颜色代码
      */
     domCalendar: function (params) {
-      const { m, d } = params
-      const t = new Date(`${year}-${m}-${d}`).getTime()
+      const { y, m } = Canlr.clearMonth(year, params.m)
+      const { d } = params
+      const t = new Date(`${y}-${m}-${d}`).getTime()
 
       let { color } = params // 阳历字体颜色
       let l_color   = ''     // 节假日字体颜色
@@ -132,7 +133,7 @@ Component({
         index += 1
       }
 
-      const lunar =  Canlr.solar_to_lunar(year, m, d)
+      const lunar =  Canlr.solar_to_lunar(y, m, d)
 
       // 0:阴历日期、1:节气 2:阴历节日、3: 阳历节日
       const s_fes = `${Canlr.padStart(m)}${Canlr.padStart(d)}`,
@@ -159,13 +160,12 @@ Component({
       
       if (this.data.days.length === 42) {
         let list  = this.data.days[this.data.itoday].today
-        let isFes = list.length > 1 ? list : []
-        isFes.shift()
+        let fes = list.length[1] ? list.slice(1) : []
 
-        console.log(this.data.days, ':::')
+
         this.setData({ 
           days     : this.data.days,
-          festival : isFes.join('、')
+          festival : fes.join('、')
         })
         this.domTotalCalendar()
       }

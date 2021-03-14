@@ -2,9 +2,9 @@
 
 <view>
   <view class="item-btn">
-    <text>默认样式</text>
+    <text>Change事件</text>
     <view>
-      <date-picker class="date-picker"></date-picker>
+      <date-picker bindchange='onCallbackChange' class="date-picker"></date-picker>
     </view>
   </view>
 </view>

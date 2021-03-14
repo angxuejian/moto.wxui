@@ -295,7 +295,7 @@ Component({
     // 确认颜色，传出回调
     onConfirm: function () {
       /*
-            bindchange: 当颜色值改变时触发
+        bindchange: 当颜色值改变时触发
       */
       let { ouColor, isClear, predefined, prColor } = this.data
 

@@ -3,64 +3,171 @@ page {
   padding-top: 30px;
 }
 
-.year {
-  width: 90%;
-  margin: 0 auto;
+
+.date-picker_bc {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999998;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.date-picker_bc-show {
+  visibility: visible;
+  opacity: 1;
 }
 
-.year .solar {
-  font-size: 20px;
-  color: #373C52;
-  font-weight: 700;
-  margin-bottom: 5px;
+.date-picker_bc-hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
 }
 
-.year .lunar {
-  font-size: 15px;
+.date-picker_block {
+  width: 98%;
+  position: fixed;
+  bottom: 1%;
+  left: 1%;
+  background-color: #fff;
+  border-radius: 30px;
+  z-index: 999999;
+}
+
+.date-picker_block-show {
+  animation: show 0.3s forwards;
+  opacity: 1;
+}
+@keyframes show {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.date-picker_block-hide {
+  animation: hide 0.3s forwards;
+}
+@keyframes hide {
+  from {
+    transform:  translateY(0%);
+  }
+  to {
+    transform:  translateY(110%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+
+/* 标题 */
+.title {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 14px;
   color: #333;
+  font-weight: 400;
+}
+.left, .right {
+  width: 17%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2%;
+}
+.left-double, .right-double {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.left-arrow {
+  border: 8px solid transparent;
+  border-right-color: #777777;
+  position: relative;
+}
+.left-arrow::before{
+  content: '';
+  position: absolute;
+  border: 8px solid transparent;
+  border-right-color: #fff;
+  top: -8px;
+  left: -6px;
+}
+
+.right-arrow {
+  border: 8px solid transparent;
+  border-left-color: #777777;
+  position: relative;
+}
+.right-arrow::before{
+  content: '';
+  position: absolute;
+  border: 8px solid transparent;
+  border-left-color: #fff;
+  top: -8px;
+  right:-6px;
+}
+
+/* 日期 */
+.month {
+  width: 100%;
+  margin: 0px auto;
+  margin-top: 15px;
 }
 
 .date {
   width: 100%;
-  padding: 5px 0;
-}
-.date .week {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 10px;
-}
-.date .title {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .date .content {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  font-weight: 550;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 15px;
   border-radius: 50%;
-  margin: 5px 0;
-  margin-left: calc((100% - (45px * 7)) / 7 / 2);
-  margin-right: calc((100% - (45px * 7)) / 7 / 2);
+  margin-left: calc((100% - (30px * 7)) / 7 / 2);
+  margin-right: calc((100% - (30px * 7)) / 7 / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.date .week {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
 .date .item-week {
   color: #333;
   font-weight: 100;
   font-size: 12px;
   border-radius: 0;
-  height: 40px;
-  line-height: 40px;
 }
 
-.date .item-day {
+.date .day {
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  height: 260px;
+}
+.date .item-day {
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  margin-bottom: 3px;
+  width: 40px;
+  height: 40px;
+  margin-left: calc((100% - (40px * 7)) / 7 / 2);
+  margin-right: calc((100% - (40px * 7)) / 7 / 2);
 }
 
 .date .item-day view:nth-of-type(2) {
@@ -75,6 +182,48 @@ page {
 }
 .select-item view {
   color: #fff !important;
+}
+
+
+/* 确认 and 取消 */
+.time-btn {
+  width: 95%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px auto;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 35%;
+}
+.clear {
+  font-size: 16px;
+  color: #555;
+  font-weight: 400;
+}
+.confirm {
+  padding: 5px 15px;
+  background-color: #438EDB;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+
+/* hover - 点击态 */
+.hover {
+  background-color: #dedede;
+}
+
+.hover-left, .hover-left view {
+  border-left-color: #dedede;
+}
+.hover-right, .hover-right view {
+  border-right-color: #dedede;
 }
 
 .hover-font {

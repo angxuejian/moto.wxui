@@ -9,9 +9,8 @@ class Canlendar {
    * @param {number} sy 阳历年
    * @param {number} sm 阳历月 0-11
    * @param {number} sd 阳历日
-   * @param {boolear} done 是否 return 年月日
    */
-  solar_to_lunar = function (sy, sm, sd, done) {
+  solar_to_lunar = function (sy, sm, sd) {
     sm -= 1
     let ly, lm, ld;
     let day_diff = (Date.UTC(sy, sm, sd) - Date.UTC(1949, 0, 29)) / (24 * 60 * 60 * 1000) + 1;
@@ -46,7 +45,7 @@ class Canlendar {
         break
       }
     }
-    return this.clear_day(ly, lm, ld, done)
+    return this.clear_day(ly, lm, ld)
   }
 
   /**
@@ -114,9 +113,8 @@ class Canlendar {
    * @param {number}          ly 农历年
    * @param {number | string} lm 农历月 1-12 | 1-13
    * @param {number}          ld 农历日
-   * @param {boolear}         done 是否return 年月日
    */
-  clear_day = function(ly, lm, ld, done) {
+  clear_day = function(ly, lm, ld) {
     let cy, cm, cd;
     ld = ld.toString()
     if (ld == 1) { 
@@ -140,18 +138,17 @@ class Canlendar {
     let tg, dz, sx;
     tg = TIANGAN[ly % 10]
     dz = DIZHI[ly % 12]
-    sx = SHENGXIAO[ly % 12]
-    cy = `${tg}${dz}${sx}年`
+    sx = SHENGXIAO[ly % 12] + '年'
+    cy = `${tg}${dz}年`
 
     let m = lm
     if(/闰/g.test(lm)) m = lm.split('闰')[1]
 
-
-    if (!done) return {
-      fes: [this.padStart(m), this.padStart(ld)],
-      day: cd
+    return {
+      fes : [this.padStart(m), this.padStart(ld)],
+      day : cd,
+      date: [cy, sx, cm, cd]
     }
-    else return `${cy} ${cm}${cd}`
   }
 
   /**
@@ -214,6 +211,41 @@ class Canlendar {
   padStart = function(n) {
     n = n.toString()
     return n.padStart(2, 0)
+  }
+
+  /**
+   * 超过 12月， 年 + 1
+   * @param {number} y 阳历年份 
+   * @param {number} m 阳历月份（已加 1 ）
+   * @returns { y, m }
+   */
+  clearMonth = function(y, m) {
+    if (m > 12) {
+      y += 1
+      m = 1
+    } 
+
+    return { y, m }
+  }
+
+   /**
+   * 将时间戳 转换为 年月日
+   * @param {String} timestamp 13位时间戳
+   */
+  getYY_MM_DD = function(timestamp) {
+    return new Promise(resolve => {
+      
+      const d = new Date(Number(timestamp)),
+            yy = d.getFullYear(),
+            mm = d.getMonth(),
+            dd = d.getDate();
+      
+      const time = new Date(`${yy}-${mm + 1}-${dd}`).getTime()
+
+      resolve({
+        yy, mm, dd, time
+      })
+    })
   }
 }
 

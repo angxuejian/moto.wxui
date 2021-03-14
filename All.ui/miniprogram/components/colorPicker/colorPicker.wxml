@@ -9,7 +9,7 @@
 	</view>
 
 	<!-- 弹出view -->
-	<view>
+	<view wx:if="{{isShow}}">
 		<view style="background-color:{{prColor}}" bindtap="showColorPicker"
 			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}">
 		</view>
@@ -35,8 +35,8 @@
 			<view class="color-picker_show-hex">
 				<view bindtap="onCopyHex" class="hex">{{prColor}}</view>
 				<view class="btn">
-					<view bindtap="onClear" class="clear" hover-class="clear-hover">清空</view>
-					<view bindtap="onConfirm" hover-class="confirm-hover" class="confirm">
+					<view bindtap="onClear" class="clear" hover-class="hover-font">清空</view>
+					<view bindtap="onConfirm" hover-class="hover" class="confirm">
 					确认</view>
 				</view>
 			</view>

@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    a: 23
 
   },
 
@@ -13,6 +14,16 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  // 选择日期的回调
+  onCallbackChange: function({ detail }) {
+    
+    wx.showModal({
+      title: 'Change事件',
+      content: `日期：${ detail.solor }`,
+      showCancel: false
+    })
   },
 
   /**

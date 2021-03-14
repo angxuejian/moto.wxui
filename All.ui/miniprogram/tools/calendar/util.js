@@ -215,6 +215,21 @@ class Canlendar {
     n = n.toString()
     return n.padStart(2, 0)
   }
+
+  /**
+   * 超过 12月， 年 + 1
+   * @param {number} y 阳历年份 
+   * @param {number} m 阳历月份（已加 1 ）
+   * @returns { y, m }
+   */
+  clearMonth = function(y, m) {
+    if (m > 12) {
+      y += 1
+      m = 1
+    } 
+
+    return { y, m }
+  }
 }
 
 

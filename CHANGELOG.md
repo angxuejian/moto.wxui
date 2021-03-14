@@ -2,11 +2,16 @@
 
 ## v0.1
 
+### 2021/03/14
+- completed `datePicker component`
+- fixed Calendar component month = 13 problem
+- edit colorPicker compoent loading problem
+
 ### 2021/03/13
 - edit datePicker component
 
 ### 2021/03/10
-- fixed the issue of calendar display index
+- fixed the problem of calendar display index
 - create `datePicker component` 
 
 ### 2021/03/09

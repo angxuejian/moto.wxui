@@ -2,38 +2,67 @@
 
 <view>
 
-  <!-- 对外显示view -->
-  <view hover-class="hover-font">{{year}}.{{month}} {{lunar}}</view>
+  <!-- 显示view -->
+  <view wx:if='{{domDate.date}}' bindtap="showDatePicker" hover-class="hover-font">{{domDate.date}}</view>
 
-</view>
+  <view style="color: #999" wx:else bindtap="showDatePicker" hover-class="hover-font">选择日期</view>
 
+  <!-- 弹出view -->
+  <view wx:if="{{isShow}}">
+    <view bindtap="showDatePicker" class="date-picker_bc {{ isShow === 1 ? 'date-picker_bc-show' : 'date-picker_bc-hide'}}"></view>
+    
+    <view class="date-picker_block {{ isShow === 1 ? 'date-picker_block-show' : 'date-picker_block-hide'}}">
+      <!-- 标题 -->
+      <view class="title">
+        <view class="left">
+          <view bindtap="changeYear" data-index='-1' hover-class="hover-right" class="left-double">
+            <view class="left-arrow"></view>
+            <view style="left: -9px;z-index:3" class="left-arrow"></view>
+          </view>
 
-<!-- 
-<view>
+          <view bindtap="changeMonth" data-index='-1' hover-class="hover-right" class="left-arrow"></view>
+        </view>
+        <view>{{domDate.y}}年 {{domDate.m}}月</view>
+        <view class="right">
+          <view bindtap="changeMonth" data-index='+1' hover-class="hover-left" class="right-arrow"></view>
+          
+          <view bindtap="changeYear" data-index='+1' hover-class="hover-left" class="right-double">
+            <view style="right: -9px; z-index:3" class="right-arrow"></view>
+            <view class="right-arrow"></view>
+          </view>
+        </view>
+      </view>
 
-<view class="year">
-  <view class="solar">{{year}}.{{month}}</view>
-  <view class="lunar">{{lunar}}</view>
-  <view class="lunar">{{festival}}</view>
-</view>
+      <!-- 日期 -->
+      <view class="month">
+        <view class="date">
+          <view class="week">
+            <block wx:for="{{weeks}}" wx:key='index'>
+              <view class="content item-week">{{item}}</view>
+            </block>
+          </view>
+            <view class="day">
+              <block wx:for="{{days}}" wx:key='index'>
+                <view bindtap="selectDate" data-index='{{index}}' style="color: {{item.s_color}}"
+                  class="content item-day {{itoday === index && 'select-item'}}">
+                  <view>{{item.solar}}</view>
 
+                  <view wx:if='{{showLunar}}' style="color:{{item.l_color}};">{{item.today[item.today.length - 1]}}</view>
+                </view>
+              </block>
+            </view>
+        </view>
+      </view>
 
-<view class="date">
-  <view class="week">
-    <view class="title">
-      <block wx:for="{{weeks}}" wx:key='index'>
-        <view class="content item-week">{{item}}</view>
-      </block>
+      <!-- 确认 and 取消 -->
+      <view class="time-btn">
+        <view class="time"></view>
+        <view class="btn">
+          <view bindtap="clear" class="clear" hover-class="hover-font">清空</view>
+          <view bindtap="confirm" hover-class="hover" class="confirm">
+            确认</view>
+        </view>
+      </view>
     </view>
   </view>
-
-  <view class="title">
-    <block wx:for="{{days}}" wx:key='index'>
-      <view bindtap="selectDate" data-index='{{index}}' style="color: {{item.color}}" class="content item-day {{itoday === index && 'select-item'}}">
-        <view>{{item.solar}}</view>
-        <view style="color:{{item.l_color}};">{{item.today[item.today.length - 1]}}</view>
-      </view>
-    </block>
-  </view>
 </view>
-</view> -->
