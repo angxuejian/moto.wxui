@@ -69,9 +69,10 @@
           "scene": null
         },
         {
-          "id": -1,
-          "name": "pages/UI-Pages/ui.datePicker/ui.datePicker",
-          "pathName": "pages/UI-Pages/ui.datePicker/ui.datePicker",
+          "id": 1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
           "scene": null
         }
       ]

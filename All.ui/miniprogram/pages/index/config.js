@@ -16,6 +16,11 @@ export const list = [
         name: '消除背景',
         url: `${BASE}/ui.removeBG/ui.removeBG`
       },
+      {
+        svg: SVG.waterfallsFlow,
+        name: '瀑布流',
+        url: `${BASE}/ui.waterfallsFlow/ui.waterfallsFlow`
+      }
     ]
   },
   {

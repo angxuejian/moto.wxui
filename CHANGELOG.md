@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/03/15
+- create `waterfallsFlow component`
+
 ### 2021/03/14
 - completed `datePicker component`
 - fixed Calendar component month = 13 problem

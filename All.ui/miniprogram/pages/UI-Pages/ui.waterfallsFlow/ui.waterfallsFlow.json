@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "waterfalls-flow":"/tools/waterfallsFlow/waterfallsFlow"
+  },
+  "navigationBarTitleText": "瀑布流-WaterfallsFlow"
+}
