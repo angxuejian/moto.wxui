@@ -1,25 +1,45 @@
 <!--tools/waterfallsFlow/waterfallsFlow.wxml-->
+
+<!-- 微信 图片裁剪 瀑布流 -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+
 <view>
   <view class="falls">
-
-    <!-- 左边 -->
     <view class="flow">
-        <!-- <image lazy-load='true' wx:for='{{ left.list }}' :key='index'  src="{{item.src}}" style=" height:{{item.height}}px"></image> -->
-
-        <image lazy-load='{{true}}' wx:for='{{ left.list }}' :key='index'  src='{{item}}' mode='widthFix'></image>
-
+        <image bindtap="onPreviewImg" data-src='{{item.img}}' binderror='onCallbackErr' data-index='{{index}}' data-type='leftArr' lazy-load='true' wx:for='{{ leftArr }}' :key='index'  src='{{item.img}}' mode='widthFix'></image>
     </view>
-
-    <!-- 右边 -->
     <view class="flow">
-        <!-- <image lazy-load='true' wx:for='{{ right.list }}' :key='index'  src="{{item.src}}" style="height:{{item.height}}px"></image> -->
-        
-        <image lazy-load='{{true}}' wx:for='{{ right.list }}' :key='index' src='{{item}}' mode='widthFix'></image>
+        <image bindtap="onPreviewImg" data-src='{{item.img}}' binderror='onCallbackErr' data-index='{{index}}' data-type="rightArr" lazy-load='true' wx:for='{{ rightArr }}' :key='index' src='{{item.img}}' mode='widthFix'></image>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+<!-- DIY 裁剪 瀑布流 -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+
+<!-- 
+<view>
+  <view class="falls">
+     <view class="flow">
+        <image bindtap="onPreviewImg" data-src='{{item.src}}' lazy-load='true' wx:for='{{ leftArr }}' :key='index'  src="{{item.src}}" style=" height:{{item.height}}px"></image>
+    </view>
+    <view class="flow">
+        <image bindtap="onPreviewImg" data-src='{{item.src}}'  lazy-load='true' wx:for='{{ rightArr }}' :key='index'  src="{{item.src}}" style="height:{{item.height}}px"></image>
     </view>
   </view>
 
-  
-  <!-- <view style="display: none">
-    <image bindload='onCallbackLoad' data-index='{{index}}' wx:for="{{images}}" :key='index' src="{{item}}" ></image>
-  </view> -->
-</view>
+
+  <view style="display: none">
+    <image binderror='onCallbackErr' data-type="imgArr" bindload='onCallbackLoad' data-index='{{index}}' wx:for="{{imgArr}}" :key='index' src="{{item.img}}" ></image>
+  </view>
+</view> -->

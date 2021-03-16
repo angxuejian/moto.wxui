@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/03/16
+- completed `waterfallsFlow component`
+
 ### 2021/03/15
 - create `waterfallsFlow component`
 
