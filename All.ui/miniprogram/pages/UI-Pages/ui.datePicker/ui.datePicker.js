@@ -5,8 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    a: 23
-
+ 
   },
 
   /**
@@ -16,14 +15,33 @@ Page({
 
   },
 
-  // 选择日期的回调
+   /**
+   * datePicker组件--change事件回调--弹出阳历
+   * @param {Object} event 
+   */
   onCallbackChange: function({ detail }) {
-    
     wx.showModal({
       title: 'Change事件',
       content: `日期：${ detail.solor }`,
       showCancel: false
     })
+  },
+
+   /**
+   * datePicker组件--change事件回调--弹出阴历
+   * @param {Object} event 
+   */
+  onCallbackChangeLun: function({ detail }) {
+    
+    wx.showModal({
+      title: 'Change事件',
+      content: `日期：${ detail.lunar }`,
+      showCancel: false
+    })
+  },
+
+  open: function() {
+    this.selectComponent('#datePicker').open()
   },
 
   /**

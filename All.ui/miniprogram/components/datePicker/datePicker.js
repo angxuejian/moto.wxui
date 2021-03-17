@@ -32,6 +32,10 @@ Component({
     showLunar: {
       type: Boolean,
       value: false,
+    },
+    showPred: {
+      type: Boolean,
+      value: true
     }
   },
 
@@ -58,7 +62,7 @@ Component({
 
   lifetimes: {
     attached: function() {
-      this.initDom(this.data.predefined)
+      this.checkPred(this.data.predefined)
     }
   },
   
@@ -66,8 +70,23 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    
+    // 对外实例方法 - 调用实例打开组件
+    open: function() {
+      this.showDatePicker()
+    },
 
-    // 打开或关闭 datePicker 组件
+    /**
+     * -------------------------------
+     * -------------------------------
+     * -------------------------------
+     * -------------------------------
+     * 分割线 - 分割线
+     * 
+     * 下面是 私有方法！ 不要随意调用哦！！！
+     */
+
+    // 打开 或 关闭 datePicker 组件
     showDatePicker: function() {
       let show = this.data.isShow
 
@@ -78,13 +97,13 @@ Component({
       this.setData({
         isShow: this.data.isShow
       }, () => {
-        if (this.data.isShow === 1) this.open()
-        else this.close()
+        if (this.data.isShow === 1) this.create()
+        else this.destroy()
       })
     },
 
-    // 打开组件
-    open: function() {
+    // 创建 日期
+    create: function() {
       if (this.data.showLunar) {
         SOLAR_TERMS = Canlr.getSolarTerms(year)
       }
@@ -92,8 +111,8 @@ Component({
       this.init(year, month)
     },
 
-    // 组件关闭时、清空索引
-    close: function() {
+    // 组件销毁时、清空索引
+    destroy: function() {
       index = 0
       this.data.days   = []
       this.data.itoday = index
@@ -102,6 +121,17 @@ Component({
         days: this.data.days,
         itoday: this.data.itoday
        })
+    },
+
+    // 检查时间戳是否正确
+    checkPred: function(t) {
+      if (isNaN(t)) {
+        this.showErr('请输入13位时间戳')
+      } else if (t.length !== 13) {
+        this.showErr('请输入13位时间戳')
+      }
+
+      this.initDom(t)
     },
 
 
@@ -288,10 +318,13 @@ Component({
         days: this.data.days,
         ['domDate.y']: year,
       })
-      this.open()
+      this.create()
     },
 
-
+    /**
+     * 上一月 or 下一月
+     * @param {Object} event 标签属性 
+     */
     changeMonth: function(event) {
       
       const { index: i } = event.currentTarget.dataset
@@ -326,17 +359,12 @@ Component({
         ['domDate.y']: year,
         ['domDate.m']: Canlr.padStart(month + 1)
       })
-      this.open()
-
-      
-
-      console.log(y, m)
+      this.create()
     },
 
 
     // 清空事件
     clear: function() {
-
       this.data.domDate.date = ''
       this.setData({ 
         ['domDate.date']: this.data.domDate.date 
@@ -360,7 +388,6 @@ Component({
     },
 
     change: function(current = {}, fes = '') {
-
       const data = {
         time : current.time,
         solor: current.s_date,
@@ -370,5 +397,9 @@ Component({
       this.triggerEvent('change', data)
       this.showDatePicker()
     },
+
+    showErr: function(err) {
+      throw new Error(err)
+    }
   }
 })

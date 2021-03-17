@@ -3,9 +3,12 @@
 <view>
 
   <!-- 显示view -->
-  <view wx:if='{{domDate.date}}' bindtap="showDatePicker" hover-class="hover-font">{{domDate.date}}</view>
+  <view wx:if='{{showPred}}'>
+    <view wx:if='{{domDate.date}}' bindtap="showDatePicker" hover-class="hover-font">{{domDate.date}}</view>
 
-  <view style="color: #999" wx:else bindtap="showDatePicker" hover-class="hover-font">选择日期</view>
+    <view style="color: #999" wx:else bindtap="showDatePicker" hover-class="hover-font">选择日期</view>
+  </view>
+
 
   <!-- 弹出view -->
   <view wx:if="{{isShow}}">

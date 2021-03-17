@@ -17,6 +17,9 @@ page {
   font-weight: 400;
   width: 30%;
   text-align: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .item-btn > view {
   width: 70%;
