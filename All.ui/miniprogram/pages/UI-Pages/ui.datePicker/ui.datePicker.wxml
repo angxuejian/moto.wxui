@@ -8,9 +8,15 @@
     </view>
   </view>
   <view class="item-btn">
-    <text>(带节日)日期选择</text>
+    <text>混合日期选择</text>
     <view>
       <date-picker showLunar='true' bindchange='onCallbackChangeLun'  class="date-picker"></date-picker>
+    </view>
+  </view>
+  <view class="item-btn">
+    <text>指定日期</text>
+    <view>
+      <date-picker  timestamp="{{timestamp}}"  class="date-picker"></date-picker>
     </view>
   </view>
   <view class="item-btn">

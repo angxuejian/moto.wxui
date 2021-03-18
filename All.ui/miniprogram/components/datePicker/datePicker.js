@@ -4,13 +4,12 @@ import { Canlendar } from './date'
 const Canlr = new Canlendar()
 
 // 计算日期的 年月日
-let year  = '' // 年
-let month = '' // 月
-let day   = '' // 日
+// let year  = '' // 年
+// let month = '' // 月
+// let day   = '' // 日
 
 let index = 0  // 索引
 
-let todayTime   = '' // 获取当天的时间戳
 let SOLAR_TERMS = [] // 24节气 对应时间表
 
 const sColor = '#438EDB' // 选择的颜色
@@ -25,7 +24,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    predefined: {
+    timestamp: {
       type: String,
       value: `${new Date().getTime()}`
     },
@@ -43,6 +42,11 @@ Component({
    * 组件的初始数据
    */
   data: {
+    YEAR : '',
+    MONTH: '',
+    DAY  : '',
+    todayTime: '', // 获取当天的时间戳
+
     weeks   : ['日', '一', '二', '三', '四', '五', '六'], // 星期
     months  : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], // 阳历月份
 
@@ -51,9 +55,9 @@ Component({
 
     festival: '', // 节日
     domDate : {
-      y: '',
-      m: '',
-      d: '',
+      yy: '',
+      mm: '',
+      dd: '',
       date: ''
     }, // dom 节点上的 年月日
 
@@ -62,7 +66,8 @@ Component({
 
   lifetimes: {
     attached: function() {
-      this.checkPred(this.data.predefined)
+
+      this.checkPred(this.data.timestamp)
     }
   },
   
@@ -97,6 +102,7 @@ Component({
       this.setData({
         isShow: this.data.isShow
       }, () => {
+        // console.log(this.data.date.year)
         if (this.data.isShow === 1) this.create()
         else this.destroy()
       })
@@ -105,10 +111,9 @@ Component({
     // 创建 日期
     create: function() {
       if (this.data.showLunar) {
-        SOLAR_TERMS = Canlr.getSolarTerms(year)
+        SOLAR_TERMS = Canlr.getSolarTerms(this.data.YEAR)
       }
-
-      this.init(year, month)
+      this.init()
     },
 
     // 组件销毁时、清空索引
@@ -139,11 +144,11 @@ Component({
     initDom: function(t, isDom = true) {
       Canlr.getYY_MM_DD(t).then(res => {
         const { yy, mm, dd, time } = res
-        year  = yy
-        month = mm
-        day   = dd
+        this.data.YEAR  = yy
+        this.data.MONTH = mm
+        this.data.DAY   = dd
         
-        todayTime = time
+        this.data.todayTime = time
         isDom && this.domTotalCalendar()
 
       })
@@ -151,10 +156,10 @@ Component({
 
     /**
      * 初始化 阳历 + 获取农历
-     * @param {number} y 年份
-     * @param {number} m 月份 0-11
      */
-    init: function (y, m, set) {
+    init: function () {
+      const { YEAR:y, MONTH:m } = this.data
+
       if (m === 1) this.leapMonth()
       const monday = new Date(`${y}-${m + 1}-01`).getDay()
 
@@ -192,7 +197,7 @@ Component({
      * 阳历 确认二月份 是28天还是29天
      */
     leapMonth: function () {
-      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+      if ((this.data.YEAR % 4 === 0 && this.data.YEAR % 100 !== 0) || this.data.YEAR % 400 === 0) {
         this.data.months[1] = 29
       }
     },
@@ -205,15 +210,16 @@ Component({
      * @param {string} params.color 颜色代码
      */
     domCalendar: function (params) {
-      const { y, m } = Canlr.clearMonth(year, params.m)
+      const { y, m } = Canlr.clearMonth(this.data.YEAR, params.m)
       const { d } = params
 
+      console.log(y, m, d)
       const t = new Date(`${y}-${m}-${d}`).getTime()
 
       let { color } = params // 阳历字体颜色
       let l_color   = ''     // 节假日字体颜色
-      
-      if (t === todayTime) { 
+
+      if (t == this.data.todayTime) { 
         color  = tColor 
 
         this.data.itoday = index
@@ -271,17 +277,15 @@ Component({
   
     /**
      * 渲染当天的阳历、农历日期
-     * @param {number | string} y 阳历年
-     * @param {number | string} m 阳历月
-     * @param {number | string} d 阳历日
      */
-    domTotalCalendar: function(y = year, m = month + 1, d = day) {
-      const list = [m, d].map(s => Canlr.padStart(s))
+    domTotalCalendar: function() {
+      const { YEAR, MONTH, DAY } = this.data
+      const list = [MONTH + 1, DAY].map(s => Canlr.padStart(s))
       const data = {
-        y,
-        m: list[0],
-        d: list[1],
-        date: `${y}-${list[0]}-${list[1]}`
+        yy: YEAR,
+        mm: list[0],
+        dd: list[1],
+        date: `${YEAR}-${list[0]}-${list[1]}`
       }
 
       this.setData({ domDate: data })
@@ -309,14 +313,14 @@ Component({
      */
     changeYear: function(event) {
       const { index:i } = event.currentTarget.dataset
-      if (i === '+1') year += 1
-      else year -= 1
+      if (i === '+1') this.data.YEAR += 1
+      else this.data.YEAR -= 1
 
       index = 0
       this.data.days = []
       this.setData({
         days: this.data.days,
-        ['domDate.y']: year,
+        ['domDate.yy']: this.data.YEAR,
       })
       this.create()
     },
@@ -329,35 +333,36 @@ Component({
       
       const { index: i } = event.currentTarget.dataset
 
-      let y = year, 
-          m = month;
 
-      if (month > 11 && i === '-1') {
-        y = year + 1
+      let y = this.data.YEAR, 
+          m = this.data.MONTH;
+      
+      if (this.data.MONTH > 11 && i === '-1') {
+        y = this.data.YEAR + 1
         m = 0
-      } else if(month >= 11 && i === '+1') {
-        y = year + 1
+      } else if(this.data.MONTH >= 11 && i === '+1') {
+        y = this.data.YEAR + 1
         m = 0
-      } else if (month < 0 && i === '+1') {
-        y = year - 1
+      } else if (this.data.MONTH < 0 && i === '+1') {
+        y = this.data.YEAR - 1
         m = 11
-      } else if (month <= 0 && i === '-1') {
-        y = year - 1
+      } else if (this.data.MONTH <= 0 && i === '-1') {
+        y = this.data.YEAR - 1
         m = 11
       } else {
         if (i === '+1') m++
         else m--
       }
 
-      year = y
-      month = m
+      this.data.YEAR = y
+      this.data.MONTH = m
   
       index = 0
       this.data.days = []
       this.setData({
         days: this.data.days,
-        ['domDate.y']: year,
-        ['domDate.m']: Canlr.padStart(month + 1)
+        ['domDate.yy']: this.data.YEAR,
+        ['domDate.mm']: Canlr.padStart(this.data.MONTH + 1)
       })
       this.create()
     },

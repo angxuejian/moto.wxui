@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
- 
+    timestamp: new Date('2050-10-01').getTime()
   },
 
   /**

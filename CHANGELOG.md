@@ -2,6 +2,11 @@
 
 ## v0.1
 
+### 2021/03/(17 and 18)
+- improve datePicker.md file
+- improve datePicker component code
+- fixed the variable problem of datePicker component 
+
 ### 2021/03/16
 - completed `waterfallsFlow component`
 

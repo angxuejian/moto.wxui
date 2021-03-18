@@ -241,12 +241,26 @@ class Canlendar {
             dd = d.getDate();
       
       const time = new Date(`${yy}-${mm + 1}-${dd}`).getTime()
-
+      
       resolve({
         yy, mm, dd, time
       })
     })
   }
+
+  setMonth = function(date, m) {
+    console.log(date, m)
+    return new Promise(resolve => {
+      let d = new Date(date)
+
+      d.setMonth(m)
+
+      resolve({
+        yy: d.getFullYear(),
+        mm: d.getMonth()
+      })
+    })
+  } 
 }
 
 

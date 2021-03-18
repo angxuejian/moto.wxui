@@ -25,7 +25,7 @@
 
           <view bindtap="changeMonth" data-index='-1' hover-class="hover-right" class="left-arrow"></view>
         </view>
-        <view>{{domDate.y}}年 {{domDate.m}}月</view>
+        <view>{{domDate.yy}}年 {{domDate.mm}}月</view>
         <view class="right">
           <view bindtap="changeMonth" data-index='+1' hover-class="hover-left" class="right-arrow"></view>
           
