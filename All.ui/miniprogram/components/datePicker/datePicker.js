@@ -213,7 +213,7 @@ Component({
       const { y, m } = Canlr.clearMonth(this.data.YEAR, params.m)
       const { d } = params
 
-      console.log(y, m, d)
+      // console.log(y, m, d)
       const t = new Date(`${y}-${m}-${d}`).getTime()
 
       let { color } = params // 阳历字体颜色
