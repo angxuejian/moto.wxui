@@ -7,6 +7,7 @@
 --- | ---
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
+日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
 
 [全部组件 - 在这里！](LIST.md)
 

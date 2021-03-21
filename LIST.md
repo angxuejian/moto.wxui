@@ -3,9 +3,9 @@
 ## 小功能
 功能 | 示例
 ---  | ---
-日历-Calendar | [ - - ](docs/calendat.md)
+日历-Calendar | [ - - - ](docs/calendar.md)
 消除背景-RemoveBG |
-
+瀑布流-waterfallsFlow|
 ## UI组件
 组件 | 文档
 --- | ---
