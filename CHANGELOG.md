@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/03/23
+- add a custom navbar
+
 ### 2021/03/(17 and 18)
 - improve datePicker.md file
 - improve datePicker component code

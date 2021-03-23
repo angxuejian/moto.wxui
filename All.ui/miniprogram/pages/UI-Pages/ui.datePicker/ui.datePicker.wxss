@@ -1,5 +1,5 @@
 /* miniprogram/pages/UI-Pages/ui.datePicker/ui.datePicker.wxss */
-
+@import '/wxss/ui.preview.wxss';
 
 /** 
  * 修改 datePicker组件 显示样式
@@ -12,4 +12,3 @@
   color: #333;
 }
 
-@import '/style/ui.preview.wxss'

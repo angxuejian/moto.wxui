@@ -1,4 +1,20 @@
 /**index.wxss**/
+.navbar {
+  width: 90%;
+  padding: 0 5%;
+  height: 44px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.navbar image {
+  position: absolute;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+}
 
 .item-ui {
   width: 90%;

@@ -1,5 +1,11 @@
 <!--index.wxml-->
 <view>
+  <view style="height: {{height}}px; background: #fff;" ></view>
+  <view class="navbar">
+    <view>moto.wxui</view>
+    <image src="/assets/list.png"></image>
+  </view>
+
   <view class="all-ui">
     <block wx:for="{{list}}" wx:key='index'>
       <view class="item-ui">

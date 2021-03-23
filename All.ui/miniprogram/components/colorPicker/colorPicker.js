@@ -45,6 +45,12 @@ Component({
 
   },
 
+  lifetimes: {
+    attached: function() {
+      console.log('美哟？')
+    }
+  },
+
   /**
    * 组件的初始数据
    */

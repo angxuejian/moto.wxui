@@ -4,9 +4,18 @@ const app = getApp()
 import { list } from './config'
 Page({
   data: {
-    list: list
+    list: list,
+    height: 0
   },
   onLoad() {
+    wx.getSystemInfo({
+      success: (result) => {
+        const { statusBarHeight } = result
+        this.setData({
+          height: statusBarHeight
+        })
+      },
+    })
   },
 
   gotoUI: function({ currentTarget }) {

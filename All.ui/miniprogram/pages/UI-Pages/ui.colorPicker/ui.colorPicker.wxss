@@ -1,2 +1,2 @@
 /* pages/UI-Pages/ui.colorPicker/ui.colorPicker.wxss */
-@import '/style/ui.preview.wxss'
+@import '/wxss/ui.preview.wxss'
