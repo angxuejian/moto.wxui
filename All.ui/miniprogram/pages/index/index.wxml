@@ -3,7 +3,7 @@
   <view style="height: {{height}}px; background: #fff;" ></view>
   <view class="navbar">
     <view>moto.wxui</view>
-    <image src="/assets/list.png"></image>
+    <image bindtap="open" src="/assets/list.png"></image>
   </view>
 
   <view class="all-ui">
@@ -25,3 +25,5 @@
     </block>
   </view>
 </view>
+
+<side-box bindchange="onCallbackChange" id='sideBox'></side-box>

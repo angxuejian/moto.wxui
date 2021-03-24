@@ -2,6 +2,10 @@
 
 ## v0.1
 
+### 2021/03/24
+- fixed the display view width problem of the colorPicker component
+- add `sideBox component` and `icon theme color` 
+
 ### 2021/03/23
 - add a custom navbar
 

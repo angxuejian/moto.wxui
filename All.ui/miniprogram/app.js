@@ -18,6 +18,8 @@ App({
     console.log('\n')
 
 
-    this.globalData = {}
+    this.globalData = {
+      statusBarHeight: 0
+    }
   }
 })

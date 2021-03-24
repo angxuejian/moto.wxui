@@ -1,0 +1,24 @@
+<!--tools/sideBox/sideBox.wxml-->
+<view wx:if='{{isShow}}'>
+
+  <view bindtap="showSideBox" class="black {{ isShow === 1 ? 'black-show' : 'black-hide'}}"></view>
+
+  <view class="side-box {{ isShow === 1 ? 'side-box_show' : 'side-box_hide' }}">
+  
+    <view class="bc" style="height: {{height}}px;"></view>
+    
+    <view class="user">
+      <image class="avatar" mode="aspectFill" src="/assets/avatar.jpg"></image>
+      <view class="author">angxuejian</view>
+    </view>
+    <view class="line"></view>
+
+
+    <view class="theme">
+      <view>图标颜色</view>
+      <view>
+        <color-picker bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></color-picker>
+      </view>
+    </view>
+  </view>
+</view>

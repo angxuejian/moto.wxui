@@ -1,5 +1,4 @@
 import { SVG } from '../../utils/config-svg'
-import { changeColor } from '../../utils/util'
 
 const BASE = '/pages/UI-Pages'
 export const list = [

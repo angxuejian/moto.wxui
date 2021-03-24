@@ -9,14 +9,14 @@
 	</view>
 
 	<!-- 弹出view -->
-	<view wx:if="{{isShow}}">
+	<view wx:if="{{ isShow }}">
 		<view style="background-color:{{prColor}}" bindtap="showColorPicker"
-			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : isShow === 2 ? 'color-picker_bc-hide' : 'color-picker_bc-none'}}">
+			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : 'color-picker_bc-hide'}}">
 		</view>
 
 		<!-- 颜色 s, v 区域 -->
 		<view
-			class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : isShow === 2 ? 'color-picker_block-hide' : 'color-picker_block-none'}}">
+			class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : 'color-picker_block-hide'}}">
 			<movable-area style='background-color:{{bcColor}}' class='movable'>
 				<movable-view class="white"></movable-view>
 				<movable-view class="black"></movable-view>

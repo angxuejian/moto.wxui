@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "side-box": "/tools/sideBox/sideBox"
+  },
   "navigationStyle": "custom"
 }
