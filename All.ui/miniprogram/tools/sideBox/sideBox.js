@@ -55,6 +55,12 @@ Component({
       })
     },
 
+    gotoShare: function() {
+      wx.navigateTo({
+        url: '/pages/UI-Pages/ui.share/ui.share',
+      })
+
+    },
 
     onCallbackChange: function(event) {
       const { detail } = event

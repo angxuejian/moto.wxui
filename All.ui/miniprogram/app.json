@@ -6,7 +6,8 @@
     "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
     "pages/UI-Pages/ui.nprogress/ui.nprogress",
     "pages/UI-Pages/ui.datePicker/ui.datePicker",
-    "pages/UI-Pages/ui.waterfallsFlow/ui.waterfallsFlow"
+    "pages/UI-Pages/ui.waterfallsFlow/ui.waterfallsFlow",
+    "pages/UI-Pages/ui.share/ui.share"
   ],
   "window": {
     "backgroundTextStyle": "light",

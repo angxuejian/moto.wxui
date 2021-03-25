@@ -26,7 +26,7 @@
       </view>
     </view>
 
-    <view hover-class="hover" class="btn">
+    <view bindtap="gotoShare" hover-class="hover" class="btn">
       <view>
         <image src="/assets/side/share.png"></image>
         <text>分享</text>
