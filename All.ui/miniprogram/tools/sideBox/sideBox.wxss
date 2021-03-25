@@ -24,7 +24,7 @@
 .side-box {
   width: 70%;
   height: 100%;
-  background-color: #fff;
+  background-color: #f5f5f5;
   position: fixed;
   left: 0;
   top: 0;
@@ -58,15 +58,29 @@
 
 .bc {
   width: 100%;
+  background-color: #fff;
+  position: relative;
+}
+.bc .title {
+  width: 100%;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 
 .user {
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* background-color: red; */
+  background-color: #fff;
+  margin: 20px auto;
+  padding: 7px 2.5%;
+  border-radius: 5px;
 }
 .user .avatar {
   width: 80px;
@@ -83,27 +97,42 @@
   font-size: 17px;
 }
 
-.line {
-  width: 95%;
-  height: 3px;
-  background-color: #ededed;
-  margin: 0 auto;
-  margin-top: 10px;
 
-}
 
-.theme {
+.theme, .btn {
   display: flex;
   align-items: center;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
-  margin-top: 20px;
+  background-color: #fff;
+  padding: 0 2.5%;
+  height: 45px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
-.theme > view {
-  width: 30%;
+
+.theme > view:nth-of-type(1), .btn > view:nth-of-type(1)  {
+  margin-right: 15px;
+  width: 70%;
+  display: flex;
+  align-items: center;
   font-size: 15px;
   color: #555;
 }
-.theme > view:nth-of-type(1) {
-  margin-right: 15px;
+.theme > view > image, .btn > view:nth-of-type(1) > image {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px
+}
+
+.theme > view:nth-of-type(2), .btn > view:nth-of-type(2) {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn > view:nth-of-type(2) image {
+  width: 20px;
+  height: 20px;
 }

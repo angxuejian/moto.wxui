@@ -5,19 +5,35 @@
 
   <view class="side-box {{ isShow === 1 ? 'side-box_show' : 'side-box_hide' }}">
   
-    <view class="bc" style="height: {{height}}px;"></view>
+    <view class="bc" style="height: {{height}}px;">
+
+      <view class="title">☀️</view>
+    </view>
     
     <view class="user">
       <image class="avatar" mode="aspectFill" src="/assets/avatar.jpg"></image>
       <view class="author">angxuejian</view>
     </view>
-    <view class="line"></view>
 
 
     <view class="theme">
-      <view>图标颜色</view>
+      <view>
+        <image src="/assets/side/icon.png"></image>
+        <text>图标颜色</text>
+      </view>
       <view>
         <color-picker bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></color-picker>
+      </view>
+    </view>
+
+    <view hover-class="hover" class="btn">
+      <view>
+        <image src="/assets/side/share.png"></image>
+        <text>分享</text>
+      </view>
+
+      <view>
+        <image src="/assets/right-arrow.png"></image>
       </view>
     </view>
   </view>
