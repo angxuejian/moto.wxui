@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "show-image": "/components/showImage/showImage"
+  }
 }

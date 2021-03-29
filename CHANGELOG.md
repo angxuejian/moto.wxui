@@ -2,6 +2,10 @@
 
 ## v0.1
 
+### 2021/03/29
+- add `friends to share` and `circle of friend to share`
+- add `showImage component`
+
 ### 2021/03/25
 - create `ui.share page`
 - edit sideBox component style

@@ -12,7 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
 
+
+  open: function() {
+    this.selectComponent('#showImage').open()
   },
 
   /**
@@ -61,6 +65,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    console.log('要分享了')
+    return  {
+      title: 'Moto UI示例',
+      path: '/pages/index/index',
+    }
+  },
 
+  /**
+   * 用户分享朋友圈
+   */
+  onShareTimeline: function () {
+    return {
+      title: 'Moto UI示例',
+    }
   }
 })

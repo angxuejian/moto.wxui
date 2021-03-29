@@ -1,0 +1,14 @@
+<!--miniprogram/components/showImage/showImage.wxml-->
+<view wx:if="{{ isShow }}">
+
+  <view class="show-image_bc {{ isShow === 1 ? 'show-image_bc-show' : 'show-image_bc-hide'}}"></view>
+
+
+  <view class="image-box {{ isShow === 1 ? 'image-box_show' : 'image-box_hide'}}">
+
+    <!-- <view class="title">提示</view> -->
+    <image mode="aspectFit" src="../../assets/wefriend.gif"></image>
+
+    <view bindtap="showImage" hover-class="hover" class="confirm">我知道了</view>
+  </view>
+</view>

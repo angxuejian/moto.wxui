@@ -70,8 +70,8 @@
         },
         {
           "id": 1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/UI-Pages/ui.share/ui.share",
+          "pathName": "pages/UI-Pages/ui.share/ui.share",
           "query": "",
           "scene": null
         }

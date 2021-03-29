@@ -4,7 +4,7 @@ page {
 }
 
 /* hover-class */
-.hover {
+.hover, .hover-image > view {
   background-color: #dedede !important;
 }
 
