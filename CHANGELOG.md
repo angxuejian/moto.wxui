@@ -2,6 +2,9 @@
 
 ## v0.1
 
+### 2021/03/30
+- add poster document node view
+
 ### 2021/03/29
 - add `friends to share` and `circle of friend to share`
 - add `showImage component`

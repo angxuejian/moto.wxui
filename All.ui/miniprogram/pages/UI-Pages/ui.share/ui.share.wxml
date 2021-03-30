@@ -1,5 +1,19 @@
 <!--miniprogram/pages/UI-Pages/ui.share/ui.share.wxml-->
-<view>
+<view class="ui-share">
+
+
+  <view class="share-poster">
+    <image class="poster" mode="aspectFill" src="/assets/poster.jpg"></image>
+  
+    <view class="we-info">
+      <view class="user">
+          <view>唯有头顶之上一片晴空</view>
+          <text>angxuejian</text>
+      </view>
+      <image show-menu-by-longpress='true' src="/assets/a.jpg"></image>
+    </view>
+    <view class="logo">Moto UI示例</view>
+  </view>
 
 
 
@@ -16,7 +30,7 @@
       <text>微信朋友圈</text>
     </view>
 
-    <view hover-class="hover-image" class="item-btn">
+    <view bindtap="drawPoster" hover-class="hover-image" class="item-btn">
       <view><image src="/assets/weAlbum.png"></image></view>
       <text>保存到相册</text>
     </view>
@@ -24,3 +38,5 @@
 </view>
 
 <show-image id='showImage'></show-image>
+
+<canvas style="width:{{width}}px; height:{{height}}px" canvas-id='canvas'></canvas>
