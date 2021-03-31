@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.1
+### 2021/03/31
+- moto.wxui completed version 0.1 
+- add a canvas poster share
 
 ### 2021/03/30
 - add poster document node view

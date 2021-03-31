@@ -3,7 +3,7 @@
 
 
   <view class="share-poster">
-    <image class="poster" mode="aspectFill" src="/assets/poster.jpg"></image>
+    <image class="poster" mode="widthFix" src="/assets/poster.jpeg"></image>
   
     <view class="we-info">
       <view class="user">
@@ -30,7 +30,7 @@
       <text>微信朋友圈</text>
     </view>
 
-    <view bindtap="drawPoster" hover-class="hover-image" class="item-btn">
+    <view bindtap="checkSaveAlbum" hover-class="hover-image" class="item-btn">
       <view><image src="/assets/weAlbum.png"></image></view>
       <text>保存到相册</text>
     </view>
