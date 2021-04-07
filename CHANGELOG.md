@@ -1,5 +1,10 @@
 # 版本更新 
 
+## v0.2
+
+### 2021/04/07
+- fixed component scrolling problem
+
 ## v0.1
 ### 2021/03/31
 - moto.wxui completed version 0.1 

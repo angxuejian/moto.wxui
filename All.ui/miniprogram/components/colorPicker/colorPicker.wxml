@@ -1,6 +1,6 @@
 <!--components/colorPicker/colorPicker.wxml-->
 
-<view>
+<view catchtouchmove="return" >
 
 	<!-- 显示view -->
 	<view wx:if='{{showPred}}' style="width:{{width}}px; height:{{height}}px" bindtap="showColorPicker" class="color-picker_trigger">

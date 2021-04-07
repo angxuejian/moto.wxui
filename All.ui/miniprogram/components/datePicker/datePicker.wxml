@@ -1,6 +1,6 @@
 <!--components/datePicker/datePicker.wxml-->
 
-<view>
+<view catchtouchmove="return" >
 
   <!-- 显示view -->
   <view wx:if='{{showPred}}'>
