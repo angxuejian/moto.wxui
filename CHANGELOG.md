@@ -2,6 +2,9 @@
 
 ## v0.2
 
+### 2021/04/09
+- add `show-menu-by-longpress` in the ui.share page
+
 ### 2021/04/07
 - fixed component scrolling problem
 

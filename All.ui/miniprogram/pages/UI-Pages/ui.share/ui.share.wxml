@@ -31,7 +31,7 @@
     </view>
 
     <view bindtap="checkSaveAlbum" hover-class="hover-image" class="item-btn">
-      <view><image src="/assets/weAlbum.png"></image></view>
+      <view><image show-menu-by-longpress src="/assets/weAlbum.png"></image></view>
       <text>保存到相册</text>
     </view>
   </view>
