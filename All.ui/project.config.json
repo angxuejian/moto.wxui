@@ -70,8 +70,8 @@
         },
         {
           "id": 1,
-          "name": "pages/UI-Pages/ui.share/ui.share",
-          "pathName": "pages/UI-Pages/ui.share/ui.share",
+          "name": "pages/UI-Pages/ui.datePicker/ui.datePicker",
+          "pathName": "pages/UI-Pages/ui.datePicker/ui.datePicker",
           "query": "",
           "scene": null
         }

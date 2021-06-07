@@ -325,7 +325,39 @@ Component({
       this.create()
     },
 
+
     /**
+     * 新版
+     * 上一月 or 下一月
+     * @param {Object} event 标签属性 
+     */
+    changeMonthNew: function(event) {
+      const { index: i } = event.currentTarget.dataset
+
+      let y = this.data.YEAR, 
+          m = this.data.MONTH;
+      
+      let  n = new Date(`${y}-${m === 0 ? '01' : m}-01`)
+
+      if (i === '-1') n.setMonth(m - 1) 
+      else n.setMonth(m + 1)
+      
+
+      this.data.YEAR = n.getFullYear()
+      this.data.MONTH = n.getMonth()
+
+      index = 0
+      this.data.days = []
+      this.setData({
+        days: this.data.days,
+        ['domDate.yy']: this.data.YEAR,
+        ['domDate.mm']: Canlr.padStart(this.data.MONTH + 1)
+      })
+      this.create()
+    },
+
+    /**
+     * 旧版
      * 上一月 or 下一月
      * @param {Object} event 标签属性 
      */

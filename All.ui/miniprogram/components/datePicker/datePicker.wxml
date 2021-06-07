@@ -23,11 +23,11 @@
             <view style="left: -9px;z-index:3" class="left-arrow"></view>
           </view>
 
-          <view bindtap="changeMonth" data-index='-1' hover-class="hover-right" class="left-arrow"></view>
+          <view bindtap="changeMonthNew" data-index='-1' hover-class="hover-right" class="left-arrow"></view>
         </view>
         <view>{{domDate.yy}}年 {{domDate.mm}}月</view>
         <view class="right">
-          <view bindtap="changeMonth" data-index='+1' hover-class="hover-left" class="right-arrow"></view>
+          <view bindtap="changeMonthNew" data-index='+1'  hover-class="hover-left" class="right-arrow"></view>
           
           <view bindtap="changeYear" data-index='+1' hover-class="hover-left" class="right-double">
             <view style="right: -9px; z-index:3" class="right-arrow"></view>

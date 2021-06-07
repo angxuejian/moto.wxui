@@ -2,6 +2,10 @@
 
 ## v0.2
 
+### 2021/06/07
+- edit canvas width and height in `ui.share page`
+- update optimize switching month code in `datePicker component`
+
 ### 2021/04/09
 - add `show-menu-by-longpress` in the ui.share page
 

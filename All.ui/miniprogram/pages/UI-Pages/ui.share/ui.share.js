@@ -20,8 +20,13 @@ Page({
         // 0.75 和 67 分别是 .share-poster 的 75% 和 67vh
         // 1vh = 屏幕高度 / 100 = 900 / 100 = 9px
         this.data.pixel  = result.pixelRatio
-        this.data.width  = result.windowWidth * 0.75
-        this.data.height = result.windowHeight / 100 * 67
+        // this.data.width  = result.windowWidth * 0.75
+        // this.data.height = result.windowHeight / 100 * 67
+
+        // 替换成固定宽高
+        this.data.width  = 375
+        this.data.height = 600
+        console.log('123')
         this.setData({
           width: this.data.width,
           height: this.data.height
