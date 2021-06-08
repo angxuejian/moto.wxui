@@ -8,7 +8,8 @@
     "pages/UI-Pages/ui.datePicker/ui.datePicker",
     "pages/UI-Pages/ui.waterfallsFlow/ui.waterfallsFlow",
     "pages/UI-Pages/ui.share/ui.share",
-    "components/showImage/showImage"
+    "components/showImage/showImage",
+    "pages/UI-Pages/ui.imgMode/ui.imgMode"
   ],
   "window": {
     "backgroundTextStyle": "light",

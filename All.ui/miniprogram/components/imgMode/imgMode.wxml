@@ -1,0 +1,5 @@
+<!--components/imgMode/imgMode.wxml-->
+
+<image id='img-mode' style="{{style}}" class="img-class" src="{{src}}"></image>
+
+<image bindload='onCallbackLoad' src="{{src}}" style="display: none"></image>

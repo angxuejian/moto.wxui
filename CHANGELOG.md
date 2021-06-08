@@ -2,6 +2,10 @@
 
 ## v0.2
 
+### 2021/06/08
+- add `imgMode component`
+- add widthFix mode to imgMode component
+
 ### 2021/06/07
 - edit canvas width and height in `ui.share page`
 - update optimize switching month code in `datePicker component`

@@ -1,0 +1,10 @@
+/* miniprogram/pages/UI-Pages/ui.imgMode/ui.imgMode.wxss */
+page{
+  padding-top: 20px;
+}
+.img {
+  width: 45%;
+  height: 45px;
+  border-radius: 10px;
+  margin-left: 20px;
+}

@@ -70,8 +70,8 @@
         },
         {
           "id": 1,
-          "name": "pages/UI-Pages/ui.datePicker/ui.datePicker",
-          "pathName": "pages/UI-Pages/ui.datePicker/ui.datePicker",
+          "name": "pages/UI-Pages/ui.imgMode/ui.imgMode",
+          "pathName": "pages/UI-Pages/ui.imgMode/ui.imgMode",
           "query": "",
           "scene": null
         }

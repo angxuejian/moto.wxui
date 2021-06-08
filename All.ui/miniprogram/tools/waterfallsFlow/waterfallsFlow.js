@@ -1,5 +1,4 @@
 // tools/waterfallsFlow/waterfallsFlow.js
-
 const DEFAULT_IMG = 'https://profile.csdnimg.cn/E/5/2/1_qq_43297527'
 
 Component({

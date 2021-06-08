@@ -32,6 +32,11 @@ export const list = [
         url: `${BASE}/ui.datePicker/ui.datePicker`
       },
       {
+        svg: SVG.imgMode,
+        name: '图片模式',
+        url: `${BASE}/ui.imgMode/ui.imgMode`
+      },
+      {
         svg: SVG.nprogress,
         name: '顶部加载',
         url: `${BASE}/ui.nprogress/ui.nprogress`
@@ -41,6 +46,7 @@ export const list = [
         name: '颜色选择器',
         url: `${BASE}/ui.colorPicker/ui.colorPicker`
       },
+      
     ]
   },
 

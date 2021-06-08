@@ -1,0 +1,8 @@
+<!--miniprogram/pages/UI-Pages/ui.imgMode/ui.imgMode.wxml-->
+<view>
+
+  <img-mode img-class="img" src='https://th.bing.com/th/id/R15a1ba773a211acdeae39f83c2c13241?rik=h1wkOstFSHzvTg&riu=http%3a%2f%2fwww.desktx.com%2fd%2ffile%2fwallpaper%2fscenery%2f20170120%2ffdf948c82074494a74bf258eed4f855d.jpg&ehk=fYrgVtm0hD0sZn455mcVyf5k%2bQz7RScjHLMyUi6jG0A%3d&risl=&pid=ImgRaw'></img-mode>
+
+  <view style="margin: 20px 0"></view>
+  <image class="img" mode="widthFix" src="https://th.bing.com/th/id/R15a1ba773a211acdeae39f83c2c13241?rik=h1wkOstFSHzvTg&riu=http%3a%2f%2fwww.desktx.com%2fd%2ffile%2fwallpaper%2fscenery%2f20170120%2ffdf948c82074494a74bf258eed4f855d.jpg&ehk=fYrgVtm0hD0sZn455mcVyf5k%2bQz7RScjHLMyUi6jG0A%3d&risl=&pid=ImgRaw"></image>
+</view>
