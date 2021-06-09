@@ -2,9 +2,37 @@
 page{
   padding-top: 20px;
 }
-.img {
-  width: 45%;
-  height: 45px;
+
+image {
   border-radius: 10px;
-  margin-left: 20px;
+}
+
+.item-hor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.item-hor img-mode, .item-hor > image {
+  width: 45%;
+}
+.item-hor .img {
+  width: 100%;
+}
+
+
+
+.item-ver {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.item-ver image {
+  margin-bottom: 10px;
 }

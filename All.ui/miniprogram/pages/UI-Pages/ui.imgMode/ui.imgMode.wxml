@@ -1,8 +1,17 @@
 <!--miniprogram/pages/UI-Pages/ui.imgMode/ui.imgMode.wxml-->
 <view>
 
-  <img-mode img-class="img" src='https://th.bing.com/th/id/R15a1ba773a211acdeae39f83c2c13241?rik=h1wkOstFSHzvTg&riu=http%3a%2f%2fwww.desktx.com%2fd%2ffile%2fwallpaper%2fscenery%2f20170120%2ffdf948c82074494a74bf258eed4f855d.jpg&ehk=fYrgVtm0hD0sZn455mcVyf5k%2bQz7RScjHLMyUi6jG0A%3d&risl=&pid=ImgRaw'></img-mode>
+ <view class="item-hor">
+  <img-mode img-class="img" src='https://th.bing.com/th/id/Rfcd6e5546b73db06f984108f049523bb?rik=C4Vv8PAJA3mIoQ&riu=http%3a%2f%2fpic.3gbizhi.com%2f2017%2f0819%2f20170819013440526.jpg&ehk=guPmPZVxqntG%2bJ2WjPAcUsFusByItgMwbdah6c2Trqw%3d&risl=&pid=ImgRaw'></img-mode>
 
-  <view style="margin: 20px 0"></view>
-  <image class="img" mode="widthFix" src="https://th.bing.com/th/id/R15a1ba773a211acdeae39f83c2c13241?rik=h1wkOstFSHzvTg&riu=http%3a%2f%2fwww.desktx.com%2fd%2ffile%2fwallpaper%2fscenery%2f20170120%2ffdf948c82074494a74bf258eed4f855d.jpg&ehk=fYrgVtm0hD0sZn455mcVyf5k%2bQz7RScjHLMyUi6jG0A%3d&risl=&pid=ImgRaw"></image>
+  <image  mode="widthFix" src="https://th.bing.com/th/id/Rfcd6e5546b73db06f984108f049523bb?rik=C4Vv8PAJA3mIoQ&riu=http%3a%2f%2fpic.3gbizhi.com%2f2017%2f0819%2f20170819013440526.jpg&ehk=guPmPZVxqntG%2bJ2WjPAcUsFusByItgMwbdah6c2Trqw%3d&risl=&pid=ImgRaw"></image>
+ 
+ </view>
+
+ <view class="item-ver">
+  <img-mode mode='heightFix' img-class="img" src='https://th.bing.com/th/id/Rc6f601858f7b6434eb0bf749eb3ebbfd?rik=rpUScqv75Vy7ZQ&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f141028%2f3-14102Q54429.jpg&ehk=oea3JYt9CHGm9wj77gAEG3CGIQrhvSO4zIkBCcg%2b3BA%3d&risl=&pid=ImgRaw'></img-mode>
+
+  <image  mode="heightFix" src="https://th.bing.com/th/id/Rc6f601858f7b6434eb0bf749eb3ebbfd?rik=rpUScqv75Vy7ZQ&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f141028%2f3-14102Q54429.jpg&ehk=oea3JYt9CHGm9wj77gAEG3CGIQrhvSO4zIkBCcg%2b3BA%3d&risl=&pid=ImgRaw"></image>
+ 
+ </view>
 </view>

@@ -1,6 +1,8 @@
 # 版本更新 
 
 ## v0.2
+### 2021/06/09
+- add heightFix mode to imgMode component
 
 ### 2021/06/08
 - add `imgMode component`

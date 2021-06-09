@@ -72,7 +72,7 @@ Component({
     onCallbackLoad: function(event) {
 
       if (this.data.mode === 'widthFix') this.getWidthFix(event.detail)
-
+      else if (this.data.mode === 'heightFix') this.getheightFix(event.detail)
     },
 
 
@@ -82,8 +82,17 @@ Component({
       let scale = this.data.styleW / width
       let h = height * scale
 
-      console.log(this.data.styleW, h)
       this.data.style = `height: ${h}px`
+      this.setData({ style: this.data.style })
+    },
+
+    // heightFix 图片模式
+    getheightFix: function({ width, height }) {
+      let scale = this.data.styleH / height
+      let w = width * scale
+
+      console.log(w, this.data.styleH)
+      this.data.style = `width: ${w}px`
       this.setData({ style: this.data.style })
     }
   }
