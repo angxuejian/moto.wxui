@@ -1,17 +1,37 @@
 <!--miniprogram/pages/UI-Pages/ui.imgMode/ui.imgMode.wxml-->
 <view>
 
- <view class="item-hor">
-  <img-mode img-class="img" src='https://th.bing.com/th/id/Rfcd6e5546b73db06f984108f049523bb?rik=C4Vv8PAJA3mIoQ&riu=http%3a%2f%2fpic.3gbizhi.com%2f2017%2f0819%2f20170819013440526.jpg&ehk=guPmPZVxqntG%2bJ2WjPAcUsFusByItgMwbdah6c2Trqw%3d&risl=&pid=ImgRaw'></img-mode>
+  <!--scaleToFill -->
+  <view class="item">
+    <view class="title">
+      scaleToFill：<text> 缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素</text>
+    </view>
+    <view class="item-hor">
+      <img-mode mode='scaleToFill' img-class="img" src="{{src}}"></img-mode>
+      <image mode='scaleToFill' class="img" src="{{src}}" alt=""></image>
+    </view>
+  </view>
 
-  <image  mode="widthFix" src="https://th.bing.com/th/id/Rfcd6e5546b73db06f984108f049523bb?rik=C4Vv8PAJA3mIoQ&riu=http%3a%2f%2fpic.3gbizhi.com%2f2017%2f0819%2f20170819013440526.jpg&ehk=guPmPZVxqntG%2bJ2WjPAcUsFusByItgMwbdah6c2Trqw%3d&risl=&pid=ImgRaw"></image>
- 
- </view>
+  <!--widthFix -->
+  <view class="item">
+    <view class="title">
+      widthFix：<text>缩放模式，宽度不变，高度自动变化，保持原图宽高比不变</text>
+    </view>
+    <view class="item-hor">
+      <img-mode mode='widthFix' img-class="img" src="{{src}}"></img-mode>
+      <image mode="widthFix" class="img" src="{{src}}"></image>
+    </view>
+  </view>
 
- <view class="item-ver">
-  <img-mode mode='heightFix' img-class="img" src='https://th.bing.com/th/id/Rc6f601858f7b6434eb0bf749eb3ebbfd?rik=rpUScqv75Vy7ZQ&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f141028%2f3-14102Q54429.jpg&ehk=oea3JYt9CHGm9wj77gAEG3CGIQrhvSO4zIkBCcg%2b3BA%3d&risl=&pid=ImgRaw'></img-mode>
+  <!--heightFix -->
+  <view class="item">
+    <view class="title">
+      heightFix：<text>缩放模式，高度不变，宽度自动变化，保持原图宽高比不变</text>
+    </view>
+    <view class="item-ver">
+      <img-mode mode='heightFix' img-class="img" src="{{src}}"></img-mode>
+      <image mode="heightFix" class="img" src="{{src}}"></image>
+    </view>
+  </view>
 
-  <image  mode="heightFix" src="https://th.bing.com/th/id/Rc6f601858f7b6434eb0bf749eb3ebbfd?rik=rpUScqv75Vy7ZQ&riu=http%3a%2f%2fpicture.ik123.com%2fuploads%2fallimg%2f141028%2f3-14102Q54429.jpg&ehk=oea3JYt9CHGm9wj77gAEG3CGIQrhvSO4zIkBCcg%2b3BA%3d&risl=&pid=ImgRaw"></image>
- 
- </view>
 </view>

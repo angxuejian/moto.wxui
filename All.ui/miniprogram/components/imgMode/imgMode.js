@@ -2,11 +2,13 @@
 
 const DEFAULT_IMG = 'https://profile.csdnimg.cn/E/5/2/1_qq_43297527'
 
-
 Component({
   /**
    * 组件的属性列表
    */
+  options: {
+    virtualHost: true // 将这个自定义组件设置为“虚拟的”
+  },
   externalClasses: ['img-class'],
 
   properties: {
@@ -16,7 +18,7 @@ Component({
     },
     mode: {
       type: String,
-      value: 'widthFix'
+      value: 'scaleToFill'
     }
   },
 
@@ -53,7 +55,7 @@ Component({
 
       this.data.styleW = width
       this.data.styleH = height
-      console.log()
+      console.log(width, height)
     },
 
     // 获取图片样式宽高
@@ -71,12 +73,14 @@ Component({
     // 获取图片本身宽高
     onCallbackLoad: function(event) {
 
-      if (this.data.mode === 'widthFix') this.getWidthFix(event.detail)
+      if (this.data.mode === 'scaleToFill') return
+      else if (this.data.mode === 'widthFix') this.getWidthFix(event.detail)
       else if (this.data.mode === 'heightFix') this.getheightFix(event.detail)
     },
 
 
-    // widthFix 图片模式
+
+    // widthFix 缩放-图片模式
     getWidthFix: function({ width, height }) {
   
       let scale = this.data.styleW / width
@@ -86,12 +90,11 @@ Component({
       this.setData({ style: this.data.style })
     },
 
-    // heightFix 图片模式
+    // heightFix 缩放-图片模式
     getheightFix: function({ width, height }) {
       let scale = this.data.styleH / height
       let w = width * scale
 
-      console.log(w, this.data.styleH)
       this.data.style = `width: ${w}px`
       this.setData({ style: this.data.style })
     }

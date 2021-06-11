@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    src: 'https://desk-fd.zol-img.com.cn/t_s960x600c5/g6/M00/04/0D/ChMkKWCwSx6IdWUVAA2cXZtUgmQAAPlfgJZzB4ADZx1091.jpg'
   },
 
   /**

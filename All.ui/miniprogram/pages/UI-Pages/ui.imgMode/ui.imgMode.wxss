@@ -3,28 +3,37 @@ page{
   padding-top: 20px;
 }
 
-image {
-  border-radius: 10px;
+page .item:nth-last-of-type(1) {
+  border-bottom: none;
 }
 
-.item-hor {
+.item {
+  border-bottom: 1px solid #ededed;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.item .title {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 15px;
+}
+.item .title text {
+  font-size: 13px;
+  color: #666;
+}
+
+.item .item-hor {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
-  margin-bottom: 20px;
 }
-.item-hor img-mode, .item-hor > image {
+.item .item-hor .img {
   width: 45%;
 }
-.item-hor .img {
-  width: 100%;
-}
 
-
-
-.item-ver {
+.item .item-ver {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -33,6 +42,10 @@ image {
   margin: 0 auto;
   margin-bottom: 20px;
 }
-.item-ver image {
+.item .item-ver .img {
   margin-bottom: 10px;
+}
+
+.item .img {
+  border-radius: 5px;
 }
