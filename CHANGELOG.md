@@ -4,6 +4,7 @@
 ### 2021/06/11
 - update code style of the imgMode component and added `virtualHost` field
 - add scaleToFill mode to imgMode component
+- update code style of the ui.imgMode page
 
 ### 2021/06/09
 - add heightFix mode to imgMode component

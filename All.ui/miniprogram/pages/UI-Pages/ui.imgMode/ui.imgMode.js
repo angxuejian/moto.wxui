@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: 'https://desk-fd.zol-img.com.cn/t_s960x600c5/g6/M00/04/0D/ChMkKWCwSx6IdWUVAA2cXZtUgmQAAPlfgJZzB4ADZx1091.jpg'
+    src: '/assets/b.jpg',
+
+    imgArr: [
+      // {
+      //   info: '裁剪模式，不缩放图片，只显示图片的顶部区域',
+      //   mode: 'top'
+      // },
+      {
+        info: '缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素',
+        mode: 'scaleToFill'
+      },
+      {
+        info: '缩放模式，宽度不变，高度自动变化，保持原图宽高比不变',
+        mode: 'widthFix'
+      },
+      {
+        info: '缩放模式，高度不变，宽度自动变化，保持原图宽高比不变',
+        mode: 'heightFix',
+        isVer: true
+      },
+    ]
   },
 
   /**

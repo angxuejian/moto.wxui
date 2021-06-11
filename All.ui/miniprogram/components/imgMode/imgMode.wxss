@@ -1,1 +1,9 @@
 /* components/imgMode/imgMode.wxss */
+canvas {
+  position: fixed;
+  /* top: -5555555px;
+  right: -555555px; */
+  top: 0;
+  left: -100px;
+  z-index: 999999;
+}

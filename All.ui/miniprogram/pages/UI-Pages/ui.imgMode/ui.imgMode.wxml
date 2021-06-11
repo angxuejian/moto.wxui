@@ -1,37 +1,13 @@
 <!--miniprogram/pages/UI-Pages/ui.imgMode/ui.imgMode.wxml-->
+
 <view>
-
-  <!--scaleToFill -->
-  <view class="item">
+  <view class="item" wx:for="{{ imgArr }}" wx:key='index'>
     <view class="title">
-      scaleToFill：<text> 缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素</text>
+      {{ item.mode }}：<text>{{ item.info }}</text>
     </view>
-    <view class="item-hor">
-      <img-mode mode='scaleToFill' img-class="img" src="{{src}}"></img-mode>
-      <image mode='scaleToFill' class="img" src="{{src}}" alt=""></image>
+    <view class="{{ item.isVer ? 'item-ver' : 'item-hor' }}">
+      <image mode="{{item.mode}}" class="img" src="{{src}}"></image>
+      <img-mode mode='{{item.mode}}' img-class="img" src="{{src}}"></img-mode>
     </view>
   </view>
-
-  <!--widthFix -->
-  <view class="item">
-    <view class="title">
-      widthFix：<text>缩放模式，宽度不变，高度自动变化，保持原图宽高比不变</text>
-    </view>
-    <view class="item-hor">
-      <img-mode mode='widthFix' img-class="img" src="{{src}}"></img-mode>
-      <image mode="widthFix" class="img" src="{{src}}"></image>
-    </view>
-  </view>
-
-  <!--heightFix -->
-  <view class="item">
-    <view class="title">
-      heightFix：<text>缩放模式，高度不变，宽度自动变化，保持原图宽高比不变</text>
-    </view>
-    <view class="item-ver">
-      <img-mode mode='heightFix' img-class="img" src="{{src}}"></img-mode>
-      <image mode="heightFix" class="img" src="{{src}}"></image>
-    </view>
-  </view>
-
 </view>

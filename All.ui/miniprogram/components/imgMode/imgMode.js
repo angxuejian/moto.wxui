@@ -28,17 +28,15 @@ Component({
   data: {
     style: '',
     styleW: 0,
-    styleH: 0
+    styleH: 0,
+    imgW: 0,
+    imgH: 0
   },
 
   lifetimes: {
     attached: function() {
       this.init()
       
-
-      // wx.getSystemInfo().then(res => {
-      //   console.log(res)
-      // })
     }
   },
 
@@ -55,7 +53,6 @@ Component({
 
       this.data.styleW = width
       this.data.styleH = height
-      console.log(width, height)
     },
 
     // 获取图片样式宽高
@@ -72,17 +69,62 @@ Component({
     
     // 获取图片本身宽高
     onCallbackLoad: function(event) {
+      const { mode } = this.data
+      if (mode === 'scaleToFill') return
+      else if (mode === 'widthFix') this.getWidthFix(event.detail)
+      else if (mode === 'heightFix') this.getheightFix(event.detail)
+      else if (mode === 'top') this.getTop(event.detail)
+    },
 
-      if (this.data.mode === 'scaleToFill') return
-      else if (this.data.mode === 'widthFix') this.getWidthFix(event.detail)
-      else if (this.data.mode === 'heightFix') this.getheightFix(event.detail)
+    // top
+    getTop: function({ width, height }) {
+
+      const x = 0
+      const y = 0
+      const w = width
+      const h = height
+      const dx = (width - this.data.styleW) / 2
+      const dy = 0
+      const dw = this.data.styleW
+      const dh = this.data.styleH
+      this.setData({
+        imgH: height,
+        imgW: width
+      })
+      const ctx = wx.createCanvasContext('canvas', this)
+      wx.getImageInfo({
+        src: this.data.src,
+        success: res => {
+          console.log(ctx, x, y, w, h)
+
+          ctx.drawImage(this.data.src, dx, dy, dw, dh)
+          // ctx.draw()
+          ctx.draw(false, function() {
+            console.log('这里？')
+            wx.canvasToTempFilePath({
+              x: 0,
+              y: 0,
+              width,
+              height,
+              canvasId: 'canvas',
+              success: res => {
+                console.log(res.tempFilePath)
+              },
+              complete: com => {
+                console.log(com)
+              }
+            }, this)
+          })
+        }
+      })
+      // this.setData({
+      //   style: `position: absolute; clip:rect(${y1}px ${x1}px ${y2}px ${x2}px)`
+      // })
     },
 
 
-
-    // widthFix 缩放-图片模式
+    // widthFix
     getWidthFix: function({ width, height }) {
-  
       let scale = this.data.styleW / width
       let h = height * scale
 
@@ -90,7 +132,7 @@ Component({
       this.setData({ style: this.data.style })
     },
 
-    // heightFix 缩放-图片模式
+    // heightFix
     getheightFix: function({ width, height }) {
       let scale = this.data.styleH / height
       let w = width * scale

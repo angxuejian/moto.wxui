@@ -1,7 +1,8 @@
 <!--components/imgMode/imgMode.wxml-->
 
 
-<!-- <view class="img-mode-page"> -->
-  <image id='img-mode' style="{{style}}" class="img-class" src="{{src}}"></image>
-  <image bindload='onCallbackLoad' src="{{src}}" style="display: none"></image>
-<!-- </view> -->
+
+<image id='img-mode' style="{{style}}" class="img-class" src="{{src}}"></image>
+
+<image bindload='onCallbackLoad' src="{{src}}" style="display: none"></image>
+<canvas style="width: {{imgW}}px; height: {{imgH}}px" canvas-id="canvas"></canvas>

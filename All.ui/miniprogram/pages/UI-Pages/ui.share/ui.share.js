@@ -26,7 +26,6 @@ Page({
         // 替换成固定宽高
         this.data.width  = 375
         this.data.height = 600
-        console.log('123')
         this.setData({
           width: this.data.width,
           height: this.data.height
