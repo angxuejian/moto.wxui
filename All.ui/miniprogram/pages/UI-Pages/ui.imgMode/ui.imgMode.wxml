@@ -6,8 +6,9 @@
       {{ item.mode }}：<text>{{ item.info }}</text>
     </view>
     <view class="{{ item.isVer ? 'item-ver' : 'item-hor' }}">
-      <image mode="{{item.mode}}" class="img" src="{{src}}"></image>
       <img-mode mode='{{item.mode}}' img-class="img" src="{{src}}"></img-mode>
+      <image mode="{{item.mode}}" class="img" src="{{src}}"></image>
+
     </view>
   </view>
 </view>

@@ -26,11 +26,15 @@ Component({
    * 组件的初始数据
    */
   data: {
-    style: '',
-    styleW: 0,
-    styleH: 0,
-    imgW: 0,
-    imgH: 0
+    style: '', // image样式
+    styleW: 0, // image 宽
+    styleH: 0, // image 高
+
+    imgW: 0, // canvas 的宽
+    imgH: 0, // canvas 的高
+
+    isDestroyImg: false, // 是否销毁 带onload的image标签
+    isDestroyCan: false, // 是否销毁 canvas 组件
   },
 
   lifetimes: {
@@ -71,9 +75,55 @@ Component({
     onCallbackLoad: function(event) {
       const { mode } = this.data
       if (mode === 'scaleToFill') return
-      else if (mode === 'widthFix') this.getWidthFix(event.detail)
+      else if (mode === 'aspectFit') this.getAspectFit(event.detail)
+      else if (mode === 'widthFix' ) this.getWidthFix(event.detail)
       else if (mode === 'heightFix') this.getheightFix(event.detail)
       else if (mode === 'top') this.getTop(event.detail)
+
+      this.setData({
+        isDestroyImg: true
+      })
+    },
+
+    // aspectFit
+    getAspectFit: function({ width, height }) {
+
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [x, y, w, h] = []
+      const scale = width / height // 宽高比例
+      
+      if (width <= height) {
+        h = styleH
+        w = h * scale
+      } else {
+        w = styleW
+        h = w / scale
+      }
+      x = (styleW - w) / 2
+      y = (styleH - h) / 2
+
+      this.drawCanvas({ src, x, y, w, h })
+    },
+
+    // widthFix
+    getWidthFix: function({ width, height }) {
+      let scale = this.data.styleW / width
+      let h = height * scale
+
+      this.data.style = `height: ${h}px`
+      this.setData({ style: this.data.style })
+    },
+
+    // heightFix
+    getheightFix: function({ width, height }) {
+      let scale = this.data.styleH / height
+      let w = width * scale
+
+      this.data.style = `width: ${w}px`
+      this.setData({ style: this.data.style })
     },
 
     // top
@@ -123,22 +173,37 @@ Component({
     },
 
 
-    // widthFix
-    getWidthFix: function({ width, height }) {
-      let scale = this.data.styleW / width
-      let h = height * scale
-
-      this.data.style = `height: ${h}px`
-      this.setData({ style: this.data.style })
+    // 导出图片
+    drawCanvas: function(data) {
+      const ctx = wx.createCanvasContext('canvas', this)
+      const { src, x, y, w, h } = data
+      wx.getImageInfo({
+        src,
+        success: res => {
+          ctx.drawImage(src, x, y, w, h)
+          ctx.draw(false, () => {
+            wx.canvasToTempFilePath({
+              x: 0,
+              y: 0,
+              width: this.data.styleW,
+              height: this.data.styleH,
+              canvasId: 'canvas',
+              success: res => {
+                this.setData({
+                  src: res.tempFilePath,
+                  isDestroyCan: true
+                })
+              },
+              fail: err => {
+                console.log(err, 'canvas 导出失败')
+              }
+            }, this)
+          })
+        },
+        fail: err => {
+          console.log(err, '')
+        }
+      })
     },
-
-    // heightFix
-    getheightFix: function({ width, height }) {
-      let scale = this.data.styleH / height
-      let w = width * scale
-
-      this.data.style = `width: ${w}px`
-      this.setData({ style: this.data.style })
-    }
   }
 })

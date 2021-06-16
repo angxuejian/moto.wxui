@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/06/16
+- add aspectFit mode to imgMode component
+
 ### 2021/06/11
 - update code style of the imgMode component and added `virtualHost` field
 - add scaleToFill mode to imgMode component
