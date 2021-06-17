@@ -40,7 +40,7 @@ Component({
   lifetimes: {
     attached: function() {
       this.init()
-      
+     
     }
   },
 
@@ -50,10 +50,8 @@ Component({
   methods: {
     init: async function() {
       if (!this.data.mode) return
-      // const { windowWidth, windowHeight }  = await wx.getSystemInfo()
-      const { width, height } = await this.getImgMode()
 
-      // const d = { windowWidth, windowHeight, width, height }
+      const { width, height } = await this.getImgMode()
 
       this.data.styleW = width
       this.data.styleH = height
@@ -74,11 +72,15 @@ Component({
     // 获取图片本身宽高
     onCallbackLoad: function(event) {
       const { mode } = this.data
+      const d = event.detail
+
       if (mode === 'scaleToFill') return
-      else if (mode === 'aspectFit') this.getAspectFit(event.detail)
-      else if (mode === 'widthFix' ) this.getWidthFix(event.detail)
-      else if (mode === 'heightFix') this.getheightFix(event.detail)
-      else if (mode === 'top') this.getTop(event.detail)
+      else if (mode === 'aspectFit' ) this.getAspectFit (d)
+      else if (mode === 'aspectFill') this.getAspectFill(d) 
+      else if (mode === 'widthFix'  ) this.getWidthFix  (d)
+      else if (mode === 'heightFix' ) this.getheightFix (d)
+
+      else if (mode === 'top') this.getTop(d)
 
       this.setData({
         isDestroyImg: true
@@ -94,8 +96,8 @@ Component({
 
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
-      
-      if (width <= height) {
+
+      if (width < height) {
         h = styleH
         w = h * scale
       } else {
@@ -107,6 +109,34 @@ Component({
 
       this.drawCanvas({ src, x, y, w, h })
     },
+
+
+    // aspectFill
+    getAspectFill: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [x, y, w, h] = []
+      const scale = width / height // 宽高比例
+      
+      if (width < height) {
+        w = styleW 
+        h = styleW / scale
+        x = 0
+        y = (styleH - h) / 2
+        
+      } else {
+        w = styleH * scale
+        h = styleH
+        x = (styleW - w) / 2
+        y = 0
+       
+      }
+
+      this.drawCanvas({ src, x, y, w, h })
+    },
+    
 
     // widthFix
     getWidthFix: function({ width, height }) {
@@ -177,6 +207,7 @@ Component({
     drawCanvas: function(data) {
       const ctx = wx.createCanvasContext('canvas', this)
       const { src, x, y, w, h } = data
+      const { styleW:width, styleH: height } = this.data
       wx.getImageInfo({
         src,
         success: res => {
@@ -185,8 +216,8 @@ Component({
             wx.canvasToTempFilePath({
               x: 0,
               y: 0,
-              width: this.data.styleW,
-              height: this.data.styleH,
+              width,
+              height,
               canvasId: 'canvas',
               success: res => {
                 this.setData({
@@ -204,6 +235,7 @@ Component({
           console.log(err, '')
         }
       })
+     
     },
   }
 })
