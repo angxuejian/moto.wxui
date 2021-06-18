@@ -87,6 +87,7 @@ Component({
       })
     },
 
+
     // aspectFit
     getAspectFit: function({ width, height }) {
 
@@ -109,7 +110,6 @@ Component({
 
       this.drawCanvas({ src, x, y, w, h })
     },
-
 
     // aspectFill
     getAspectFill: function({ width, height }) {
@@ -137,7 +137,6 @@ Component({
       this.drawCanvas({ src, x, y, w, h })
     },
     
-
     // widthFix
     getWidthFix: function({ width, height }) {
       let scale = this.data.styleW / width
@@ -159,59 +158,33 @@ Component({
     // top
     getTop: function({ width, height }) {
 
-      const x = 0
-      const y = 0
-      const w = width
-      const h = height
-      const dx = (width - this.data.styleW) / 2
-      const dy = 0
-      const dw = this.data.styleW
-      const dh = this.data.styleH
-      this.setData({
-        imgH: height,
-        imgW: width
-      })
-      const ctx = wx.createCanvasContext('canvas', this)
-      wx.getImageInfo({
-        src: this.data.src,
-        success: res => {
-          console.log(ctx, x, y, w, h)
+      const { styleH, styleW, src } = this.data
 
-          ctx.drawImage(this.data.src, dx, dy, dw, dh)
-          // ctx.draw()
-          ctx.draw(false, function() {
-            console.log('这里？')
-            wx.canvasToTempFilePath({
-              x: 0,
-              y: 0,
-              width,
-              height,
-              canvasId: 'canvas',
-              success: res => {
-                console.log(res.tempFilePath)
-              },
-              complete: com => {
-                console.log(com)
-              }
-            }, this)
-          })
-        }
-      })
-      // this.setData({
-      //   style: `position: absolute; clip:rect(${y1}px ${x1}px ${y2}px ${x2}px)`
-      // })
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = (width - sw) / 2
+      sy = 0
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
     },
 
-
+   
     // 导出图片
-    drawCanvas: function(data) {
+    drawCanvas: function(data, isCrop) {
       const ctx = wx.createCanvasContext('canvas', this)
-      const { src, x, y, w, h } = data
       const { styleW:width, styleH: height } = this.data
+      const { src, sx, sy, sw, sh, x = 0, y = 0, w = width, h = height } = data
+
       wx.getImageInfo({
         src,
         success: res => {
-          ctx.drawImage(src, x, y, w, h)
+          if (isCrop) ctx.drawImage(src, sx, sy, sw, sh, x, y, w, h)
+          else ctx.drawImage(src, x, y, w, h)
+
           ctx.draw(false, () => {
             wx.canvasToTempFilePath({
               x: 0,
@@ -235,7 +208,6 @@ Component({
           console.log(err, '')
         }
       })
-     
     },
   }
 })
