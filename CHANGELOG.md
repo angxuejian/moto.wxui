@@ -3,6 +3,8 @@
 ## v0.2
 ### 2021/06/18
 - add top mode to imgMode component
+- add all modes to imgMode component
+- completed `imgMode component`
 
 ### 2021/06/17
 - add aspectFill mode to imgMode component

@@ -75,13 +75,21 @@ Component({
       const d = event.detail
 
       if (mode === 'scaleToFill') return
+      
       else if (mode === 'aspectFit' ) this.getAspectFit (d)
       else if (mode === 'aspectFill') this.getAspectFill(d) 
       else if (mode === 'widthFix'  ) this.getWidthFix  (d)
       else if (mode === 'heightFix' ) this.getheightFix (d)
 
-      else if (mode === 'top') this.getTop(d)
-
+      else if (mode === 'top'   ) this.getTop(d)
+      else if (mode === 'bottom') this.getBottom(d)
+      else if (mode === 'center') this.getCenter(d)
+      else if (mode === 'left'  ) this.getLeft(d)
+      else if (mode === 'right' ) this.getRight(d)
+      else if (mode === 'top left' )    this.getTopLeft(d)
+      else if (mode === 'top right' )   this.getTopRight(d)
+      else if (mode === 'bottom left')  this.getBottomLeft(d)
+      else if (mode === 'bottom right') this.getBottomRight(d)
       this.setData({
         isDestroyImg: true
       })
@@ -168,6 +176,136 @@ Component({
       sh = styleH
       sx = (width - sw) / 2
       sy = 0
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // bottom
+    getBottom: function({ width, height }) {
+
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = (width - sw) / 2
+      sy = height - sh
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // center
+    getCenter: function({ width, height }) {
+
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = (width - sw) / 2
+      sy = (height - sh) / 2
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // left
+    getLeft: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = 0
+      sy = (height - sh) / 2
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // right
+    getRight: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = (width - sw)
+      sy = (height - sh) / 2
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // top left 
+    getTopLeft: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = 0
+      sy = 0
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // top right
+    getTopRight: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = width - styleW
+      sy = 0
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // bottom left 
+    getBottomLeft: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = 0
+      sy = height - styleH
+
+      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+    },
+
+    // bottom right
+    getBottomRight: function({ width, height }) {
+      const { styleH, styleW, src } = this.data
+
+      this.setData({ imgH: styleH, imgW: styleW })
+
+      let [sx, sy, sw, sh] = []
+
+      sw = styleW
+      sh = styleH
+      sx = width - styleW
+      sy = height - styleH
 
       this.drawCanvas({ src, sx, sy, sw, sh }, true)
     },
