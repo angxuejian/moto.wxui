@@ -6,7 +6,7 @@ Page({
    */
   data: {
     src: '/assets/b.jpg',
-
+    isOddNumber: false,
     imgArr: [
       {
         info: '缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素',
@@ -73,6 +73,11 @@ Page({
    */
   onLoad: function (options) {
 
+    const number = parseInt(Math.random() * 10)
+    
+    this.setData({
+      isOddNumber: Boolean(number % 2)
+    })
   },
 
   /**

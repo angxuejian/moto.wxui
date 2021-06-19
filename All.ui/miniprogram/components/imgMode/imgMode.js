@@ -14,7 +14,7 @@ Component({
   properties: {
     src: {
       type: String,
-      value: DEFAULT_IMG
+      value: ''
     },
     mode: {
       type: String,
@@ -34,13 +34,12 @@ Component({
     imgH: 0, // canvas 的高
 
     isDestroyImg: false, // 是否销毁 带onload的image标签
-    isDestroyCan: false, // 是否销毁 canvas 组件
+    isDestroyCan: true, // 是否销毁 canvas 组件
   },
 
   lifetimes: {
     attached: function() {
       this.init()
-     
     }
   },
 
@@ -49,6 +48,7 @@ Component({
    */
   methods: {
     init: async function() {
+      if (!this.data.src ) return
       if (!this.data.mode) return
 
       const { width, height } = await this.getImgMode()
@@ -74,6 +74,18 @@ Component({
       const { mode } = this.data
       const d = event.detail
 
+      if (mode !== 'widthFix' || mode !== 'heightFix') {
+        this.data.isDestroyCan = false
+
+        this.setData({
+          isDestroyImg: true,
+          isDestroyCan: this.data.isDestroyCan,
+          imgH: this.data.styleH,
+          imgW: this.data.styleW
+        })
+      }
+
+
       if (mode === 'scaleToFill') return
       
       else if (mode === 'aspectFit' ) this.getAspectFit (d)
@@ -90,18 +102,13 @@ Component({
       else if (mode === 'top right' )   this.getTopRight(d)
       else if (mode === 'bottom left')  this.getBottomLeft(d)
       else if (mode === 'bottom right') this.getBottomRight(d)
-      this.setData({
-        isDestroyImg: true
-      })
     },
 
 
     // aspectFit
     getAspectFit: function({ width, height }) {
 
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
@@ -116,14 +123,12 @@ Component({
       x = (styleW - w) / 2
       y = (styleH - h) / 2
 
-      this.drawCanvas({ src, x, y, w, h })
+      this.drawCanvas({ x, y, w, h })
     },
 
     // aspectFill
     getAspectFill: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
@@ -142,7 +147,7 @@ Component({
        
       }
 
-      this.drawCanvas({ src, x, y, w, h })
+      this.drawCanvas({ x, y, w, h })
     },
     
     // widthFix
@@ -166,9 +171,7 @@ Component({
     // top
     getTop: function({ width, height }) {
 
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -177,15 +180,13 @@ Component({
       sx = (width - sw) / 2
       sy = 0
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // bottom
     getBottom: function({ width, height }) {
 
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -194,15 +195,13 @@ Component({
       sx = (width - sw) / 2
       sy = height - sh
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // center
     getCenter: function({ width, height }) {
 
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -211,14 +210,12 @@ Component({
       sx = (width - sw) / 2
       sy = (height - sh) / 2
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // left
     getLeft: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -227,14 +224,12 @@ Component({
       sx = 0
       sy = (height - sh) / 2
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // right
     getRight: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -243,14 +238,12 @@ Component({
       sx = (width - sw)
       sy = (height - sh) / 2
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // top left 
     getTopLeft: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -259,14 +252,12 @@ Component({
       sx = 0
       sy = 0
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // top right
     getTopRight: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -275,14 +266,12 @@ Component({
       sx = width - styleW
       sy = 0
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // bottom left 
     getBottomLeft: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -291,14 +280,12 @@ Component({
       sx = 0
       sy = height - styleH
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
     // bottom right
     getBottomRight: function({ width, height }) {
-      const { styleH, styleW, src } = this.data
-
-      this.setData({ imgH: styleH, imgW: styleW })
+      const { styleH, styleW  } = this.data
 
       let [sx, sy, sw, sh] = []
 
@@ -307,15 +294,15 @@ Component({
       sx = width - styleW
       sy = height - styleH
 
-      this.drawCanvas({ src, sx, sy, sw, sh }, true)
+      this.drawCanvas({ sx, sy, sw, sh }, true)
     },
 
    
     // 导出图片
     drawCanvas: function(data, isCrop) {
       const ctx = wx.createCanvasContext('canvas', this)
-      const { styleW:width, styleH: height } = this.data
-      const { src, sx, sy, sw, sh, x = 0, y = 0, w = width, h = height } = data
+      const { styleW:width, styleH: height, src  } = this.data
+      const { sx, sy, sw, sh, x = 0, y = 0, w = width, h = height } = data
 
       wx.getImageInfo({
         src,
@@ -338,6 +325,15 @@ Component({
               },
               fail: err => {
                 console.log(err, 'canvas 导出失败')
+
+                /**
+                 * canvasToTempFilePath:fail:illegal arguments 错误下 重新绘画
+                 */
+                if (/illegal arguments/ig.test(err.errMsg)) {
+                  setTimeout(() => {
+                    this.drawCanvas(data, isCrop)
+                  }, 1000);
+                }
               }
             }, this)
           })

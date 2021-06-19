@@ -4,5 +4,5 @@
 
 <image id='img-mode' style="{{style}}" class="img-class" src="{{src}}"></image>
 
-<image wx:if='{{!isDestroyImg}}' bindload='onCallbackLoad' src="{{src}}" style="display: none"></image>
+<image wx:if='{{!isDestroyImg && src}}' bindload='onCallbackLoad' src="{{src}}" style="display: none"></image>
 <canvas wx:if='{{!isDestroyCan}}' style="width: {{imgW}}px; height: {{imgH}}px" canvas-id="canvas"></canvas>

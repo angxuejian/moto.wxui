@@ -1,6 +1,10 @@
 # 版本更新 
 
 ## v0.2
+### 2021/06/19
+- improve imgMode component code
+- improve imgMode component docs
+
 ### 2021/06/18
 - add top mode to imgMode component
 - add all modes to imgMode component

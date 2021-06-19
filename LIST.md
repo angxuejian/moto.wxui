@@ -12,7 +12,7 @@
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
-
+图片模式-imgMode | [ >>> ](docs/imgMode.md)
 
 
 
