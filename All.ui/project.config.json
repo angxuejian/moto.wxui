@@ -69,8 +69,8 @@
         },
         {
           "id": 1,
-          "name": "pages/UI-Pages/ui.imgMode/ui.imgMode",
-          "pathName": "pages/UI-Pages/ui.imgMode/ui.imgMode",
+          "name": "pages/UI-Pages/ui.picker/ui.picker",
+          "pathName": "pages/UI-Pages/ui.picker/ui.picker",
           "query": "",
           "scene": null
         }

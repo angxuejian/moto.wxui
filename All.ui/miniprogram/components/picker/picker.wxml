@@ -1,0 +1,25 @@
+<!--components/picker/picker.wxml-->
+
+<view catchtouchmove="return">
+
+  <!-- 显示view -->
+  <view bindtap="showPicker">
+    选择器
+  </view>
+
+  <!-- 弹出view -->
+  <view wx:if="{{isShow}}">
+    <view bindtap="showPicker" class="picker_bc {{isShow === 1 ? 'picker_bc-show':'picker_bc-hide' }}">
+
+      <view class="picker_block {{isShow === 1 ? 'picker_block-show' : 'picker_block-hide'}}">
+
+        <view class="btn">
+          <view catchtap='clear' class="clear" hover-class="hover-font">取消</view>
+          <view catchtap="confirm" hover-class="hover" class="confirm">
+            确认</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

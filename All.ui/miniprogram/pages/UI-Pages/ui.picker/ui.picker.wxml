@@ -1,0 +1,11 @@
+<!--miniprogram/pages/UI-Pages/ui.picker/ui.picker.wxml-->
+
+
+<view>
+  <view class="item-btn">
+    <text>默认样式</text>
+    <view>
+      <mo-picker></mo-picker>
+    </view>
+  </view>
+</view>

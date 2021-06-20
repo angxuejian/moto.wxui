@@ -46,6 +46,11 @@ export const list = [
         name: '颜色选择器',
         url: `${BASE}/ui.colorPicker/ui.colorPicker`
       },
+      {
+        svg: SVG.picker,
+        name: '选择器',
+        url: `${BASE}/ui.picker/ui.picker`
+      }
       
     ]
   },

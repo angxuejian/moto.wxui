@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/06/20
+- add `picker component`
+
 ### 2021/06/19
 - improve imgMode component code
 - improve imgMode component docs
