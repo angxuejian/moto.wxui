@@ -21,7 +21,7 @@
       <color-picker predefined='rgba(90, 200 ,10, 0.5)' show-alpha='{{true}}' ></color-picker>
     </view>
   </view>
-
+ 
   <view class="item-btn">
     <text>自定义样式</text>
     <view>

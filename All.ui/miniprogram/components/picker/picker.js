@@ -12,6 +12,12 @@ Component({
    */
   data: {
     isShow: 0, // 是否打开 colorPicker 组件 0:真关闭 1:打开 2:伪关闭
+    touch: {
+      startY: 0,
+      moveY : 0,
+      transY: 0,
+    },
+    index: 0
   },
 
   /**
@@ -34,6 +40,43 @@ Component({
     },
 
 
+    touchStart: function(event) {
+      // console.log(event, '触发了')
+
+      this.data.touch.startY = -this.data.touch.transY + event.touches[0].pageY
+    },
+
+    touchMove: function(event) {
+      this.data.touch.moveY = event.touches[0].pageY
+      let y = this.data.touch.startY - this.data.touch.moveY
+   
+      if (y < -45) {
+        this.data.touch.transY = 0;
+        return
+      } else if (y >= (45 * 5)) {
+        this.data.touch.transY = 45 * 4;
+        return
+      } 
+      
+      this.data.touch.transY = -y
+      
+
+     
+      this.setData({
+        ['touch.transY']: this.data.touch.transY
+      })
+    },
+
+    touchEnd: function() {
+
+      let index = Math.round(Math.abs(this.data.touch.transY) / 45)
+      this.data.index = index
+      this.data.touch.transY = -(45 * index)
+      this.setData({
+        ['touch.transY']: this.data.touch.transY
+      })
+    },
+
     // 清空事件
     clear: function() {
       this.showPicker()
@@ -45,6 +88,7 @@ Component({
        * bindchange: 点击确认
        */
       this.showPicker()
+      this.triggerEvent('change', { index: this.data.index })
     },
   }
 })

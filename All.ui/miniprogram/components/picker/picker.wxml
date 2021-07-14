@@ -1,5 +1,6 @@
 <!--components/picker/picker.wxml-->
 
+
 <view catchtouchmove="return">
 
   <!-- 显示view -->
@@ -9,10 +10,26 @@
 
   <!-- 弹出view -->
   <view wx:if="{{isShow}}">
-    <view bindtap="showPicker" class="picker_bc {{isShow === 1 ? 'picker_bc-show':'picker_bc-hide' }}">
-
+    <view  class="picker_bc {{isShow === 1 ? 'picker_bc-show':'picker_bc-hide' }}">
       <view class="picker_block {{isShow === 1 ? 'picker_block-show' : 'picker_block-hide'}}">
 
+          
+        <view class="box-picker">
+          <view class="box-scroll-block">
+            <view class="box-scroll-border"></view>
+          </view>
+          <view class="box-scroll">
+            
+            <view style="transform: translateY({{touch.transY}}px);" catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd"  class="item-scroll">
+              <view>1</view>
+              <view>2</view>
+              <view>3</view>
+              <view>4</view>
+              <view>5</view>
+            </view>
+          </view>
+        </view>
+     
         <view class="btn">
           <view catchtap='clear' class="clear" hover-class="hover-font">取消</view>
           <view catchtap="confirm" hover-class="hover" class="confirm">

@@ -5,7 +5,17 @@
   <view class="item-btn">
     <text>默认样式</text>
     <view>
-      <mo-picker></mo-picker>
+      <mo-picker bindchange='onCallbackChange'></mo-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>默认样式</text>
+    <view>
+      <picker range='{{list}}'>
+        请选择
+      </picker>
     </view>
   </view>
 </view>
+

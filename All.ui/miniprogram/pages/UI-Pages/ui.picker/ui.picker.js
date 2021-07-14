@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    list: ['1', '2', '3', '4', '5']
   },
 
   /**
@@ -14,6 +14,17 @@ Page({
   onLoad: function (options) {
 
   },
+
+
+
+  onCallbackChange: function(event) {
+    wx.showModal({
+      title: '提示',
+      showCancel: false,
+      content: `第 ${event.detail.index + 1} 项`
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
