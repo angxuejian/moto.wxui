@@ -4,3 +4,8 @@
 page {
   overflow: hidden;
 }
+
+.mo-picker-slot {
+  color: #333;
+  font-size: 15px;
+}

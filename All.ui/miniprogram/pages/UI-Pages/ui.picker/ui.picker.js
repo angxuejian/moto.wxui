@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: ['1', '2', '3', '4', '5']
+    list: [
+      { value: '北京' },
+      { value: '上海' },
+      { value: '广州' },
+      { value: '深圳' },
+      { value: '杭州' },
+      { value: '重庆' }
+    ],
+    list2: [
+     '羊肉泡馍', '爆炒小龙虾', '请蒸羊羔'
+    ],
+    name: '',
+    name2: ''
   },
 
   /**
@@ -18,13 +30,29 @@ Page({
 
 
   onCallbackChange: function(event) {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: `第 ${event.detail.index + 1} 项`
+
+    this.data.name = event.detail.item.value
+    this.setData({
+      name: this.data.name
     })
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: `第 ${event.detail.index + 1} 项`
+    // })
   },
 
+
+  open: function() {
+    this.selectComponent('#picker').open()
+  },
+
+  onCallbackChange2: function(event) {
+    this.data.name2 = event.detail.item
+    this.setData({
+      name2: this.data.name2
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

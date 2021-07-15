@@ -5,6 +5,7 @@
 
 组件 | 文档
 --- | ---
+选择器-Picker    | [ >>> ](docs/picker.md)
 图片模式-imgMode | [ >>> ](docs/imgMode.md)
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)

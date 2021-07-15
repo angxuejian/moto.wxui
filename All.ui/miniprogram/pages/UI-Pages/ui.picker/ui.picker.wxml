@@ -3,19 +3,30 @@
 
 <view>
   <view class="item-btn">
-    <text>默认样式</text>
+    <text>单列选择器</text>
     <view>
-      <mo-picker bindchange='onCallbackChange'></mo-picker>
+      <mo-picker range='{{list}}' bindchange='onCallbackChange'>
+        <view class="mo-picker-slot" slot='picker-slot'>{{ name || "请选择"}}</view>
+      </mo-picker>
     </view>
   </view>
 
   <view class="item-btn">
+    <text>实例方法</text>
+    <view>
+      <view bindtap="open">{{ name2 || '通过实例方法打开组件'}}</view>
+      <mo-picker id='picker' range='{{list2}}' bindchange='onCallbackChange2'>
+      </mo-picker>
+    </view>
+  </view>
+
+  <!-- <view class="item-btn">
     <text>默认样式</text>
     <view>
       <picker range='{{list}}'>
         请选择
       </picker>
     </view>
-  </view>
+  </view> -->
 </view>
 

@@ -1,9 +1,11 @@
 # 版本更新 
 
 ## v0.2
+### 2021/07/15
+- add selector mode to picker component
 
 ### 2021/07/14
-- update `picker component`
+- update picker component
 
 ### 2021/06/20
 - add `picker component`
