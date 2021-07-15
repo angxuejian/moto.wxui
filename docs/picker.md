@@ -36,7 +36,7 @@ picker-slot   | 否   | 如未使用插槽，可以通过使用 实例方法打�
 ---    | ---   | ---    | --- | ---
 range     | array/object array | []     | 是  | 选择列表
 range_key | string | value    | 否  | 当 range 是一个 Object Array 时，通过 range_key 来指定 Object 中 key 的值作为选择器显示内容
-mask      | boolean | true    | 否 |
+mask      | boolean | true    | 否 | 点击遮罩层是否关闭
 
 
 ### 事件
