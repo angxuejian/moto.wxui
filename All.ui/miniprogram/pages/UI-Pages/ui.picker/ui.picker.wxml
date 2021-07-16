@@ -11,14 +11,14 @@
     </view>
   </view>
 
-  <view class="item-btn">
+  <!-- <view class="item-btn">
     <text>实例方法</text>
     <view>
       <view bindtap="open">{{ name2 || '通过实例方法打开组件'}}</view>
       <mo-picker id='picker' range='{{list2}}' bindchange='onCallbackChange2'>
       </mo-picker>
     </view>
-  </view>
+  </view> -->
 
   <!-- <view class="item-btn">
     <text>默认样式</text>

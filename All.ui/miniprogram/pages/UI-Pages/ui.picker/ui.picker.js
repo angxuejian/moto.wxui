@@ -14,7 +14,8 @@ Page({
       { value: '重庆' }
     ],
     list2: [
-     '羊肉泡馍', '爆炒小龙虾', '请蒸羊羔'
+      ['西安', '杭州', '东北'],
+      ['羊肉泡馍', '爆炒小龙虾', '请蒸羊羔'],
     ],
     name: '',
     name2: ''
@@ -24,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(this.data.list2)
   },
 
 

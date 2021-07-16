@@ -108,14 +108,12 @@
 }
 
 .item-scroll {
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   transition: all 500ms cubic-bezier(0.1, 0.57, 0.1, 1);
-
 }
-.item-scroll > view {
+.item-scroll view {
   height: 45px;
   width: 100%;
   text-align: center;

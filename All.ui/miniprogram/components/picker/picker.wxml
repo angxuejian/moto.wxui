@@ -20,9 +20,17 @@
           </view>
           <view class="box-scroll">
             
-            <view catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd" style="transform: translateY({{touch.transY}}px);"  class="item-scroll">
+            <!-- 单列 -->
+            <!-- <view wx:if='{{mode === "selector"}}'  catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd" style=" width: 100%; transform: translateY({{touch[touchIndex].transY}}px);" data-index='0' class="item-scroll">
               <view  wx:for='{{range}}' wx:key='index'>{{ isShowKey ? item[range_key] : item}}</view>
+            </view> -->
+
+            <!-- 多列 -->
+            <view  wx:for='{{range}}' wx:key='index' catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd"
+            data-index='{{index}}'  style="width: {{100 / (range.length)}}%; transform: translateY({{touch[touchIndex].transY}}px);"  class="item-scroll" >
+              <view  wx:for='{{item}}' wx:for-index='i' wx:for-item='sub' wx:key='i'>{{isShowKey ? sub[range_key] : sub}}</view>
             </view>
+
           </view>
         </view>
      

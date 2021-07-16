@@ -20,6 +20,10 @@ Component({
     mask: {
       type:Boolean,
       value: true
+    },
+    mode: {
+      type: String,
+      value: 'selector'
     }
   },
 
@@ -28,10 +32,12 @@ Component({
    */
   data: {
     isShow: 0, // 是否打开 colorPicker 组件 0:真关闭 1:打开 2:伪关闭
-    touch: {
+    default: {
       startY: 0, // 手指触摸开始 y轴
       transY: 0, // 计算要 translateY 的值
     },
+    touch: [],
+    touchIndex: 0,
     HEIGHT_MAX : 45, // .item-scroll > view 的高度
     RANGE_INDEX: 0,  // range列表的索引
   },
@@ -64,13 +70,24 @@ Component({
       else if (show === 1) this.data.isShow = 2
       else if (show === 2) this.data.isShow = 1
 
-      if (this.data.range.length) {
-        const el = this.data.range[0]
-        if (typeof el === 'object') this.data.isShowKey = true
-        else this.data.isShowKey = false
+      let el = ''
+      if (this.data.range.length && this.data.mode === 'selector') {
+        this.data.range = [this.data.range]
+      } 
+
+      if (this.data.range.length && this.data.range[0].length) {
+        el = this.data.range[0][0]
+        this.data.range.forEach(() => {
+          this.data.touch.push(this.data.default)
+        })
       }
 
+      if (typeof el === 'object') this.data.isShowKey = true
+      else this.data.isShowKey = false
+
+      
       this.setData({
+        range : this.data.range, 
         isShow: this.data.isShow,
         isShowKey: this.data.isShowKey
       })
@@ -90,7 +107,14 @@ Component({
     touchStart: function(event) {
       const { touch }   = this.data
       const { touches } = event
-      touch.startY = -touch.transY + touches[0].pageY
+      const { index }   = event.currentTarget.dataset
+
+
+      const item = touch[index]
+
+      item.startY = -(item.transY) + touches[0].pageY
+
+      this.data.touchIndex = index
     },
 
     /**
@@ -100,25 +124,30 @@ Component({
     touchMove: function(event) {
       const { touch, HEIGHT_MAX, range } = this.data
       const { touches } = event
+      const { index }   = event.currentTarget.dataset
 
-      const leng = range.length
-      const y    = touch.startY - touches[0].pageY
-   
+      const leng = range[index].length      
+      const item = touch[index]
+
+      const y    = item.startY - touches[0].pageY
+
 
       if (y < -HEIGHT_MAX) {
-        touch.transY = 0;
+        item.transY = 0;
         return
       }
 
       if (y >= (HEIGHT_MAX * leng)) {
-        touch.transY = HEIGHT_MAX * (leng - 1);
+        item.transY = HEIGHT_MAX * (leng - 1);
         return
       } 
 
-      touch.transY = -y
-      
+      item.transY = -y
+      this.data.touchIndex = index
+
       this.setData({
-        ['touch.transY']: touch.transY
+        ['touch['+ index + '].transY']: item.transY,
+        touchIndex: this.data.touchIndex
       })
     },
 
@@ -126,21 +155,26 @@ Component({
     /**
      *  手指触摸 - 结束
      */
-    touchEnd: function() {
-      const { touch, HEIGHT_MAX, range } = this.data
-      const leng = range.length
+    touchEnd: function(event) {
 
+      const { touch, HEIGHT_MAX, range } = this.data
+      const { index }  = event.currentTarget.dataset
+
+      const leng = range[index].length
+      const item = touch[index]
   
-      this.data.RANGE_INDEX = Math.round(Math.abs(touch.transY) / HEIGHT_MAX)
+      this.data.RANGE_INDEX = Math.round(Math.abs(item.transY) / HEIGHT_MAX)
 
       if (this.data.RANGE_INDEX > (leng - 1)) this.data.RANGE_INDEX = leng - 1
 
       if (this.data.RANGE_INDEX < 0) this.data.RANGE_INDEX = 0
 
-      touch.transY = -(HEIGHT_MAX * this.data.RANGE_INDEX)
+      item.transY = -(HEIGHT_MAX * this.data.RANGE_INDEX)
+      this.data.touchIndex = index
 
       this.setData({
-        ['touch.transY']: touch.transY
+        ['touch[' + index + '].transY']: item.transY,
+        touchIndex: this.data.touchIndex
       })
     },
 
