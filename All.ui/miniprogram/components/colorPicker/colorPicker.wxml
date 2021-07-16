@@ -10,7 +10,7 @@
 
 	<!-- 弹出view -->
 	<view wx:if="{{ isShow }}">
-		<view style="background-color:{{prColor}}" bindtap="showColorPicker"
+		<view style="background-color:{{prColor}}" bindtap="maskShowColorPicker"
 			class="color-picker_bc {{ isShow === 1 ? 'color-picker_bc-show' : 'color-picker_bc-hide'}}">
 		</view>
 

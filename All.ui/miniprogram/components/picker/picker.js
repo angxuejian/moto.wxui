@@ -19,7 +19,7 @@ Component({
     },
     mask: {
       type:Boolean,
-      value: false
+      value: true
     }
   },
 

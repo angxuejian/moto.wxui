@@ -35,6 +35,10 @@ Component({
     showPred: {
       type: Boolean,
       value: true
+    },
+    mask: {
+      type:Boolean,
+      value: true
     }
   },
 
@@ -106,6 +110,13 @@ Component({
         if (this.data.isShow === 1) this.create()
         else this.destroy()
       })
+    },
+
+    // 是否开启遮罩层关闭
+    maskShowDatePicker: function() {
+      if (!this.data.mask) return
+
+      this.showDatePicker()
     },
 
     // 创建 日期

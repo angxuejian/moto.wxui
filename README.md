@@ -1,6 +1,27 @@
 # moto.wxui
 微信小程序的UI库
 
+## 使用
+将UI组件引用到项目中
+```
+// index.json
+
+{
+  "usingComponents": {
+    "color-picker": "xxx/colorPicker/colorPicker"
+  }
+}
+```
+```
+// index.html
+
+<view>
+ <color-picker></color-picker>
+</view>
+```
+
+- **具体属性和方法** 详看docs文件夹下的 .md文件
+
 ## 组件
 
 组件 | 文档
@@ -13,26 +34,10 @@
 
 [全部组件 - 在这里！](LIST.md)
 
-## 使用
-将UI组件引用到项目中
-```
-// index.json
+## 示例
+> 若图片加载失败，搜索图片名称也可以找到哦！
 
-{
-  "usingComponents": {
-    "color-picker": "xxx/colorPicker/colorPicker"
-  }
-}
-
-// index.html
-
-<view>
- <color-picker></color-picker>
-</view>
-
-```
-
-- **具体属性和方法** 详看docs文件夹下的 .md文件
+![Moto UI示例](docs/a.jpg)
 
 ## 许可
 [MIT License](LICENSE)

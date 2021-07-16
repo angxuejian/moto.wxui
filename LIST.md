@@ -1,11 +1,12 @@
 # 全部文档
 
-## 小功能
+## 功能
 功能 | 示例
 ---  | ---
 日历-Calendar | [ - - - ](docs/calendar.md)
 消除背景-RemoveBG |
 瀑布流-waterfallsFlow|
+
 ## UI组件
 组件 | 文档
 --- | ---
@@ -13,6 +14,7 @@
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
 图片模式-imgMode | [ >>> ](docs/imgMode.md)
+选择器-Picker    | [ >>> ](docs/picker.md)
 
 
 

@@ -41,6 +41,10 @@ Component({
     showPred: {
       type: Boolean,
       value: true
+    },
+    mask: {
+      type:Boolean,
+      value: true
     }
 
   },
@@ -116,6 +120,13 @@ Component({
       }, () => {
         if (this.data.isShow === 1) this.init()
       })
+    },
+
+    // 是否开启遮罩层关闭
+    maskShowColorPicker: function() {
+      if (!this.data.mask) return
+
+      this.showColorPicker()
     },
 
     // 初始化 坐标系

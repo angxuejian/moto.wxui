@@ -1,19 +1,17 @@
 # imgMode
+imgMode组件加载速度`弱于`小程序image标签
 
-## 使用
-### 引用
-
+## 引用
 [不知道如何引用组件的看这里](../README.md)
 
-### 属性
+## 属性
 属性      | 类型   | 默认值        | 必填| 说明
 ---       | ---    | ---         | --- | ---
 src       | string |             | 否  | 图片资源地址、支持网络路径(需要配置download域名才能生效)、本地路径、代码包路径
 mode      | string | scaleToFill | 否  | 图片裁剪、缩放的模式
 img-class | string |             | 否  | img标签的样式  
 
-
-### mode 的合法值
+**mode 的合法值**
 值   |  说明
 ---  | ---
 scaleToFill  | 缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素
