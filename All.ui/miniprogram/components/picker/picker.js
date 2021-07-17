@@ -78,14 +78,14 @@ Component({
       if (this.data.range.length && this.data.range[0].length) {
         el = this.data.range[0][0]
         this.data.range.forEach(() => {
-          this.data.touch.push(this.data.default)
+          this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
         })
       }
 
       if (typeof el === 'object') this.data.isShowKey = true
       else this.data.isShowKey = false
 
-      
+      console.log(this.data.touch)
       this.setData({
         range : this.data.range, 
         isShow: this.data.isShow,
@@ -128,7 +128,7 @@ Component({
 
       const leng = range[index].length      
       const item = touch[index]
-
+      // console.log(touch, '????')
       const y    = item.startY - touches[0].pageY
 
 
@@ -145,6 +145,8 @@ Component({
       item.transY = -y
       this.data.touchIndex = index
 
+      console.log(this.data.touch)
+      // return
       this.setData({
         ['touch['+ index + '].transY']: item.transY,
         touchIndex: this.data.touchIndex

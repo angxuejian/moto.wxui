@@ -5,7 +5,7 @@
   <view class="item-btn">
     <text>单列选择器</text>
     <view>
-      <mo-picker range='{{list}}' bindchange='onCallbackChange'>
+      <mo-picker mode='multiSelector' range='{{list2}}' bindchange='onCallbackChange'>
         <view class="mo-picker-slot" slot='picker-slot'>{{ name || "请选择"}}</view>
       </mo-picker>
     </view>

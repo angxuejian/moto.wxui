@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/07/17
+- fix display problem in the multiSelector mode of picker component
+
 ### 2021/07/16
 - edit code and docs style
 - edit multiSelector mode to picker component
