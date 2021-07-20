@@ -5,7 +5,7 @@
   <view class="item-btn">
     <text>单列选择器</text>
     <view>
-      <mo-picker mode='multiSelector' range='{{list2}}' bindchange='onCallbackChange'>
+      <mo-picker bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{list2}}' range_key='name' bindchange='onCallbackChange'>
         <view class="mo-picker-slot" slot='picker-slot'>{{ name || "请选择"}}</view>
       </mo-picker>
     </view>
@@ -23,7 +23,7 @@
   <!-- <view class="item-btn">
     <text>默认样式</text>
     <view>
-      <picker range='{{list}}'>
+      <picker  bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{list2}}' range-key='name' bindchange='onCallbackChange'>
         请选择
       </picker>
     </view>

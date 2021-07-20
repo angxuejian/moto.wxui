@@ -13,9 +13,22 @@ Page({
       { value: '杭州' },
       { value: '重庆' }
     ],
-    list2: [
-      ['西安', '杭州', '东北'],
-      ['羊肉泡馍', '爆炒小龙虾', '请蒸羊羔'],
+    list2: [],
+    backupArr: [
+      {
+        name: '北京',
+        child: [
+          { name: '豆汁' },
+          { name: '炸酱面' }
+        ]
+      },
+      {
+        name: '杭州',
+        child: [
+          { name: '酱鸭' },
+          { name: '爆炒小龙虾' }
+        ]
+      }
     ],
     name: '',
     name2: ''
@@ -25,14 +38,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.list2)
+    this.data.list2 = [this.data.backupArr, this.data.backupArr[0].child]
+    this.setData({
+      list2: this.data.list2
+    })
   },
 
 
 
   onCallbackChange: function(event) {
-
-    this.data.name = event.detail.item.value
+    console.log(event, ':::')
+    const { index, column, item } = event 
+    this.data.name = `${item.name} - ${item[index]}`
     this.setData({
       name: this.data.name
     })
@@ -41,6 +58,18 @@ Page({
     //   showCancel: false,
     //   content: `第 ${event.detail.index + 1} 项`
     // })
+  },
+
+  onCallbackColumnChange: function(event) {
+
+    const { column, index} = event.detail
+
+    if (!column) {
+      this.data.list2.splice(1, 1, this.data.backupArr[index].child)
+    }
+    this.setData({
+      list2: this.data.list2
+    })
   },
 
 

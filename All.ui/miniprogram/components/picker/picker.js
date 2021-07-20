@@ -37,9 +37,10 @@ Component({
       transY: 0, // 计算要 translateY 的值
     },
     touch: [],
-    touchIndex: 0,
     HEIGHT_MAX : 45, // .item-scroll > view 的高度
     RANGE_INDEX: 0,  // range列表的索引
+    TOUCH_INDEX: 0,  // touch列表的索引
+
   },
 
   /**
@@ -85,7 +86,6 @@ Component({
       if (typeof el === 'object') this.data.isShowKey = true
       else this.data.isShowKey = false
 
-      console.log(this.data.touch)
       this.setData({
         range : this.data.range, 
         isShow: this.data.isShow,
@@ -109,12 +109,10 @@ Component({
       const { touches } = event
       const { index }   = event.currentTarget.dataset
 
-
       const item = touch[index]
-
       item.startY = -(item.transY) + touches[0].pageY
 
-      this.data.touchIndex = index
+      this.data.TOUCH_INDEX = index
     },
 
     /**
@@ -128,7 +126,7 @@ Component({
 
       const leng = range[index].length      
       const item = touch[index]
-      // console.log(touch, '????')
+
       const y    = item.startY - touches[0].pageY
 
 
@@ -143,13 +141,10 @@ Component({
       } 
 
       item.transY = -y
-      this.data.touchIndex = index
 
-      console.log(this.data.touch)
-      // return
+      this.data.TOUCH_INDEX = index
       this.setData({
-        ['touch['+ index + '].transY']: item.transY,
-        touchIndex: this.data.touchIndex
+        ['touch['+ index + '].transY']: item.transY
       })
     },
 
@@ -168,16 +163,17 @@ Component({
       this.data.RANGE_INDEX = Math.round(Math.abs(item.transY) / HEIGHT_MAX)
 
       if (this.data.RANGE_INDEX > (leng - 1)) this.data.RANGE_INDEX = leng - 1
-
       if (this.data.RANGE_INDEX < 0) this.data.RANGE_INDEX = 0
 
       item.transY = -(HEIGHT_MAX * this.data.RANGE_INDEX)
-      this.data.touchIndex = index
+
+      this.data.TOUCH_INDEX = index
 
       this.setData({
-        ['touch[' + index + '].transY']: item.transY,
-        touchIndex: this.data.touchIndex
+        ['touch[' + index + '].transY']: item.transY
       })
+
+      this.column()
     },
 
     // 清空事件
@@ -189,16 +185,36 @@ Component({
       this.triggerEvent('cancel')
     },
 
+    // 选择列事件
+    column: function() {
+      /**
+       * bindcolumnchange: 列改变时触发
+       */
+
+       this.triggerEvent('columnchange', {
+        column: this.data.TOUCH_INDEX,
+        index: this.data.RANGE_INDEX
+       })
+    },
+
+
     // 确认事件
     confirm: function() {
       /**
        * bindchange: 点击确认
        */
       this.showPicker()
-      this.triggerEvent('change', {
+
+      const data = {
         index: this.data.RANGE_INDEX,
-        item : this.data.range[this.data.RANGE_INDEX]
-      })
+        item : this.data.range[this.data.TOUCH_INDEX][this.data.RANGE_INDEX]
+      }
+
+      if (this.data.mode === 'multiSelector') {
+        data.column = this.data.TOUCH_INDEX
+        delete data.name
+      }
+      this.triggerEvent('change', data)
     },
   }
 })
