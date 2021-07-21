@@ -38,10 +38,12 @@ Component({
     },
     touch: [],
     HEIGHT_MAX : 45, // .item-scroll > view 的高度
-    RANGE_INDEX: 0,  // range列表的索引
+    RANGE_INDEX: [],  // range列表的索引
     TOUCH_INDEX: 0,  // touch列表的索引
 
   },
+
+
 
   /**
    * 组件的方法列表
@@ -71,26 +73,34 @@ Component({
       else if (show === 1) this.data.isShow = 2
       else if (show === 2) this.data.isShow = 1
 
-      let el = ''
-      if (this.data.range.length && this.data.mode === 'selector') {
-        this.data.range = [this.data.range]
-      } 
-
-      if (this.data.range.length && this.data.range[0].length) {
-        el = this.data.range[0][0]
-        this.data.range.forEach(() => {
-          this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
-        })
+      let data = {
+        isShow: this.data.isShow,
       }
 
-      if (typeof el === 'object') this.data.isShowKey = true
-      else this.data.isShowKey = false
+      if (this.data.isShow === 1) {
+        let el = ''
 
-      this.setData({
-        range : this.data.range, 
-        isShow: this.data.isShow,
-        isShowKey: this.data.isShowKey
-      })
+        if (this.data.range.length && this.data.mode === 'selector' && !this.data.range[0][0]) {
+          this.data.range = [this.data.range]
+        } 
+
+        if (this.data.range.length && this.data.range[0].length) {
+          el = this.data.range[0][0]
+          this.data.range.forEach(() => {
+            this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
+            this.data.RANGE_INDEX.push(0)
+          })
+        }
+
+        if (typeof el === 'object') this.data.isShowKey = true
+        else this.data.isShowKey = false
+        
+        data.range       = this.data.range
+        data.RANGE_INDEX = this.data.RANGE_INDEX
+        data.isShowKey   = this.data.isShowKey
+      }
+  
+      this.setData(data)
     },
 
     // 是否开启遮罩层关闭
@@ -159,21 +169,23 @@ Component({
 
       const leng = range[index].length
       const item = touch[index]
-  
-      this.data.RANGE_INDEX = Math.round(Math.abs(item.transY) / HEIGHT_MAX)
+      
+      let i = Math.round(Math.abs(item.transY) / HEIGHT_MAX)
+ 
 
-      if (this.data.RANGE_INDEX > (leng - 1)) this.data.RANGE_INDEX = leng - 1
-      if (this.data.RANGE_INDEX < 0) this.data.RANGE_INDEX = 0
+      if (i > (leng - 1)) i = leng - 1
+      if (i < 0) i = 0
 
-      item.transY = -(HEIGHT_MAX * this.data.RANGE_INDEX)
+      item.transY = -(HEIGHT_MAX * i)
 
       this.data.TOUCH_INDEX = index
-
+      this.data.RANGE_INDEX.splice(index, 1, i)
       this.setData({
-        ['touch[' + index + '].transY']: item.transY
+        ['touch[' + index + '].transY']: item.transY,
       })
 
-      this.column()
+      if (this.data.mode === 'multiSelector') this.column();
+     
     },
 
     // 清空事件
@@ -190,10 +202,9 @@ Component({
       /**
        * bindcolumnchange: 列改变时触发
        */
-
        this.triggerEvent('columnchange', {
         column: this.data.TOUCH_INDEX,
-        index: this.data.RANGE_INDEX
+        index: this.data.RANGE_INDEX[this.data.TOUCH_INDEX]
        })
     },
 
@@ -204,15 +215,25 @@ Component({
        * bindchange: 点击确认
        */
       this.showPicker()
-
-      const data = {
-        index: this.data.RANGE_INDEX,
-        item : this.data.range[this.data.TOUCH_INDEX][this.data.RANGE_INDEX]
-      }
-
+      const { TOUCH_INDEX: i } = this.data
+      let data = {}
+ 
       if (this.data.mode === 'multiSelector') {
-        data.column = this.data.TOUCH_INDEX
-        delete data.name
+        const list = []
+        data.index = this.data.RANGE_INDEX
+
+        this.data.RANGE_INDEX.forEach((item, index) => {
+          list.push(this.data.range[index][item])
+        })
+
+        data.item = list
+        
+      } else if (this.data.mode === 'selector') {
+        const index = this.data.RANGE_INDEX[i]
+        data = {
+          index,
+          item : this.data.range[i][index]
+        }
       }
       this.triggerEvent('change', data)
     },

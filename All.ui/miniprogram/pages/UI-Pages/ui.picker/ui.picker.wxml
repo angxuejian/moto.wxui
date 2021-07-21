@@ -5,28 +5,29 @@
   <view class="item-btn">
     <text>单列选择器</text>
     <view>
-      <mo-picker bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{list2}}' range_key='name' bindchange='onCallbackChange'>
+      <mo-picker bindcolumnchange='onCallbackColumnChange' mode='selector' range='{{list}}' range_key='value' bindchange='onCallbackChange'>
         <view class="mo-picker-slot" slot='picker-slot'>{{ name || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
 
-  <!-- <view class="item-btn">
+
+  <view class="item-btn">
+    <text>多列选择器</text>
+    <view>
+      <mo-picker  bindcolumnchange='onCallbackColumnChange3' mode='multiSelector' range='{{list2}}' range_key='name' bindchange='onCallbackChange3'>
+        <view class="mo-picker-slot" slot='picker-slot'>{{ name3 || "请选择"}}</view>
+      </mo-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
     <text>实例方法</text>
     <view>
       <view bindtap="open">{{ name2 || '通过实例方法打开组件'}}</view>
-      <mo-picker id='picker' range='{{list2}}' bindchange='onCallbackChange2'>
+      <mo-picker id='picker' mode='selector' range='{{list}}'  bindchange='onCallbackChange2'>
       </mo-picker>
     </view>
-  </view> -->
-
-  <!-- <view class="item-btn">
-    <text>默认样式</text>
-    <view>
-      <picker  bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{list2}}' range-key='name' bindchange='onCallbackChange'>
-        请选择
-      </picker>
-    </view>
-  </view> -->
+  </view>
 </view>
 

@@ -18,7 +18,10 @@ Page({
       {
         name: '北京',
         child: [
-          { name: '豆汁' },
+          { name: '豆汁', child: [
+            { name: '1' },
+            { name: '2' }
+          ] },
           { name: '炸酱面' }
         ]
       },
@@ -28,10 +31,18 @@ Page({
           { name: '酱鸭' },
           { name: '爆炒小龙虾' }
         ]
+      },
+      {
+        name: '上海',
+        child: [
+          { name: '外滩' },
+          { name: '东方明珠' }
+        ]
       }
     ],
     name: '',
-    name2: ''
+    name2: '',
+    name3: ''
   },
 
   /**
@@ -47,21 +58,32 @@ Page({
 
 
   onCallbackChange: function(event) {
-    console.log(event, ':::')
-    const { index, column, item } = event 
-    this.data.name = `${item.name} - ${item[index]}`
+    const { item } = event.detail
+    this.data.name = `${item.value}`
     this.setData({
       name: this.data.name
     })
-    // wx.showModal({
-    //   title: '提示',
-    //   showCancel: false,
-    //   content: `第 ${event.detail.index + 1} 项`
-    // })
   },
 
-  onCallbackColumnChange: function(event) {
+  onCallbackChange2: function(event) {
+    this.data.name2 = event.detail.item.value
+    this.setData({
+      name2: this.data.name2
+    })
+  },
 
+  onCallbackChange3: function(event) {
+    const { index, item } = event.detail
+    const list = []
+    item.forEach(el => {
+      list.push(el.name)
+    })
+
+    this.setData({
+      name3: list.join('-')
+    })
+  },
+  onCallbackColumnChange3: function(event) {
     const { column, index} = event.detail
 
     if (!column) {
@@ -77,12 +99,7 @@ Page({
     this.selectComponent('#picker').open()
   },
 
-  onCallbackChange2: function(event) {
-    this.data.name2 = event.detail.item
-    this.setData({
-      name2: this.data.name2
-    })
-  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
