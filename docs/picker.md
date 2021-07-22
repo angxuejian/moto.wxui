@@ -37,6 +37,7 @@ range     | array/object array | []     | 是  | 选择列表
 range_key | string | value    | 否  | 当 range 是一个 Object Array 时，通过 range_key 来指定 Object 中 key 的值作为选择器显示内容
 mask      | boolean | true    | 否 | 点击遮罩层是否关闭
 mode      | string  | selector | 否 | 选择器类型
+index     | string/number/array | 0 | 否 | 表示选择了 range 中的第几个（下标从 0 开始）
 
 **mode 的合法值**
 
@@ -50,7 +51,7 @@ multiSelector | 多列选择器
 ---         | ---          |---    | ---  |---
 bindchange  | eventhandle  |     | 否   | value改变时触发
 bindcancel  | eventhandle  |     | 否   | 取消选择时触发
-bindcolumnchange | eventhandle | | 否   | 列改变时触发(mode为multiSelector)
+bindcolumnchange | eventhandle | | 否   | 列改变时触发(**mode = multiSelector**)
 
 ## 实例
 

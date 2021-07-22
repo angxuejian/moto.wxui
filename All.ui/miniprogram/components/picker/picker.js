@@ -17,6 +17,11 @@ Component({
       type: String,
       value: 'value'
     },
+    index: {
+      type: Number,
+      optionalTypes: [Array],
+      value: [0]
+    },
     mask: {
       type:Boolean,
       value: true
@@ -39,7 +44,8 @@ Component({
     touch: [],
     HEIGHT_MAX : 45, // .item-scroll > view 的高度
     RANGE_INDEX: [],  // range列表的索引
-    TOUCH_INDEX: 0,  // touch列表的索引
+    TOUCH_INDEX: [],  // 触摸事件中的索引
+    COLUMN_INDEX: 0,  // 列的索引
 
   },
 
@@ -77,7 +83,7 @@ Component({
         isShow: this.data.isShow,
       }
 
-      if (this.data.isShow === 1) {
+      if (show === 0) {
         let el = ''
 
         if (this.data.range.length && this.data.mode === 'selector' && !this.data.range[0][0]) {
@@ -86,28 +92,26 @@ Component({
 
         if (this.data.range.length && this.data.range[0].length) {
           el = this.data.range[0][0]
-          this.data.range.forEach(() => {
+
+          const list = typeof this.data.index === 'number' ? [this.data.index] : this.data.index
+          
+          this.data.TOUCH_INDEX = []
+          this.data.range.forEach((item, index) => {
             this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
-            this.data.RANGE_INDEX.push(0)
+            this.data.TOUCH_INDEX.push(list[index] || 0)
           })
+
+          this.setIndex()
         }
 
         if (typeof el === 'object') this.data.isShowKey = true
         else this.data.isShowKey = false
         
         data.range       = this.data.range
-        data.RANGE_INDEX = this.data.RANGE_INDEX
         data.isShowKey   = this.data.isShowKey
       }
   
       this.setData(data)
-    },
-
-    // 是否开启遮罩层关闭
-    maskShowPicker: function() {
-      if (!this.data.mask) return
-
-      this.showPicker()
     },
 
     /**
@@ -122,7 +126,7 @@ Component({
       const item = touch[index]
       item.startY = -(item.transY) + touches[0].pageY
 
-      this.data.TOUCH_INDEX = index
+      this.data.COLUMN_INDEX = index
     },
 
     /**
@@ -152,7 +156,7 @@ Component({
 
       item.transY = -y
 
-      this.data.TOUCH_INDEX = index
+      this.data.COLUMN_INDEX = index
       this.setData({
         ['touch['+ index + '].transY']: item.transY
       })
@@ -166,20 +170,18 @@ Component({
 
       const { touch, HEIGHT_MAX, range } = this.data
       const { index }  = event.currentTarget.dataset
-
       const leng = range[index].length
       const item = touch[index]
       
       let i = Math.round(Math.abs(item.transY) / HEIGHT_MAX)
  
-
       if (i > (leng - 1)) i = leng - 1
       if (i < 0) i = 0
 
       item.transY = -(HEIGHT_MAX * i)
 
-      this.data.TOUCH_INDEX = index
-      this.data.RANGE_INDEX.splice(index, 1, i)
+      this.data.COLUMN_INDEX = index
+      this.data.TOUCH_INDEX.splice(index, 1, i)
       this.setData({
         ['touch[' + index + '].transY']: item.transY,
       })
@@ -188,12 +190,54 @@ Component({
      
     },
 
+    /**
+     * 默认选择 range 的第几个(下标)
+     */
+    setIndex: function() {
+      const { range, HEIGHT_MAX, touch } = this.data
+   
+      const data = {}
+
+      this.data.TOUCH_INDEX =  this.data.TOUCH_INDEX.map((item, index) => {
+        const leng = range[index].length
+
+        if (item > (leng - 1)) item = leng - 1
+        if (item < 0) item = 0
+
+        return item
+      })
+
+      this.data.TOUCH_INDEX.forEach((item, index) => {
+        if (item === 0) return;
+
+        touch[index].transY = -(HEIGHT_MAX * item)
+        data['touch[' + index + '].transY'] = touch[index].transY
+      })
+
+      if (Object.keys(data).length) {
+        this.setData(data)
+      }
+    },
+
+
+    // 是否开启遮罩层关闭
+    maskShowPicker: function() {
+      if (!this.data.mask) return
+
+      this.cancel()
+    },
+
     // 清空事件
     cancel: function() {
       /**
        * bindcancel: 点击取消
        */
+      if (this.data.mode === 'selector') {
+        this.data.TOUCH_INDEX = JSON.parse(JSON.stringify(this.data.RANGE_INDEX))
+        this.setIndex()
+      }
       this.showPicker()
+   
       this.triggerEvent('cancel')
     },
 
@@ -203,8 +247,8 @@ Component({
        * bindcolumnchange: 列改变时触发
        */
        this.triggerEvent('columnchange', {
-        column: this.data.TOUCH_INDEX,
-        index: this.data.RANGE_INDEX[this.data.TOUCH_INDEX]
+        column: this.data.COLUMN_INDEX,
+        index: this.data.TOUCH_INDEX[this.data.COLUMN_INDEX]
        })
     },
 
@@ -215,9 +259,12 @@ Component({
        * bindchange: 点击确认
        */
       this.showPicker()
-      const { TOUCH_INDEX: i } = this.data
+      const { COLUMN_INDEX: i } = this.data
       let data = {}
  
+      this.data.RANGE_INDEX = JSON.parse(JSON.stringify(this.data.TOUCH_INDEX))
+
+      // 多列
       if (this.data.mode === 'multiSelector') {
         const list = []
         data.index = this.data.RANGE_INDEX
@@ -225,9 +272,10 @@ Component({
         this.data.RANGE_INDEX.forEach((item, index) => {
           list.push(this.data.range[index][item])
         })
-
         data.item = list
-        
+      
+      
+      // 单列
       } else if (this.data.mode === 'selector') {
         const index = this.data.RANGE_INDEX[i]
         data = {
@@ -235,6 +283,7 @@ Component({
           item : this.data.range[i][index]
         }
       }
+
       this.triggerEvent('change', data)
     },
   }

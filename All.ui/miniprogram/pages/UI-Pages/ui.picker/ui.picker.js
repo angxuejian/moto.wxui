@@ -14,6 +14,7 @@ Page({
       { value: '重庆' }
     ],
     list2: [],
+    list3: [],
     backupArr: [
       {
         name: '北京',
@@ -42,7 +43,9 @@ Page({
     ],
     name: '',
     name2: '',
-    name3: ''
+    name3: '',
+    name4: '',
+    listIndex2: [0, 1]
   },
 
   /**
@@ -50,8 +53,10 @@ Page({
    */
   onLoad: function (options) {
     this.data.list2 = [this.data.backupArr, this.data.backupArr[0].child]
+    this.data.list3 = [this.data.backupArr, this.data.backupArr[0].child]
     this.setData({
-      list2: this.data.list2
+      list2: this.data.list2,
+      list3: this.data.list3
     })
   },
 
@@ -74,23 +79,25 @@ Page({
 
   onCallbackChange3: function(event) {
     const { index, item } = event.detail
+    const key = event.currentTarget.dataset.name
     const list = []
     item.forEach(el => {
       list.push(el.name)
     })
 
     this.setData({
-      name3: list.join('-')
+      [key]: list.join('-')
     })
   },
   onCallbackColumnChange3: function(event) {
     const { column, index} = event.detail
+    const key = event.currentTarget.dataset.list
 
     if (!column) {
-      this.data.list2.splice(1, 1, this.data.backupArr[index].child)
+      this.data[key].splice(1, 1, this.data.backupArr[index].child)
     }
     this.setData({
-      list2: this.data.list2
+      [key]: this.data[key]
     })
   },
 
@@ -98,7 +105,6 @@ Page({
   open: function() {
     this.selectComponent('#picker').open()
   },
-
 
 
   /**

@@ -15,7 +15,7 @@
   <view class="item-btn">
     <text>多列选择器</text>
     <view>
-      <mo-picker  bindcolumnchange='onCallbackColumnChange3' mode='multiSelector' range='{{list2}}' range_key='name' bindchange='onCallbackChange3'>
+      <mo-picker  bindcolumnchange='onCallbackColumnChange3' mode='multiSelector' range='{{list2}}' range_key='name' data-list='list2' data-name='name3' bindchange='onCallbackChange3'>
         <view class="mo-picker-slot" slot='picker-slot'>{{ name3 || "请选择"}}</view>
       </mo-picker>
     </view>
@@ -29,5 +29,15 @@
       </mo-picker>
     </view>
   </view>
+
+  <view class="item-btn">
+    <text>默认值</text>
+    <view>
+      <mo-picker index='{{listIndex2}}'  bindcolumnchange='onCallbackColumnChange3' mode='multiSelector' range='{{list3}}' range_key='name' data-list='list3' data-name='name4' bindchange='onCallbackChange3'>
+        <view class="mo-picker-slot" slot='picker-slot'>{{ name4 || "请选择"}}</view>
+      </mo-picker>
+    </view>
+  </view>
+
 </view>
 
