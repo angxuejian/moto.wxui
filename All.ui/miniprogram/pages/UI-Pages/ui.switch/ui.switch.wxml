@@ -1,0 +1,10 @@
+<!--miniprogram/pages/UI-Pages/ui.switch/ui.switch.wxml-->
+<view>
+  <view class="item-btn">
+    <text>单列选择器</text>
+    <view>
+
+      <switch disabled></switch>
+    </view>
+  </view>
+</view>

@@ -1,6 +1,5 @@
 import { SVG } from '../../utils/config-svg'
 
-const BASE = '/pages/UI-Pages'
 export const list = [
   {
     title: '小功能',
@@ -8,50 +7,53 @@ export const list = [
       {
         svg: SVG.calendar,
         name: '日历',
-        url: `${BASE}/ui.calendar/ui.calendar`
+        url: `/ui.calendar/ui.calendar`
       },
       {
         svg: SVG.removeBG,
         name: '消除背景',
-        url: `${BASE}/ui.removeBG/ui.removeBG`
+        url: `/ui.removeBG/ui.removeBG`
       },
       {
         svg: SVG.waterfallsFlow,
         name: '瀑布流',
-        url: `${BASE}/ui.waterfallsFlow/ui.waterfallsFlow`
+        url: `/ui.waterfallsFlow/ui.waterfallsFlow`
       }
     ]
   },
   {
     title: 'UI组件',
     list: [
-      
       {
         svg: SVG.datePicker,
         name: '日期选择器',
-        url: `${BASE}/ui.datePicker/ui.datePicker`
+        url: `/ui.datePicker/ui.datePicker`
       },
       {
         svg: SVG.imgMode,
         name: '图片模式',
-        url: `${BASE}/ui.imgMode/ui.imgMode`
+        url: `/ui.imgMode/ui.imgMode`
       },
       {
         svg: SVG.nprogress,
         name: '顶部加载',
-        url: `${BASE}/ui.nprogress/ui.nprogress`
+        url: `/ui.nprogress/ui.nprogress`
       },
       {
         svg: SVG.colorPicker,
         name: '颜色选择器',
-        url: `${BASE}/ui.colorPicker/ui.colorPicker`
+        url: `/ui.colorPicker/ui.colorPicker`
       },
       {
         svg: SVG.picker,
         name: '选择器',
-        url: `${BASE}/ui.picker/ui.picker`
+        url: `/ui.picker/ui.picker`
+      },
+      {
+        svg: SVG.switch,
+        name: '开关选择器',
+        url: '/ui.switch/ui.switch'
       }
-      
     ]
   },
 

@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -19,8 +20,8 @@
           "scene": null
         },
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/UI-Pages/ui.switch/ui.switch",
+          "pathName": "pages/UI-Pages/ui.switch/ui.switch",
           "query": "",
           "scene": null
         }
