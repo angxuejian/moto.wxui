@@ -26,6 +26,7 @@
 
 组件 | 文档
 --- | ---
+开关选择器-Switch | [ >>> ](docs/switch.md)
 选择器-Picker    | [ >>> ](docs/picker.md)
 图片模式-imgMode | [ >>> ](docs/imgMode.md)
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)

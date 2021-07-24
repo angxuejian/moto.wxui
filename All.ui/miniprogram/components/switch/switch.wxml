@@ -1,2 +1,4 @@
 <!--components/switch/switch.wxml-->
-<text>components/switch/switch.wxml</text>
+
+
+<view bindtap="changeSwitchBox" style="{{ checked ? 'background-color:' + color + ';border-color:' + color : ''}}" class="switch-box {{checked ? 'box-checked' : ''}}"></view>

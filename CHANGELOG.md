@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/07/24
+- completed `switch component`
+
 ### 2021/07/23
 - add `switch component`
 

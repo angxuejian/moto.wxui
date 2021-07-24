@@ -1,10 +1,35 @@
 <!--miniprogram/pages/UI-Pages/ui.switch/ui.switch.wxml-->
 <view>
+
   <view class="item-btn">
-    <text>单列选择器</text>
+    <text>默认样式</text>
     <view>
 
-      <switch disabled></switch>
+      <mo-switch bindchange='onCallbackChange'></mo-switch>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>配置样式</text>
+    <view>
+
+      <mo-switch color='#C46451' checked></mo-switch>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>禁用</text>
+    <view>
+
+      <mo-switch disabled></mo-switch>
+    </view>
+  </view>
+
+  <view class="item-btn">
+    <text>震动</text>
+    <view>
+
+      <mo-switch vibrate color='rgba(5, 142, 166, 1)'></mo-switch>
     </view>
   </view>
 </view>

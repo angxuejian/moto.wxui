@@ -15,6 +15,17 @@ Page({
 
   },
 
+
+  onCallbackChange: function(event) {
+
+    const { value } = event.detail
+    wx.showModal({
+      title: 'Change回调',
+      content: `当前状态为：${value}`,
+      showCancel: false
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
