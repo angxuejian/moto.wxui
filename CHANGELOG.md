@@ -2,6 +2,7 @@
 
 ## v0.2
 ### 2021/07/24
+- optimize calendar adds caching mechanism
 - completed `switch component`
 
 ### 2021/07/23
