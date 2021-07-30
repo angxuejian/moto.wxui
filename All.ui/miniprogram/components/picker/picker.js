@@ -83,36 +83,62 @@ Component({
         isShow: this.data.isShow,
       }
 
-      if (show === 0) {
-        let el = ''
+   
+      this.filterMode(show, data)
 
+
+    },
+
+
+    filterMode: function(show, data) {
+    
+      // 单列 or 多列
+      if ((this.data.mode === 'selector' || this.data.mode === 'multiSelector') && show === 0) {
         if (this.data.range.length && this.data.mode === 'selector' && !this.data.range[0][0]) {
           this.data.range = [this.data.range]
         } 
 
-        if (this.data.range.length && this.data.range[0].length) {
-          el = this.data.range[0][0]
+        this.filterRange()
+      } 
+    
+      // 日期时间
+      else if (this.data.mode === 'dateTimeSelector' && show !== 1) {
+        const { list, value } = this.getDateTime()
+        this.data.range = list
+        this.data.index = value
 
-          const list = typeof this.data.index === 'number' ? [this.data.index] : this.data.index
-          
-          this.data.TOUCH_INDEX = []
-          this.data.range.forEach((item, index) => {
-            this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
-            this.data.TOUCH_INDEX.push(list[index] || 0)
-          })
-
-          this.setIndex()
-        }
-
-        if (typeof el === 'object') this.data.isShowKey = true
-        else this.data.isShowKey = false
-        
-        data.range       = this.data.range
-        data.isShowKey   = this.data.isShowKey
+        this.filterRange()
       }
-  
+
+    
+      data.range       = this.data.range
+      data.isShowKey   = this.data.isShowKey
+
       this.setData(data)
     },
+
+
+    filterRange: function() {
+      let el = ''
+
+      if (this.data.range.length && this.data.range[0].length) {
+        el = this.data.range[0][0]
+
+        const list = typeof this.data.index === 'number' ? [this.data.index] : this.data.index
+        
+        this.data.TOUCH_INDEX = []
+        this.data.range.forEach((item, index) => {
+          this.data.touch.push(JSON.parse(JSON.stringify(this.data.default)))
+          this.data.TOUCH_INDEX.push(list[index] || 0)
+        })
+      }
+
+      this.setIndex()
+
+      if (typeof el === 'object') this.data.isShowKey = true
+      else this.data.isShowKey = false
+    },
+
 
     /**
      *  手指触摸 - 开始
@@ -219,6 +245,56 @@ Component({
       }
     },
 
+    formatNumber: function (n) {
+      n = n.toString()
+      return n[1] ? n : `0${n}`
+    },
+    
+    
+    getDateTime: function() {
+      const d = new Date()
+    
+      const year = d.getFullYear() - 21
+      const yearValue = d.getFullYear() - year
+      const yearList = []
+      for (let i = 0; i < 50; i++) {
+        yearList.push(year + i + '年')
+      }
+    
+      const monthList = []
+      const monthValue = d.getMonth()
+      for (let i = 0; i < 12; i++) {
+        monthList.push(this.formatNumber(i + 1) + '月')
+      }
+    
+      const dayList = []
+      const dayValue = d.getDate() - 1
+      for (let i = 0; i < 31; i++) {
+        dayList.push(this.formatNumber(i + 1) + '日')
+      }
+    
+      const hourList = []
+      const hourValue = d.getHours()
+      for (let i = 0; i < 24; i++) {
+        hourList.push(this.formatNumber(i) + '时')
+      }
+    
+      const minuteList = []
+      const minuteValue = d.getMinutes()
+      const secondsList = []
+      const secondsValue = d.getSeconds()
+      for (let i = 0; i < 60; i++) {
+        i = this.formatNumber(i)
+        minuteList.push(i + '分')
+        secondsList.push(i + '秒')
+      }
+    
+      return {
+        list: [yearList, monthList, dayList, hourList, minuteList, secondsList],
+        value: [yearValue, monthValue, dayValue, hourValue, minuteValue, secondsValue]
+      }
+    },
+
 
     // 是否开启遮罩层关闭
     maskShowPicker: function() {
@@ -282,8 +358,27 @@ Component({
           index,
           item : this.data.range[i][index]
         }
-      }
+      } 
+      
+      // 日期时间
+      else if (this.data.mode === 'dateTimeSelector') {
+        const list_cn = []
+        const list = []
 
+        this.data.RANGE_INDEX.forEach((item, index) => {
+          const va = this.data.range[index][item]
+          list_cn.push(va)
+          list.push(va.substr(0, va.length - 1))
+        })
+
+        const date = list.slice(0, 3).join('-')
+        const time = list.slice(3).join(':')
+    
+        data.list_cn = list_cn
+        data.list = list
+        data.value = `${date} ${time}`
+      }
+      
       this.triggerEvent('change', data)
     },
   }

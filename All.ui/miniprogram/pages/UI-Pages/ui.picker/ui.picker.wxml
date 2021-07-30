@@ -22,6 +22,15 @@
   </view>
 
   <view class="item-btn">
+    <text>日期时间</text>
+    <view>
+      <mo-picker mode='dateTimeSelector'bindchange='onCallbackChange4'>
+        <view class="mo-picker-slot" slot='picker-slot'>{{ name5 || "请选择"}}</view>
+      </mo-picker>
+    </view>
+  </view>
+
+  <view class="item-btn">
     <text>实例方法</text>
     <view>
       <view bindtap="open">{{ name2 || '通过实例方法打开组件'}}</view>

@@ -45,6 +45,7 @@ Page({
     name2: '',
     name3: '',
     name4: '',
+    name5: '',
     listIndex2: [0, 1]
   },
 
@@ -98,6 +99,14 @@ Page({
     }
     this.setData({
       [key]: this.data[key]
+    })
+  },
+
+  onCallbackChange4: function(event) {
+    this.data.name5 = event.detail.value
+
+    this.setData({
+      name5: this.data.name5
     })
   },
 
