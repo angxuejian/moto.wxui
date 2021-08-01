@@ -106,7 +106,7 @@ Component({
         const { list, value } = this.getDateTime()
         this.data.range = list
         this.data.index = value
-
+        console.log(value)
         this.filterRange()
       }
 

@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/08/01
+- fix css style error of the picker component
+
 ### 2021/07/24
 - optimize calendar adds caching mechanism
 - completed `switch component`

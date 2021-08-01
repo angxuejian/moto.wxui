@@ -75,7 +75,7 @@
   left: 0%;
   top: 15vh;
   width: 100%;
-  height: 40px;
+  height: 45px;
   z-index: 2;
   box-shadow: 0 0 0 15vh rgba(255,255,255,0.7);
   pointer-events: none;
@@ -85,7 +85,7 @@
 }
 .box-scroll-border {
   width: 90%;
-  height: 45px;
+  height: 40px;
   opacity: 0.1;
   margin: 0 auto;
   box-sizing: border-box;
@@ -95,10 +95,9 @@
 
 .box-scroll {
   position: absolute;
-  left: 0%;
-  width: 100%;
+  left: 5%;
+  width: 90%;
   top: 0;
-  height: 100%;
   padding-top: 15vh;
   box-sizing: border-box;
   display: flex;
@@ -118,7 +117,11 @@
   width: 100%;
   text-align: center;
   line-height: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
+  font-size: 14px;
 }
 
 .btn {
