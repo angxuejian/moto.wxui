@@ -5,17 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [
-      { value: '北京' },
-      { value: '上海' },
-      { value: '广州' },
-      { value: '深圳' },
-      { value: '杭州' },
-      { value: '重庆' }
-    ],
-    list2: [],
-    list3: [],
-    backupArr: [
+ 
+    result: [
       {
         name: '北京',
         child: [
@@ -41,73 +32,95 @@ Page({
         ]
       }
     ],
-    name: '',
-    name2: '',
-    name3: '',
-    name4: '',
-    name5: '',
-    listIndex2: [0, 1]
+    onlyArr: [
+      { value: '北京' },
+      { value: '上海' },
+      { value: '广州' },
+      { value: '深圳' },
+      { value: '杭州' },
+      { value: '重庆' }
+    ],
+    moreArr1: [],
+    moreArr2: [],
+    show: {
+      value1: '', //单列选择器
+      value2: '', //多列选择器
+      value3: '', //日期时间
+      value4: '', //实例方法
+      value5: '', //默认值
+      value6: '', //日期
+      value7: '', //时间
+    },
+    listIndex2: [0, 1],
+    dateVa: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.data.list2 = [this.data.backupArr, this.data.backupArr[0].child]
-    this.data.list3 = [this.data.backupArr, this.data.backupArr[0].child]
+  onLoad: function () {
+    
+    this.data.dateVa = new Date('2022-09-15 15:00:00').getTime()
+
+    this.data.moreArr1 = [this.data.result, this.data.result[0].child]
+    this.data.moreArr2 = [this.data.result, this.data.result[0].child]
+
     this.setData({
-      list2: this.data.list2,
-      list3: this.data.list3
+      moreArr1: this.data.moreArr1,
+      moreArr2: this.data.moreArr2,
+      dateVa: this.data.dateVa
     })
   },
 
 
 
   onCallbackChange: function(event) {
-    const { item } = event.detail
-    this.data.name = `${item.value}`
-    this.setData({
-      name: this.data.name
-    })
-  },
-
-  onCallbackChange2: function(event) {
-    this.data.name2 = event.detail.item.value
-    this.setData({
-      name2: this.data.name2
-    })
-  },
-
-  onCallbackChange3: function(event) {
     const { index, item } = event.detail
-    const key = event.currentTarget.dataset.name
-    const list = []
-    item.forEach(el => {
-      list.push(el.name)
-    })
+    const { key } = event.currentTarget.dataset
 
+    if (item.length) {
+      const list = []
+      item.forEach(el => {
+        list.push(el.name)
+      })
+
+      this.data.show[key] = list.join('-')
+    } else {
+      this.data.show[key] = `${item.value}`
+    }
+   
     this.setData({
-      [key]: list.join('-')
+      ['show.' + key]: this.data.show[key]
     })
   },
-  onCallbackColumnChange3: function(event) {
+
+
+  onCallbackColumnChange: function(event) {
     const { column, index} = event.detail
     const key = event.currentTarget.dataset.list
 
     if (!column) {
-      this.data[key].splice(1, 1, this.data.backupArr[index].child)
+      this.data[key].splice(1, 1, this.data.result[index].child)
     }
     this.setData({
       [key]: this.data[key]
     })
   },
 
-  onCallbackChange4: function(event) {
-    this.data.name5 = event.detail.value
 
+  onCallbackDateTimeChange: function(event) {
+    const { value, list_cn } = event.detail
+    const { key } = event.currentTarget.dataset
+    let val = value
+
+    if (key !== 'value3') val = list_cn.join('')
+
+    this.data.show[key] = val
+    
     this.setData({
-      name5: this.data.name5
+      ['show.' + key]: this.data.show[key]
     })
+
   },
 
 

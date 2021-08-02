@@ -29,6 +29,10 @@ Component({
     mode: {
       type: String,
       value: 'selector'
+    },
+    date: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -91,7 +95,7 @@ Component({
 
 
     filterMode: function(show, data) {
-    
+      
       // 单列 or 多列
       if ((this.data.mode === 'selector' || this.data.mode === 'multiSelector') && show === 0) {
         if (this.data.range.length && this.data.mode === 'selector' && !this.data.range[0][0]) {
@@ -102,11 +106,16 @@ Component({
       } 
     
       // 日期时间
-      else if (this.data.mode === 'dateTimeSelector' && show !== 1) {
-        const { list, value } = this.getDateTime()
+      else if (/date|time/ig.test(this.data.mode) && (this.data.date ? show === 0 : show !== 1)) {
+
+        let mode = 'dateTime'
+        if (this.data.mode === 'dateSelector') mode = 'date'
+        else if (this.data.mode === 'timeSelector') mode = 'time'
+
+        const { list, value } = this.getDateTime(mode, this.data.date)
         this.data.range = list
         this.data.index = value
-        console.log(value)
+ 
         this.filterRange()
       }
 
@@ -251,9 +260,28 @@ Component({
     },
     
     
-    getDateTime: function() {
-      const d = new Date()
-    
+    getDateTime: function(mode = 'dateTime', timestamp) {
+      const date = timestamp ? new Date(timestamp) : new Date()
+
+      let list  = []
+      let value = []
+
+      if (mode === 'date' || mode === 'dateTime') {
+        const d = this.getDate(date)
+        list  = list.concat(d.list)
+        value = value.concat(d.value)
+      }
+
+      if (mode === 'time' || mode === 'dateTime') {
+        const t = this.getTime(date)
+        list  = list.concat(t.list)
+        value = value.concat(t.value)
+      }
+      
+      return { list, value }
+    },
+
+    getDate: function(d) {
       const year = d.getFullYear() - 21
       const yearValue = d.getFullYear() - year
       const yearList = []
@@ -272,7 +300,15 @@ Component({
       for (let i = 0; i < 31; i++) {
         dayList.push(this.formatNumber(i + 1) + '日')
       }
-    
+
+      return {
+        list: [yearList, monthList, dayList],
+        value: [yearValue, monthValue, dayValue]
+      }
+    },
+
+
+    getTime: function(d) {
       const hourList = []
       const hourValue = d.getHours()
       for (let i = 0; i < 24; i++) {
@@ -288,13 +324,12 @@ Component({
         minuteList.push(i + '分')
         secondsList.push(i + '秒')
       }
-    
+
       return {
-        list: [yearList, monthList, dayList, hourList, minuteList, secondsList],
-        value: [yearValue, monthValue, dayValue, hourValue, minuteValue, secondsValue]
+        list: [hourList, minuteList, secondsList],
+        value: [hourValue, minuteValue, secondsValue]
       }
     },
-
 
     // 是否开启遮罩层关闭
     maskShowPicker: function() {
@@ -361,7 +396,7 @@ Component({
       } 
       
       // 日期时间
-      else if (this.data.mode === 'dateTimeSelector') {
+      else if (/date|time/ig.test(this.data.mode)) {
         const list_cn = []
         const list = []
 
