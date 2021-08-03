@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/08/03
+- docs: improve picker.md
+
 ### 2021/08/02
 - feat: add dateSelector mode and timeSelector mode to picker component
 
