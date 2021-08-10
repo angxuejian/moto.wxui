@@ -1,9 +1,23 @@
 <!--miniprogram/pages/UI-Pages/ui.drawer/ui.drawer.wxml-->
 <view>
   <view class="item-btn">
-    <text>底部打开</text>
-    <view>
-      <mo-drawer></mo-drawer>
+    <text>默认样式</text>
+    <view bindtap="openDrawer" data-position="bottom">
+      默认位置与大小
+    </view>
+  </view>
+
+  <view wx:for='{{list}}' wx:key='index' class="item-btn">
+    <text>位置大小</text>
+    <view bindtap="openDrawer" data-position='{{item.type}}' data-width='{{item.width}}' data-height='{{item.height}}'>
+      {{ item.name }}
     </view>
   </view>
 </view>
+
+<mo-drawer bindopen='onCallbackOPEN' bindclose='onCallbackCLOSE'  width='{{width}}' height='{{height}}' position='{{position}}' id='drawer'>
+
+  <view class="drawer-box">
+    <button bindtap="closeDrawer" type="primary">关闭弹窗</button>
+  </view>
+</mo-drawer>

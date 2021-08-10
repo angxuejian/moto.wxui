@@ -29,7 +29,7 @@
 
   <view wx:if='{{ isMask }}' class="mask"></view>
 
-  <color-picker id='colorPicker' showPred='{{false}}' bindchange='onCallbackChange'></color-picker>
+  <mo-color-picker id='colorPicker' showPred='{{false}}' bindchange='onCallbackChange'></mo-color-picker>
 </view>
 
 <!-- Q 如何实现 背景 + 图片 的合成效果？-->

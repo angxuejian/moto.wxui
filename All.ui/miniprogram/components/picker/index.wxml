@@ -5,7 +5,7 @@
 
   <!-- 显示view -->
   <view bindtap="showPicker">
-    <slot name="picker-slot"></slot>
+    <slot></slot>
   </view>
 
   <!-- 弹出view -->

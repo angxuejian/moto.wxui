@@ -1,1 +1,202 @@
 /* components/drawer/index.wxss */
+
+
+/* 遮罩层样式 */
+.drawer-bc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5000;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.drawer-bc-show {
+  visibility: visible;
+  opacity: 1;
+}
+.drawer-bc-hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+/* 抽屉样式 */
+.drawer-box {
+  position: fixed;
+  width: 100vw;
+  height: 200px;
+  z-index: 5001;
+}
+
+/* 底部 */
+.bottom {
+  bottom: 0;
+  left: 0;
+}
+.drawer-box-show-bottom {
+  animation: showbottom 0.3s forwards;
+  opacity: 1;
+}
+.drawer-box-hide-bottom {
+  animation: hidebottom 0.3s forwards;
+}
+@keyframes showbottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hidebottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+/* 顶部 */
+.top {
+  top: 0;
+  left: 0;
+}
+.drawer-box-show-top {
+  animation: showtop 0.3s forwards;
+  opacity: 1;
+}
+.drawer-box-hide-top {
+  animation: hidetop 0.3s forwards;
+}
+@keyframes showtop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes hidetop {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+
+/* 左边 */
+.left {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 50vw;
+}
+.drawer-box-show-left {
+  animation: showleft 0.3s forwards;
+  opacity: 1;
+}
+.drawer-box-hide-left {
+  animation: hideleft 0.3s forwards;
+}
+@keyframes showleft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes hideleft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+
+
+/* 右边 */
+.right {
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50vw;
+}
+.drawer-box-show-right {
+  animation: showright 0.3s forwards;
+  opacity: 1;
+}
+.drawer-box-hide-right {
+  animation: hideright 0.3s forwards;
+}
+@keyframes showright {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes hideright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+
+
+
+/* 中间 */
+.center {
+  top: calc((100% - 250px) / 2);
+  right: calc((100% - 85vw) / 2);
+  height: 250px;
+  width: 85vw;
+}
+
+.drawer-box-show-center {
+  animation: showcenter 0.3s forwards;
+  opacity: 1;
+}
+.drawer-box-hide-center {
+  animation: hidecenter 0.3s forwards;
+}
+@keyframes showcenter {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes hidecenter {
+  from {
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+
+.none {
+  display: none !important;
+}

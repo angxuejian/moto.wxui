@@ -1,10 +1,5 @@
 // components/picker/picker.js
 Component({
-
-  options:{
-    multipleSlots: true
-  },
-
   /**
    * 组件的属性列表
    */

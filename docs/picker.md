@@ -4,31 +4,7 @@
 
 [不知道如何引用组件的看这里](../README.md)
 
-使用组件时，需要注意插槽问题
 
-【插槽使用示例】
-```
-// index.json
-{
-  "usingComponents": {
-    "mo-picker":"/components/picker/picker"
-  },
-  "navigationBarTitleText": "选择器-Picker"
-}
-
-```
-```
-// index.html
-<mo-picker range='{{list}}'>
-
-  <view slot='picker-slot'>点击打开选择器</view> 
-</mo-picker>
-```
-
-## 插槽
-插槽名称 | 必填 |说明
----      | --- | ---
-picker-slot   | 否   | 如未使用插槽，可以通过使用 实例方法打开picker组件
 
 ## 属性 
 属性   | 类型   | 默认值 | 必填| 说明

@@ -4,6 +4,7 @@
 ### 2021/08/10
 - edit code style
 - add `drawer component`
+- completed `drawer component`
 
 ### 2021/08/03
 - improve picker.md

@@ -1,5 +1,5 @@
 /* miniprogram/pages/UI-Pages/ui.picker/ui.picker.wxss */
-.mo-picker-slot {
+.view-class {
   color: #333;
   font-size: 15px;
 }

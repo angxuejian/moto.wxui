@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "color-picker": "/components/colorPicker/colorPicker"
+    "mo-color-picker": "/components/colorPicker/index"
   }
 }

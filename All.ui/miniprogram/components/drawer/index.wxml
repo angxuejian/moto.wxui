@@ -1,2 +1,12 @@
 <!--components/drawer/index.wxml-->
-<text>components/drawer/index.wxml</text>
+
+
+<view catchtouchmove="return" wx:if='{{isShow}}'>
+  <view bindtap="maskShowDrawer"  class="drawer-bc {{ isShow === 1 ? 'drawer-bc-show' : 'drawer-bc-hide'}}"></view>
+
+  <view bindanimationend='onCallbackEnd' style="{{style}}" 
+  
+  class="drawer-box {{type}} {{(isShow === 1 ? 'drawer-box-show-' : 'drawer-box-hide-') + type}}">
+      <slot></slot>
+  </view>
+</view>

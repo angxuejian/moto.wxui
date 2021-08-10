@@ -33,7 +33,6 @@ page{
 .remove .background {
   position: absolute;
   left: 10px;
-  /* background-color: #438EDB; */
   z-index: 4;
 }
 /* 左边正常动画 */
