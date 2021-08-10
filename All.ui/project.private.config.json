@@ -20,8 +20,8 @@
           "scene": null
         },
         {
-          "name": "pages/UI-Pages/ui.picker/ui.picker",
-          "pathName": "pages/UI-Pages/ui.picker/ui.picker",
+          "name": "pages/UI-Pages/ui.drawer/ui.drawer",
+          "pathName": "pages/UI-Pages/ui.drawer/ui.drawer",
           "query": "",
           "scene": null
         }

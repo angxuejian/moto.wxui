@@ -8,7 +8,7 @@
 
 {
   "usingComponents": {
-    "color-picker": "xxx/colorPicker/colorPicker"
+    "mo-color-picker": "/component/colorPicker/index"
   }
 }
 ```
@@ -16,7 +16,7 @@
 // index.html
 
 <view>
- <color-picker></color-picker>
+ <mo-color-picker></mo-color-picker>
 </view>
 ```
 
@@ -26,10 +26,10 @@
 
 组件 | 文档
 --- | ---
+抽屉-Drawer      | [ >>> ](docs/drawer.md)
 开关选择器-Switch | [ >>> ](docs/switch.md)
 选择器-Picker    | [ >>> ](docs/picker.md)
 图片模式-imgMode | [ >>> ](docs/imgMode.md)
-顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
 

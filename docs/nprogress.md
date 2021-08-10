@@ -1,4 +1,4 @@
-# nprogress
+# 顶部加载-Nprogress
 
 因小程序特性，不推荐使用该组件
 

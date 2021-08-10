@@ -1,4 +1,4 @@
-# imgMode
+# 图片模式-ImgMode
 imgMode组件加载速度`弱于`小程序image标签
 
 ## 引用

@@ -17,5 +17,5 @@
   </view>
 
 
-  <nprogress id="nprogress"></nprogress>
+  <mo-nprogress id="nprogress"></mo-nprogress>
 </view>

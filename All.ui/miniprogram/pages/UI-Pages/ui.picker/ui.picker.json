@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "mo-picker":"/components/picker/picker"
+    "mo-picker":"/components/picker/index"
   },
   "navigationBarTitleText": "选择器-Picker"
 }

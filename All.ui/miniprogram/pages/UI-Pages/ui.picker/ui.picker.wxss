@@ -1,10 +1,4 @@
 /* miniprogram/pages/UI-Pages/ui.picker/ui.picker.wxss */
-@import '/wxss/ui.preview.wxss';
-
-page {
-  overflow: hidden;
-}
-
 .mo-picker-slot {
   color: #333;
   font-size: 15px;

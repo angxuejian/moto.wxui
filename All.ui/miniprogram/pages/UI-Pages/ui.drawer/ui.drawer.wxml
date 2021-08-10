@@ -1,0 +1,9 @@
+<!--miniprogram/pages/UI-Pages/ui.drawer/ui.drawer.wxml-->
+<view>
+  <view class="item-btn">
+    <text>底部打开</text>
+    <view>
+      <mo-drawer></mo-drawer>
+    </view>
+  </view>
+</view>

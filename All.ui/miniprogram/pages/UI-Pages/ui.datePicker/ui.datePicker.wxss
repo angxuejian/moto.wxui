@@ -1,12 +1,11 @@
 /* miniprogram/pages/UI-Pages/ui.datePicker/ui.datePicker.wxss */
-@import '/wxss/ui.preview.wxss';
+
 
 /** 
  * 修改 datePicker组件 显示样式
  * 只支持 font-size 和 color
  * 不填为 微信默认样式
 */
-
 .date-picker {
   font-size: 16px;
   color: #333;

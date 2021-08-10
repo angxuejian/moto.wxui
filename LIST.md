@@ -16,6 +16,8 @@
 图片模式-imgMode | [ >>> ](docs/imgMode.md)
 选择器-Picker    | [ >>> ](docs/picker.md)
 开关选择器-Switch | [ >>> ](docs/switch.md)
+抽屉-Drawer      | [ >>> ](docs/drawer.md)
+
 
 
 <!-- - **nprogress 加载进度条**： https://developers.weixin.qq.com/s/WMGBlvmi7xmd

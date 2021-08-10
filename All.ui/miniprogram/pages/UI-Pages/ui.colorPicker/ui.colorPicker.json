@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "color-picker": "/components/colorPicker/colorPicker"
+    "mo-color-picker": "/components/colorPicker/index"
   },
   "navigationBarTitleText": "颜色选择器-ColorPicker"
 }

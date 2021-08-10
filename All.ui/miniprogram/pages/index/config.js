@@ -7,17 +7,17 @@ export const list = [
       {
         svg: SVG.calendar,
         name: '日历',
-        url: `/ui.calendar/ui.calendar`
+        url: `ui.calendar`
       },
       {
         svg: SVG.removeBG,
         name: '消除背景',
-        url: `/ui.removeBG/ui.removeBG`
+        url: `ui.removeBG`
       },
       {
         svg: SVG.waterfallsFlow,
         name: '瀑布流',
-        url: `/ui.waterfallsFlow/ui.waterfallsFlow`
+        url: `ui.waterfallsFlow`
       }
     ]
   },
@@ -27,32 +27,37 @@ export const list = [
       {
         svg: SVG.datePicker,
         name: '日期选择器',
-        url: `/ui.datePicker/ui.datePicker`
+        url: `ui.datePicker`
       },
       {
         svg: SVG.imgMode,
         name: '图片模式',
-        url: `/ui.imgMode/ui.imgMode`
+        url: `ui.imgMode`
       },
       {
         svg: SVG.nprogress,
         name: '顶部加载',
-        url: `/ui.nprogress/ui.nprogress`
+        url: `ui.nprogress`
       },
       {
         svg: SVG.colorPicker,
         name: '颜色选择器',
-        url: `/ui.colorPicker/ui.colorPicker`
+        url: `ui.colorPicker`
       },
       {
         svg: SVG.picker,
         name: '选择器',
-        url: `/ui.picker/ui.picker`
+        url: `ui.picker`
       },
       {
         svg: SVG.switch,
         name: '开关选择器',
-        url: '/ui.switch/ui.switch'
+        url: 'ui.switch'
+      },
+      {
+        svg: SVG.drawer,
+        name: '抽屉',
+        url: 'ui.drawer'
       }
     ]
   },

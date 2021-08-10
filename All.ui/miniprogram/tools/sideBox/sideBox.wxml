@@ -22,7 +22,7 @@
         <text>图标颜色</text>
       </view>
       <view>
-        <color-picker bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></color-picker>
+        <mo-color-picker bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></mo-color-picker>
       </view>
     </view>
 

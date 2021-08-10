@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "img-mode": "/components/imgMode/imgMode"
+    "mo-img-mode": "/components/imgMode/index"
   },
   "navigationBarTitleText": "图片模式-ImgMode"
 }

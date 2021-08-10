@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mo-drawer":"/components/drawer/index"
+  },
+  "navigationBarTitleText": "抽屉-Drawer"
+}

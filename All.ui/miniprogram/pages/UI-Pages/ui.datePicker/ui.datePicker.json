@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "date-picker": "/components/datePicker/datePicker"
+    "mo-date-picker": "/components/datePicker/index"
   },
   "navigationBarTitleText": "日期选择器-DatePicker"
 }

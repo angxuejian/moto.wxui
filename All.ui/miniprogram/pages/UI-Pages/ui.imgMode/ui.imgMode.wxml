@@ -14,7 +14,7 @@
      
       <image wx:if='{{isOddNumber}}' mode="{{item.mode}}" class="img" src="{{src}}"></image>
 
-      <img-mode mode='{{item.mode}}' img-class="img" src="{{src}}"></img-mode>
+      <mo-img-mode mode='{{item.mode}}' img-class="img" src="{{src}}"></mo-img-mode>
 
       <image wx:if='{{!isOddNumber}}' mode="{{item.mode}}" class="img" src="{{src}}"></image>
 

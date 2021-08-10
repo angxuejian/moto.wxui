@@ -10,7 +10,8 @@
     "pages/UI-Pages/ui.share/ui.share",
     "pages/UI-Pages/ui.imgMode/ui.imgMode",
     "pages/UI-Pages/ui.picker/ui.picker",
-    "pages/UI-Pages/ui.switch/ui.switch"
+    "pages/UI-Pages/ui.switch/ui.switch",
+    "pages/UI-Pages/ui.drawer/ui.drawer"
   ],
   "window": {
     "backgroundTextStyle": "light",

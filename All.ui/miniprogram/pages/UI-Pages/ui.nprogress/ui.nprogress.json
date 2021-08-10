@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "nprogress": "/components/nprogress/nprogress"
+    "mo-nprogress": "/components/nprogress/index"
   },
   "navigationBarTitleText": "顶部加载-Nprogress"
 }

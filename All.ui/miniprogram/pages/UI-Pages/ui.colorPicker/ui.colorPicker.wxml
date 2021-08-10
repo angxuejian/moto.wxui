@@ -4,42 +4,42 @@
   <view class="item-btn">
     <text>默认样式</text>
     <view>
-      <color-picker></color-picker>
+      <mo-color-picker></mo-color-picker>
     </view>
   </view>
 
   <view class="item-btn">
     <text>无默认值</text>
     <view>
-      <color-picker default='{{false}}' ></color-picker>
+      <mo-color-picker default='{{false}}' ></mo-color-picker>
     </view>
   </view>
 
   <view class="item-btn">
     <text>带透明度</text>
     <view>
-      <color-picker predefined='rgba(90, 200 ,10, 0.5)' show-alpha='{{true}}' ></color-picker>
+      <mo-color-picker predefined='rgba(90, 200 ,10, 0.5)' show-alpha='{{true}}' ></mo-color-picker>
     </view>
   </view>
  
   <view class="item-btn">
     <text>自定义样式</text>
     <view>
-      <color-picker predefined='#0ECFC2' width='150'></color-picker>
+      <mo-color-picker predefined='#0ECFC2' width='150'></mo-color-picker>
     </view>
   </view>
 
   <view class="item-btn">
     <text>Change事件</text>
     <view>
-      <color-picker bindchange='onCallbackChange' predefined='#ffaa99' width='150'></color-picker>
+      <mo-color-picker bindchange='onCallbackChange' predefined='#ffaa99' width='150'></mo-color-picker>
     </view>
   </view>
   
   <view class="item-btn">
     <text>实例方法</text>
     <view>
-      <color-picker id="colorPicker" bindchange='onCallbackChange' showPred='{{false}}'></color-picker>
+      <mo-color-picker id="colorPicker" bindchange='onCallbackChange' showPred='{{false}}'></mo-color-picker>
       <view bindtap="open" hover-class="hover-font">通过实例方法打开组件</view>
     </view>
   </view>

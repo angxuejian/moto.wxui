@@ -1,5 +1,4 @@
-# colorPicker
-
+# 颜色选择器-ColorPicker
 
 ## 引用
 

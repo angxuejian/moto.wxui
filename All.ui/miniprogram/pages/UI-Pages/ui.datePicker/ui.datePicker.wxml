@@ -4,31 +4,31 @@
   <view class="item-btn">
     <text>日期选择</text>
     <view>
-      <date-picker class="date-picker"></date-picker>
+      <mo-date-picker class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">
     <text>混合日期选择</text>
     <view>
-      <date-picker showLunar='true' bindchange='onCallbackChangeLun'  class="date-picker"></date-picker>
+      <mo-date-picker showLunar='true' bindchange='onCallbackChangeLun'  class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">
     <text>指定日期</text>
     <view>
-      <date-picker  timestamp="{{timestamp}}"  class="date-picker"></date-picker>
+      <mo-date-picker  timestamp="{{timestamp}}"  class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">
     <text>Change事件</text>
     <view>
-      <date-picker bindchange='onCallbackChange' class="date-picker"></date-picker>
+      <mo-date-picker bindchange='onCallbackChange' class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">
     <text>实例方法</text>
     <view>
-      <date-picker id="datePicker" bindchange='onCallbackChange' showPred='{{false}}'></date-picker>
+      <mo-date-picker id="datePicker" bindchange='onCallbackChange' showPred='{{false}}'></mo-date-picker>
       <view bindtap="open" hover-class="hover-font">通过实例方法打开组件</view>
     </view>
   </view>
