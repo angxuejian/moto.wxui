@@ -19,7 +19,7 @@ App({
 
 
     this.globalData = {
-      statusBarHeight: 0,
+      bar: 0,
       DEFAULT_IMG: 'https://profile.csdnimg.cn/E/5/2/1_qq_43297527',
       calendar: {}
     }
@@ -29,6 +29,15 @@ App({
       success: res => {
         this.globalData.calendar = res.data
       }
+    })
+
+    wx.getSystemInfo({
+      success: (result) => {
+        const { statusBarHeight } = result
+        // 状态栏高度 + 导航栏高度(44)
+
+        this.globalData.bar = statusBarHeight + 44
+      },
     })
   }
 })

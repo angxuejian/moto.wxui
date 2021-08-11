@@ -10,16 +10,8 @@ Page({
     height: 0
   },
   onLoad() {
-    wx.getSystemInfo({
-      success: (result) => {
-        const { statusBarHeight } = result
-
-        // 状态栏高度 + 导航栏高度(44)
-        app.globalData.statusBarHeight = statusBarHeight + 44
-        this.setData({
-          height: statusBarHeight
-        })
-      },
+    this.setData({
+      height: app.globalData.bar
     })
   },
 

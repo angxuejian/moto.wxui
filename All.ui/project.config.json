@@ -38,7 +38,7 @@
   },
   "appid": "wx2dd2fc66d02ac16d",
   "projectname": "moto.wxui",
-  "libVersion": "2.14.1",
+  "libVersion": "2.18.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",

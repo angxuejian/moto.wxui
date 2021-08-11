@@ -17,6 +17,7 @@
 选择器-Picker    | [ >>> ](docs/picker.md)
 开关选择器-Switch | [ >>> ](docs/switch.md)
 抽屉-Drawer      | [ >>> ](docs/drawer.md)
+录音-Record      | [ >>> ](docs/Record.md)
 
 
 

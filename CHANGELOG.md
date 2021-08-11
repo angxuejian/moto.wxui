@@ -1,6 +1,11 @@
 # 版本更新 
 
 ## v0.2
+### 2021/08/11
+- edit switch componen code style
+- fix display problem of statusBarHeight on index page
+- add `record component`
+
 ### 2021/08/10
 - edit code style
 - add `drawer component`

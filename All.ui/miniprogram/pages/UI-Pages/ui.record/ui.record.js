@@ -1,4 +1,4 @@
-// miniprogram/pages/UI-Pages/ui.switch/ui.switch.js
+// miniprogram/pages/UI-Pages/ui.record/ui.record.js
 Page({
 
   /**
@@ -13,17 +13,6 @@ Page({
    */
   onLoad: function (options) {
 
-  },
-
-
-  onCallbackChange: function(event) {
-
-    const { value } = event.detail
-    wx.showModal({
-      title: 'Change事件',
-      content: `当前状态为：${value}`,
-      showCancel: false
-    })
   },
 
   /**

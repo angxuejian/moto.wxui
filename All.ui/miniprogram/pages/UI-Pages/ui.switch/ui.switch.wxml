@@ -2,7 +2,7 @@
 <view>
 
   <view class="item-btn">
-    <text>默认样式</text>
+    <text>Change事件</text>
     <view>
 
       <mo-switch bindchange='onCallbackChange'></mo-switch>
@@ -30,6 +30,13 @@
     <view>
 
       <mo-switch vibrate color='rgba(5, 142, 166, 1)'></mo-switch>
+    </view>
+  </view>
+  <view class="item-btn">
+    <text>默认</text>
+    <view>
+
+      <mo-switch></mo-switch>
     </view>
   </view>
 </view>

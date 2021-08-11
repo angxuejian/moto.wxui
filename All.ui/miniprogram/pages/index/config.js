@@ -58,6 +58,11 @@ export const list = [
         svg: SVG.drawer,
         name: '抽屉',
         url: 'ui.drawer'
+      }, 
+      {
+        svg: SVG.record,
+        name: '录音',
+        url: 'ui.record'
       }
     ]
   },

@@ -26,6 +26,7 @@
 
 组件 | 文档
 --- | ---
+录音-Record      | [ >>> ](docs/Record.md)
 抽屉-Drawer      | [ >>> ](docs/drawer.md)
 开关选择器-Switch | [ >>> ](docs/switch.md)
 选择器-Picker    | [ >>> ](docs/picker.md)

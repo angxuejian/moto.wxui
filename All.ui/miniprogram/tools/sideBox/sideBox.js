@@ -23,7 +23,7 @@ Component({
 
   ready: function() {
     this.setData({
-      height: app.globalData.statusBarHeight
+      height: app.globalData.bar
     })
   },
 
