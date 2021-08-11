@@ -43,9 +43,13 @@ close     | eventhandle | 无 | 否  | 关闭弹窗
 
 默认组件无背景颜色，请设置插槽的样式(背景色)。**如不设置插槽样式(背景色)，肉眼将看不到弹窗**
 
+<br>
+<br>
+
 【插槽使用示例】
 ```
 // index.json
+
 {
   "usingComponents": {
     "mo-drawer":"/components/drawer/index"
@@ -54,13 +58,17 @@ close     | eventhandle | 无 | 否  | 关闭弹窗
 ```
 ```
 // index.html
-<mo-drawer position='bottom'>
-  <view class='slot-view'>弹窗</view> 
+
+<mo-drawer position="bottom">
+  <view class='slot-view'>
+    这里是弹窗内容
+  </view> 
 </mo-drawer>
 ```
 
 ```
 // index.wxss
+
 .slot-view {
   width: 100%;
   height: 100%;
