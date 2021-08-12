@@ -5,10 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    position: '',
-    width: '',
-    height: '',
     list: [
+      { name: '默认位置与大小' },
       { name: '顶部打开', type: 'top', width: '100vw', height: '200px' },
       { name: '底部打开', type: 'bottom', width: '100vw', height: '500px' },
       { name: '左边打开', type: 'left', width: '200px', height: '100vh' },
@@ -26,10 +24,9 @@ Page({
 
   // 
   openDrawer: function(event) {
-    const { position, width, height } = event.currentTarget.dataset
+    const { id } = event.currentTarget.dataset
 
-    this.setData({ position, width, height })
-    this.selectComponent('#drawer').open()
+    this.selectComponent(`#${id}`).open()
   },
 
   closeDrawer: function() {
@@ -37,15 +34,17 @@ Page({
   },
 
   onCallbackOPEN: function(event) {
-    if (this.data.position === 'top') {
+    const { position } = event.currentTarget.dataset
+    if (position === 'top') {
       wx.showToast({
         title: '打开弹窗了',
         icon: 'none'
       })
     }
   },
-  onCallbackCLOSE: function() {
-    if (this.data.position === 'right') {
+  onCallbackCLOSE: function(event) {
+    const { position } = event.currentTarget.dataset
+    if (position === 'right') {
       wx.showToast({
         title: '关闭弹窗了',
         icon: 'none'

@@ -5,14 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    record: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.data.record = wx.getRecorderManager()
+  },
 
+
+  start: function() {
+    this.data.record.start({
+      frameSize: 10
+    })
+
+    this.data.record.onStart(res => {
+      console.log('开始了')
+    })
+
+    this.data.record.onFrameRecorded(res => {
+      console.log(res, ':::')
+    })
   },
 
   /**

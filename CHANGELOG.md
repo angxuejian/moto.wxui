@@ -1,6 +1,9 @@
 # 版本更新 
 
 ## v0.2
+### 2021/08/12
+- fix some component problem
+
 ### 2021/08/11
 - edit switch componen code style
 - fix display problem of statusBarHeight on index page

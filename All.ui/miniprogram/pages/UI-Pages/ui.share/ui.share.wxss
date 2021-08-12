@@ -86,7 +86,7 @@ page {
   justify-content: space-around;
   z-index: 9999999999;
 }
-.item-btn {
+.item-btn1 {
   width: 30%;
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@ page {
   flex-direction: column;
   position: relative;
 }
-.item-btn > view {
+.item-btn1 > view {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -104,22 +104,22 @@ page {
   justify-content: center;
   margin-bottom: 8px;
 }
-.item-btn > view > image {
+.item-btn1 > view > image {
   width: 28px;
   height: 28px;
 
 }
-.item-btn > text {
+.item-btn1 > text {
   font-size: 13px;
   color: #333;
 }
 
-.item-btn button {
+.item-btn1 button {
   position: absolute;
   left: 0;
   top: 0;
 }
-.item-btn button:not([size='mini']) {
+.item-btn1 button:not([size='mini']) {
   width: 100%;
   height: 100%;
   opacity: 0;

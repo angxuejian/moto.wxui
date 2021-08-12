@@ -20,10 +20,10 @@ setting   | eventhandle | {} | 否  | 配置进度条信息
 
 属性   | 类型   | 默认值 | 必填| 说明
 ---    | ---   | ---    | --- | ---
-bColor         | string | '#438EDB' | 否  | 进度条的颜色; 支持 '#000'/ 'black'/ 'rgba(0,0,0,0)'/ 'rgb(0,0,0)' 
+bColor         | string | #438EDB | 否  | 进度条的颜色; 支持 '#000'/ 'black'/ 'rgba(0,0,0,0)'/ 'rgb(0,0,0)' 
 height         | number | 2       | 否  | 进度条的高度; 单位 px
 duration       | number | 300    | 否  | 动画完成时间; 单位 ms
-timingFunction | string | 'linear'| 否  | 动画效果
+timingFunction | string | linear| 否  | 动画效果
 speed          | number | 10      | 否  | 进度条的起始步长
 
 **timingFunction合法值**

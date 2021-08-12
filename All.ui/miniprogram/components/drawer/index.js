@@ -6,7 +6,7 @@ Component({
   properties: {
     position: {
       type: String,
-      value: 'bottom',
+      value: '',
       observer: function(value) {
         const list = ['top', 'bottom', 'left', 'right', 'center']
         if (!list.includes(value) && value) {
@@ -66,12 +66,12 @@ Component({
     },
 
     clearData: function(data){
+
       if (!this.data.type) {
-        throw new Error('"position" attribute error')
-        return
+        this.data.position = 'bottom'
       }
 
-      if (this.data.type === 'none') {
+      if (this.data.type === 'none' || !this.data.type) {
         this.data.type = this.data.position
         data.type = this.data.type
       } 
@@ -90,11 +90,6 @@ Component({
         style += `left: calc((100% - ${this.data.width}) / 2);`
       }
 
-      if (this.data.isShow === 2) {
-        data.width = ''
-        data.height = ''
-      }
-  
       data.style = style
       this.setData(data)
     },
@@ -102,7 +97,7 @@ Component({
     maskShowDrawer: function() {
       if (!this.data.mask) return
 
-      this.showDrawer()
+      this.close()
     },
 
     onCallbackEnd: function(event) {

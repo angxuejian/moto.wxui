@@ -33,27 +33,15 @@ Component({
   methods: {
 
     open: function() {
-      this.showSideBox()
+      this.selectComponent('#drawer').open()
     },
-
-
-    showSideBox: function () {
-      let show = this.data.isShow
-      if (!show) this.data.isShow = 1
-      else if (show === 1) this.data.isShow = 2
-      else if (show === 2) this.data.isShow = 1
-      
-      if (this.data.isShow === 2 && this.data.color) {
-        this.triggerEvent('change', {
-          color: this.data.color
-        })
-        this.data.color = ''
-      }
-
-      this.setData({
-        isShow: this.data.isShow
+    onCallbackClose: function() {
+      this.triggerEvent('change', {
+        color: this.data.color
       })
+      this.data.color = ''
     },
+
 
     gotoShare: function() {
       wx.navigateTo({

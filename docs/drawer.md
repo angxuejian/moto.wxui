@@ -6,9 +6,9 @@
 
 属性   | 类型   | 默认值 | 必填| 说明
 ---    | ---   | ---    | --- | ---
-position  | string  |  | 是 | 弹窗位置
-width   | string |  | 否    | 弹窗宽度 同 css 的 width
-height   | string |  | 否    | 弹窗高度 同 css 的 height
+position  | string  | bottom  | 否 | 弹窗位置
+width   | string | 100% | 否    | 弹窗宽度 同 css 的 width
+height   | string | 200px | 否    | 弹窗高度 同 css 的 height
 mask      | boolean | true    | 否 | 点击遮罩层是否关闭
 
 **position 的合法值**

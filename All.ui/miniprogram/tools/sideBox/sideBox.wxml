@@ -1,15 +1,12 @@
 <!--tools/sideBox/sideBox.wxml-->
-<view wx:if='{{isShow}}'>
 
-  <view bindtap="showSideBox" class="black {{ isShow === 1 ? 'black-show' : 'black-hide'}}"></view>
-
-  <view class="side-box {{ isShow === 1 ? 'side-box_show' : 'side-box_hide' }}">
-  
+<mo-drawer bindclose='onCallbackClose' width='70%' id='drawer' position='left'>
+  <view class="side-box">
+    
     <view class="bc" style="height: {{height}}px;">
-
       <view class="title">🏷️🏷️🏷️</view>
     </view>
-    
+
     <view class="user">
       <image class="avatar" mode="aspectFill" src="/assets/avatar.jpg"></image>
       <view class="author">angxuejian</view>
@@ -37,4 +34,4 @@
       </view>
     </view>
   </view>
-</view>
+</mo-drawer>
