@@ -3,6 +3,7 @@
 ## v0.2
 ### 2021/08/12
 - fix some component problem
+- edit `record component`
 
 ### 2021/08/11
 - edit switch componen code style

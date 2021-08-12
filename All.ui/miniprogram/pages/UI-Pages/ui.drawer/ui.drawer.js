@@ -37,7 +37,7 @@ Page({
     const { position } = event.currentTarget.dataset
     if (position === 'top') {
       wx.showToast({
-        title: '打开弹窗了',
+        title: '打开弹窗',
         icon: 'none'
       })
     }
@@ -46,7 +46,7 @@ Page({
     const { position } = event.currentTarget.dataset
     if (position === 'right') {
       wx.showToast({
-        title: '关闭弹窗了',
+        title: '关闭弹窗',
         icon: 'none'
       })
     }

@@ -333,6 +333,15 @@ Component({
       this.cancel()
     },
 
+    onCallbackEnd: function() {
+      if (this.data.isShow === 2) {
+        this.data.isShow = 0
+        this.setData({
+          isShow: this.data.isShow
+        })
+      }
+    },
+
     // 清空事件
     cancel: function() {
       /**

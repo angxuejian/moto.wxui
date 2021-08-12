@@ -32,7 +32,6 @@ page {
   background-color: #fff;
   border-radius: 30px;
   z-index: 999999;
-  opacity: 0;
 }
 
 .date-picker_block-show {

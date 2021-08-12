@@ -14,7 +14,7 @@
   <view wx:if="{{isShow}}">
     <view bindtap="maskShowDatePicker" class="date-picker_bc {{ isShow === 1 ? 'date-picker_bc-show' : 'date-picker_bc-hide'}}"></view>
     
-    <view class="date-picker_block {{ isShow === 1 ? 'date-picker_block-show' : 'date-picker_block-hide'}}">
+    <view bindanimationend='onCallbackEnd' class="date-picker_block {{ isShow === 1 ? 'date-picker_block-show' : 'date-picker_block-hide'}}">
       <!-- 标题 -->
       <view class="title">
         <view class="left">

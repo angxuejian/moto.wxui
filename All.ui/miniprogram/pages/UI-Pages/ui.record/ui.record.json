@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "mo-record": "/components/record/index"
+  },
   "navigationBarTitleText": "录音-Record"
 }

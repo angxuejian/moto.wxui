@@ -15,7 +15,11 @@ Page({
     this.data.record = wx.getRecorderManager()
   },
 
+  open: function() {
+    this.selectComponent('#record').open()
+  },
 
+ 
   start: function() {
     this.data.record.start({
       frameSize: 10

@@ -1,2 +1,12 @@
 <!--miniprogram/pages/UI-Pages/ui.record/ui.record.wxml-->
-<button bindtap="start">开始录音</button>
+<view>
+
+  <view class="item-btn">
+    <text>默认样式</text>
+    <view bindtap="open">
+      通过实例方法打开
+    </view>
+  </view>
+</view>
+
+<mo-record id='record'></mo-record>

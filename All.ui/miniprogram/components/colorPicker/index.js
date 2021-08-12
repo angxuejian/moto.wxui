@@ -55,7 +55,7 @@ Component({
    */
   data: {
     isClear: false, // 是否点击了清空。清空后 外部显示 deNone, 内部显示 deColor
-    isShow: 2, // 是否打开 colorPicker 组件 0:真关闭 1:打开 2:伪关闭
+    isShow: 0, // 是否打开 colorPicker 组件 0:真关闭 1:打开 2:伪关闭
 
     ouColor: {
       hex: '',
@@ -114,7 +114,6 @@ Component({
       else if (show === 1) this.data.isShow = 2
       else if (show === 2) this.data.isShow = 1
 
-      console.log(this.data.isShow)
       this.setData({
         isShow: this.data.isShow
       }, () => {
@@ -127,6 +126,15 @@ Component({
       if (!this.data.mask) return
 
       this.showColorPicker()
+    },
+
+    onCallbackEnd: function() {
+      if (this.data.isShow === 2) {
+        this.data.isShow = 0
+        this.setData({
+          isShow: this.data.isShow
+        })
+      }
     },
 
     // 初始化 坐标系

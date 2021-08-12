@@ -1,2 +1,25 @@
 <!--components/record/index.wxml-->
-<text>components/record/index.wxml</text>
+
+<view catchtouchmove="return">
+
+  <!-- 弹出view -->
+  <view wx:if="{{ isShow }}">
+    <view bindtap="maskShowRecord"
+      class="record_bc {{ isShow === 1 ? 'record_bc-show' : 'record_bc-hide'}}">
+    </view>
+
+    <view bindanimationend='onCallbackEnd' class="record_block {{isShow === 1 ? 'record_block-show' : 'record_block-hide'}}">
+      
+      <view class="css-anim">
+        | | | | | | | |
+      </view>
+
+      <view class="btn">
+        <view>1</view>
+        <view>2</view>
+        <view>3</view>
+      </view>
+    </view>
+
+  </view>
+</view>

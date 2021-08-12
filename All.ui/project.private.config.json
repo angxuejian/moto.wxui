@@ -20,8 +20,8 @@
           "scene": null
         },
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/UI-Pages/ui.record/ui.record",
+          "pathName": "pages/UI-Pages/ui.record/ui.record",
           "query": "",
           "scene": null
         }

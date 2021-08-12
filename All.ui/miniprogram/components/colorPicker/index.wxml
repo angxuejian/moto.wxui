@@ -15,7 +15,7 @@
 		</view>
 
 		<!-- 颜色 s, v 区域 -->
-		<view
+		<view bindanimationend='onCallbackEnd'
 			class="color-picker_block {{isShow === 1 ? 'color-picker_block-show' : 'color-picker_block-hide'}}">
 			<movable-area style='background-color:{{bcColor}}' class='movable'>
 				<movable-view class="white"></movable-view>

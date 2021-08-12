@@ -118,6 +118,14 @@ Component({
 
       this.showDatePicker()
     },
+    onCallbackEnd: function() {
+      if (this.data.isShow === 2) {
+        this.data.isShow = 0
+        this.setData({
+          isShow: this.data.isShow
+        })
+      }
+    },
 
     // 创建 日期
     create: function() {
