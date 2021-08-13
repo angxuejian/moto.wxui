@@ -11,7 +11,7 @@
     <view bindanimationend='onCallbackEnd' class="record_block {{isShow === 1 ? 'record_block-show' : 'record_block-hide'}}">
       
       <view class="css-anim">
-        | | | | | | | |
+        <view class="css-anim-line" wx:for="{{list}}" wx:key='index' style="height: {{item.height}}px" ></view>
       </view>
 
       <view class="btn">

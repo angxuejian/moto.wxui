@@ -14,7 +14,43 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isShow: 0 // 是否打开 record 组件 0:真关闭 1:打开 2:伪关闭
+    isShow: 0, // 是否打开 record 组件 0:真关闭 1:打开 2:伪关闭
+    list: [
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+      { heihgt: 8 },
+    ]
+  },
+  attached: function () {
+    // this.setHeight()
   },
 
   /**
@@ -62,6 +98,37 @@ Component({
           isShow: this.data.isShow
         })
       }
+    },
+
+    setHeight: function() {
+      setTimeout(() => {
+   
+        const index1 = this.random(10, 20)
+        const index2 = this.random(10, 20)
+        // const index3 = this.random(10, 20)
+        // const index4 = this.random(10, 20)
+        // const index5 = this.random(10, 20)
+
+        this.data.list[index1].height = this.random(8, 30)
+        this.data.list[index2].height = this.random(8, 30)
+        // this.data.list[index3].height = this.random(8, 30)
+        // this.data.list[index4].height = this.random(8, 30)
+        // this.data.list[index5].height = this.random(8, 30)
+
+        this.setData({
+          ['list[' + index1 + '].height']: this.data.list[index1].height,
+          ['list[' + index2 + '].height']: this.data.list[index2].height,
+          // ['list[' + index3 + '].height']: this.data.list[index3].height,
+          // ['list[' + index4 + '].height']: this.data.list[index4].height,
+          // ['list[' + index5 + '].height']: this.data.list[index5].height
+        }, () => {
+          this.setHeight()
+        })
+      }, 100);
+    },
+
+    random: function(min = 1, max = 10) {
+      return parseInt(Math.random() * (max - min)) + min
     }
   }
 })

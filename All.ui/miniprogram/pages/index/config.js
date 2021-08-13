@@ -59,11 +59,11 @@ export const list = [
         name: '抽屉',
         url: 'ui.drawer'
       }, 
-      {
-        svg: SVG.record,
-        name: '录音',
-        url: 'ui.record'
-      }
+      // {
+      //   svg: SVG.record,
+      //   name: '录音',
+      //   url: 'ui.record'
+      // }
     ]
   },
 

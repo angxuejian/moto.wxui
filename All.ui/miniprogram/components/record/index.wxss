@@ -69,12 +69,33 @@
   height: 50px;
   width: 70%;
   margin: 0 auto;
-  text-align: center;
-  line-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 50px;
-  /* border: 1px solid rebeccapurple; */
-  color: #29D181;
+  /* background-color: red; */
 }
+.css-anim-line {
+  height: 8px;
+  width: 2px;
+  background-color: red;
+  border-radius: 10px;
+  margin: 0 3px;
+  animation: expand 1s ease-in-out infinite;
+}
+.css-anim .css-anim-line:nth-child(even) {
+  animation-delay: 180ms;
+}
+@keyframes expand {
+  0% {
+    height: 15px;
+  }
+  100% {
+    height: 8px;
+  }
+}
+
+
 .btn {
   height: 110px;
   width: 70%;

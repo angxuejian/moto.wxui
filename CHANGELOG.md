@@ -1,6 +1,9 @@
-# 版本更新 
+# 更改日志 
 
 ## v0.2
+### 2021/08/13
+- edit `record component`
+
 ### 2021/08/12
 - fix some component problem
 - edit `record component`
