@@ -18,6 +18,11 @@ export const list = [
         svg: SVG.waterfallsFlow,
         name: '瀑布流',
         url: `ui.waterfallsFlow`
+      },
+      {
+        svg: SVG.touchlist,
+        name: '触摸滑动列表',
+        url: 'ui.touchlist'
       }
     ]
   },

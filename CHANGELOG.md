@@ -1,5 +1,9 @@
 # 更改日志 
 
+
+## v0.3
+- add `touchlist page`
+
 ## v0.2
 ### 2021/08/13
 - edit `record component`

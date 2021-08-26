@@ -1,0 +1,11 @@
+<!--miniprogram/pages/UI-Pages/ui.touchlist/ui.touchlist.wxml-->
+
+<view class="">
+
+  <view class="value">{{list[selectIndex]}}</view>
+  <view catchtouchmove="onTouchMover" class="list">
+    <view style="{{selectIndex === index ? 'background: #438EDB; color: #fff;' : ''}}" bindtap="onTap"  class="item {{index===1 ? 'frist-item' : ''}}" data-index='{{index}}' data-item='{{item}}' wx:for="{{list}}" wx:key='index'>
+      {{ item }}
+    </view>
+  </view>
+</view>

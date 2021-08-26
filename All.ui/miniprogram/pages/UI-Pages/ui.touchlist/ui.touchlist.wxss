@@ -1,0 +1,33 @@
+/* miniprogram/pages/UI-Pages/ui.touchlist/ui.touchlist.wxss */
+
+
+.list {
+  width: 94%;
+  padding: 0 3%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: calc((100% - 459px) / 2);
+}
+.list .item {
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.value {
+  width: 200px;
+  height: 200px;
+  font-size: 20px;
+  line-height: 200px;
+  text-align: center;
+  position: fixed;
+  left: calc((100% - 200px) / 2);
+  top: calc((100% - 200px) / 2);
+}
