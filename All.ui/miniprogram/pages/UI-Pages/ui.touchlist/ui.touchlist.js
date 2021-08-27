@@ -10,8 +10,8 @@ Page({
       'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 
       'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'
     ],
-    offsetTop: 0,
-    listHeight: 0,
+    listBottom: 0, // 从顶部到 .list底部的高度
+    listHeight: 0, // .list 的高度
     selectIndex: 0
   },
 
@@ -24,30 +24,37 @@ Page({
 
 
   onTouchMover: function(event) {
-    // const { index, item } = event.currentTarget.dataset
-    const y = event.touches[0].clientY
-    const t = this.data.offsetTop - y
-    const h = this.data.listHeight / this.data.list.length
-    const d = this.data.list.length - parseInt((t / h)) - 1
 
-    if (d < 0 || d >= this.data.list.length) return
-    if (this.data.selectIndex === d) return
+    const y = event.touches[0].clientY
+    const itemBottom = this.data.listBottom - y // 剩余 .list的高度
+    const itemHeight = this.data.listHeight / this.data.list.length // 获取单个 .item的高度
+    const index = this.data.list.length - parseInt((itemBottom / itemHeight)) - 1
+
+    if (index < 0 || index >= this.data.list.length) return
+    if (this.data.selectIndex === index) return
+
+    this.data.selectIndex = index
 
     this.setData({
-      selectIndex: d,
+      selectIndex: this.data.selectIndex,
     })
 
     /**
-     * 整个.list的高度 - 单个.item的高度 = 当前.item到底部的高度
-     * 当前.item到底部的高度 / .item的高 = .item的数量
-     * （整体数量 - 1） - .item的数量 = 单个.item的索引
+     * 顶部到 .list底部的高度 - 顶部到 .item底部高度 = 剩余 .list的高度
+     * 
+     * 剩余 .list的高度 / .item的高度 = .item的数量
+     * （整体数量 - 1） - .item的数量 = 当前 .item的索引
      * 
      * 
      */
   },
 
   onTap: function(event) {
-    console.log(event)
+    const { index } = event.currentTarget.dataset
+    this.data.selectIndex = index
+    this.setData({
+      selectIndex: this.data.selectIndex
+    })
   },
 
   /**
@@ -58,16 +65,9 @@ Page({
     const self = this
     domc.select('.list').boundingClientRect()
     domc.exec(function (res) {
-      console.log(res);
-      self.data.offsetTop  = res[0].bottom
+      self.data.listBottom  = res[0].bottom
       self.data.listHeight = res[0].height
     })
-
-    domc.select('.frist-item').boundingClientRect()
-    domc.exec(function (res) {
-      console.log(res);
-    })
-    
   },
 
   /**

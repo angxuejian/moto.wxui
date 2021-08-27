@@ -2,6 +2,11 @@
 
 
 ## v0.3
+
+### 2021/08/27
+- completed `touchlist page`
+
+### 2021/08/26
 - add `touchlist page`
 
 ## v0.2
