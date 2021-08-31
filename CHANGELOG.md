@@ -6,6 +6,7 @@
 - add `picCrop page`
 - fix ui.drawer page closing problem
 - remove invalid code on ui.touchlist page
+- remove record
 
 
 ### 2021/08/27
