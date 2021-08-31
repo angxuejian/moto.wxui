@@ -2,6 +2,11 @@
 
 
 ## v0.3
+### 2021/08/31
+- add `picCrop page`
+- fix ui.drawer page closing problem
+- remove invalid code on ui.touchlist page
+
 
 ### 2021/08/27
 - completed `touchlist page`

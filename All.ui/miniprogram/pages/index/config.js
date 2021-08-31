@@ -23,6 +23,11 @@ export const list = [
         svg: SVG.touchlist,
         name: '触摸滑动列表',
         url: 'ui.touchlist'
+      },
+      {
+        svg: SVG.picCrop,
+        name: '图片裁剪',
+        url: 'ui.picCrop'
       }
     ]
   },

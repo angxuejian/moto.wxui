@@ -29,8 +29,9 @@ Page({
     this.selectComponent(`#${id}`).open()
   },
 
-  closeDrawer: function() {
-    this.selectComponent('#drawer').close()
+  closeDrawer: function(event) {
+    const { index } = event.currentTarget.dataset
+    this.selectComponent('#drawer' + index).close()
   },
 
   onCallbackOPEN: function(event) {

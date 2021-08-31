@@ -9,6 +9,7 @@
 消除背景-RemoveBG |
 瀑布流-waterfallsFlow|
 触摸滑动列表-Touchlist | 
+图片裁剪-PictureCropping | 
 
 ## UI组件
 组件 | 文档

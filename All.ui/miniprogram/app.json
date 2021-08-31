@@ -13,7 +13,8 @@
     "pages/UI-Pages/ui.switch/ui.switch",
     "pages/UI-Pages/ui.drawer/ui.drawer",
     "pages/UI-Pages/ui.record/ui.record",
-    "pages/UI-Pages/ui.touchlist/ui.touchlist"
+    "pages/UI-Pages/ui.touchlist/ui.touchlist",
+    "pages/UI-Pages/ui.picCrop/ui.picCrop"
   ],
   "window": {
     "backgroundTextStyle": "light",
