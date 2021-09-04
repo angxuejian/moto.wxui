@@ -50,6 +50,7 @@ Page({
       value5: '', //默认值
       value6: '', //日期
       value7: '', //时间
+      value8: '', //省市区
     },
     listIndex2: [0, 1],
     dateVa: ''
@@ -75,10 +76,12 @@ Page({
 
 
   onCallbackChange: function(event) {
-    const { index, item } = event.detail
+    const { index, item, code } = event.detail
     const { key } = event.currentTarget.dataset
 
-    if (item.length) {
+    if (code) {
+      this.data.show[key] = item
+    } else if (item.length) {
       const list = []
       item.forEach(el => {
         list.push(el.name)
@@ -96,7 +99,7 @@ Page({
 
 
   onCallbackColumnChange: function(event) {
-    const { column, index} = event.detail
+    const { column, index, indexs } = event.detail
     const key = event.currentTarget.dataset.list
 
     if (!column) {
@@ -110,6 +113,7 @@ Page({
 
   onCallbackDateTimeChange: function(event) {
     const { value, list_cn } = event.detail
+
     const { key } = event.currentTarget.dataset
     let val = value
 

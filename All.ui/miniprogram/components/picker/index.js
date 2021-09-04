@@ -1,4 +1,5 @@
 // components/picker/picker.js
+// import REGION from './region'
 Component({
   /**
    * 组件的属性列表
@@ -41,11 +42,12 @@ Component({
       transY: 0, // 计算要 translateY 的值
     },
     touch: [],
-    HEIGHT_MAX : 45, // .item-scroll > view 的高度
+    HEIGHT_MAX : 45,  // .item-scroll > view 的高度
     RANGE_INDEX: [],  // range列表的索引
     TOUCH_INDEX: [],  // 触摸事件中的索引
     COLUMN_INDEX: 0,  // 列的索引
-
+    REGION_LIST: [],  //  省市区数据
+    isChange: false   // 是否点击过确认按钮
   },
 
 
@@ -60,7 +62,6 @@ Component({
       this.showPicker()
     },
 
-
     /**
      * -------------------------------
      * -------------------------------
@@ -74,6 +75,7 @@ Component({
     // 打开 或 关闭 Picker 组件
     showPicker: function () {
       let show = this.data.isShow
+
       if (!show) this.data.isShow = 1
       else if (show === 1) this.data.isShow = 2
       else if (show === 2) this.data.isShow = 1
@@ -82,26 +84,21 @@ Component({
         isShow: this.data.isShow,
       }
 
-   
       this.filterMode(show, data)
-
 
     },
 
-
     filterMode: function(show, data) {
-      
+
       // 单列 or 多列
       if ((this.data.mode === 'selector' || this.data.mode === 'multiSelector') && show === 0) {
         if (this.data.range.length && this.data.mode === 'selector' && !this.data.range[0][0]) {
           this.data.range = [this.data.range]
         } 
-
-        this.filterRange()
       } 
     
       // 日期时间
-      else if (/date|time/ig.test(this.data.mode) && (this.data.date ? show === 0 : show !== 1)) {
+      else if (/date|time/ig.test(this.data.mode) && (this.data.date || this.data.isChange ? show === 0 : show !== 1)) {
 
         let mode = 'dateTime'
         if (this.data.mode === 'dateSelector') mode = 'date'
@@ -110,9 +107,24 @@ Component({
         const { list, value } = this.getDateTime(mode, this.data.date)
         this.data.range = list
         this.data.index = value
- 
         this.filterRange()
+      } 
+      
+      // 省市区
+      else if (this.data.mode === 'region' && show === 0) {
+        this.data.REGION_LIST = require('./region').list
+        
+        const list = this.data.REGION_LIST
+        const [d1 = 0, d2 = 0] = this.data.index
+
+        const array = [list, list[d1].children, list[d1].children[d2].children]
+        
+        this.data.range = array
+        this.data.range_key = 'name'
+        data.range_key = this.data.range_key
       }
+
+      if (show === 0 && !/date|time/ig.test(this.data.mode)) this.filterRange()
 
     
       data.range       = this.data.range
@@ -212,12 +224,13 @@ Component({
 
       this.data.COLUMN_INDEX = index
       this.data.TOUCH_INDEX.splice(index, 1, i)
+
       this.setData({
         ['touch[' + index + '].transY']: item.transY,
       })
-
+ 
       if (this.data.mode === 'multiSelector') this.column();
-     
+      if (this.data.mode === 'region') this.regColum()
     },
 
     /**
@@ -326,6 +339,38 @@ Component({
       }
     },
 
+
+    // 切换省市区列
+    regColum: function() {
+      const colum = this.data.COLUMN_INDEX
+      const index = this.data.TOUCH_INDEX
+      const list  = this.data.REGION_LIST
+
+      const itemTouch = {
+        startY: 0,
+        transY: 0
+      }
+
+      if (colum === 0) {
+        this.data.range.splice(1, 1, list[index[0]].children)
+        this.data.range.splice(2, 1, list[index[0]].children[index[1]].children)
+        this.data.touch[1] = Object.assign({}, itemTouch)
+        this.data.touch[2] = Object.assign({}, itemTouch)
+        this.data.TOUCH_INDEX.splice(1, 1, 0)
+        this.data.TOUCH_INDEX.splice(2, 1, 0)
+
+      } else if (colum === 1) {
+        this.data.range.splice(2, 1, list[index[0]].children[index[1]].children)
+        this.data.touch[2] = Object.assign({}, itemTouch)
+        this.data.TOUCH_INDEX.splice(2, 1, 0)
+      }
+
+      this.setData({
+        range: this.data.range,
+        touch: this.data.touch,
+      })
+    },
+ 
     // 是否开启遮罩层关闭
     maskShowPicker: function() {
       if (!this.data.mask) return
@@ -335,7 +380,7 @@ Component({
 
     onCallbackEnd: function() {
       if (this.data.isShow === 2) {
-        this.data.isShow = 0
+        this.data.isShow = 3
         this.setData({
           isShow: this.data.isShow
         })
@@ -363,7 +408,8 @@ Component({
        */
        this.triggerEvent('columnchange', {
         column: this.data.COLUMN_INDEX,
-        index: this.data.TOUCH_INDEX[this.data.COLUMN_INDEX]
+        index: this.data.TOUCH_INDEX[this.data.COLUMN_INDEX],
+        indexs: this.data.TOUCH_INDEX
        })
     },
 
@@ -373,10 +419,9 @@ Component({
       /**
        * bindchange: 点击确认
        */
-      this.showPicker()
       const { COLUMN_INDEX: i } = this.data
       let data = {}
- 
+
       this.data.RANGE_INDEX = JSON.parse(JSON.stringify(this.data.TOUCH_INDEX))
 
       // 多列
@@ -417,7 +462,25 @@ Component({
         data.list = list
         data.value = `${date} ${time}`
       }
-      
+
+      else if (this.data.mode === 'region') {
+        const list = this.data.REGION_LIST
+
+        const [i, ind, index] = this.data.RANGE_INDEX
+        const d1 = list[i]
+        const d2 = list[i].children[ind]
+        const d3 = list[i].children[ind].children[index]
+
+        data.codes = [d1.code, d2.code, d3.code]
+        data.items = [d1.name, d2.name, d3.name]
+
+        data.code  = data.codes.join(' ')
+        data.item  = data.items.join(' ')
+        data.index = [i, ind, index]
+      }
+
+      this.showPicker()
+      this.data.isChange = true
       this.triggerEvent('change', data)
     },
   }

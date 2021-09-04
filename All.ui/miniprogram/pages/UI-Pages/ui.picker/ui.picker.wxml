@@ -63,5 +63,14 @@
       </mo-picker>
     </view>
   </view>
+
+  <view class="item-btn">
+    <text>省市区</text>
+    <view>
+      <mo-picker index='{{[10, 0, 2]}}' data-key="value8" mode='region' bindchange='onCallbackChange' >
+        <view class="view-class">{{ show.value8  || "请选择"}}</view>
+      </mo-picker>
+    </view>
+  </view>
 </view>
 

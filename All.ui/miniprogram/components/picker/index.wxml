@@ -1,7 +1,7 @@
 <!--components/picker/picker.wxml-->
 
 
-<view catchtouchmove="return">
+<view catchtouchmove="return" data-index='{{isShow}}'>
 
   <!-- 显示view -->
   <view bindtap="showPicker">
@@ -11,29 +11,32 @@
   <!-- 弹出view -->
   <view wx:if="{{isShow}}">
     <view bindtap='maskShowPicker' class="picker_bc {{isShow === 1 ? 'picker_bc-show':'picker_bc-hide' }}">
-      <view bindanimationend='onCallbackEnd' class="picker_block {{isShow === 1 ? 'picker_block-show' : 'picker_block-hide'}}">
+      <view
+        class="picker_block {{isShow === 1 ? 'picker_block-show' : 'picker_block-hide'}}">
 
-          
+
         <view class="box-picker">
           <view class="box-scroll-block">
             <view class="box-scroll-border"></view>
           </view>
           <view class="box-scroll">
-            
-            <!-- 单列 -->
-            <!-- <view wx:if='{{mode === "selector"}}'  catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd" style=" width: 100%; transform: translateY({{touch[touchIndex].transY}}px);" data-index='0' class="item-scroll">
-              <view  wx:for='{{range}}' wx:key='index'>{{ isShowKey ? item[range_key] : item}}</view>
-            </view> -->
 
-            <!-- 多列 -->
-            <view  wx:for='{{range}}' wx:key='index' catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchEnd"
-            data-index='{{index}}'  style="width: {{100 / (range.length)}}%; transform: translateY({{touch[index].transY}}px);"  class="item-scroll" >
-              <view  wx:for='{{item}}' wx:for-index='i' wx:for-item='sub' wx:key='i'>{{isShowKey ? sub[range_key] : sub}}</view>
+            <view wx:for='{{range}}' wx:key='index' 
+            catchtouchstart="touchStart" 
+            catchtouchmove="touchMove"
+            catchtouchend="touchEnd" 
+            catchtouchcancel="touchEnd" 
+            
+            data-index='{{index}}'
+            style="width: {{100 / (range.length)}}%; transform: translateY({{touch[index].transY}}px);"
+            class="item-scroll">
+              <view wx:for='{{item}}' wx:for-index='i' wx:for-item='sub' wx:key='i'>{{isShowKey ? sub[range_key] : sub}}
+              </view>
             </view>
 
           </view>
         </view>
-     
+
         <view class="btn">
           <view catchtap='cancel' class="cancel" hover-class="hover-font">取消</view>
           <view catchtap="confirm" hover-class="hover" class="confirm">

@@ -2,6 +2,10 @@
 
 
 ## v0.3
+### 2021/09/04
+- add region mode to picker component
+- fix display problem of picker component
+
 ### 2021/08/31
 - add `picCrop page`
 - fix ui.drawer page closing problem
