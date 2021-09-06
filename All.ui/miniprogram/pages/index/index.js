@@ -28,6 +28,35 @@ Page({
     this.selectComponent('#sideBox').open()
   },
 
+  // initFace: function() {
+  //   wx.initFaceDetect({
+  //     success: res => {
+  //       console.log('1')
+  //       wx.request({
+  //         url:'https://hos.smartbit.top/img/x.jpg',
+  //         responseType: 'arraybuffer', //最关键的参数，设置返回的数据格式为arraybuffer
+  //         success:res=>{
+  //           console.log('2')
+  //           wx.faceDetect({
+  //             frameBuffer: res.data,
+  //             width: 1080,
+  //             height: 1438,
+  //             success: suc => {
+  //               console.log(suc)
+  //             },
+  //             fail: err => {
+  //               console.log(err,'--')
+  //             },
+  //           })
+  //         }
+  //       })
+  //     },
+  //     fail: err => {
+  //       console.log(err)
+  //     }
+  //   })
+  // },
+
 
   onCallbackChange: function(event) {
     const { detail } = event

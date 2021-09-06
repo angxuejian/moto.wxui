@@ -12,6 +12,7 @@ Component({
         if (!list.includes(value) && value) {
           throw new Error('"position" attribute error')
         } else {
+          this.setDataType(value)
           this.setType(value)
         }
       }
@@ -30,13 +31,22 @@ Component({
     }
   },
 
+
+ 
   /**
    * 组件的初始数据
    */
   data: {
-    isShow: 0,       // 0:真关闭 1:打开 2:伪关闭
-    type: '',  // 显示位置
+    isShow: 0,   // 0:真关闭 1:打开 2:伪关闭
+    type  : '',  // 显示位置
+    left  : {},
+    right : {},
+    top   : {},
+    bottom: {},
+    boxWidth: 0,
+    boxHeight: 0
   }, 
+
 
   /**
    * 组件的方法列表
@@ -47,12 +57,12 @@ Component({
       this.triggerEvent('open')
       this.showDrawer()
     },
-    close: function() {
+    close: function(isTouchClose) {
       this.triggerEvent('close')
-      this.showDrawer()
+      this.showDrawer(isTouchClose)
     },
 
-    showDrawer: function () {
+    showDrawer: function (isTouchClose = false) {
       let show = this.data.isShow
 
       if (!show) this.data.isShow = 1
@@ -62,7 +72,10 @@ Component({
       const data = {
         isShow: this.data.isShow
       }
-      this.clearData(data)
+
+      if (isTouchClose) this.setData(data)
+      else this.clearData(data)
+      
     },
 
     clearData: function(data){
@@ -91,7 +104,9 @@ Component({
       }
 
       data.style = style
-      this.setData(data)
+      this.setData(data, () => {
+        this.getBoxDom()
+      })
     },
 
     maskShowDrawer: function() {
@@ -99,6 +114,7 @@ Component({
 
       this.close()
     },
+    
 
     onCallbackEnd: function(event) {
       if (this.data.isShow === 2) {
@@ -109,6 +125,119 @@ Component({
     setType: function(t) {
       this.data.type = t
       this.setData({ type: this.data.type })
+    },
+
+    setDataType(t) {
+      const dataX = {
+        startX: 0,
+        moveX : 0,
+        endX  : 0,
+      }
+      const dataY = {
+        startY: 0,
+        moveY : 0,
+        endY  : 0,
+      }
+      const x = ['left', 'right']
+      const y = ['top', 'bottom']
+
+      if (x.includes(t)) this.data[t] = Object.assign({}, dataX)
+      else if (y.includes(t)) this.data[t] = Object.assign({}, dataY)
+    },
+
+    setDateTypeValue: function(key, xx, yy) {
+      const x = ['left', 'right']
+      const y = ['top', 'bottom']
+
+      if (x.includes(this.data.type)) this.data[this.data.type][`${key}X`] = xx;
+      else if (y.includes(this.data.type)) this.data[this.data.type][`${key}Y`] = yy;
+    },
+
+    setDataTypeNum: function() {
+      const x = ['left', 'right']
+      const y = ['top', 'bottom']
+      
+      if (x.includes(this.data.type)) {
+        return this.data[this.data.type].startX - this.data[this.data.type].moveX
+      } else if (y.includes(this.data.type)) {
+        return this.data[this.data.type].startY - this.data[this.data.type].moveY
+      }
+    },
+
+    getBoxDom: function() {
+      const domc = this.createSelectorQuery();//创建节点选择器
+      const self = this
+      domc.select('.drawer-box').boundingClientRect()
+      domc.exec(function (res) {
+        self.data.boxWidth  = res[0].width
+        self.data.boxHeight = res[0].height
+      })
+    },
+    isBreak: function() {
+      return this.data.type === 'center'
+    },
+
+    onTouchStart: function(event) {
+      if (this.isBreak()) return false;
+
+      const xx = event.touches[0].clientX
+      const yy = event.touches[0].clientY
+
+      this.setDateTypeValue('start', xx, yy)
+    },
+    onTouchMove: function(event) {
+
+      if (this.isBreak()) return false;
+
+      const xx = event.touches[0].clientX
+      const yy = event.touches[0].clientY
+      
+      this.setDateTypeValue('move', xx, yy)
+      let num = this.setDataTypeNum()
+      this.setDateTypeValue('end', num, num)
+
+      let style = `width: ${this.data.width}; height: ${this.data.height};`
+
+      if (this.data.type === 'left') {
+        this.setData({
+          style: style + `left: -${num}px;`
+        })
+      } else if (this.data.type === 'right') {
+        num = num >= 0 ? 0 : num
+        this.setData({
+          style: style + `right: ${num}px;`
+        })
+      }
+    },
+    onTouchEnd: function() {
+
+      let style = `width: ${this.data.width}; height: ${this.data.height};`
+
+      if (this.data.type === 'left') {
+        if (this.data.left.endX < (this.data.boxWidth * 0.35)) {
+          this.setData({
+            style: style + `left: 0px;`
+          })
+        } else {
+          this.setData({
+            style: style + `left: -${this.data.left.endX}px;`
+          }, () => {
+            this.close(true)
+          })
+        }
+      } else if (this.data.type === 'right') {
+        if (this.data.right.endX > -(this.data.boxWidth * 0.35)) {
+          this.setData({
+            style: style + `right: 0px;`
+          })
+        } else {
+          this.setData({
+            style: style + `right: ${this.data.right.endX}px;`
+          }, () => {
+            this.close(true)
+          })
+        }
+      }
     }
   }
 })

@@ -5,6 +5,7 @@
 
 ### 2021/09/06
 - add value to picker component properties
+- add touch event to drawer component
 
 ### 2021/09/04
 - add region mode to picker component
