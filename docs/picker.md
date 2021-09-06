@@ -30,7 +30,7 @@ region       | [地区选择器](#region)
 ---    | ---   | ---    | --- | ---
 range     | array/object array | []     | 是  | 选择列表
 range_key | string | value    | 否  | 当 range 是一个 Object Array 时，通过 range_key 来指定 Object 中 key 的值作为选择器显示内容
-index     | string/number/array | 0 | 否 | 表示选择了 range 中的第几个（下标从 0 开始）
+index     | string/number/array | 0 | 否 | 表示选择 range 中的第几个（下标从 0 开始）
 bindchange  | eventhandle  |     | 否   | value改变时触发 change事件，event.detail = {index, item}，其中index为索引、item为选中的值
 
 <br>
@@ -41,7 +41,7 @@ bindchange  | eventhandle  |     | 否   | value改变时触发 change事件，e
 ---    | ---   | ---    | --- | ---
 range     | array/object array | []     | 是  | 选择列表
 range_key | string | value    | 否  | 当 range 是一个 Object Array 时，通过 range_key 来指定 Object 中 key 的值作为选择器显示内容
-index     | string/number/array | 0 | 否 | 表示选择了 range 中的第几个（下标从 0 开始）
+index     | string/number/array | 0 | 否 | 表示选择 range 中的第几个（下标从 0 开始）
 bindchange  | eventhandle  |     | 否   | value改变时触发 change事件，event.detail = {index, item}，其中index为索引、item为选中的值
 bindcolumnchange | eventhandle | | 否   | 列改变时触发，event.detail = {column, index, indexs}，其中column为列索引，index为单个列内容的索引，indexs为所有列内容的索引
 
@@ -61,7 +61,7 @@ bindchange  | eventhandle  |     | 否   | value改变时触发change事件，ev
 
 属性   | 类型   | 默认值 | 必填| 说明
 ---    | ---   | ---    | --- | ---
-index     | array | 0 | 否 | 表示选择了 range 中的第几个（下标从 0 开始）
+value       | array        | []  | 否   | ['浙江省', '杭州市', '江干区'] 或者 ['110000', '110100', '110101'] 表示选择 range中的第几个
 bindchange  | eventhandle  |     | 否   | value改变时触发 change事件，event.detail = {code, item}，其中code为地区区域代码、item为选中的值
 
 

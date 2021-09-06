@@ -2,6 +2,10 @@
 
 
 ## v0.3
+
+### 2021/09/06
+- add value to picker component properties
+
 ### 2021/09/04
 - add region mode to picker component
 - fix display problem of picker component

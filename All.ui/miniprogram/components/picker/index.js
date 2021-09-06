@@ -18,6 +18,11 @@ Component({
       optionalTypes: [Array],
       value: [0]
     },
+    value: {
+      type: String,
+      optionalTypes: [Array],
+      value: []
+    },
     mask: {
       type:Boolean,
       value: true
@@ -47,7 +52,8 @@ Component({
     TOUCH_INDEX: [],  // 触摸事件中的索引
     COLUMN_INDEX: 0,  // 列的索引
     REGION_LIST: [],  //  省市区数据
-    isChange: false   // 是否点击过确认按钮
+    isChange: false,   // 是否点击过确认按钮
+    aRR: []
   },
 
 
@@ -112,10 +118,12 @@ Component({
       
       // 省市区
       else if (this.data.mode === 'region' && show === 0) {
-        this.data.REGION_LIST = require('./region').list
+        const reg = require('./region')
+        this.data.REGION_LIST = reg.list
         
         const list = this.data.REGION_LIST
-        const [d1 = 0, d2 = 0] = this.data.index
+        this.data.index    = this.getCodeName(this.data.value)
+        const [d1, d2] = this.data.index
 
         const array = [list, list[d1].children, list[d1].children[d2].children]
         
@@ -132,7 +140,6 @@ Component({
 
       this.setData(data)
     },
-
 
     filterRange: function() {
       let el = ''
@@ -153,6 +160,31 @@ Component({
 
       if (typeof el === 'object') this.data.isShowKey = true
       else this.data.isShowKey = false
+    },
+
+    /**
+     * 省市区 将 code 或 name 转换为 index
+     */
+    getCodeName: function([n1 = '110000', n2 = '110100', n3 = '110101']) {
+      const data = { n1, n2, n3 }
+      const list = []
+
+      const getlist = function(array, value) {
+        for (let i = 0; i < array.length; i++) {
+          const el = array[i];
+          if (el.code === value || el.name === value) {
+            list.push(i)
+            if (el.children) getlist(el.children, data['n' + (list.length + 1)])
+            else {
+              break
+            }
+          }
+        }
+      }
+      getlist(this.data.REGION_LIST, data.n1)
+
+      if (list.length !== 3) throw new Error('请输入对应省市区名称或区域代码')
+      return list
     },
 
 

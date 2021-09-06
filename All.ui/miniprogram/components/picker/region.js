@@ -1,6 +1,5 @@
 
 module.exports = {
-  
   list: [{
   "code": "110000",
   "name": "北京市",
