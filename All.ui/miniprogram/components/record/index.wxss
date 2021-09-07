@@ -65,7 +65,7 @@
 
 
 
-.css-anim {
+.css-anim, .can-anim {
   height: 50px;
   width: 70%;
   margin: 0 auto;

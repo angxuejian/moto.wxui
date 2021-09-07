@@ -14,6 +14,8 @@
         <view class="css-anim-line" wx:for="{{list}}" wx:key='index' style="height: {{item.height}}px" ></view>
       </view>
 
+      <!-- <canvas id="can-anim"></canvas> -->
+
       <view class="btn">
         <view>1</view>
         <view>2</view>

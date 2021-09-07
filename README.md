@@ -33,7 +33,6 @@
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
 
-<!-- 录音-Record      | [ >>> ](docs/Record.md) -->
 
 [全部组件 - 在这里！](LIST.md)
 

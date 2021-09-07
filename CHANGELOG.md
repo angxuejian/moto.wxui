@@ -5,6 +5,7 @@
 
 ### 2021/09/07
 - improve touch event of drawer component
+- delete record component
 
 ### 2021/09/06
 - add value to picker component properties
@@ -18,7 +19,7 @@
 - add `picCrop page`
 - fix ui.drawer page closing problem
 - remove invalid code on ui.touchlist page
-- remove record
+- remove record component
 
 
 ### 2021/08/27

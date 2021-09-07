@@ -23,8 +23,6 @@
 抽屉-Drawer      | [ >>> ](docs/drawer.md)
 
 
-<!-- 录音-Record      | [ >>> ](docs/Record.md) -->
-
 <!-- - **nprogress 加载进度条**： https://developers.weixin.qq.com/s/WMGBlvmi7xmd
 
 - **ColorPicker 颜色拾色器**：  https://developers.weixin.qq.com/s/39BYGumI7Emf
