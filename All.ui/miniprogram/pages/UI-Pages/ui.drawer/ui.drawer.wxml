@@ -9,10 +9,10 @@
   </view>
 </view>
 
-<mo-drawer wx:for='{{list}}' wx:key='index' bindopen='onCallbackOPEN' bindclose='onCallbackCLOSE'  width='{{item.width}}' height='{{item.height}}' 
+<mo-drawer wx:for='{{list}}' wx:key='index' bindopen='onCallbackOPEN' bindclose='onCallbackCLOSE' touch='{{item.touch}}'  width='{{item.width}}' height='{{item.height}}' 
 position='{{item.type}}' data-position='{{item.type}}'  id='drawer{{index}}'>
 
   <view class="drawer-box">
-    <button bindtap="closeDrawer" data-index='{{index}}' type="primary">关闭弹窗</button>
+    <button bind:tap="closeDrawer" data-index='{{index}}' type="primary">关闭弹窗</button>
   </view>
 </mo-drawer>

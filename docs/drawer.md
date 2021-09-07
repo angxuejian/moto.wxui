@@ -10,6 +10,7 @@ position  | string  | bottom  | 否 | 弹窗位置
 width   | string | 100% | 否    | 弹窗宽度 同 css 的 width
 height   | string | 200px | 否    | 弹窗高度 同 css 的 height
 mask      | boolean | true    | 否 | 点击遮罩层是否关闭
+touch     | boolean | false   | 否 | 是否开启滑动关闭弹窗
 
 **position 的合法值**
 
@@ -20,6 +21,13 @@ bottom | 底部
 left | 左边
 right | 右边
 center | 中间
+
+**touch**
+
+开启滑动关闭弹窗后、子组件使用**movable-area**标签会与 drawer组件中的touch事件发送冲突、请考虑后使用
+
+<br>
+<br>
 
 ## 事件
 事件名称     | 类型         | 默认值 |  必填 | 说明

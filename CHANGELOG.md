@@ -3,6 +3,9 @@
 
 ## v0.3
 
+### 2021/09/07
+- improve touch event of drawer component
+
 ### 2021/09/06
 - add value to picker component properties
 - add touch event to drawer component

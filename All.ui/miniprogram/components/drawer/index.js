@@ -28,6 +28,10 @@ Component({
     mask: {
       type:Boolean,
       value: true
+    },
+    touch: {
+      type:Boolean,
+      value: false
     }
   },
 
@@ -173,10 +177,14 @@ Component({
         self.data.boxHeight = res[0].height
       })
     },
+
     isBreak: function() {
-      return this.data.type === 'center'
+      return this.data.type === 'center' || !this.data.touch
     },
 
+    // -----------------
+    // 触摸事件
+    
     onTouchStart: function(event) {
       if (this.isBreak()) return false;
 
@@ -197,47 +205,59 @@ Component({
       this.setDateTypeValue('end', num, num)
 
       let style = `width: ${this.data.width}; height: ${this.data.height};`
+      let str   = ''
+      
+      const { type } = this.data
 
-      if (this.data.type === 'left') {
-        this.setData({
-          style: style + `left: -${num}px;`
-        })
-      } else if (this.data.type === 'right') {
+      if (type === 'left' || type === 'top') str = `${type}: -${num}px;`
+      else if (type === 'right' || type === 'bottom') {
         num = num >= 0 ? 0 : num
-        this.setData({
-          style: style + `right: ${num}px;`
-        })
+        str = `${type}: ${num}px;`
       }
+
+      this.setData({ style: style + str })
+
+      
     },
     onTouchEnd: function() {
 
+      if (this.isBreak()) return false;
+
       let style = `width: ${this.data.width}; height: ${this.data.height};`
 
-      if (this.data.type === 'left') {
-        if (this.data.left.endX < (this.data.boxWidth * 0.35)) {
-          this.setData({
-            style: style + `left: 0px;`
-          })
-        } else {
-          this.setData({
-            style: style + `left: -${this.data.left.endX}px;`
-          }, () => {
-            this.close(true)
-          })
-        }
-      } else if (this.data.type === 'right') {
-        if (this.data.right.endX > -(this.data.boxWidth * 0.35)) {
-          this.setData({
-            style: style + `right: 0px;`
-          })
-        } else {
-          this.setData({
-            style: style + `right: ${this.data.right.endX}px;`
-          }, () => {
-            this.close(true)
-          })
-        }
+      const d = {
+        XWidth : this.data.boxWidth * 0.35,
+        YHeight: this.data.boxHeight * 0.35,
+        endX: this.data[this.data.type].endX,
+        endY: this.data[this.data.type].endY
       }
+
+      const { type } = this.data
+      const x = ['left', 'right']
+      const t = x.includes(type) ? 'X' : 'Y'
+      const tn = x.includes(type) ? 'XWidth' : 'YHeight'
+      let str1 = ''
+      let str2 = ''
+
+      if (type === 'left' || type === 'top') {
+        if (d[`end${t}`] < d[tn]) str1 = `${type}: 0px;` 
+        else  str2 = `${type}: -${d[`end${t}`]}px;`
+
+      } else if (type === 'right' || type === 'bottom') {
+
+        if (d[`end${t}`] > -d[tn]) str1 = `${type}: 0px;` 
+        else str2 = `${type}: ${d[`end${t}`]}px;`
+      }
+
+      
+      if (str1) this.setData({ style: style + str1 })
+      else if (str2) this.endClose(style + str2 )
+    },
+
+    endClose: function(style) {
+      this.setData({ style }, () => {
+        this.close(true)
+      })
     }
   }
 })

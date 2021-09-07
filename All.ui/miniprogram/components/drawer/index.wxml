@@ -4,11 +4,18 @@
 <view catchtouchmove="return" wx:if='{{isShow}}'>
   <view bindtap="maskShowDrawer"  class="drawer-bc {{ isShow === 1 ? 'drawer-bc-show' : 'drawer-bc-hide'}}"></view>
 
+  <!-- 
+    catchtouchmove="onTouchMove" 
+    catchtouchstart="onTouchStart"
+    catchtouchend="onTouchEnd"
+   -->
+   <!-- capture-bind -->
   <view 
   bindanimationend='onCallbackEnd' 
-  catchtouchmove="onTouchMove" 
-  catchtouchstart="onTouchStart"
-  catchtouchend="onTouchEnd"
+  capture-bind:touchstart="onTouchStart"
+  capture-bind:touchmove="onTouchMove" 
+  capture-bind:touchend="onTouchEnd"
+  capture-bind:touchcancel="onTouchEnd"
   style="{{style}}" 
   
   class="drawer-box {{type}} {{(isShow === 1 ? 'drawer-box-show-' : 'drawer-box-hide-') + type}}">
