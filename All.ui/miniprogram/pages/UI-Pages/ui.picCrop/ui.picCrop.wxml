@@ -1,2 +1,15 @@
 <!--miniprogram/pages/UI-Pages/ui.picCrop/ui.picCrop.wxml-->
-<text>miniprogram/pages/UI-Pages/ui.picCrop/ui.picCrop.wxml</text>
+
+<view class="pic-crop-page">
+
+  <!-- 裁剪区域 -->
+  <view style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" class="box"></view>
+
+  <!-- 背景图片 -->
+  <image style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" src="{{imgSrc}}" alt=""></image>
+</view>
+
+<view bindtap="onSaveImg" class="confirm">确认</view>
+
+<canvas style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" canvas-id="init"></canvas>
+<canvas style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" canvas-id="crop"></canvas>

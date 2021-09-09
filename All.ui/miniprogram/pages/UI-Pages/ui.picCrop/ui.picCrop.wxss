@@ -1,1 +1,48 @@
 /* miniprogram/pages/UI-Pages/ui.picCrop/ui.picCrop.wxss */
+page {
+  padding: 0;
+}
+.pic-crop-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.box {
+  position:fixed;
+  z-index: 1;
+  box-shadow: 0 0 0 2000px rgba(51,51,51,0.7);
+  pointer-events: none;
+}
+.box image {
+  position: fixed;
+}
+
+
+.confirm {
+  padding: 0 17px;
+  height: 31px;
+  background-color: #04C061;
+  color: #fff;
+  border-radius: 2px;
+  line-height: 31px;
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 2;
+}
+
+
+canvas {
+  position: fixed;
+  top: -9999;
+  left: -9999;
+  opacity: 0;
+}

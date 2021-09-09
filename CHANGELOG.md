@@ -3,6 +3,9 @@
 
 ## v0.3
 
+### 2021/09/09
+- Add ui in ui.picCrop page
+
 ### 2021/09/07
 - improve touch event of drawer component
 - delete record component

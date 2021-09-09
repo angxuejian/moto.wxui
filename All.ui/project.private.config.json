@@ -20,8 +20,8 @@
           "scene": null
         },
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/UI-Pages/ui.picCrop/ui.picCrop",
+          "pathName": "pages/UI-Pages/ui.picCrop/ui.picCrop",
           "query": "",
           "scene": null
         }
