@@ -11,13 +11,13 @@ page {
   background-color: #000;
 }
 
-.box {
+.pic-crop-page .box {
   position:fixed;
   z-index: 1;
   box-shadow: 0 0 0 2000px rgba(51,51,51,0.7);
   pointer-events: none;
 }
-.box image {
+.pic-crop-page image {
   position: fixed;
 }
 

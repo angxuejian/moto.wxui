@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function (options) {
     
-    this.initImgSrc('../../../assets/d.jpg')
+    this.initImgSrc('../../../assets/c.jpg')
 
   },
 
@@ -25,7 +25,6 @@ Page({
     const img = await wx.getImageInfo({ src })
     const sys = await wx.getSystemInfo()
 
-    console.log(img)
     const { boxSize, imgSize } = this.data
 
     // 获取图片的宽高
@@ -76,7 +75,15 @@ Page({
       title: '裁剪中',
       mask: true
     })
-    const src = await this.drawImgSrc(this.data.imgSize, 'crop')
+    const { imgSize, boxSize } = this.data
+    // const d = {
+    //   x: 0, y: 0,
+    //   src   : imgSize.src,
+    //   width : 50,
+    //   height: 50
+    // }
+ 
+    const src = await this.drawImgSrc(imgSize, 'crop')
     wx.previewImage({ urls: [src] })
     wx.hideLoading()
   },
@@ -88,15 +95,13 @@ Page({
 
     return new Promise((resolve) => {
       const { x, y, width, height, src } = data
-      const ctx = wx.createCanvasContext(canvasId)
 
-      console.log(width, '---')
+      const ctx = wx.createCanvasContext(canvasId)
       ctx.drawImage(src, x, y, width, height)
+
       ctx.draw(false, () => {
         wx.canvasToTempFilePath({
           x,  y, width, height, canvasId,
-          destWidth: this.data.imgSize.pixelRatio * width,
-          destHeight: this.data.imgSize.pixelRatio * height,
           success: res => {
             resolve(res.tempFilePath)
           },

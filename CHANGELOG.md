@@ -3,8 +3,11 @@
 
 ## v0.3
 
+### 2021/09/10
+- fixed position problem in ui.picCrop page
+
 ### 2021/09/09
-- Add ui in ui.picCrop page
+- add ui in ui.picCrop page
 
 ### 2021/09/07
 - improve touch event of drawer component
