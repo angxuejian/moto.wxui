@@ -6,8 +6,16 @@ Page({
    */
   data: {
     imgSrc: '', // 图片地址
-    boxSize: { w: 340, h: 340 },
-    imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' }
+    boxSize: { w: 340, h: 340, top: 0, left: 0 },
+    imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' },
+    x: 0,
+    y: 0,
+    touch: {
+      startX: 0,
+      startY: 0,
+      moveX : 0,
+      moveY : 0,
+    }
   },
 
   /**
@@ -86,6 +94,35 @@ Page({
     const src = await this.drawImgSrc(imgSize, 'crop')
     wx.previewImage({ urls: [src] })
     wx.hideLoading()
+  },
+
+  // start touch
+  onTouchStart: function(event) {
+    const { touches } = event
+
+    // 第二次触摸滑动时、要减去 x, y 的已移动的距离
+    this.data.touch.startX = touches[0].pageX - this.data.x
+    this.data.touch.startY = touches[0].pageY - this.data.y
+  },
+
+  // move touch
+  onTouchMove: function(event) {
+    const { touches } = event
+
+    this.data.touch.moveX = touches[0].pageX
+    this.data.touch.moveY = touches[0].pageY
+
+    const x = this.data.touch.moveX - this.data.touch.startX
+    const y = this.data.touch.moveY - this.data.touch.startY
+
+    this.setData({
+      x, y
+    })
+  },
+
+  // end touch
+  onTouchEnd: function(event) {
+
   },
 
 

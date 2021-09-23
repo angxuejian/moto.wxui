@@ -3,6 +3,10 @@
 
 ## v0.3
 
+### 2021/09/23
+- fixed problem of calendar date refresh
+- add touch event in ui.picCrop page 
+
 ### 2021/09/10
 - fixed position problem in ui.picCrop page
 

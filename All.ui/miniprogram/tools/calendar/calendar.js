@@ -42,10 +42,8 @@ Component({
   attached: function () {
   
     if (app.globalData.calendar.start_time) {
-      const end_time = new Date(`${year}-${month + 1}-${day} 00:00:00`).getTime()
-
-      if (end_time >= app.globalData.calendar.start_time) {
-    
+      const end_time = new Date(`${year}-${month + 1}-24 00:00:00`).getTime()
+      if (end_time <= app.globalData.calendar.start_time) {
         this.data = Object.assign({}, this.data, app.globalData.calendar.value)
         this.setData({
           festival: this.data.festival,
@@ -231,7 +229,6 @@ Component({
           }
         }
       })
-      console.log(this.data.days, ':::')
     },
 
 

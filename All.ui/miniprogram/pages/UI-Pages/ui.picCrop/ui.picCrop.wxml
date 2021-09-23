@@ -6,7 +6,12 @@
   <view style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" class="box"></view>
 
   <!-- 背景图片 -->
-  <image style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" src="{{imgSrc}}" alt=""></image>
+  <image 
+  catchtouchstart="onTouchStart"
+  catchtouchmove ="onTouchMove"
+  catchtouchend  ="onTouchEnd"
+  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px; transform:translate3d({{x}}px, {{y}}px, 0)" 
+  src="{{imgSrc}}" alt=""></image>
 </view>
 
 <view bindtap="onSaveImg" class="confirm">确认</view>
