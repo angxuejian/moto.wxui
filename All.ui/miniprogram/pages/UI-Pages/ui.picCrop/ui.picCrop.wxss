@@ -14,11 +14,12 @@ page {
 .pic-crop-page .box {
   position:fixed;
   z-index: 1;
-  box-shadow: 0 0 0 2000px rgba(51,51,51,0.7);
-  pointer-events: none;
+  border: 1px solid red;
 }
 .pic-crop-page image {
   position: fixed;
+  z-index: 2;
+  opacity: 0.8;
 }
 
 
@@ -34,13 +35,13 @@ page {
   font-weight: 500;
   color: #FFFFFF;
   position: fixed;
-  bottom: 30px;
+  bottom: 4vh;
   right: 30px;
   z-index: 2;
 }
 
 
-canvas {
+.init {
   position: fixed;
   top: -9999;
   left: -9999;

@@ -23,7 +23,9 @@ Page({
    */
   onLoad: function (options) {
     
-    this.initImgSrc('../../../assets/c.jpg')
+    // this.initImgSrc('../../../assets/b.jpg')
+
+    this.initImgSrc('https://tse1-mm.cn.bing.net/th/id/R-C.d85e977b14b92fa4ce392537daa35f92?rik=T1Lg%2fMbgJV3XFw&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190831%2f59f17a0fc1fa48a98037725de23a602b.jpeg&ehk=oc55CzaOGkMnkhy09TPTSw1HsXY%2bjPVhwLT5kcjE77g%3d&risl=&pid=ImgRaw&r=0')
 
   },
 
@@ -33,7 +35,17 @@ Page({
     const img = await wx.getImageInfo({ src })
     const sys = await wx.getSystemInfo()
 
+    const wh = sys.windowWidth * 0.8
+    const boxd = {}
+
+    if (wh < this.data.boxSize.w) {
+      this.data.boxSize.w = wh
+      this.data.boxSize.h = wh
+      boxd.boxSize = this.data.boxSize
+    }
+
     const { boxSize, imgSize } = this.data
+
 
     // 获取图片的宽高
     let list = []
@@ -47,17 +59,17 @@ Page({
     imgSize.height = list[1]
 
     // 先将图片大小、绘制canvas标签上
-    this.setData({ imgSize })
+    this.setData({ imgSize, ...boxd })
 
     // 获取图片的位置
     const diff = {
-      sysX: (sys.windowWidth  - boxSize.w)  / 2,
-      sysY: (sys.windowHeight - boxSize.h)  / 2,
+      sysX: (sys.windowWidth  - boxSize.w) / 2,
+      sysY: (sys.windowHeight - boxSize.h) / 2,
       imgX: (sys.windowWidth  - imgSize.width)  / 2,
-      imgY: (sys.windowHeight - imgSize.height)  / 2,
+      imgY: (sys.windowHeight - imgSize.height) / 2,
     }
 
-    imgSize.src = src
+    imgSize.src = img.path
     imgSize.x = diff.imgX - diff.sysX
     imgSize.y = diff.imgY - diff.sysY
     imgSize.pixelRatio = sys.pixelRatio
@@ -74,6 +86,7 @@ Page({
     }
  
     const imgSrc = await this.drawImgSrc(d, 'init')
+
     this.setData({ imgSrc })
   },
 
@@ -84,15 +97,22 @@ Page({
       mask: true
     })
     const { imgSize, boxSize } = this.data
-    // const d = {
-    //   x: 0, y: 0,
-    //   src   : imgSize.src,
-    //   width : 50,
-    //   height: 50
-    // }
- 
-    const src = await this.drawImgSrc(imgSize, 'crop')
+    const d = {
+      x: imgSize.x + this.data.x, 
+      y: imgSize.y + this.data.y,
+      src   : imgSize.src,
+      width : imgSize.width,
+      height: imgSize.height
+    }
+
+    console.log(d, '这是')
+    this.getCanvas(d)
+    wx.hideLoading()
+
+    return
+    const src = await this.drawImgSrc(d, 'crop')
     wx.previewImage({ urls: [src] })
+    this.setData({imgshow: src })
     wx.hideLoading()
   },
 
@@ -126,6 +146,38 @@ Page({
   },
 
 
+  getCanvas: function(data) {
+    const { x, y, width, height, src } = data
+    wx.createSelectorQuery()
+    .select('#crop')
+    .fields({
+      node: true,
+      size: true,
+    })
+    .exec(res => {
+      console.log(res, "这是")
+      const canvas = res[0].node
+      const ctx = canvas.getContext('2d')
+
+      const dpr = wx.getSystemInfoSync().pixelRatio
+      canvas.width = res[0].width * dpr
+      canvas.height = res[0].height * dpr
+      ctx.scale(dpr, dpr)
+
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      const img = canvas.createImage()
+      img.onload = () => {
+        ctx.drawImage(img, x, y, width, height)
+        const url = canvas.toDataURL('jpg', 1)
+        wx.previewImage({ urls: [url] })
+      }
+      img.src = 'https://tse1-mm.cn.bing.net/th/id/R-C.d85e977b14b92fa4ce392537daa35f92?rik=T1Lg%2fMbgJV3XFw&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190831%2f59f17a0fc1fa48a98037725de23a602b.jpeg&ehk=oc55CzaOGkMnkhy09TPTSw1HsXY%2bjPVhwLT5kcjE77g%3d&risl=&pid=ImgRaw&r=0'
+
+      
+    })
+  },
+
 
   // 绘制图片
   drawImgSrc: function(data, canvasId) {
@@ -134,8 +186,19 @@ Page({
       const { x, y, width, height, src } = data
 
       const ctx = wx.createCanvasContext(canvasId)
-      ctx.drawImage(src, x, y, width, height)
 
+      if (canvasId === 'crop') {
+        ctx.fillStyle = 'red'
+        ctx.fillRect(0, 0,this.data.boxSize.w, this.data.boxSize.h)
+        // ctx.draw()
+        ctx.drawImage(src, x, y, width, height)
+
+      } else {
+        ctx.drawImage(src, x, y, width, height)
+
+      }
+
+    
       ctx.draw(false, () => {
         wx.canvasToTempFilePath({
           x,  y, width, height, canvasId,

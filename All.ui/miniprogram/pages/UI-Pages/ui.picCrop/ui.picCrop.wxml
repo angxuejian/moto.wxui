@@ -16,5 +16,5 @@
 
 <view bindtap="onSaveImg" class="confirm">确认</view>
 
-<canvas style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" canvas-id="init"></canvas>
-<canvas style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" canvas-id="crop"></canvas>
+<canvas class="init" style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" canvas-id="init"></canvas>
+<canvas type="2d" style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" id="crop"></canvas>
