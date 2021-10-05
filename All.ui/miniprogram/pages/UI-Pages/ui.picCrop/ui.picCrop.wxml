@@ -10,7 +10,7 @@
   catchtouchstart="onTouchStart"
   catchtouchmove ="onTouchMove"
   catchtouchend  ="onTouchEnd"
-  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px; transform:translate3d({{x}}px, {{y}}px, 0)" 
+  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px; transform:scale(1) translate3d({{x}}px, {{y}}px, 0)" 
   src="{{imgSrc}}" alt=""></image>
 </view>
 

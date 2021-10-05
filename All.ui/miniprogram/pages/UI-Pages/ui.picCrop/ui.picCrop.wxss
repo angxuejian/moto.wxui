@@ -19,7 +19,7 @@ page {
 .pic-crop-page image {
   position: fixed;
   z-index: 2;
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 
@@ -41,7 +41,7 @@ page {
 }
 
 
-.init {
+canvas {
   position: fixed;
   top: -9999;
   left: -9999;
