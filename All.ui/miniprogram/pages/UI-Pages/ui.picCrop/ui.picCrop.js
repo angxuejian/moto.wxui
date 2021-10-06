@@ -1,4 +1,20 @@
 // miniprogram/pages/UI-Pages/ui.picCrop/ui.picCrop.js
+
+const throttle = function(func, wait) {
+  var timeout;
+
+  return function() {
+      var context = this;
+      var args = arguments;
+      if (!timeout) {
+          timeout = setTimeout(function(){
+              timeout = null;
+              func.apply(context, args)
+          }, wait)
+      }
+
+      }
+  }
 Page({
 
   /**
@@ -10,13 +26,20 @@ Page({
     imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' },
     x: 0,
     y: 0,
+    scale: 1,
     touch: {
       startX: 0,
       startY: 0,
       moveX : 0,
       moveY : 0,
+      startS: 0,
+      moveS: 0,
     },
     cropNode: null,
+    diff: null,
+    sysInfo: {},
+    isScale: false,
+    isTouch: false
   },
 
   /**
@@ -24,7 +47,7 @@ Page({
    */
   onLoad: function (options) {
 
-    const src = 'https://images.pexels.com/photos/5002528/pexels-photo-5002528.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+    const src = 'https://cdn.pixabay.com/photo/2021/09/02/02/50/old-man-6592565_960_720.jpg'
 
     this.initImgSrc(src)
 
@@ -58,23 +81,15 @@ Page({
     imgSize.width  = list[0]
     imgSize.height = list[1]
 
+
     // 先将图片大小、绘制canvas标签上
     this.setData({ imgSize, ...boxd })
 
-
-    // 获取图片的位置
-    const diff = {
-      sysX: (sys.windowWidth  - boxSize.w) / 2,
-      sysY: (sys.windowHeight - boxSize.h) / 2,
-      imgX: (sys.windowWidth  - imgSize.width)  / 2,
-      imgY: (sys.windowHeight - imgSize.height) / 2,
-    }
-
     imgSize.initSrc = img.path // 背景图片、使用已加载到本地的图片
     imgSize.cropSrc = src      // 裁剪时、使用线上地址图片
-    imgSize.x = diff.imgX - diff.sysX
-    imgSize.y = diff.imgY - diff.sysY
-    imgSize.pixelRatio = sys.pixelRatio
+
+    this.data.sysInfo = sys
+    this.setImgSize()
 
     // 初始化 - 按照比例缩放图片
     // 将图片缩放至裁剪区域
@@ -90,22 +105,43 @@ Page({
     this.setData({ imgSrc })
   },
 
+  setImgSize: function() {
+    const { boxSize, imgSize, sysInfo, scale } = this.data
+
+    // 获取图片的位置
+    const diff = {
+      sysX: (sysInfo.windowWidth  - boxSize.w) / 2,
+      sysY: (sysInfo.windowHeight - boxSize.h) / 2,
+      imgX: (sysInfo.windowWidth  - (imgSize.width * scale)) / 2,
+      imgY: (sysInfo.windowHeight - (imgSize.height * scale)) / 2,
+    }
+
+    imgSize.x = diff.imgX - diff.sysX
+    imgSize.y = diff.imgY - diff.sysY
+    imgSize.pixelRatio = sysInfo.pixelRatio
+
+    this.data.diff = diff
+    this.data.imgSize = imgSize
+  },
+
+
   // 裁剪并预览图片
   onSaveImg: async function() {
     wx.showLoading({
       title: '裁剪中',
       mask: true
     })
-    const { imgSize, boxSize } = this.data
+    const { imgSize, scale } = this.data
+    
     const d = {
-      x: imgSize.x + this.data.x, 
-      y: imgSize.y + this.data.y,
+      x: imgSize.x + this.data.x * scale, 
+      y: imgSize.y + this.data.y * scale,
       src   : imgSize.cropSrc,
-      width : imgSize.width,
-      height: imgSize.height,
+      width : imgSize.width * scale,
+      height: imgSize.height * scale,
       dpr   : imgSize.pixelRatio
     }
-  
+    
     const src = await this.drawCropImgSrc(d)
     wx.previewImage({ urls: [src] })
     wx.hideLoading()
@@ -136,7 +172,7 @@ Page({
 
       const img = canvas.createImage()
       img.onload = () => {
-        ctx.drawImage(img,x,y, width, height)
+        ctx.drawImage(img,x, y, width , height)
         resolve(canvas.toDataURL('image/png', 1))
       }
       img.src = src
@@ -160,9 +196,6 @@ Page({
             destHeight: height * dpr,
             success: res => {
               resolve(res.tempFilePath)
-            },
-            fail: err => {
-              console.log(err, '这是')
             }
           })
         }, 200)
@@ -175,27 +208,79 @@ Page({
   onTouchStart: function(event) {
     const { touches } = event
 
-    // 第二次触摸滑动时、要减去 x, y 的已移动的距离
-    this.data.touch.startX = touches[0].pageX - this.data.x
-    this.data.touch.startY = touches[0].pageY - this.data.y
+    this.data.isTouch = true
+    if (touches.length === 1) {
+      // 第二次触摸滑动时、要减去 x, y 的已移动的距离
+      this.data.touch.startX = touches[0].pageX - this.data.x
+      this.data.touch.startY = touches[0].pageY - this.data.y
+      this.data.isScale = false
+    } else if (touches.length === 2) {
+      this.data.touch.startS = this.getDistance(touches[0], touches[1])
+      this.data.isScale = true
+    }
   },
 
   // move touch
-  onTouchMove: function(event) {
+  onTouchMove: throttle(function(event) {
+
+    if (!this.data.isTouch) return
     const { touches } = event
 
-    this.data.touch.moveX = touches[0].pageX
-    this.data.touch.moveY = touches[0].pageY
+    if (touches.length === 1 && !this.data.isScale) {
+      this.data.touch.moveX = touches[0].pageX
+      this.data.touch.moveY = touches[0].pageY
 
-    const x = this.data.touch.moveX - this.data.touch.startX
-    const y = this.data.touch.moveY - this.data.touch.startY
+      const x = this.data.touch.moveX - this.data.touch.startX
+      const y = this.data.touch.moveY - this.data.touch.startY
 
-    this.setData({ x, y })
-  },
+      this.setData({ x, y })
+    } else if (touches.length === 2 && this.data.isScale) {
+
+      this.data.touch.moveS = this.getDistance(touches[0], touches[1])
+
+      let zoom = this.data.touch.moveS / this.data.touch.startS
+      let scale = this.data.scale * zoom
+
+      if (scale > 3) scale = 3
+      else if (scale < 0.5) scale = 0.5
+
+      this.onSaveImgFon(scale)
+    }
+  }, 50),
 
   // end touch
   onTouchEnd: function(event) {
 
+    if (!event.touches.length) {
+      if (this.data.scale < 1) {
+        this.data.scale = 1
+        this.onSaveImgFon(this.data.scale)
+      }
+  
+      this.data.isScale = false
+    }
+  },
+
+  
+
+  onSaveImgFon: function(scale) {
+    this.data.scale = scale
+    this.setImgSize()
+    this.setData({ scale })
+  },
+
+  
+  /**
+   * 
+   * @param {Object} start touches[0]
+   * @param {Object} end   touches[1]
+   * @returns 两指的距离
+   */
+  getDistance: function(start, end) {
+    let s = Math.abs(end.pageX - start.pageX) * 2
+    let e = Math.abs(end.pageY - start.pageY) * 2
+
+    return Math.sqrt(s + e)
   },
 
 
