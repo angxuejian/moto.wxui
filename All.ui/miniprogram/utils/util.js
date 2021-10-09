@@ -20,10 +20,26 @@ const formatNumber = n => {
  * @param {String} color 16进制颜色代码
  */
 const changeColor = (str, color = '#333333') => {
-   return str.replace(/%23[a-zA-Z0-9]{6}/g, color.replace(/#/, '%23'))
+  return str.replace(/%23[a-zA-Z0-9]{6}/g, color.replace(/#/, '%23'))
+}
+
+const throttle = function (func, wait) {
+  var timeout;
+  return function () {
+    var context = this;
+    var args = arguments;
+    if (!timeout) {
+      timeout = setTimeout(function () {
+        timeout = null;
+        func.apply(context, args)
+      }, wait)
+    }
+
+  }
 }
 
 module.exports = {
   formatTime,
-  changeColor
+  changeColor,
+  throttle
 }
