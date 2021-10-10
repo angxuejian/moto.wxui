@@ -2,25 +2,36 @@
 page {
   padding: 0;
 }
+
+
+.box-bc view{
+  position: fixed;
+  background-color: #000;
+  z-index: 3;
+  opacity: 0.7;
+}
+
 .pic-crop-page {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background-color: #ededed;
 }
+
 
 .pic-crop-page .box {
   position:fixed;
-  z-index: 1;
+  z-index: 3;
   border: 1px solid red;
 }
 .pic-crop-page image {
   position: fixed;
   z-index: 2;
   opacity: 1;
-  opacity: 0.7;
+  left: calc((100% - 340px) / 2);
+  /* opacity: 0.7; */
 }
 
 
@@ -38,7 +49,7 @@ page {
   position: fixed;
   bottom: 4vh;
   right: 30px;
-  z-index: 2;
+  z-index: 5;
 }
 .scale-fon {
   padding: 0 17px;

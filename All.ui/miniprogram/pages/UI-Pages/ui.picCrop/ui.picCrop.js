@@ -41,7 +41,7 @@ Page({
    */
   onLoad: function (options) {
 
-    const src = 'https://cdn.pixabay.com/photo/2021/09/02/02/50/old-man-6592565_960_720.jpg'
+    const src = 'https://images.pexels.com/photos/9750382/pexels-photo-9750382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 
     this.initImgSrc(src)
   },
@@ -54,18 +54,19 @@ Page({
 
     const img = await wx.getImageInfo({ src })
     const sys = await wx.getSystemInfo()
-
-    const wh = sys.windowWidth * 0.8
     const boxd = {}
 
+
     // 计算裁剪框的最小宽度
-    if (wh < this.data.boxSize.w) {
+    if (this.data.boxSize.w > sys.windowWidth) {
+      const wh = sys.windowWidth * 0.8
       this.data.boxSize.w = wh
       this.data.boxSize.h = wh
       boxd.boxSize = this.data.boxSize
     }
 
     const { boxSize, imgSize } = this.data
+
 
     // 获取图片的信息、并先图片的宽高绘制canvas标签上
     let list = []
@@ -151,7 +152,7 @@ Page({
 
       this.setImgScale(scale)
     }
-  }, 50),
+  }, 15),
 
   // end touch
   onTouchEnd: function(event) {
@@ -180,8 +181,8 @@ Page({
     const { imgSize, scale } = this.data
     
     const d = {
-      x: imgSize.x + this.data.x * scale, 
-      y: imgSize.y + this.data.y * scale,
+      x: (imgSize.x + this.data.x), 
+      y: (imgSize.y + this.data.y),
       src   : imgSize.cropSrc,
       width : imgSize.width * scale,
       height: imgSize.height * scale,
@@ -217,12 +218,20 @@ Page({
       imgY: (sysInfo.windowHeight - (imgSize.height * scale)) / 2,
     }
 
+   
+
     imgSize.x = diff.imgX - diff.sysX
     imgSize.y = diff.imgY - diff.sysY
     imgSize.pixelRatio = sysInfo.pixelRatio
 
     this.data.diff = diff
     this.data.imgSize = imgSize
+
+    if (!this.data.boxSize.top) {
+      this.data.boxSize.top = diff.sysY
+      this.data.boxSize.left = diff.sysX
+      this.setData({ boxSize: this.data.boxSize })
+    }
   },
   
 

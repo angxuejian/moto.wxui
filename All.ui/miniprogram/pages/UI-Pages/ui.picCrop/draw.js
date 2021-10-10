@@ -20,7 +20,7 @@ export const drawCropImgSrc = async function(data, crop) {
     canvas.height = crop.height * dpr
     ctx.scale(dpr, dpr)
 
-    ctx.fillStyle = '#fff'
+    ctx.fillStyle = '#ededed'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     const img = canvas.createImage()

@@ -2,15 +2,25 @@
 
 <view class="pic-crop-page">
 
+  <!-- 边框背景 -->
+  <view class="box-bc">
+    <view style="height: {{boxSize.top}}px;width:100%; top:0; left:0" class="top"></view>
+
+    <view style="height: {{boxSize.w}}px; width:calc((100% - {{boxSize.w}}px) / 2); top:{{boxSize.top}}px; left: 0" class="left"></view>
+    <view style="height: {{boxSize.w}}px; width:calc((100% - {{boxSize.w}}px) / 2); top:{{boxSize.top}}px; right: 0" class="right"></view>
+
+    <view style="height: {{boxSize.top}}px;width:100%; top:{{boxSize.top + boxSize.w}}px; left:0" class="bottom"></view>
+  </view>
+
   <!-- 裁剪区域 -->
-  <view style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" class="box"></view>
+  <!-- <view style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" class="box"></view> -->
 
   <!-- 背景图片 -->
   <image 
   catchtouchstart="onTouchStart"
   catchtouchmove ="onTouchMove"
   catchtouchend  ="onTouchEnd"
-  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x}}px, {{y}}px, 0)" 
+  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0); transition-duration: 0s" 
   src="{{imgSrc}}" alt=""></image>
 </view>
 
