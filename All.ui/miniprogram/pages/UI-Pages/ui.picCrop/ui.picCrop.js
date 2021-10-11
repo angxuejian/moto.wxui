@@ -197,7 +197,12 @@ Page({
 
 
   // ---------------------
-  // 缩放及裁剪框的公共方法
+  // 缩放及旋转 裁剪框的公共方法
+
+
+  setImgRotate: function() {
+
+  },
 
   // 缩放后、重新计算裁剪框与设备的 差值
   setImgScale: function(scale) {
@@ -217,8 +222,6 @@ Page({
       imgX: (sysInfo.windowWidth  - (imgSize.width * scale)) / 2,
       imgY: (sysInfo.windowHeight - (imgSize.height * scale)) / 2,
     }
-
-   
 
     imgSize.x = diff.imgX - diff.sysX
     imgSize.y = diff.imgY - diff.sysY

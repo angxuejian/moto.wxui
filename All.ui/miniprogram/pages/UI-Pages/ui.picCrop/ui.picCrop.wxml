@@ -20,11 +20,12 @@
   catchtouchstart="onTouchStart"
   catchtouchmove ="onTouchMove"
   catchtouchend  ="onTouchEnd"
-  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0); transition-duration: 0s" 
+  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0) rotate(0deg);" 
   src="{{imgSrc}}" alt=""></image>
 </view>
 
+<view bindtap='setImgRotate' class="scale-fon">旋转</view>
 <view bindtap="onSaveImg" class="confirm">确认</view>
 
 <canvas class="init" style="width: {{imgSize.width}}px; height: {{imgSize.height}}px" canvas-id="init"></canvas>
-<canvas type="2d" style="width: {{boxSize.w}}px; height: {{boxSize.h}}px" id="crop"></canvas>
+<canvas type="2d" style="width: {{boxSize.w}}px; height: {{boxSize.h}}px; transform: rotate(90deg)" id="crop"></canvas>

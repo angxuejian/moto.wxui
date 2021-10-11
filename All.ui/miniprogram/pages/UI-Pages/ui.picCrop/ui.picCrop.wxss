@@ -3,7 +3,6 @@ page {
   padding: 0;
 }
 
-
 .box-bc view{
   position: fixed;
   background-color: #000;
@@ -69,7 +68,7 @@ page {
 }
 
 
-canvas {
+.init {
   position: fixed;
   top: -9999;
   left: -9999;

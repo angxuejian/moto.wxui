@@ -19,13 +19,16 @@ export const drawCropImgSrc = async function(data, crop) {
     canvas.width = crop.width * dpr
     canvas.height = crop.height * dpr
     ctx.scale(dpr, dpr)
-
+    // ctx.rotate((Math.PI / 180) * 90)
+    
     ctx.fillStyle = '#ededed'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     const img = canvas.createImage()
     img.onload = () => {
-      ctx.drawImage(img,x, y, width , height)
+      // img.style = 'transform: rotate(10deg)'
+      // ctx.drawImage(img, x, -width, width, height)
+      ctx.drawImage(img, x, y, width, height)
       resolve(canvas.toDataURL('image/png', 1))
     }
     img.src = src
