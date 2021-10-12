@@ -4,7 +4,8 @@ import {
   getDistance,
   getCanvasNode,
   getWidthFix,
-  getHeightFix
+  getHeightFix,
+  getRotateAxis
 } from './utils'
 import { drawInitImgSrc, drawCropImgSrc } from './draw'
 
@@ -21,6 +22,7 @@ Page({
     x: 0,
     y: 0,
     scale: 1,
+    rotate: 0,
     touch: {
       startX: 0,
       startY: 0,
@@ -178,17 +180,16 @@ Page({
       title: '裁剪中',
       mask: true
     })
-    const { imgSize, scale } = this.data
+    const { imgSize, scale, rotate } = this.data
+    const { x, y } = getRotateAxis(rotate, imgSize, this.data)
     
     const d = {
-      x: (imgSize.x + this.data.x), 
-      y: (imgSize.y + this.data.y),
+      x, y, rotate,
       src   : imgSize.cropSrc,
       width : imgSize.width * scale,
       height: imgSize.height * scale,
-      dpr   : imgSize.pixelRatio
+      dpr   : imgSize.pixelRatio,
     }
-
     if (!this.data.cropNode) this.data.cropNode = await getCanvasNode()
     const src = await drawCropImgSrc(d, this.data.cropNode)
     wx.previewImage({ urls: [src] })
@@ -201,7 +202,8 @@ Page({
 
 
   setImgRotate: function() {
-
+    this.data.rotate = 90
+    this.setData({ rotate: this.data.rotate })
   },
 
   // 缩放后、重新计算裁剪框与设备的 差值

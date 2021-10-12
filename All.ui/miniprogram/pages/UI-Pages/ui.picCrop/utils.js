@@ -1,3 +1,30 @@
+
+
+/**
+ * 根据不同 旋转度数 求出canvas中 x, y 坐标
+ * @param {number} deg 旋转度数
+ * @param {*} imgSize  图片大小与裁剪框的差值
+ * @param {*} data     图片的 x, y 坐标
+ * @returns {object} {x, y} -> 
+ */
+export const getRotateAxis = function(deg, imgSize, data) {
+  switch (deg) {
+
+    case 0:
+      return {
+        x: imgSize.x + data.x,
+        y: imgSize.y + data.y
+      }
+    case 90:
+      return {
+        x: imgSize.x + data.y , 
+        y: imgSize.y + (data.x * -1),
+      }
+    default:
+      break;
+  }
+}
+
 /**
  * 
  * @param {Object} start touches[0]

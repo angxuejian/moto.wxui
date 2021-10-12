@@ -64,7 +64,7 @@ page {
   position: fixed;
   bottom: 4vh;
   right: 150px;
-  z-index: 2;
+  z-index: 5;
 }
 
 

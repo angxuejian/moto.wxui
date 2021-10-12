@@ -3,6 +3,9 @@
 
 ## v0.3
 
+### 2021/10/12
+- add 90 degree rotated image crop in ui.picCrop page
+
 ### 2021/09/23
 - fixed problem of calendar date refresh
 - add touch event in ui.picCrop page 

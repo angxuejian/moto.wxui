@@ -10,24 +10,28 @@
  * 裁剪图片时没办法使用本地缓存图片
  */
 export const drawCropImgSrc = async function(data, crop) {
-  const { dpr, x, y, width, height, src } = data
+  const { rotate, dpr, x, y, width, height, src } = data
 
   return new Promise((resolve) => {
     const canvas = crop.node
     const ctx = canvas.getContext('2d')
 
-    canvas.width = crop.width * dpr
+    canvas.width  = crop.width * dpr
     canvas.height = crop.height * dpr
     ctx.scale(dpr, dpr)
-    // ctx.rotate((Math.PI / 180) * 90)
-    
+
+    // 绘制背景
     ctx.fillStyle = '#ededed'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
+    // 旋转
+    if (rotate) {
+      ctx.translate(crop.width, 0)
+      ctx.rotate(rotate * Math.PI / 180)
+    }
+
     const img = canvas.createImage()
     img.onload = () => {
-      // img.style = 'transform: rotate(10deg)'
-      // ctx.drawImage(img, x, -width, width, height)
       ctx.drawImage(img, x, y, width, height)
       resolve(canvas.toDataURL('image/png', 1))
     }
