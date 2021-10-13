@@ -32,7 +32,7 @@ export const drawCropImgSrc = async function(data, crop) {
     } else if (rotate === 270) {
       ctx.translate(0, crop.height)
     }
-
+    
     ctx.rotate(rotate * Math.PI / 180)
     const img = canvas.createImage()
     img.onload = () => {

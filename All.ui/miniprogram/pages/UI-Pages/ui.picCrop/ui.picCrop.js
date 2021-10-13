@@ -200,6 +200,13 @@ Page({
   // ---------------------
   // 缩放及旋转 裁剪框的公共方法
 
+  setImgScale1: function() {
+    this.data.scale =  this.data.scale === 1 ? 2: 1
+    this.setImgSize()
+    this.setData({
+      scale: this.data.scale
+    })
+  },
 
   setImgRotate: function() {
     const d = {

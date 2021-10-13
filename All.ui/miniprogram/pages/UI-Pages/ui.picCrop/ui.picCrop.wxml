@@ -24,6 +24,7 @@
   src="{{imgSrc}}" alt=""></image>
 </view>
 
+<view bindtap='setImgScale1' class="scale-fon1">放大</view>
 <view bindtap='setImgRotate' class="scale-fon">旋转</view>
 <view bindtap="onSaveImg" class="confirm">确认</view>
 

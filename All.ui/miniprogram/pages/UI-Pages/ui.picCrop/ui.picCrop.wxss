@@ -30,6 +30,7 @@ page {
   z-index: 2;
   opacity: 1;
   left: calc((100% - 340px) / 2);
+  transform-origin: center;
   /* opacity: 0.7; */
 }
 
@@ -66,9 +67,24 @@ page {
   right: 150px;
   z-index: 5;
 }
+.scale-fon1 {
+  padding: 0 17px;
+  height: 31px;
+  background-color: #04C061;
+  color: #fff;
+  border-radius: 2px;
+  line-height: 31px;
+  font-size: 14px;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 4vh;
+  left: 0px;
+  z-index: 5;
+}
 
-
-.init {
+canvas {
   position: fixed;
   top: -9999;
   left: -9999;
