@@ -202,7 +202,13 @@ Page({
 
 
   setImgRotate: function() {
-    this.data.rotate = 90
+    const d = {
+      0: 90,
+      90: 180,
+      180: 270,
+      270: 0
+    }
+    this.data.rotate = d[this.data.rotate]
     this.setData({ rotate: this.data.rotate })
   },
 

@@ -25,11 +25,15 @@ export const drawCropImgSrc = async function(data, crop) {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
     // 旋转
-    if (rotate) {
+    if (rotate === 90) {
       ctx.translate(crop.width, 0)
-      ctx.rotate(rotate * Math.PI / 180)
+    } else if (rotate === 180) {
+      ctx.translate(crop.width, crop.height)
+    } else if (rotate === 270) {
+      ctx.translate(0, crop.height)
     }
 
+    ctx.rotate(rotate * Math.PI / 180)
     const img = canvas.createImage()
     img.onload = () => {
       ctx.drawImage(img, x, y, width, height)
