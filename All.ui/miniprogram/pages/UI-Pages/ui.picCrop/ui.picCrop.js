@@ -21,9 +21,9 @@ Page({
 
     x: 0,
     y: 0,
-    scale: 1,
+    scale: 1.5,
     rotate: 0,
-    origin: '50px 50px',
+    origin: { x: 0, y: 0, val: 'center' },
     touch: {
       startX: 0,
       startY: 0,
@@ -121,6 +121,9 @@ Page({
     } 
     
     else if (touches.length === 2) {
+
+      this.setOriginAxis(event)
+
       this.data.touch.startS = getDistance(touches[0], touches[1])
       this.data.isScale = true
     }
@@ -209,6 +212,16 @@ Page({
     })
   },
 
+  setOriginAxis: function(event) {
+    const { touches } = event
+    const x = ((touches[0].pageX + touches[1].pageX) / 2) - event.target.offsetLeft
+    const y = ((touches[0].pageY + touches[1].pageY) / 2) - event.target.offsetTop
+
+    this.data.origin = {
+      x, y, val: `${x}px ${y}px`
+    }
+  },
+
   setImgRotate: function() {
     const d = {
       0: 90,
@@ -219,7 +232,7 @@ Page({
     this.data.rotate = d[this.data.rotate]
     this.setData({ 
       rotate: this.data.rotate,
-      origin: 'center'
+      ['origin.val']: 'center'
     })
   },
 
@@ -227,7 +240,7 @@ Page({
   setImgScale: function(scale) {
     this.data.scale = scale
     this.setImgSize()
-    this.setData({ scale })
+    this.setData({ scale, origin: this.data.origin })
   },
 
   // 计算裁剪框与设备的 差值

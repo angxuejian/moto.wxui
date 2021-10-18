@@ -36,7 +36,7 @@ export const drawCropImgSrc = async function(data, crop) {
     ctx.rotate(rotate * Math.PI / 180)
     const img = canvas.createImage()
     img.onload = () => {
-
+      console.log(x, y)
       ctx.drawImage(img, x, y, width, height)
       resolve(canvas.toDataURL('image/png', 1))
     }

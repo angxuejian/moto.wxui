@@ -20,7 +20,7 @@
   catchtouchstart="onTouchStart"
   catchtouchmove ="onTouchMove"
   catchtouchend  ="onTouchEnd"
-  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0) rotate({{rotate}}deg); transform-origin: {{origin}};" 
+  style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0) rotate({{rotate}}deg); transform-origin: {{origin.val}};" 
   src="{{imgSrc}}" alt=""></image>
 </view>
 

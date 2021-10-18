@@ -5,6 +5,7 @@
 ### 2021/10/18
 - fix the 180 degree rotated problem of ui.picCrop page
 - fix the 180 degree scale problem of ui.picCrop page
+- test transform-origin crop in the ui.picCrop page
 
 ### 2021/10/12
 - complete the image rotation in ui.picCrop page
