@@ -30,7 +30,6 @@ page {
   z-index: 2;
   opacity: 1;
   left: calc((100% - 340px) / 2);
-  transform-origin: center;
   /* opacity: 0.7; */
 }
 

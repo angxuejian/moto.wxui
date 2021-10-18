@@ -22,7 +22,7 @@ export const getRotateAxis = function(deg, imgSize, data) {
       }
     case 180:
       return {
-        x: (imgSize.x + data.x) * -1,
+        x: (imgSize.x - data.x),
         y: (imgSize.y - data.y),
       }
     case 270:

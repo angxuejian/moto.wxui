@@ -23,6 +23,7 @@ Page({
     y: 0,
     scale: 1,
     rotate: 0,
+    origin: '50px 50px',
     touch: {
       startX: 0,
       startY: 0,
@@ -216,7 +217,10 @@ Page({
       270: 0
     }
     this.data.rotate = d[this.data.rotate]
-    this.setData({ rotate: this.data.rotate })
+    this.setData({ 
+      rotate: this.data.rotate,
+      origin: 'center'
+    })
   },
 
   // 缩放后、重新计算裁剪框与设备的 差值
