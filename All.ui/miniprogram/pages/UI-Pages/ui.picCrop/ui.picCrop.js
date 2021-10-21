@@ -21,7 +21,7 @@ Page({
 
     x: 0,
     y: 0,
-    scale: 1.5,
+    scale: 1.3,
     rotate: 0,
     origin: { x: 0, y: 0, val: 'center' },
     touch: {
@@ -44,7 +44,9 @@ Page({
    */
   onLoad: function (options) {
 
-    const src = 'https://images.pexels.com/photos/9750382/pexels-photo-9750382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+    // const src = 'https://images.pexels.com/photos/9750382/pexels-photo-9750382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+
+    const src = 'https://images.pexels.com/photos/9699289/pexels-photo-9699289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
     this.initImgSrc(src)
   },
@@ -106,7 +108,6 @@ Page({
   // ---------------------
   // 2、手势拖动图片移动、缩放
 
-
   // start touch
   onTouchStart: function(event) {
     const { touches } = event
@@ -122,7 +123,7 @@ Page({
     
     else if (touches.length === 2) {
 
-      this.setOriginAxis(event)
+      // this.setOriginAxis(event)
 
       this.data.touch.startS = getDistance(touches[0], touches[1])
       this.data.isScale = true
@@ -140,8 +141,20 @@ Page({
       this.data.touch.moveX = touches[0].pageX
       this.data.touch.moveY = touches[0].pageY
 
-      const x = this.data.touch.moveX - this.data.touch.startX
-      const y = this.data.touch.moveY - this.data.touch.startY
+      let x = this.data.touch.moveX - this.data.touch.startX
+      let y = this.data.touch.moveY - this.data.touch.startY
+
+      // if (this.data.scale === 1) {
+      //   if (this.data.diff.sysX === this.data.diff.imgX) {
+      //     if (this.data.rotate === 0 || this.data.rotate === 180) x = 0
+      //     else y = 0
+      //   }
+      //   if (this.data.diff.sysY === this.data.diff.imgY) {
+      //     if (this.data.rotate === 90 || this.data.rotate === 270) x = 0
+      //     else y = 0
+      //   }
+      // }
+
       this.setData({ x, y })
     }
 
@@ -171,14 +184,14 @@ Page({
   
       this.data.isScale = false
     }
+
+
+    // this.clearInit()
   },
 
 
   // ---------------------
   // 3、裁剪canvas图片
-
-
-  // 裁剪并预览图片
   onSaveImg: async function() {
     wx.showLoading({
       title: '裁剪中',
@@ -204,12 +217,34 @@ Page({
   // ---------------------
   // 缩放及旋转 裁剪框的公共方法
 
-  setImgScale1: function() {
-    this.data.scale =  this.data.scale === 1 ? 2: 1
-    this.setImgSize()
-    this.setData({
-      scale: this.data.scale
-    })
+  clearInit: function() {
+    if (this.data.rotate === 0 || this.data.rotate === 180) {
+      const top = parseInt(this.data.y - Math.abs(this.data.imgSize.y))
+      const left = parseInt(this.data.x - Math.abs(this.data.imgSize.x))
+
+      if (top > 0) this.data.y = Math.abs(this.data.imgSize.y)
+      else if (top <= this.data.imgSize.y * 2) this.data.y = this.data.imgSize.y
+
+      if (left <= this.data.imgSize.x * 2) this.data.x = this.data.imgSize.x
+      else if (left > 0) this.data.x = Math.abs(this.data.imgSize.x)
+
+      this.setData({ y: this.data.y, x: this.data.x })
+
+
+    } else if (this.data.rotate === 90 || this.data.rotate === 270) {
+
+      const top = parseInt(this.data.x - Math.abs(this.data.imgSize.y))
+      const left = parseInt(this.data.y - Math.abs(this.data.imgSize.x))
+
+
+      if (top <= this.data.imgSize.y) this.data.x = this.data.imgSize.y
+      else if (top >= 0) this.data.x = Math.abs(this.data.imgSize.y)
+      
+      if (left >= 0) this.data.y = Math.abs(this.data.imgSize.x)
+      else if (left <= this.data.imgSize.x * 2) this.data.y = this.data.imgSize.x
+
+      this.setData({ x: this.data.x, y: this.data.y })
+    }
   },
 
   setOriginAxis: function(event) {
@@ -231,15 +266,16 @@ Page({
     }
     this.data.rotate = d[this.data.rotate]
     this.setData({ 
-      rotate: this.data.rotate,
-      ['origin.val']: 'center'
+      rotate: this.data.rotate
     })
+    // this.clearInit()
   },
 
   // 缩放后、重新计算裁剪框与设备的 差值
   setImgScale: function(scale) {
     this.data.scale = scale
     this.setImgSize()
+    this.clearInit()
     this.setData({ scale, origin: this.data.origin })
   },
 
@@ -254,6 +290,7 @@ Page({
       imgX: (sysInfo.windowWidth  - (imgSize.width * scale)) / 2,
       imgY: (sysInfo.windowHeight - (imgSize.height * scale)) / 2,
     }
+
 
     imgSize.x = diff.imgX - diff.sysX
     imgSize.y = diff.imgY - diff.sysY
