@@ -2,6 +2,11 @@
 
 
 ## v0.3
+
+### 2021/10/25
+- fix aspectFit and aspectFill modes of imgMode component
+- add chooseImage function on the ui.picCrop page
+
 ### 2021/10/21
 - add touchmove and touchend event handling 
 

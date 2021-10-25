@@ -113,13 +113,16 @@ Component({
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
 
-      if (width < height) {
-        h = styleH
-        w = h * scale
-      } else {
-        w = styleW
-        h = w / scale
-      }
+      // if (width > height) {
+      //   h = styleH
+      //   w = h * scale
+      // } else {
+      //   console.log('-')
+      //   w = styleW
+      //   h = w / scale
+      // }
+      w = styleW
+      h = w / scale
       x = (styleW - w) / 2
       y = (styleH - h) / 2
 
@@ -133,19 +136,21 @@ Component({
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
       
-      if (width < height) {
-        w = styleW 
-        h = styleW / scale
-        x = 0
-        y = (styleH - h) / 2
+      // if (width < height) {
+      //   w = styleW 
+      //   h = styleW / scale
+      //   x = 0
+      //   y = (styleH - h) / 2
         
-      } else {
-        w = styleH * scale
-        h = styleH
-        x = (styleW - w) / 2
-        y = 0
+      // } else {
+    
        
-      }
+      // }
+
+      w = styleH * scale
+      h = styleH
+      x = (styleW - w) / 2
+      y = 0
 
       this.drawCanvas({ x, y, w, h })
     },
@@ -299,14 +304,16 @@ Component({
 
    
     // 导出图片
-    drawCanvas: function(data, isCrop) {
+    drawCanvas: async function(data, isCrop) {
       const ctx = wx.createCanvasContext('canvas', this)
       const { styleW:width, styleH: height, src  } = this.data
       const { sx, sy, sw, sh, x = 0, y = 0, w = width, h = height } = data
+      const { pixelRatio } = await wx.getSystemInfo()
 
       wx.getImageInfo({
         src,
         success: res => {
+
           if (isCrop) ctx.drawImage(src, sx, sy, sw, sh, x, y, w, h)
           else ctx.drawImage(src, x, y, w, h)
 
@@ -316,6 +323,8 @@ Component({
               y: 0,
               width,
               height,
+              destWidth: width * pixelRatio,
+              destHeight: height * pixelRatio,
               canvasId: 'canvas',
               success: res => {
                 this.setData({

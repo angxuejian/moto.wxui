@@ -8,6 +8,7 @@ import {
   getRotateAxis
 } from './utils'
 import { drawInitImgSrc, drawCropImgSrc } from './draw'
+const app = getApp()
 
 Page({
 
@@ -15,13 +16,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cropSrc: app.globalData.DEFAULT_IMG,
     imgSrc: '', // 图片地址
     boxSize: { w: 340, h: 340, top: 0, left: 0 }, // 裁剪框大小
     imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' }, // canvas需要裁剪的大小
 
     x: 0,
     y: 0,
-    scale: 1.3,
+    scale: 1,
     rotate: 0,
     origin: { x: 0, y: 0, val: 'center' },
     touch: {
@@ -46,10 +48,23 @@ Page({
 
     // const src = 'https://images.pexels.com/photos/9750382/pexels-photo-9750382.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
 
-    const src = 'https://images.pexels.com/photos/9699289/pexels-photo-9699289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    // const src = 'https://images.pexels.com/photos/9699289/pexels-photo-9699289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
-    this.initImgSrc(src)
+    // 
   },
+
+  onChooseImage: function() {
+    wx.chooseImage({
+      count: 1,
+      success: res => {
+        const src = res.tempFilePaths[0]
+        console.log(res)
+        this.initImgSrc(src)
+      }
+    })
+  },
+
+
 
   // -----------------
   // 1、绘制裁剪框内的 图片
@@ -61,6 +76,7 @@ Page({
     const sys = await wx.getSystemInfo()
     const boxd = {}
 
+    console.log(img)
 
     // 计算裁剪框的最小宽度
     if (this.data.boxSize.w > sys.windowWidth) {
@@ -75,14 +91,22 @@ Page({
 
     // 获取图片的信息、并先图片的宽高绘制canvas标签上
     let list = []
+    console.log(img.width < img.height)
     if (img.width < img.height) {
+
       list = getWidthFix(img.width, img.height, boxSize.w, img.height)
     } else {
-      list = getHeightFix(img.width, img.height, img.width, boxSize.h)
+      console.log('---')
+      console.log(img.width, img.height, img.width, boxSize.h)
+
+      list = getHeightFix(img.height, img.width, img.height, boxSize.h)
     }
+
+    console.log(list)
     imgSize.width  = list[0]
     imgSize.height = list[1]
     this.setData({ imgSize, ...boxd })
+    console.log(imgSize)
 
     imgSize.initSrc = img.path // 背景图片、使用已加载到本地的图片
     imgSize.cropSrc = src      // 裁剪时、使用线上地址图片

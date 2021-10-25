@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: '/assets/b.jpg',
+    src: '/assets/d.jpg',
     isOddNumber: false,
     imgArr: [
       {
