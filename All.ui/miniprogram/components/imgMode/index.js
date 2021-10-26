@@ -113,16 +113,14 @@ Component({
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
 
-      // if (width > height) {
-      //   h = styleH
-      //   w = h * scale
-      // } else {
-      //   console.log('-')
-      //   w = styleW
-      //   h = w / scale
-      // }
-      w = styleW
-      h = w / scale
+      if (width < height) {
+        h = styleH
+        w = h * scale
+      } else {
+        w = styleW
+        h = w / scale
+      }
+
       x = (styleW - w) / 2
       y = (styleH - h) / 2
 
@@ -136,21 +134,18 @@ Component({
       let [x, y, w, h] = []
       const scale = width / height // 宽高比例
       
-      // if (width < height) {
-      //   w = styleW 
-      //   h = styleW / scale
-      //   x = 0
-      //   y = (styleH - h) / 2
+      if (width < height) {
+        w = styleW 
+        h = styleW / scale
+        x = 0
+        y = (styleH - h) / 2
         
-      // } else {
-    
-       
-      // }
-
-      w = styleH * scale
-      h = styleH
-      x = (styleW - w) / 2
-      y = 0
+      } else {
+        w = styleH * scale
+        h = styleH
+        x = (styleW - w) / 2
+        y = 0
+      }
 
       this.drawCanvas({ x, y, w, h })
     },
