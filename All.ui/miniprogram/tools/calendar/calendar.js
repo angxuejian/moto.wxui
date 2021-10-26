@@ -36,6 +36,8 @@ Component({
     TODAY_INDEX: 0,    // 获取当天的索引
     TIMESTAMP: 0,      // 获取当天的时间戳
     SOLAR_TERMS: {},   // 24节气 对应时间表
+    isARow: false,
+    offsetRow: 0
   },
 
 
@@ -74,6 +76,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
+    selectARow: function() {
+      this.data.isARow = !this.data.isARow
+
+      if (this.data.isARow) {
+        // 单行高度为 55px
+        this.data.offsetRow = parseInt(this.data.itoday / 7) * 55
+      } else {
+        this.data.offsetRow = 0
+      }
+
+      this.setData({ isARow: this.data.isARow, offsetRow: this.data.offsetRow })
+    },
+
 
     /**
      * 初始化 阳历 + 获取农历

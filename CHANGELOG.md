@@ -3,6 +3,10 @@
 
 ## v0.3
 
+### 2021/10/26
+- fix aspectFit and aspectFill modes of imgMode component
+- add a row calendars in the calendar component
+
 ### 2021/10/25
 - fix aspectFit and aspectFill modes of imgMode component
 - add chooseImage function on the ui.picCrop page
