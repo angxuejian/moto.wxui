@@ -6,7 +6,7 @@
 
   <view class="avatar">
   
-    <image bindtap="onChooseImage" src="{{cropSrc}}"></image>
+    <image bindtap="onChooseImage" src="{{showSrc}}"></image>
 
 
     <view class="tips">点击选择头像</view>

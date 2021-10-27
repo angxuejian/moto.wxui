@@ -2,6 +2,8 @@
 
 
 ## v0.3
+### 2021/10/27
+- check the ui.picCrop page
 
 ### 2021/10/26
 - fix aspectFit and aspectFill modes of imgMode component

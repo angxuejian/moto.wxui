@@ -16,7 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cropSrc: app.globalData.DEFAULT_IMG,
+    showSrc: app.globalData.DEFAULT_IMG,
     imgSrc: '', // 图片地址
     boxSize: { w: 340, h: 340, top: 0, left: 0 }, // 裁剪框大小
     imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' }, // canvas需要裁剪的大小
@@ -58,7 +58,6 @@ Page({
       count: 1,
       success: res => {
         const src = res.tempFilePaths[0]
-        console.log(res)
         this.initImgSrc(src)
       }
     })
@@ -76,7 +75,6 @@ Page({
     const sys = await wx.getSystemInfo()
     const boxd = {}
 
-    console.log(img)
 
     // 计算裁剪框的最小宽度
     if (this.data.boxSize.w > sys.windowWidth) {
@@ -91,22 +89,17 @@ Page({
 
     // 获取图片的信息、并先图片的宽高绘制canvas标签上
     let list = []
-    console.log(img.width < img.height)
-    if (img.width < img.height) {
 
+    if (img.width < img.height) {
       list = getWidthFix(img.width, img.height, boxSize.w, img.height)
     } else {
-      console.log('---')
-      console.log(img.width, img.height, img.width, boxSize.h)
-
       list = getHeightFix(img.height, img.width, img.height, boxSize.h)
     }
 
-    console.log(list)
     imgSize.width  = list[0]
     imgSize.height = list[1]
     this.setData({ imgSize, ...boxd })
-    console.log(imgSize)
+
 
     imgSize.initSrc = img.path // 背景图片、使用已加载到本地的图片
     imgSize.cropSrc = src      // 裁剪时、使用线上地址图片
@@ -209,8 +202,6 @@ Page({
       this.data.isScale = false
     }
 
-
-    // this.clearInit()
   },
 
 
@@ -233,7 +224,16 @@ Page({
     }
     if (!this.data.cropNode) this.data.cropNode = await getCanvasNode()
     const src = await drawCropImgSrc(d, this.data.cropNode)
-    wx.previewImage({ urls: [src] })
+
+    this.data.imgSrc = ''
+    this.setData({
+      showSrc: src,
+      imgSrc: '',
+      x: 0,
+      y: 0,
+      scale: 1,
+      rotate: 0
+    })
     wx.hideLoading()
   },
 
