@@ -53,7 +53,6 @@ Component({
     COLUMN_INDEX: 0,  // 列的索引
     REGION_LIST: [],  //  省市区数据
     isChange: false,   // 是否点击过确认按钮
-    aRR: []
   },
 
 
