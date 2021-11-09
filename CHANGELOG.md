@@ -1,5 +1,9 @@
 # 更改日志 
 
+## v0.3.1
+### 2021/11/09
+- optimize the config info in the picker component
+
 
 ## v0.3
 ### 2021/10/27
