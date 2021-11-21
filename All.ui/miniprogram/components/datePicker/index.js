@@ -183,14 +183,16 @@ Component({
       const monday = new Date(`${y}-${m + 1}-01`).getDay()
 
       // 补齐 月初之前的空白
-      const sLength = this.data.months[m] - monday
-      for (let i = sLength; i < this.data.months[m]; i++) {
+      const sm = m === 0 ? 11 : m - 1
+      const sLength = this.data.months[sm] - monday
+      for (let i = sLength; i < this.data.months[sm]; i++) {
         this.domCalendar({
           m    : m,
-          d    : i     ,
+          d    : i + 1,
           color: nColor,
         })
       }
+
 
       // 当月的日期
       for (let i = 0; i < this.data.months[m]; i++) {

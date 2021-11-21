@@ -106,11 +106,12 @@ Component({
       const monday = new Date(`${y}-${m + 1}-01`).getDay()
 
       // 补齐 月初之前的空白
-      const sLength = this.data.months[m] - monday
-      for (let i = sLength; i < this.data.months[m]; i++) {
+      const sm = m === 0 ? 11 : m - 1
+      const sLength = this.data.months[sm] - monday
+      for (let i = sLength; i < this.data.months[sm]; i++) {
         this.domCalendar({
           m    : month    ,
-          d    : i        ,
+          d    : i + 1    ,
           color: this.data.nColor,
         })
       }
@@ -230,7 +231,6 @@ Component({
 
       this.setData(data)
 
-      console.log(year, month, day)
       const time = new Date(`${year}-${month + 1}-${day} 00:00:00`).getTime()
 
       wx.setStorage({
