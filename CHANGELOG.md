@@ -1,6 +1,10 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/11/21
+- fix the wrong date in the previous month
+- update festival on date
+
 ### 2021/11/09
 - optimize the config info in the picker component
 
