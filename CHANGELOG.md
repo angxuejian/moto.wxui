@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/11/26
+- calendar add touch slide
+
 ### 2021/11/21
 - fix the wrong date in the previous month
 - update festival on date

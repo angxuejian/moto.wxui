@@ -1,11 +1,16 @@
+import {
+  LANR_ARR,
+  BASIS, LUNAR_MONTH, LUNAR_DAY, SHENGXIAO, TIANGAN,
+  DIZHI, SOLAR_TERMS_MIN, SOLAR_TERMS_CN
+} from './config'
 
-import { LANR_ARR, BASIS, LUNAR_MONTH, LUNAR_DAY, SHENGXIAO, TIANGAN, DIZHI, SOLAR_TERMS_MIN, SOLAR_TERMS_CN  } from './config'
+class Solar {
+  constructor() {
 
-
-class Canlendar {
+  }
 
   /**
-   * 阳历 转 农历
+   * 阳历 转 阴历
    * @param {number} sy 阳历年
    * @param {number} sm 阳历月 0-11
    * @param {number} sd 阳历日
@@ -16,7 +21,7 @@ class Canlendar {
     let ly, lm, ld;
     let day_diff = (Date.UTC(sy, sm, sd) - Date.UTC(1949, 0, 29)) / (24 * 60 * 60 * 1000) + 1;
 
-    // 农历年
+    // 阴历年
     for (let i = 0; i < LANR_ARR.length; i++) {
       let bly = this.clear_binary(LANR_ARR[i])
 
@@ -28,7 +33,7 @@ class Canlendar {
       }
     }
 
-    // 农历月
+    // 阴历月
     const blm = this.clear_binary(LANR_ARR[ly - BASIS])
     const monthDay = this.month_day(blm)
     for (let i = 0; i < monthDay.length; i++) {
@@ -50,8 +55,8 @@ class Canlendar {
   }
 
   /**
-   * 计算 农历每一年的天数
-   * @param {string} ly  2进制农历年
+   * 计算 阴历每一年的天数
+   * @param {string} ly  2进制阴历年
    */
   lunar_year = function (ly) {
 
@@ -65,8 +70,8 @@ class Canlendar {
   }
 
   /**
-   * 农历 确认每个月的天数
-   * @param {string} ly 2进制农历年
+   * 阴历 确认每个月的天数
+   * @param {string} ly 2进制阴历年
    */
   month_day = function (ly) {
     let monthArr = []
@@ -85,8 +90,8 @@ class Canlendar {
 
 
   /**
-   * 农历 确认是否闰月
-   * @param {string} ly 2进制农历年
+   * 阴历 确认是否闰月
+   * @param {string} ly 2进制阴历年
    */
   leap_month = function (ly) {
     const monthDay = ly.slice(ly.length - 4)
@@ -94,8 +99,8 @@ class Canlendar {
   }
 
   /**
-   * 农历 确认闰月是 大月(30天)还是小月(29天) 
-   * @param {string} ly 2进制农历年
+   * 阴历 确认闰月是 大月(30天)还是小月(29天) 
+   * @param {string} ly 2进制阴历年
    */
   leap_day = function (ly) {
     return ly.length > 16 ? 30 : 29
@@ -103,23 +108,23 @@ class Canlendar {
 
   /**
    * 10进制 转 2进制
-   * @param {string} ly 10进制农历年
+   * @param {string} ly 10进制阴历年
    */
   clear_binary = function (ly) {
     return ly.toString(2).padStart(16, 0)
   }
 
   /**
-   * 清洗农历日期 将数字日期转为汉字
-   * @param {number}          ly 农历年
-   * @param {number | string} lm 农历月 1-12 | 1-13
-   * @param {number}          ld 农历日
+   * 清洗阴历日期 将数字日期转为汉字
+   * @param {number}          ly 阴历年
+   * @param {number | string} lm 阴历月 1-12 | 1-13
+   * @param {number}          ld 阴历日
    * @param {boolear}         done 是否return 年月日
    */
-  clear_day = function(ly, lm, ld, done) {
+  clear_day = function (ly, lm, ld, done) {
     let cy, cm, cd;
     ld = ld.toString()
-    if (ld == 1) { 
+    if (ld == 1) {
       cd = this.clear_cn_month(lm)
 
     } else if (ld >= 2 && ld <= 10) {
@@ -130,8 +135,8 @@ class Canlendar {
 
     } else if (ld == 20 || ld == 30) {
       cd = `${LUNAR_DAY[ld[0] - 1]}${LUNAR_DAY[9]}`
-      
-    } else if (ld >= 21 && ld <= 29){
+
+    } else if (ld >= 21 && ld <= 29) {
       cd = `${LUNAR_DAY[11]}${LUNAR_DAY[ld[1] - 1]}`
     }
 
@@ -144,7 +149,7 @@ class Canlendar {
     cy = `${tg}${dz}${sx}年`
 
     let m = lm
-    if(/闰/g.test(lm)) m = lm.split('闰')[1]
+    if (/闰/g.test(lm)) m = lm.split('闰')[1]
 
 
     if (!done) return {
@@ -156,19 +161,19 @@ class Canlendar {
 
   /**
    * 获取中文月份
-   * @param {number} lm 农历月
-   * @param {number} ld 农历日
+   * @param {number} lm 阴历月
+   * @param {number} ld 阴历日
    */
-  clear_cn_month = function(lm, ld) {
+  clear_cn_month = function (lm, ld) {
     lm = lm.toString()
     let m = ''
 
-      if (/^闰/ig.test(lm)) {
-        lm = lm.substring(1)
-        m = `闰${LUNAR_MONTH[lm - 1]}月`
-      } else {
-        m = `${LUNAR_MONTH[lm - 1]}月`
-      }
+    if (/^闰/ig.test(lm)) {
+      lm = lm.substring(1)
+      m = `闰${LUNAR_MONTH[lm - 1]}月`
+    } else {
+      m = `${LUNAR_MONTH[lm - 1]}月`
+    }
 
     return m
   }
@@ -179,23 +184,23 @@ class Canlendar {
    */
   getSolarTerms = (year) => {
 
-    const seconds  = 31556925974.7 //31556925974.7为地球公转周期，是毫秒
+    const seconds = 31556925974.7 //31556925974.7为地球公转周期，是毫秒
     const baseYear = 1890 // 1890年为基准点
     const baseDate = Date.UTC(1890, 0, 5, 16, 2, 31) // 1890年的正小寒点：01-05 16:02:31
 
-  
+
     const getDate = (y, i) => {
-     /**
-      * @param {number} y 阳历年份
-      * @param {number} i 0-23节气 分钟时间索引
-      */
+      /**
+       * @param {number} y 阳历年份
+       * @param {number} i 0-23节气 分钟时间索引
+       */
       let date = new Date((seconds * (y - baseYear) + SOLAR_TERMS_MIN[i] * 60000) + baseDate);
       return date.getUTCDate()
     }
 
     let TERMS = {}
     let m = 0,
-        d = 0;
+      d = 0;
     for (let i = 0; i < 24; i++) {
       d = getDate(year, i);
 
@@ -205,13 +210,13 @@ class Canlendar {
     }
 
     return TERMS
-    }
+  }
 
   /**
    *  将日期统一转为2位数
    * @param {number | string} n 
    */
-  padStart = function(n) {
+  padStart = function (n) {
     n = n.toString()
     return n.padStart(2, 0)
   }
@@ -222,15 +227,21 @@ class Canlendar {
    * @param {number} m 阳历月份（已加 1 ）
    * @returns { y, m }
    */
-  clearMonth = function(y, m) {
+  clearMonth = function (y, m) {
     if (m > 12) {
       y += 1
       m = 1
-    } 
+    } else if (m === 0) {
+      y -= 1
+      m = 12
+    }
 
-    return { y, m }
+    return {
+      y,
+      m
+    }
   }
+
 }
 
-
-export { Canlendar }
+export { Solar } 
