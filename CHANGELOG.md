@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/11/27
+- improve calendar js
+
 ### 2021/11/26
 - calendar add touch slide
 

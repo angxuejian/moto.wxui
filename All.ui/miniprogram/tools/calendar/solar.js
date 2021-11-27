@@ -1,12 +1,16 @@
 import {
   LANR_ARR,
   BASIS, LUNAR_MONTH, LUNAR_DAY, SHENGXIAO, TIANGAN,
-  DIZHI, SOLAR_TERMS_MIN, SOLAR_TERMS_CN
+  DIZHI, SOLAR_TERMS_MIN, SOLAR_TERMS_CN,
+  LUNAR_FESTIVAL, SOLAR_FESTIVAL
 } from './config'
+const d = new Date()
 
 class Solar {
   constructor() {
-
+    this.SOLAR_TERMS = [] // 24节气 对应时间表
+    this.months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // 阳历月份
+    this.TIMESTAMP = new Date(`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`).getTime()
   }
 
   /**
@@ -14,9 +18,11 @@ class Solar {
    * @param {number} sy 阳历年
    * @param {number} sm 阳历月 0-11
    * @param {number} sd 阳历日
-   * @param {boolear} done 是否 return 年月日
    */
-  solar_to_lunar = function (sy, sm, sd, done) {
+  solar_to_lunar = function (sy, sm, sd) {
+
+    this.SOLAR_TERMS = this.getSolarTerms(sy) 
+
     sm -= 1
     let ly, lm, ld;
     let day_diff = (Date.UTC(sy, sm, sd) - Date.UTC(1949, 0, 29)) / (24 * 60 * 60 * 1000) + 1;
@@ -51,7 +57,7 @@ class Solar {
         break
       }
     }
-    return this.clear_day(ly, lm, ld, done)
+    return this.clear_day(ly, lm, ld, { sy, sm:sm + 1, sd})
   }
 
   /**
@@ -119,9 +125,9 @@ class Solar {
    * @param {number}          ly 阴历年
    * @param {number | string} lm 阴历月 1-12 | 1-13
    * @param {number}          ld 阴历日
-   * @param {boolear}         done 是否return 年月日
+   * @param {object}          sd 阳历年月日
    */
-  clear_day = function (ly, lm, ld, done) {
+  clear_day = function (ly, lm, ld, sd) {
     let cy, cm, cd;
     ld = ld.toString()
     if (ld == 1) {
@@ -150,13 +156,28 @@ class Solar {
 
     let m = lm
     if (/闰/g.test(lm)) m = lm.split('闰')[1]
+    
+    const fes = [this.padStart(m), this.padStart(ld)]
+    const s_fes = `${this.padStart(lm)}${this.padStart(ld)}`
+    const l_fes = fes.join(' ').replace(/\s*/ig, '')
 
+    const today = [
+      LUNAR_FESTIVAL[l_fes], // 阴历节日
+      SOLAR_FESTIVAL[s_fes], // 阳历节日
+      this.SOLAR_TERMS[s_fes], // 节气
+    ].filter(item => item && item)
 
-    if (!done) return {
-      fes: [this.padStart(m), this.padStart(ld)],
-      day: cd
+    return {
+      date: [sd.sy, sd.sm, sd.sd].join('-'),
+      year: sd.sy,
+      month: sd.sm,
+      day: sd.sd,
+      lunar: `${cy} ${cm}${cd}`,
+      year_lunar: cy,
+      month_lunar: cm,
+      day_lunar: cd,
+      festival: [...today]
     }
-    else return `${cy} ${cm}${cd}`
   }
 
   /**
