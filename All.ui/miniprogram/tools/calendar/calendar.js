@@ -21,22 +21,25 @@ Component({
 
     TODAY_INDEX: 0, // 获取当天的索引
     TIMESTAMP: 0, // 获取当天的时间戳
-    SOLAR_TERMS: {}, // 24节气 对应时间表
     isARow: false,
     offsetRow: 0,
-    current: 1
+    current: 1,
+    listDay: []
   },
 
 
   attached: async function () {
-
-    const last = await Calen.getDays(2021, 10)
-    const curr = await Calen.getDays(2021, 11)
-    const next = await Calen.getDays(2021, 12)
     
-    this.renderCalendar(2021, 11, 27)
+    const { last, curr, next } = Calen.getAdjacentMonths(new Date())
+
+    const lastMonth = await Calen.getDays(last.yy, last.mm)
+    const currMonth = await Calen.getDays(curr.yy, curr.mm)
+    const nextMonth = await Calen.getDays(next.yy, next.mm)
+
+    console.log(nextMonth)
+    this.renderCalendar(curr.yy, curr.mm, curr.dd)
     this.setData({
-      listDay: [last, curr, next],
+      listDay: [lastMonth, currMonth, nextMonth],
     })
   },
 
@@ -48,10 +51,10 @@ Component({
 
     setCurrentDay: async function(event) {
 
-      const { current } = event.detail
-      const curDays = this.data.listDay[current]
-      const dayTime = new Date(curDays[10].time)
-      const axis = current - this.data.current
+      const dotIndex = event.detail.current
+      const curDays = this.data.listDay[dotIndex][10]
+      const monthTime = new Date(curDays.time)
+      const axis = dotIndex - this.data.current
 
       let index = 1
 
@@ -60,7 +63,7 @@ Component({
         if (this.data.current === 2) this.data.current = -1
 
         index = this.data.current + 1
-        dayTime.setMonth(dayTime.getMonth() + 1)
+        monthTime.setMonth(monthTime.getMonth() + 1)
       } else {
         this.data.current--
         if (this.data.current === -1) this.data.current = 2
@@ -68,17 +71,29 @@ Component({
         if (this.data.current === -2) this.data.current = 1
 
         index = this.data.current === 1 ? 0 : this.data.current + 2
-        dayTime.setMonth(dayTime.getMonth() - 1)
+        monthTime.setMonth(monthTime.getMonth() - 1)
       }
 
-      const d = new Date(dayTime.getTime())
+      const d = new Date(monthTime.getTime())
       const day = await Calen.getDays(d.getFullYear(), d.getMonth() + 1)
 
-      if (current === 2) this.setDays(index, day)
-      else if (current === 0) this.setDays(index, day)
-      else if (current === 1) this.setDays(index, day)
+      if (dotIndex === 2) this.setDays(index, day)
+      else if (dotIndex === 0) this.setDays(index, day)
+      else if (dotIndex === 1) this.setDays(index, day)
 
-      // this.renderCalendar(curDays)
+      const firstTime = [curDays.year, curDays.month, 1].join('-')
+
+      const itoday = this.data.listDay[dotIndex].findIndex(item => item.date === firstTime)
+      this.setData({
+        itoday: itoday,
+        calendar: {
+          year: this.data.listDay[dotIndex][itoday].year,
+          month: this.data.listDay[dotIndex][itoday].month,
+          lunar: this.data.listDay[dotIndex][itoday].lunar
+        }
+      })
+      // console.log(curDays)
+      // this.renderCalendar(curDays.year, curDays.month, 1)
     },
 
     setDays: function(index, day) {
@@ -114,7 +129,6 @@ Component({
     renderCalendar: function (y, m, d) {
 
       const calendar = Calen.solar_to_lunar(y, m, d)
-      console.log(calendar, '')
       this.setData({
         calendar
       })

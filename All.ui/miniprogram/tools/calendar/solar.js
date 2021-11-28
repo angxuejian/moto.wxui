@@ -130,10 +130,11 @@ class Solar {
   clear_day = function (ly, lm, ld, sd) {
     let cy, cm, cd;
     ld = ld.toString()
-    if (ld == 1) {
-      cd = this.clear_cn_month(lm)
+    // if (ld == 1) {
+    //   cd = `${LUNAR_DAY[10]}${LUNAR_DAY[ld - 1]}`
 
-    } else if (ld >= 2 && ld <= 10) {
+    // } else 
+    if (ld >= 1 && ld <= 10) {
       cd = `${LUNAR_DAY[10]}${LUNAR_DAY[ld - 1]}`
 
     } else if (ld >= 11 && ld <= 19) {
@@ -158,7 +159,7 @@ class Solar {
     if (/闰/g.test(lm)) m = lm.split('闰')[1]
     
     const fes = [this.padStart(m), this.padStart(ld)]
-    const s_fes = `${this.padStart(lm)}${this.padStart(ld)}`
+    const s_fes = `${this.padStart(sd.sm)}${this.padStart(sd.sd)}`
     const l_fes = fes.join(' ').replace(/\s*/ig, '')
 
     const today = [

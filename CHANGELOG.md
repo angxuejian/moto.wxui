@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021//11/28
+- fix festival error problem and add calendar title
+
 ### 2021/11/27
 - improve calendar js
 

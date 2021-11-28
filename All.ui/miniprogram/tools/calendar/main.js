@@ -108,9 +108,10 @@ class Calendar extends Solar {
     }
   }
 
-  getAdjacentMonths(type, d) {
+  getAdjacentMonths(d) {
 
     const last = new Date(d)
+    const curr = new Date(d)
     const next = new Date(d)
     
     last.setMonth(last.getMonth() - 1)
@@ -119,12 +120,17 @@ class Calendar extends Solar {
     next.setMonth(next.getMonth() + 1)
     next.setDate(1)
 
-    const data = {}
-
-    if (!type || type === 1) data.lastMonth = this.getFormat(last)
-    if (!type || type === 2) data.nextMonth = this.getFormat(next)
-
-    return data
+    return {
+      last: this.getFormat(last),
+      curr: this.getFormat(curr),
+      next: this.getFormat(next)
+    }
+  }
+  getFormat(d) {
+    const yy = d.getFullYear()
+    const mm = d.getMonth() + 1
+    const dd = d.getDate()
+    return { yy, mm, dd }
   }
 }
 
