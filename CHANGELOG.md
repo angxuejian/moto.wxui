@@ -2,6 +2,7 @@
 
 ## v0.3.1
 ### 2021/11/29
+- fix the issue that "weeks" is empty
 - improve calendar js and add swiper to the calendar page
 
 ### 2021/11/28

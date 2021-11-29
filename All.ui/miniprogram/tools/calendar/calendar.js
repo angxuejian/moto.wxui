@@ -18,8 +18,8 @@ Component({
   data: {
     isARow: false,
     offsetRow: 0,
+    weeks   : ['日', '一', '二', '三', '四', '五', '六'], // 星期
     calendar: {}, // 每天的信息
-
     current: 1,  // 计算swiper 左滑or右滑
     dayIndex: 0, // 日索引
     listMonth: [], // 三个月的日历的信息
