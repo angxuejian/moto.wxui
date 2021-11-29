@@ -1,7 +1,10 @@
 # 更改日志 
 
 ## v0.3.1
-### 2021//11/28
+### 2021/11/29
+- improve calendar js and add swiper to the calendar page
+
+### 2021/11/28
 - fix festival error problem and add calendar title
 
 ### 2021/11/27

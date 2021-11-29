@@ -42,13 +42,13 @@ class Calendar extends Solar {
         list.push(this.formatDate({
           y: year, m: M + 1,
           d: i + 1, color: this.tColor,
+          current: true
         }))
       }
 
 
        // 下月日期
-       // (list.length > 35 ? 42 : 35)
-       const elength = 42 - list.length
+       const elength = (list.length > 35 ? 42 : 35) - list.length
        for (let i = 0; i < elength; i++) {
          list.push(this.formatDate({
            y: year, m: M + 2,
@@ -67,6 +67,7 @@ class Calendar extends Solar {
    * @param {number} params.m 月
    * @param {number} params.d 日
    * @param {string} params.color 颜色代码
+   * @param {boolean} params.current 是否为当前月
    */
   formatDate(params) {
     const { y, m } = this.clearMonth(params.y, params.m)
@@ -77,7 +78,7 @@ class Calendar extends Solar {
     let l_color = null  // 节假日字体颜色
     let b_color = null  // 今天背景颜色
 
-    if (current === this.TIMESTAMP) {
+    if (current === this.TIMESTAMP && params.current) {
       color   = this.dColor
       l_color = this.dColor
       b_color = this.bColor
