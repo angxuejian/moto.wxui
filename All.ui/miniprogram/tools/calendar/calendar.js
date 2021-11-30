@@ -1,6 +1,6 @@
 // components/calendar/calendar.js
 const app = getApp()
-
+import { throttle } from '../../utils/util'
 import { Calendar } from './main'
 const Calen = new Calendar()
 
@@ -24,19 +24,25 @@ Component({
     dayIndex: 0, // 日索引
     listMonth: [], // 三个月的日历的信息
     monthIndex: 1, // 月索引
+    listWeek: [],  // 三个周的日历的信息
+    listData: [],  // 月或者周列表
+    listHeight: 0, // 列表高度; 
+    dayHeight: 55, // .content高度 = 45高度 + 10上下外边距
   },
 
 
   attached: async function () {
     const { last, curr, next } = Calen.getAdjacentMonths(new Date())
-
     const lastMonth = await Calen.getDays(last.yy, last.mm)
     const currMonth = await Calen.getDays(curr.yy, curr.mm)
     const nextMonth = await Calen.getDays(next.yy, next.mm)
 
     this.renderCalendar(curr.yy, curr.mm, curr.dd, currMonth)
+    this.data.listMonth = [lastMonth, currMonth, nextMonth]
+
     this.setData({
-      listMonth: [lastMonth, currMonth, nextMonth],
+      listData: this.data.listMonth,
+      listHeight: this.setListHeight(currMonth)
     })
   },
 
@@ -45,6 +51,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
 
     setCurrentDay: function(event) {
       const dotIndex = event.detail.current
@@ -91,7 +98,7 @@ Component({
       const setDays = () => {
         this.data.listMonth.splice(dayIndex, 1, day)
         this.setData({
-          ['listMonth[' + dayIndex + ']']: this.data.listMonth[dayIndex],
+          ['listData[' + dayIndex + ']']: this.data.listMonth[dayIndex],
         })
       }
 
@@ -106,16 +113,12 @@ Component({
      * @param {number | string} m 阳历月 1 - 12
      * @param {number | string} d 阳历日
      */
-    renderCalendar: function (y, m, d, dotItem) {
-
+    renderCalendar: function (y, m, d, dotItem, timer = 500) {
       const time = new Date([y, m, d].join('-')).getTime()
       const dayIndex = dotItem.findIndex(s => s.time === time)
-      setTimeout(() => { this.setCalendar(dayIndex, dotItem) }, 500)
+      setTimeout(() => { this.setCalendar(dayIndex, dotItem) }, timer)
     },
     
-    /**
-     * 选择日期
-     */
     selectDate: function (event) {
       const { i, index } = event.currentTarget.dataset
 
@@ -125,7 +128,7 @@ Component({
       const nowMon = new Date([this.data.calendar.year, this.data.calendar.month, 1].join('-'))
       const target = new Date(curDays.time)
 
-      if (this.data.calendar.month === curDays.month) {
+      if ((this.data.calendar.month === curDays.month) || this.data.isARow) {
         this.setCalendar(index, dotItem)
       } else {
 
@@ -139,7 +142,6 @@ Component({
         this.setMonthIndex()
       }
     },
-
     setCalendar: function(dayIndex, item) {
       this.data.dayIndex = dayIndex
       this.setData({
@@ -148,27 +150,54 @@ Component({
         ['calendar.year']: item[dayIndex].year,
         ['calendar.month']: item[dayIndex].month,
         ['calendar.lunar']: item[dayIndex].lunar,
+        listHeight: this.setListHeight(item)
       })
     },
-
     setMonthIndex: function() {
       this.setData({ monthIndex: this.data.monthIndex })
     },
-
-    selectARow: function () {
+    setListHeight: function(list) {
+      // 35: 月长度(35 or 42)
+      // 275和330: .swiper高度
+      return list.length === 35 ? 275 : 330
+    },
+    selectARow: async function () {
       this.data.isARow = !this.data.isARow
 
-      if (this.data.isARow) {
-        // 单行高度为 55px
-        this.data.offsetRow = parseInt(this.data.dayIndex / 7) * 55
-      } else {
-        this.data.offsetRow = 0
-      }
+      this.data.offsetRow = this.data.isARow ? parseInt(this.data.dayIndex / 7) * this.data.dayHeight : 0
 
       this.setData({
         isARow: this.data.isARow,
         offsetRow: this.data.offsetRow
       })
+
+      if (!this.data.isARow) {
+
+        // const [last, curr, next] = this.getMonthIndex()
+        // this.renderCalendar(this.data.calendar.year, this.data.calendar.month, this.data.calendar.day, this.data.listMonth[this.data.weekIndex], 0)
+
+        // this.setData({
+        //   ['listData[' + last.index + ']']: await Calen.getDays(last.yy, last.mm),
+        //   ['listData[' + curr.index + ']']: this.data.listMonth[this.data.weekIndex],
+        //   ['listData[' + next.index + ']']: await Calen.getDays(next.yy, next.mm),
+        //   listHeight: this.setListHeight(this.data.listMonth[this.data.weekIndex])
+        // })
+      }
     },
+    // getMonthIndex: function() {
+
+    //   const arr = [this.data.monthIndex - 1, this.data.monthIndex, this.data.monthIndex + 1].map(item => {
+    //     if (item === 3) item = 0
+    //     if (item === -1) item = 2
+    //     return item
+    //   })
+    //   const date = [this.data.calendar.year, this.data.calendar.month - 1, this.data.calendar.day].join('-')
+    //   const { last, curr, next } = Calen.getAdjacentMonths(new Date(date))
+
+    //   return [last, curr, next].map((item, index) => {
+    //     item.index = arr[index]
+    //     return item
+    //   })
+    // }
   }
 })

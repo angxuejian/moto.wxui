@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/11/30
+- add transition effects on the calendar page
+
 ### 2021/11/29
 - fix the issue that "weeks" is empty
 - improve calendar js and add swiper to the calendar page

@@ -1,5 +1,11 @@
 /* components/calendar/calendar.wxss */
 page {
+  padding: 0;
+}
+.calendar {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
   padding-top: 30px;
 }
 
@@ -28,20 +34,15 @@ page {
 .date .week {
   line-height: 25px;
 }
-.date .title {
-  width: 100%;
-}
-.date .day .title {
-  max-height: 330px;
-  /* 是否加载 过渡动画 */
-  /* transition: max-height 0.3s; */
-}
-.date .a-row {
-  width: 100%;
-  max-height: 55px !important;
-  overflow: hidden;
-}
 
+.date .swiper {
+  transition: all 0.3s;
+  height: 275px;
+}
+.date .title {
+  transition: all 0.3s;
+  margin-top: 0;
+}
 .date .contents {
   display: flex;
   flex-wrap: wrap;
@@ -73,11 +74,11 @@ page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  font-weight: 700;
 }
 
 .date .item-day view:nth-of-type(2) {
-  font-size: 20rpx;
+  font-size: 19rpx;
   color: #C2C1C1;
   font-weight: 100;
 }
@@ -89,6 +90,8 @@ page {
 .select-item view {
   color: #fff !important;
 }
+
+
 
 .date .day .line {
   margin-top: 6px;

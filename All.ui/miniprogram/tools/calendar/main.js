@@ -77,11 +77,13 @@ class Calendar extends Solar {
     let color   = params.color // 阳历字体颜色
     let l_color = null  // 节假日字体颜色
     let b_color = null  // 今天背景颜色
+    let w_color = this.tColor // 周颜色
 
     if (current === this.TIMESTAMP && params.current) {
       color   = this.dColor
       l_color = this.dColor
       b_color = this.bColor
+      w_color = this.dColor
     }
 
     const calendar = this.solar_to_lunar(y, m, d)
@@ -95,6 +97,7 @@ class Calendar extends Solar {
       today,
       l_color: l_color,
       b_color: b_color,
+      w_color: w_color, 
       ...calendar
     }
   }
