@@ -21,7 +21,7 @@
 
     <view class="day">
       <!-- indicator-dots -->
-      <swiper class="swiper"  circular bindanimationfinish='setMonthIndex' bindchange="setCurrentDay"  current="{{monthIndex}}" style="height: {{isARow ? dayHeight : listHeight}}px;">
+      <swiper  class="swiper"  circular bindanimationfinish='setMonthIndex' bindchange="onCallbackSwiperChange"  current="{{monthIndex}}" style="height: {{isARow ? dayHeight : listHeight}}px;">
         <swiper-item wx:for='{{listData}}' wx:for-item='listDay' wx:for-index='i'>
           <view style="margin-top: {{isARow ? (-offsetRow) : 0}}px;" class="title">
             <view class="contents">

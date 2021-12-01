@@ -22,9 +22,13 @@ Component({
     calendar: {}, // 每天的信息
     current: 1,  // 计算swiper 左滑or右滑
     dayIndex: 0, // 日索引
+    dayType: 'curr', // last:上月, curr:本月, next:下月, week:周
+
     listMonth: [], // 三个月的日历的信息
     monthIndex: 1, // 月索引
+
     listWeek: [],  // 三个周的日历的信息
+
     listData: [],  // 月或者周列表
     listHeight: 0, // 列表高度; 
     dayHeight: 55, // .content高度 = 45高度 + 10上下外边距
@@ -52,20 +56,22 @@ Component({
    */
   methods: {
 
-
-    setCurrentDay: function(event) {
+    onCallbackSwiperChange: function(event) {
       const dotIndex = event.detail.current
-      const dotItem = this.data.listMonth[dotIndex]
-      const curDays = dotItem[10]
-
       this.data.monthIndex = dotIndex
 
-      if (this.data.calendar.day > Calen.months[curDays.month - 1]) {
-        this.data.calendar.day = Calen.months[curDays.month - 1]
-      }
+      if (this.data.dayType !== 'week') {
+        const dotItem = this.data.listMonth[dotIndex]
+        const curDays = dotItem[10]
 
-      this.renderCalendar(curDays.year, curDays.month, this.data.calendar.day, dotItem)
-      this.getNextMonth(dotIndex, curDays.time)
+        if (this.data.calendar.day > Calen.months[curDays.month - 1]) {
+          this.data.calendar.day = Calen.months[curDays.month - 1]
+        }
+        this.renderCalendar(curDays.year, curDays.month, this.data.calendar.day, dotItem)
+        this.getNextMonth(dotIndex, curDays.time)
+      } else {
+        // this.setData({ offsetRow: 0 })
+      }
     },
 
     // 获取下下月的 日历信息
@@ -119,29 +125,7 @@ Component({
       setTimeout(() => { this.setCalendar(dayIndex, dotItem) }, timer)
     },
     
-    selectDate: function (event) {
-      const { i, index } = event.currentTarget.dataset
-
-      const dotItem = this.data.listMonth[i]
-      const curDays = dotItem[index]
-
-      const nowMon = new Date([this.data.calendar.year, this.data.calendar.month, 1].join('-'))
-      const target = new Date(curDays.time)
-
-      if ((this.data.calendar.month === curDays.month) || this.data.isARow) {
-        this.setCalendar(index, dotItem)
-      } else {
-
-        if (nowMon < target) this.data.monthIndex += 1
-        else this.data.monthIndex -= 1
-
-        if (this.data.monthIndex === 3) this.data.monthIndex = 0
-        if (this.data.monthIndex === -1) this.data.monthIndex = 2
-
-        this.data.calendar.day = curDays.day
-        this.setMonthIndex()
-      }
-    },
+    
     setCalendar: function(dayIndex, item) {
       this.data.dayIndex = dayIndex
       this.setData({
@@ -161,7 +145,36 @@ Component({
       // 275和330: .swiper高度
       return list.length === 35 ? 275 : 330
     },
-    selectARow: async function () {
+
+    selectDate: function (event) {
+      const { i, index } = event.currentTarget.dataset
+
+      const dotItem = this.data.listMonth[i]
+      const curDays = dotItem[index]
+      const curMonth = this.data.listMonth[this.data.monthIndex][10]
+
+      const nowMon = new Date([curMonth.year, curMonth.month, 1].join('-'))
+      const target = new Date(curDays.time)
+
+      if (curMonth.month === curDays.month) {
+        this.data.dayType = 'curr'  // 本月
+        this.setCalendar(index, dotItem)
+      } else {
+    
+        if (nowMon < target) this.data.dayType = 'next'   // 下个月
+        else this.data.dayType = 'last'  // 上个月
+
+        // 在周模式下、选择上月或者下月不调转swiper
+        if (this.data.isARow) {
+          this.setCalendar(index, dotItem)
+        } else {
+          this.data.monthIndex = this.cleanMonthIndex(this.data.monthIndex)
+          this.data.calendar.day = curDays.day
+          this.setMonthIndex()
+        }
+      }
+    },
+    selectARow: function () {
       this.data.isARow = !this.data.isARow
 
       this.data.offsetRow = this.data.isARow ? parseInt(this.data.dayIndex / 7) * this.data.dayHeight : 0
@@ -171,33 +184,81 @@ Component({
         offsetRow: this.data.offsetRow
       })
 
-      if (!this.data.isARow) {
-
-        // const [last, curr, next] = this.getMonthIndex()
-        // this.renderCalendar(this.data.calendar.year, this.data.calendar.month, this.data.calendar.day, this.data.listMonth[this.data.weekIndex], 0)
-
-        // this.setData({
-        //   ['listData[' + last.index + ']']: await Calen.getDays(last.yy, last.mm),
-        //   ['listData[' + curr.index + ']']: this.data.listMonth[this.data.weekIndex],
-        //   ['listData[' + next.index + ']']: await Calen.getDays(next.yy, next.mm),
-        //   listHeight: this.setListHeight(this.data.listMonth[this.data.weekIndex])
-        // })
+      // 周模式下、选择非本月日期时重新渲染上月本月下月日历
+      const authType = ['curr', 'week']
+      if (!this.data.isARow && !authType.includes(this.data.dayType)) {
+        this.updateListMonth()
+      } 
+      // 切换成周模式
+      else if (this.data.isARow) {
+        console.log('周模式')
+        // this.setListWeek()
       }
     },
-    // getMonthIndex: function() {
 
-    //   const arr = [this.data.monthIndex - 1, this.data.monthIndex, this.data.monthIndex + 1].map(item => {
-    //     if (item === 3) item = 0
-    //     if (item === -1) item = 2
-    //     return item
-    //   })
-    //   const date = [this.data.calendar.year, this.data.calendar.month - 1, this.data.calendar.day].join('-')
-    //   const { last, curr, next } = Calen.getAdjacentMonths(new Date(date))
 
-    //   return [last, curr, next].map((item, index) => {
-    //     item.index = arr[index]
-    //     return item
-    //   })
-    // }
+    setListWeek: function() {
+      this.data.dayType = 'week' // 周
+      const currIndex = this.data.monthIndex
+      const { year, month, day } = this.data.calendar
+      const indexs = [currIndex - 1, currIndex + 1].map(this.cleanMonthIndex, this)
+      
+      const { last, next } = Calen.getAdjacentWeeks([year, month, day].join('-'))
+      const lastWeek = Calen.getWeeks(last.yy, last.mm, last.dd)
+      const nextWeek = Calen.getWeeks(next.yy, next.mm, next.dd)
+      
+      this.data.listWeek = [lastWeek, nextWeek]
+
+      this.setData({
+        ['listData[' + indexs[0] + ']'] : lastWeek,
+        ['listData[' + indexs[1] + ']'] : nextWeek,
+      })
+
+      console.log(this.data.listData, '---')
+    },
+
+    updateListMonth: async function() {
+      // 切换到本月数据
+      const currIndex = this.data.monthIndex
+      const lastNextIndex = this.cleanMonthIndex(currIndex) // 上月或者下月的索引
+      const currItem  = this.data.listMonth[lastNextIndex]
+      
+      // 切换到本月后的上月或下月数据
+      const oldIndex = this.cleanMonthIndex(lastNextIndex)
+      const oldItem = this.data.listMonth[currIndex]
+
+      // 新的月份数据
+      const newIndex = [0,1,2].find(s => ![currIndex, oldIndex].includes(s))
+      const newDate = new Date(currItem[10].time)
+      if (this.data.dayType === 'last') newDate.setMonth(newDate.getMonth() - 1)
+      else newDate.setMonth(newDate.getMonth() + 1)
+      const newItem = await Calen.getDays(newDate.getFullYear(), newDate.getMonth() + 1)
+
+      // 更新标题日历信息
+      const { year, month, day } = this.data.calendar
+      this.renderCalendar(year, month, day, currItem, 0)
+
+      this.setData({
+        ['listData[' + newIndex + ']'] : newItem,
+        ['listData[' + oldIndex + ']'] : oldItem,
+        ['listData[' + currIndex + ']']: currItem,
+      })
+
+      this.data.dayType = 'curr'
+      this.data.listMonth[currIndex] = currItem
+      this.data.listMonth[oldIndex]  = oldItem
+      this.data.listMonth[newIndex]  = newItem
+    },
+    cleanMonthIndex: function(index) {
+      let i = index
+
+      if (this.data.dayType === 'next') i += 1
+      else if (this.data.dayType === 'last') i -= 1
+
+      if (i === 3) i = 0
+      if (i === -1) i = 2
+
+      return i
+    }
   }
 })

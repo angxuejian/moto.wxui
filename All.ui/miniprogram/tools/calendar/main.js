@@ -113,7 +113,6 @@ class Calendar extends Solar {
   }
 
   getAdjacentMonths(d) {
-
     const last = new Date(d)
     const curr = new Date(d)
     const next = new Date(d)
@@ -135,6 +134,43 @@ class Calendar extends Solar {
     const mm = d.getMonth() + 1
     const dd = d.getDate()
     return { yy, mm, dd }
+  }
+
+  getWeeks(year, month, day) {
+    const list = []
+    for (let i = 0; i < 7; i++) {
+      const d = new Date([year, month, day].join('-'))
+      d.setDate(d.getDate() + i)
+
+      const { yy, mm, dd } = this.getFormat(d)
+      list.push(this.formatDate({
+        y: yy, m: mm,
+        d: dd, color: this.tColor,
+        current: true
+      }))
+    }
+
+    return list
+  }
+
+  getAdjacentWeeks(d, base = 0) {
+    const last = new Date(d)
+    const next = new Date(d)
+    const min = base ? 1 : 0
+
+    last.setDate(last.getDate() - 7)
+    next.setDate(next.getDate() + 7)
+    
+    const lastStart = new Date(last.getTime())
+    const nextStart = new Date(next.getTime())
+
+    lastStart.setDate(lastStart.getDate() + min - lastStart.getDay())
+    nextStart.setDate(nextStart.getDate() + min - nextStart.getDay())
+
+    return {
+      last: this.getFormat(lastStart),
+      next: this.getFormat(nextStart)
+    }
   }
 }
 
