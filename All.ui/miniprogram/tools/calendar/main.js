@@ -14,49 +14,46 @@ class Calendar extends Solar {
   }
 
   getDays(year, month) {
-    return new Promise((resolve, reject) => {
-      const list = []
-      const M = month - 1
+    const list = []
+    const M = month - 1
 
-      if (M < 0) { 
-        console.log('错误')
-        return
-      }
-      if (M === 1) this.leapMonth(year)
+    if (M < 0) { 
+      console.log('错误')
+      return
+    }
+    if (M === 1) this.leapMonth(year)
 
+    // 上月日期
+    const monday = new Date(`${year}-${month}-01`).getDay()
+    const SM = M === 0 ? 11 : M - 1
+    const sLength = this.months[SM] - monday
+    for (let i = sLength; i < this.months[SM]; i++) {
+      list.push(this.formatDate({
+        y: year, m: M, 
+        d: i + 1, 
+        color: this.nColor,
+      }))
+    }
 
-      // 上月日期
-      const monday = new Date(`${year}-${month}-01`).getDay()
-      const SM = M === 0 ? 11 : M - 1
-      const sLength = this.months[SM] - monday
-      for (let i = sLength; i < this.months[SM]; i++) {
-        list.push(this.formatDate({
-          y: year, m: M, 
-          d: i + 1, 
-          color: this.nColor,
-        }))
-      }
-
-      // 当月日期
-      for (let i = 0; i < this.months[M]; i++) {
-        list.push(this.formatDate({
-          y: year, m: M + 1,
-          d: i + 1, color: this.tColor,
-          current: true
-        }))
-      }
+    // 当月日期
+    for (let i = 0; i < this.months[M]; i++) {
+      list.push(this.formatDate({
+        y: year, m: M + 1,
+        d: i + 1, color: this.tColor,
+        current: true
+      }))
+    }
 
 
-       // 下月日期
-       const elength = (list.length > 35 ? 42 : 35) - list.length
-       for (let i = 0; i < elength; i++) {
-         list.push(this.formatDate({
-           y: year, m: M + 2,
-           d: i + 1, color: this.nColor,
-         }))
-       }
-       resolve(list)
-    })
+    // 下月日期
+    const elength = (list.length > 35 ? 42 : 35) - list.length
+    for (let i = 0; i < elength; i++) {
+      list.push(this.formatDate({
+        y: year, m: M + 2,
+        d: i + 1, color: this.nColor,
+      }))
+    }
+    return list
 
   }
 
@@ -102,7 +99,6 @@ class Calendar extends Solar {
     }
   }
 
-
   /**
   * 阳历 确认二月份 是28天还是29天
   */
@@ -112,6 +108,7 @@ class Calendar extends Solar {
     }
   }
 
+  // 获取上月本月下月数据
   getAdjacentMonths(d) {
     const last = new Date(d)
     const curr = new Date(d)
@@ -136,10 +133,16 @@ class Calendar extends Solar {
     return { yy, mm, dd }
   }
 
-  getWeeks(year, month, day) {
+  getWeeks(year, month, day, row) {
     const list = []
+    const date = [year, month, day].join('-')
+
+    for (let i = 0; i < (row * 7); i++) {
+      list.push({ solar: 0 })
+    }
+
     for (let i = 0; i < 7; i++) {
-      const d = new Date([year, month, day].join('-'))
+      const d = new Date(date)
       d.setDate(d.getDate() + i)
 
       const { yy, mm, dd } = this.getFormat(d)
@@ -152,9 +155,23 @@ class Calendar extends Solar {
 
     return list
   }
+  getOnlyWeeks(d, t) {
+    const curr = new Date(d)
+    const min = 0
+
+
+    if (!t) curr.setDate(curr.getDate() - 7)
+    else curr.setDate(curr.getDate() + 7)
+    
+    const start = new Date(curr.getTime())
+    start.setDate(start.getDate() + min - start.getDay())
+
+    return this.getFormat(start)
+  }
 
   getAdjacentWeeks(d, base = 0) {
     const last = new Date(d)
+    const curr = new Date(d)
     const next = new Date(d)
     const min = base ? 1 : 0
 
@@ -165,10 +182,12 @@ class Calendar extends Solar {
     const nextStart = new Date(next.getTime())
 
     lastStart.setDate(lastStart.getDate() + min - lastStart.getDay())
+    curr.setDate(curr.getDate() + min - curr.getDay())
     nextStart.setDate(nextStart.getDate() + min - nextStart.getDay())
 
     return {
       last: this.getFormat(lastStart),
+      curr: this.getFormat(curr),
       next: this.getFormat(nextStart)
     }
   }

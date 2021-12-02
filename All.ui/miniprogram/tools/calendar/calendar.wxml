@@ -21,14 +21,14 @@
 
     <view class="day">
       <!-- indicator-dots -->
-      <swiper  class="swiper"  circular bindanimationfinish='setMonthIndex' bindchange="onCallbackSwiperChange"  current="{{monthIndex}}" style="height: {{isARow ? dayHeight : listHeight}}px;">
+      <swiper  class="swiper"  circular bindanimationfinish='setListIndex' bindchange="onCallbackSwiperChange"  current="{{listIndex}}" style="height: {{isARow ? dayHeight : listHeight}}px;">
         <swiper-item wx:for='{{listData}}' wx:for-item='listDay' wx:for-index='i'>
           <view style="margin-top: {{isARow ? (-offsetRow) : 0}}px;" class="title">
             <view class="contents">
               <block wx:for="{{listDay}}" wx:key='index'>
                 <view bindtap="selectDate" data-i='{{i}}' data-index='{{index}}'
                   style="color: {{ isARow ? item.w_color : item.color}}; background-color: {{ item.b_color}}"
-                  class="content item-day {{monthIndex === i && dayIndex === index && 'select-item'}}">
+                  class="content item-day {{listIndex === i && dayIndex === index && 'select-item'}}">
                   <view>{{item.solar}}</view>
                   <view style="color:{{item.l_color}};">{{item.today[item.today.length - 1]}}</view>
                 </view>
