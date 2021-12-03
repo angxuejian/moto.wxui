@@ -126,12 +126,7 @@ class Calendar extends Solar {
       next: this.getFormat(next)
     }
   }
-  getFormat(d) {
-    const yy = d.getFullYear()
-    const mm = d.getMonth() + 1
-    const dd = d.getDate()
-    return { yy, mm, dd }
-  }
+
 
   getWeeks(year, month, day, row) {
     const list = []
@@ -155,41 +150,34 @@ class Calendar extends Solar {
 
     return list
   }
-  getOnlyWeeks(d, t) {
+  getOnlyWeeks(d, t, month = false) {
     const curr = new Date(d)
     const min = 0
 
+    if (!month) {
+      if (!t) curr.setDate(curr.getDate() - 7)
+      else curr.setDate(curr.getDate() + 7)
+    }
 
-    if (!t) curr.setDate(curr.getDate() - 7)
-    else curr.setDate(curr.getDate() + 7)
-    
     const start = new Date(curr.getTime())
     start.setDate(start.getDate() + min - start.getDay())
 
     return this.getFormat(start)
   }
 
-  getAdjacentWeeks(d, base = 0) {
-    const last = new Date(d)
-    const curr = new Date(d)
-    const next = new Date(d)
-    const min = base ? 1 : 0
-
-    last.setDate(last.getDate() - 7)
-    next.setDate(next.getDate() + 7)
-    
-    const lastStart = new Date(last.getTime())
-    const nextStart = new Date(next.getTime())
-
-    lastStart.setDate(lastStart.getDate() + min - lastStart.getDay())
-    curr.setDate(curr.getDate() + min - curr.getDay())
-    nextStart.setDate(nextStart.getDate() + min - nextStart.getDay())
-
+  getAdjacentWeeks(d) {
     return {
-      last: this.getFormat(lastStart),
-      curr: this.getFormat(curr),
-      next: this.getFormat(nextStart)
+      last: this.getOnlyWeeks(d, false),
+      curr: this.getOnlyWeeks(d, '', true),
+      next: this.getOnlyWeeks(d, true),
     }
+  }
+
+  getFormat(d) {
+    const yy = d.getFullYear()
+    const mm = d.getMonth() + 1
+    const dd = d.getDate()
+    return { yy, mm, dd }
   }
 }
 

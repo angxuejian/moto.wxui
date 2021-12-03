@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/UI-Pages/ui.calendar/ui.calendar",
-          "pathName": "pages/UI-Pages/ui.calendar/ui.calendar",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },

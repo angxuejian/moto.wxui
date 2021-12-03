@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/12/03
+- update calendar page completed
+
 ### 2021/12/02
 - clean calendar js
 
