@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.1
+### 2021/12/05
+- version v0.3.1 completed
+
 ### 2021/12/03
 - update calendar page completed
 
