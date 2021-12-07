@@ -7,7 +7,8 @@ Page({
   data: {
     width: 0,
     height: 0,
-    pixel: 0
+    pixel: 0,
+    poster: ''
   },
 
   /**
@@ -44,25 +45,29 @@ Page({
 
 
   checkSaveAlbum: function() {
-    wx.authorize({
-      scope:'scope.writePhotosAlbum',
-      success: res => {
-        this.drawPoster()
-      },
-      fail: err => {
-        if (/auth deny/ig.test(err.errMsg)) {
-          wx.showModal({
-            title: '提示',
-            content: '您需要授权后才可以保存到相册',
-            success: res => {
-              if (res.confirm) {
-                this.openSetting()
-              }
-            }
-          })
-        }
-      }
-    })
+
+    if (this.data.poster) this.showShare()
+    else this.drawPoster()
+
+    // wx.authorize({
+    //   scope:'scope.writePhotosAlbum',
+    //   success: res => {
+    //     this.drawPoster()
+    //   },
+    //   fail: err => {
+    //     if (/auth deny/ig.test(err.errMsg)) {
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '您需要授权后才可以保存到相册',
+    //         success: res => {
+    //           if (res.confirm) {
+    //             this.openSetting()
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   },
 
   openSetting: function() {
@@ -144,8 +149,16 @@ Page({
       canvasId: 'canvas',
       success: res => {
         wx.hideLoading()
-        this.saveAlbum(res.tempFilePath)
+        this.data.poster = res.tempFilePath
+        this.showShare()
+        // this.saveAlbum(res.tempFilePath)
       }
+    })
+  },
+
+  showShare: function() {
+    wx.showShareImageMenu({
+      path: this.data.poster
     })
   },
 

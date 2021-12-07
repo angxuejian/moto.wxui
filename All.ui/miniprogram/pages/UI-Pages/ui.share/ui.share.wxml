@@ -21,18 +21,18 @@
     
     <view hover-class="hover-image"  class="item-btn1">
       <view><image src="/assets/weFriend.png"></image></view>
-      <text>微信好友</text>
+      <text>分享朋友</text>
       <button open-type="share">微信好友</button>
     </view>
 
     <view bindtap="open" hover-class="hover-image" class="item-btn1">
       <view><image src="/assets/weCircle.png"></image></view>
-      <text>微信朋友圈</text>
+      <text>分享朋友圈</text>
     </view>
 
     <view bindtap="checkSaveAlbum" hover-class="hover-image" class="item-btn1">
       <view><image show-menu-by-longpress src="/assets/weAlbum.png"></image></view>
-      <text>保存到相册</text>
+      <text>分享海报</text>
     </view>
   </view>
 </view>
