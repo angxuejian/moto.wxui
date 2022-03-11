@@ -28,6 +28,11 @@ export const list = [
         svg: SVG.picCrop,
         name: '图片裁剪',
         url: 'ui.picCrop'
+      },
+      {
+        svg: SVG.electronicSignature,
+        name: '电子签名',
+        url: 'ui.electronicSignature'
       }
     ]
   },
