@@ -1,80 +1,40 @@
 import { SVG } from '../../utils/config-svg'
 
+const funcArr = [
+  { name: '日历', value: 'calendar' },
+  { name: '消除背景', value: 'removeBG' },
+  { name: '瀑布流', value: 'waterfallsFlow' },
+  { name: '触摸滑动列表', value: 'touchlist' },
+  { name: '图片裁剪', value: 'picCrop' },
+  { name: '电子签名', value: 'electronicSignature' }
+]
+
+const compArr = [
+  { name: '日期选择器', value: 'datePicker' },
+  { name: '图片模式', value: 'imgMode' },
+  { name: '顶部加载', value: 'nprogress' },
+  { name: '颜色选择器', value: 'colorPicker' },
+  { name: '选择器', value: 'picker' },
+  { name: '开关选择器', value: 'switch' },
+  { name: '抽屉', value: 'drawer' },
+]
+
+const cleanArr = (list) => {
+  return list.map(item => {
+    return {
+      svg: SVG[item.value],
+      url: `ui.${item.value}`,
+      name: item.name
+    }
+  })
+}
 export const list = [
   {
     title: '小功能',
-    list: [
-      {
-        svg: SVG.calendar,
-        name: '日历',
-        url: `ui.calendar`
-      },
-      {
-        svg: SVG.removeBG,
-        name: '消除背景',
-        url: `ui.removeBG`
-      },
-      {
-        svg: SVG.waterfallsFlow,
-        name: '瀑布流',
-        url: `ui.waterfallsFlow`
-      },
-      {
-        svg: SVG.touchlist,
-        name: '触摸滑动列表',
-        url: 'ui.touchlist'
-      },
-      {
-        svg: SVG.picCrop,
-        name: '图片裁剪',
-        url: 'ui.picCrop'
-      },
-      {
-        svg: SVG.electronicSignature,
-        name: '电子签名',
-        url: 'ui.electronicSignature'
-      }
-    ]
+    list: cleanArr(funcArr)
   },
   {
     title: 'UI组件',
-    list: [
-      {
-        svg: SVG.datePicker,
-        name: '日期选择器',
-        url: `ui.datePicker`
-      },
-      {
-        svg: SVG.imgMode,
-        name: '图片模式',
-        url: `ui.imgMode`
-      },
-      {
-        svg: SVG.nprogress,
-        name: '顶部加载',
-        url: `ui.nprogress`
-      },
-      {
-        svg: SVG.colorPicker,
-        name: '颜色选择器',
-        url: `ui.colorPicker`
-      },
-      {
-        svg: SVG.picker,
-        name: '选择器',
-        url: `ui.picker`
-      },
-      {
-        svg: SVG.switch,
-        name: '开关选择器',
-        url: 'ui.switch'
-      },
-      {
-        svg: SVG.drawer,
-        name: '抽屉',
-        url: 'ui.drawer'
-      }
-    ]
+    list: cleanArr(compArr)
   },
-
 ]
