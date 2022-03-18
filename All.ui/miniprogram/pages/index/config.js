@@ -6,7 +6,8 @@ const funcArr = [
   { name: '瀑布流', value: 'waterfallsFlow' },
   { name: '触摸滑动列表', value: 'touchlist' },
   { name: '图片裁剪', value: 'picCrop' },
-  { name: '电子签名', value: 'electronicSignature' }
+  { name: '电子签名', value: 'electronicSignature' },
+  { name: '抽奖', value: 'lottery' }
 ]
 
 const compArr = [

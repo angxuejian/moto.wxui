@@ -14,7 +14,8 @@
     "pages/UI-Pages/ui.drawer/ui.drawer",
     "pages/UI-Pages/ui.touchlist/ui.touchlist",
     "pages/UI-Pages/ui.picCrop/ui.picCrop",
-    "pages/UI-Pages/ui.electronicSignature/ui.electronicSignature"
+    "pages/UI-Pages/ui.electronicSignature/ui.electronicSignature",
+    "pages/UI-Pages/ui.lottery/ui.lottery"
   ],
   "window": {
     "backgroundTextStyle": "light",
