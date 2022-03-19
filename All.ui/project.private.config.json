@@ -20,7 +20,7 @@
         },
         {
           "name": "pages/index/index",
-          "pathName": "pages/UI-Pages/ui.electronicSignature/ui.electronicSignature",
+          "pathName": "pages/UI-Pages/ui.lottery/ui.lottery",
           "query": "",
           "scene": null
         }

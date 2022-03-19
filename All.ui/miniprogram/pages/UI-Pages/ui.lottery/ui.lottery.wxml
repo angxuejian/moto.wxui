@@ -1,2 +1,4 @@
 <!--pages/UI-Pages/ui.lottery/ui.lottery.wxml-->
 <text>pages/UI-Pages/ui.lottery/ui.lottery.wxml</text>
+
+<view bindtap="testWhile"> 按钮</view> 
