@@ -1,5 +1,10 @@
 # 更改日志 
 
+## v0.3.2
+### 2022/03/27
+- add ui.electronicSignature page
+- add ui.lottery page
+
 ## v0.3.1
 ### 2021/12/05
 - version v0.3.1 completed
