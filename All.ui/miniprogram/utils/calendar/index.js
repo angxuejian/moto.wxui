@@ -182,4 +182,4 @@ class Calendar extends Solar {
 }
 
 
-export { Calendar }
+export default Calendar

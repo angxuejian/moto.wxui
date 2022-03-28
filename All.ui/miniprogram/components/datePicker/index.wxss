@@ -1,4 +1,5 @@
 /* components/datePicker/datePicker.wxss */
+@import '../../style/calendar.wxss';
 page {
   padding-top: 30px;
 }
@@ -70,9 +71,12 @@ page {
   align-items: center;
   justify-content: space-between;
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 17px;
   color: #333;
   font-weight: 400;
+  /* background: red; */
+  /* text-align: center; */
+  /* line-height: 30px; */
 }
 .left, .right {
   width: 17%;
@@ -117,6 +121,7 @@ page {
 }
 
 /* 日期 */
+/* 
 .month {
   width: 100%;
   margin: 0px auto;
@@ -182,7 +187,7 @@ page {
 }
 .select-item view {
   color: #fff !important;
-}
+} */
 
 
 /* 确认 and 取消 */

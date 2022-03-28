@@ -1,4 +1,5 @@
 import {
+  WEEK, MONTH,
   LANR_ARR,
   BASIS, LUNAR_MONTH, LUNAR_DAY, SHENGXIAO, TIANGAN,
   DIZHI, SOLAR_TERMS_MIN, SOLAR_TERMS_CN,
@@ -9,7 +10,8 @@ const d = new Date()
 class Solar {
   constructor() {
     this.SOLAR_TERMS = [] // 24节气 对应时间表
-    this.months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] // 阳历月份
+    this.months = MONTH // 阳历月份
+    this.weeks = WEEK
     this.TIMESTAMP = new Date(`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`).getTime()
   }
 

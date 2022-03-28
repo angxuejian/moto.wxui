@@ -22,7 +22,7 @@ Page({
   onCallbackChange: function({ detail }) {
     wx.showModal({
       title: 'Change事件',
-      content: `日期：${ detail.solor }`,
+      content: `日期：${ detail.date }`,
       showCancel: false
     })
   },
@@ -32,7 +32,6 @@ Page({
    * @param {Object} event 
    */
   onCallbackChangeLun: function({ detail }) {
-    
     wx.showModal({
       title: 'Change事件',
       content: `日期：${ detail.lunar }`,

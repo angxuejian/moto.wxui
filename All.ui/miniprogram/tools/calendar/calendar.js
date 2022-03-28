@@ -1,6 +1,6 @@
 // components/calendar/calendar.js
 const app = getApp()
-import { Calendar } from './main'
+import Calendar from '../../utils/calendar/index'
 const Calen = new Calendar()
 const SWIPER_INDEX = 1  // swiper 默认索引
 const MONTH_INDEX  = 10 // 从listMonth列表中取出 本月数据; (不需要确认是哪一天，只要是本月即可)
@@ -205,9 +205,9 @@ Component({
 
       else if (this.data.isARow) {
         this.data.listType = 'week' // 周
-        if (this.data.offsetRow === 0) {
+        // if (this.data.offsetRow === 0) {
           this.onCallbackTransitionEnd()
-        }
+        // }
       }
     },
 

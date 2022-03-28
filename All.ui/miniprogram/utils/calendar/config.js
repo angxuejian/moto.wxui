@@ -23,6 +23,8 @@ const LANR_ARR = [
 
 const BASIS = 1949 // 农历 基准年
 
+const WEEK  = ['日', '一', '二', '三', '四', '五', '六']
+const MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 const LUNAR_MONTH = ['正', '二', '三', '四', '五', '六', '七', '八', '九', '十', '冬', '腊'], // 中文月份
   LUNAR_DAY = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '初', '廿']; // 中文日份
@@ -54,6 +56,8 @@ const LUNAR_FESTIVAL = {
 
 
 module.exports = {
+  WEEK,  // 周
+  MONTH, // 月
   BASIS, // 基准年
   DIZHI, // 地支
   TIANGAN,   // 天干

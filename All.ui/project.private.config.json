@@ -13,8 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
+          "name": "pages/UI-Pages/ui.datePicker/ui.datePicker",
+          "pathName": "pages/UI-Pages/ui.datePicker/ui.datePicker",
           "query": "",
           "scene": null
         },

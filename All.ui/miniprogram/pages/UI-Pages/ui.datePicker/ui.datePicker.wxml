@@ -4,7 +4,7 @@
   <view class="item-btn">
     <text>日期选择</text>
     <view>
-      <mo-date-picker class="date-picker"></mo-date-picker>
+      <mo-date-picker  class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">

@@ -1,0 +1,65 @@
+/* 日历显示内容样式 */
+.date {
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 10px;
+}
+.date .week {
+  line-height: 25px;
+}
+
+.date .swiper {
+  transition: all 0.3s;
+  height: 275px;
+}
+.date .box {
+  transition: all 0.3s;
+  margin-top: 0;
+}
+.date .contents {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.date .content {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-weight: 550;
+  font-size: 16px;
+  border-radius: 50%;
+  margin: 5px 0;
+  margin-left: calc((100% - (45px * 7)) / 7 / 2);
+  margin-right: calc((100% - (45px * 7)) / 7 / 2);
+}
+
+.date .item-week {
+  color: #333;
+  font-weight: 100;
+  font-size: 12px;
+  border-radius: 0;
+  height: 20px;
+}
+
+.date .item-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.date .item-day view:nth-of-type(2) {
+  font-size: 19rpx;
+  color: #C2C1C1;
+  font-weight: 100;
+}
+
+.select-item {
+  background-color: #438EDB !important;
+  color: #fff !important;
+}
+.select-item view {
+  color: #fff !important;
+}
