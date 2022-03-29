@@ -310,7 +310,7 @@ Component({
         if (nowMon < target) this.data.dayType = 'next'   // 下个月
         else this.data.dayType = 'last'  // 上个
         this.data.listIndex = this.cleanListIndex(this.data.listIndex)
-        this.data.calendar.day = curDays.day
+        this.data.calendar.day = curDays.solar.day
         this.setListIndex()
       }
     },

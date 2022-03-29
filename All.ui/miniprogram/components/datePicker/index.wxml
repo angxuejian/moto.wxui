@@ -13,21 +13,21 @@
     <view bindanimationend='onCallbackEnd' class="date-picker_block {{ isShow === 1 ? 'date-picker_block-show' : 'date-picker_block-hide'}}">
       <!-- 标题 -->
       <view class="title">
-        <view class="left">
+        <!-- <view class="left">
           <view bindtap="changeYear" data-index='-1' hover-class="hover-right" class="left-double">
             <view class="left-arrow"></view>
             <view style="left: -9px;z-index:3" class="left-arrow"></view>
           </view>
           <view bindtap="changeMonthNew" data-index='-1' hover-class="hover-right" class="left-arrow"></view>
-        </view>
-        <view>{{calendar.year}}年 {{calendar.month}}月</view>
-        <view class="right">
+        </view> -->
+        <view>{{calendar.year}}年{{calendar.month}}月</view>
+        <!-- <view class="right">
           <view bindtap="changeMonthNew" data-index='+1' hover-class="hover-left" class="right-arrow"></view>
           <view bindtap="changeYear" data-index='+1' hover-class="hover-left" class="right-double">
             <view style="right: -9px; z-index:3" class="right-arrow"></view>
             <view class="right-arrow"></view>
           </view>
-        </view>
+        </view> -->
       </view>
       <!-- 日期 -->
       <view class="date">
@@ -49,7 +49,7 @@
                 <view class="contents">
                   <block wx:for="{{listDay}}" wx:key='index'>
                     <view bindtap="selectDate" data-i='{{i}}' data-index='{{index}}' style="color: {{item.color}}; background-color: {{ item.b_color}}" class="content item-day {{listIndex === i && dayIndex === index && 'select-item'}}">
-                      <view>{{item.solar}}</view>
+                      <view>{{item.day}}</view>
                       <view style="color:{{item.l_color}};">
                         {{item.today[item.today.length - 1]}}
                       </view>
