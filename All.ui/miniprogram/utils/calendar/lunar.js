@@ -11,11 +11,17 @@ const d = new Date()
 class Lunar {
   constructor() {
     this.SOLAR_TERMS = [] // 24节气 对应时间表
-    this.months = MONTH // 阳历月份
-    this.weeks = WEEK
-    this.isLunar = true // 是否获取阴历
-    this.TIMESTAMP = new Date(`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`).getTime()
+    this.TIMESTAMP   = new Date(`${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`).getTime()
+
+    this.months  = MONTH // 阳历月份
+    this.weeks   = WEEK  // 周
+    this.isLunar = false  // 是否获取阴历
   }
+
+  setLunar(isl = false) {
+    this.isLunar = isl
+  }
+
 
   /**
    * 阳历 转 阴历
@@ -23,7 +29,7 @@ class Lunar {
    * @param {number} sm 阳历月 0-11
    * @param {number} sd 阳历日
    */
-  solar_to_lunar = function (sy, sm, sd) {
+  solar_to_lunar(sy, sm, sd) {
 
     this.getSolarTerms(sy) 
 
@@ -195,14 +201,7 @@ class Lunar {
     if (/闰/g.test(lm)) m = lm.split('闰')[1]
     
     const fes = [this.padStart(m), this.padStart(ld)]
-    // const s_fes = `${this.padStart(sd.sm)}${this.padStart(sd.sd)}`
     const l_fes = fes.join(' ').replace(/\s*/ig, '')
-
-    // const today = [
-    //   LUNAR_FESTIVAL[l_fes], // 阴历节日
-    //   SOLAR_FESTIVAL[s_fes], // 阳历节日
-    //   this.SOLAR_TERMS[s_fes], // 节气
-    // ].filter(item => item && item)
 
     return {
       year: cy,
@@ -212,16 +211,6 @@ class Lunar {
       festival: [
         LUNAR_FESTIVAL[l_fes],  // 阴历节日
       ].filter(s => s),
-
-      // date: [sd.sy, sd.sm, sd.sd].join('-'),
-      // year: sd.sy,
-      // month: sd.sm,
-      // day: sd.sd,
-      // lunar: `${cy} ${cm}${cd}`,
-      // year_lunar: cy,
-      // month_lunar: cm,
-      // day_lunar: cd,
-      // festival: [...today]
     }
   }
 
@@ -243,8 +232,6 @@ class Lunar {
 
     return m
   }
-
-  
 
   /**
    *  将日期统一转为2位数

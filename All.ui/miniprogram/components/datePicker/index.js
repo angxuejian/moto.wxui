@@ -1,7 +1,7 @@
 // components/datePicker/datePicker.js
 
 import Calendar from '../../utils/calendar/index'
-const Calen = new Calendar()
+let Calen = new Calendar()
 const SWIPER_INDEX = 1  // swiper 默认索引
 const MONTH_INDEX  = 10 // 从listMonth列表中取出 本月数据; (不需要确认是哪一天，只要是本月即可)
 
@@ -25,6 +25,10 @@ Component({
     mask: {
       type:Boolean,
       value: true
+    },
+    dateRange: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -42,7 +46,10 @@ Component({
     listMonth: [], // 三个月的日历的信息
     listIndex: SWIPER_INDEX, // listData的索引
     listData: [],  // 月列表
-
+    range: {
+      startTime: 0,
+      endTime: 0
+    },
     isShow: 0, //是否打开 datePicker 组件 0:真关闭 1:打开 2:伪关闭
   },
 
@@ -99,10 +106,8 @@ Component({
 
      // 创建 日期
      create: function() {
-      // if (this.data.showLunar) {
-      //   SOLAR_TERMS = Canlr.getSolarTerms(this.data.YEAR)
-      // }
-      // console.log(new Date(this.data.timestamp), '--')
+      Calen = new Calendar(this.data.showLunar)
+
       const d = this.data.showDate ? new Date(this.data.showDate) : new Date()
       this.setListMonth(d)
     },
@@ -161,6 +166,7 @@ Component({
       this.data.listMonth[lastIndex]  = lastMonth
       this.data.listMonth[currIndex]  = currMonth
       this.data.listMonth[nextIndex]  = nextMonth
+      console.log(currMonth, '---!')
     },
 
      // 监听swiper change事件
@@ -251,14 +257,16 @@ Component({
      */
     setCalendar: function(dayIndex, item) {
       this.data.dayIndex = dayIndex
-      this.setData({
+      const curr = item[dayIndex]
+      const data = {
         dayIndex,
-        ['calendar.day']: item[dayIndex].day,
-        ['calendar.year']: item[dayIndex].year,
-        ['calendar.month']: item[dayIndex].month,
-        ['calendar.lunar']: item[dayIndex].lunar,
-        ['calendar.item']: item[dayIndex]
-      })
+        ['calendar.day']  : curr.day,
+        ['calendar.item'] : curr,
+        ['calendar.year'] : curr.year,
+        ['calendar.month']: curr.month,
+        ['calendar.lunar']: curr.lunar,
+      }
+      this.setData(data)
     },
 
     setListIndex: function() {
@@ -292,16 +300,14 @@ Component({
       const { i, index } = event.currentTarget.dataset
 
       const dotItem = this.data.listMonth[i]
-      const curMonth = this.data.listMonth[i][MONTH_INDEX]
       const curDays = dotItem[index]
+
+      // 单选
+      const curMonth = this.data.listMonth[i][MONTH_INDEX]
       const isCurr = curMonth.month === curDays.month
       
-      // 在周模式下、选择上月或者下月不跳转swiper
       if (isCurr) {
         this.setCalendar(index, dotItem)
-      }
-
-      if (isCurr) {
         this.data.dayType = 'curr'  // 本月
       } else {
         const nowMon = new Date([curMonth.year, curMonth.month, 1].join('-'))
@@ -313,55 +319,28 @@ Component({
         this.data.calendar.day = curDays.solar.day
         this.setListIndex()
       }
-    },
-    
-    /**
-     * 上一年 or 下一年
-     * @param {Object} event 标签属性 
-     */
-    changeYear: function(event) {
-      const { index:i } = event.currentTarget.dataset
-      if (i === '+1') this.data.YEAR += 1
-      else this.data.YEAR -= 1
 
-      index = 0
-      this.data.days = []
-      this.setData({
-        days: this.data.days,
-        ['domDate.yy']: this.data.YEAR,
-      })
-      this.create()
-    },
+      // 多选情况下，要改变样式
+      if (this.data.dateRange) {
+        // 多选
 
+        if (this.data.range.startTime && this.data.range.endTime) {
+          this.data.range = { startTime: 0, endTime: 0 }
+        }
 
-    /**
-     * 新版
-     * 上一月 or 下一月
-     * @param {Object} event 标签属性 
-     */
-    changeMonthNew: function(event) {
-      const { index: i } = event.currentTarget.dataset
-
-      let y = this.data.YEAR, 
-          m = this.data.MONTH;
-      
-      let  n = new Date(`${y}-${m === 0 ? '01' : m}-01`)
-
-      if (i === '-1') n.setMonth(m - 1) 
-      else n.setMonth(m + 1)
-      
-
-      this.data.YEAR = n.getFullYear()
-      this.data.MONTH = n.getMonth()
-
-      index = 0
-      this.data.days = []
-      this.setData({
-        days: this.data.days,
-        ['domDate.yy']: this.data.YEAR,
-        ['domDate.mm']: Canlr.padStart(this.data.MONTH + 1)
-      })
-      this.create()
+        if (!this.data.range.startTime) {
+          this.data.range.startTime = curDays.time
+        } else {
+          if (curDays.time < this.data.range.startTime) {
+            this.data.range.endTime = this.data.range.startTime
+            this.data.range.startTime = curDays.time
+          } else {
+            this.data.range.endTime = curDays.time
+          }
+        }
+        
+        this.setData({ range: this.data.range })
+      }
     },
 
 
@@ -380,7 +359,7 @@ Component({
        * bindchange: 点击确认
        */
       this.setData({
-        showDate: this.data.calendar.item.date
+        showDate: this.data.calendar.item.solar.value
       })
       this.change()
     },

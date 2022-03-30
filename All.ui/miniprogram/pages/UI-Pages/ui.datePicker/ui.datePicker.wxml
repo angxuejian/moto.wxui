@@ -25,6 +25,12 @@
       <mo-date-picker bindchange='onCallbackChange' class="date-picker"></mo-date-picker>
     </view>
   </view>
+    <view class="item-btn">
+    <text>日期区间</text>
+    <view>
+      <mo-date-picker date-range bindchange='onCallbackChange' class="date-picker"></mo-date-picker>
+    </view>
+  </view>
   <view class="item-btn">
     <text>实例方法</text>
     <view>

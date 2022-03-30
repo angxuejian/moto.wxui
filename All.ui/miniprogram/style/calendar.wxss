@@ -27,7 +27,7 @@
   height: 45px;
   text-align: center;
   font-weight: 550;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 50%;
   margin: 5px 0;
   margin-left: calc((100% - (45px * 7)) / 7 / 2);

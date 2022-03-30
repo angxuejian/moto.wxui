@@ -67,127 +67,29 @@ page {
 .title {
   width: 100%;
   height: 30px;
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
   margin-top: 15px;
   font-size: 17px;
   color: #333;
   font-weight: 400;
-  /* background: red; */
   text-align: center;
   line-height: 30px;
 }
-.left, .right {
-  width: 17%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2%;
-}
-.left-double, .right-double {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
 
-.left-arrow {
-  border: 8px solid transparent;
-  border-right-color: #777777;
-  position: relative;
-}
-.left-arrow::before{
-  content: '';
-  position: absolute;
-  border: 8px solid transparent;
-  border-right-color: #fff;
-  top: -8px;
-  left: -6px;
-}
-
-.right-arrow {
-  border: 8px solid transparent;
-  border-left-color: #777777;
-  position: relative;
-}
-.right-arrow::before{
-  content: '';
-  position: absolute;
-  border: 8px solid transparent;
-  border-left-color: #fff;
-  top: -8px;
-  right:-6px;
-}
-
-/* 日期 */
-/* 
-.month {
-  width: 100%;
-  margin: 0px auto;
-  margin-top: 15px;
-}
-
-.date {
-  width: 100%;
-}
-
-.date .content {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 15px;
-  border-radius: 50%;
-  margin-left: calc((100% - (30px * 7)) / 7 / 2);
-  margin-right: calc((100% - (30px * 7)) / 7 / 2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.date .week {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.date .item-week {
-  color: #333;
-  font-weight: 100;
-  font-size: 12px;
-  border-radius: 0;
-}
-
-.date .day {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  height: 260px;
-}
-.date .item-day {
-  flex-direction: column;
-  margin-bottom: 3px;
-  width: 40px;
-  height: 40px;
-  margin-left: calc((100% - (40px * 7)) / 7 / 2);
-  margin-right: calc((100% - (40px * 7)) / 7 / 2);
-}
-
-.date .item-day view:nth-of-type(2) {
-  font-size: 20rpx;
-  color: #C2C1C1;
-  font-weight: 100;
-}
-
-.select-item {
+.select-start {
+  border-radius: 6px 0 0 6px !important;
   background-color: #438EDB !important;
   color: #fff !important;
 }
-.select-item view {
+.select-range {
+  border-radius: 0 !important;
+  background-color: #b0d3f7 !important;
   color: #fff !important;
-} */
+}
+.select-end  {
+  border-radius: 0 6px 6px 0 !important;
+  background-color: #438EDB !important;
+  color: #fff !important;
+}
 
 
 /* 确认 and 取消 */

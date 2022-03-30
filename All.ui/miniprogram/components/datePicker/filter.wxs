@@ -1,0 +1,17 @@
+
+
+module.exports = {
+  cleanRangeColor: function(range, item) {
+    var className = ''
+    if (item.color !== '#c8ccd6') {
+      if (range.startTime === item.time) {
+        className = 'select-start'
+      } else if (range.endTime === item.time) {
+        className = 'select-end'
+      } else if (range.startTime <= item.time && item.time <= range.endTime) {
+        className = 'select-range'
+      }
+    }
+    return className
+  }
+}

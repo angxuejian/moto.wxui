@@ -2,8 +2,10 @@
 import Solar from './solar'
 
 class Calendar extends Solar {
-  constructor() {
+  constructor(isl = false) {
     super()
+
+    this.setLunar(isl)
   }
 
 
