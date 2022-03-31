@@ -180,10 +180,10 @@ Component({
       } else if (c.match(/^[rR][gG][Bb][aA][\(]([1-9]\d*\.?\d*)|(0\.\d*[1-9]*?)[\)]$/ig) !== null) {
 
         let arr = this.clearRgba(c)
-        let a = this.checkRGBA(arr.pop())
+        app.a = this.checkRGBA(arr.pop())
         arr.map(this.checkRGB)
 
-        this.setRGB_XY(arr, a)
+        this.setRGB_XY(arr)
        
       } else {
         throw new Error(`The color type is wrong, it should be hex or rgb --- 颜色类型错误， 它应该是 16进制 或 RGB `)

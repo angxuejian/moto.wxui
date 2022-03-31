@@ -36,7 +36,7 @@
                     data-i='{{i}}' 
                     data-index='{{index}}' 
                     style="color: {{item.color}}; background-color: {{ item.b_color}}" 
-                    class="content item-day {{dateRange && filter.cleanRangeColor(range, item)}} {{!dateRange && listIndex === i && dayIndex === index && 'select-item'}}"
+                    class="content item-day {{item.b_color && dateRange && 'select-b_color'}} {{dateRange && filter.cleanRangeColor(range, item)}} {{!dateRange && listIndex === i && dayIndex === index && 'select-item'}}"
                     >
                       <view>{{item.day}}</view>
                       <view style="color:{{item.l_color}};">

@@ -10,7 +10,7 @@
   <view class="item-btn">
     <text>混合日期选择</text>
     <view>
-      <mo-date-picker showLunar='true' bindchange='onCallbackChangeLun'  class="date-picker"></mo-date-picker>
+      <mo-date-picker show-lunar bindchange='onCallbackChangeLun'  class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">
@@ -28,7 +28,7 @@
     <view class="item-btn">
     <text>日期区间</text>
     <view>
-      <mo-date-picker date-range bindchange='onCallbackChange' class="date-picker"></mo-date-picker>
+      <mo-date-picker show-lunar date-range bindchange='onCallbackChangeRange' class="date-picker"></mo-date-picker>
     </view>
   </view>
   <view class="item-btn">

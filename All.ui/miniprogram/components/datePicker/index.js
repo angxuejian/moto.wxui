@@ -48,16 +48,17 @@ Component({
     listData: [],  // 月列表
     range: {
       startTime: 0,
-      endTime: 0
+      endTime: 0,
+      value: []
     },
     isShow: 0, //是否打开 datePicker 组件 0:真关闭 1:打开 2:伪关闭
   },
 
   lifetimes: {
     attached: function() {
-      // this.open()
-      this.checkPred(this.data.timestamp)
-      
+      if (this.data.showPred && !this.data.dateRange) {
+        this.checkPred(this.data.timestamp)
+      }
     }
   },
   
@@ -93,7 +94,6 @@ Component({
         isShow: this.data.isShow
       }, () => {
         if (this.data.isShow === 1) this.create()
-        // else this.destroy()
       })
     },
 
@@ -108,29 +108,37 @@ Component({
      create: function() {
       Calen = new Calendar(this.data.showLunar)
 
-      const d = this.data.showDate ? new Date(this.data.showDate) : new Date()
+      let d = null
+      if (this.data.showDate.split('/')[0]) {
+        d = new Date(this.data.showDate.split('/')[0])
+      } else if (this.data.showDate) {
+        d = new Date(this.data.showDate)
+      } else {
+        d = new Date()
+      }
+
       this.setListMonth(d)
     },
 
     // 组件销毁时、清空索引
-    destroy: function() {
-      this.data.calendar = {}
-      this.data.current = SWIPER_INDEX
-      this.data.dayIndex = 0
-      this.data.dayType = 'curr'
-      this.data.listMonth = []
-      this.data.listIndex = SWIPER_INDEX,
-      this.data.listData = []
-      this.setData({ 
-        calendar: this.data.calendar,
-        current: this.data.current,
-        dayIndex: this.data.dayIndex,
-        dayType: this.data.dayType,
-        listMonth: this.data.listMonth,
-        listIndex: this.data.listIndex,
-        listData: this.data.listData
-       })
-    },
+    // destroy: function() {
+    //   this.data.calendar = {}
+    //   this.data.current = SWIPER_INDEX
+    //   this.data.dayIndex = 0
+    //   this.data.dayType = 'curr'
+    //   this.data.listMonth = []
+    //   this.data.listIndex = SWIPER_INDEX,
+    //   this.data.listData = []
+    //   this.setData({ 
+    //     calendar: this.data.calendar,
+    //     current: this.data.current,
+    //     dayIndex: this.data.dayIndex,
+    //     dayType: this.data.dayType,
+    //     listMonth: this.data.listMonth,
+    //     listIndex: this.data.listIndex,
+    //     listData: this.data.listData
+    //   })
+    // },
     
     // 检查时间戳是否正确
     checkPred: function(t) {
@@ -166,7 +174,6 @@ Component({
       this.data.listMonth[lastIndex]  = lastMonth
       this.data.listMonth[currIndex]  = currMonth
       this.data.listMonth[nextIndex]  = nextMonth
-      console.log(currMonth, '---!')
     },
 
      // 监听swiper change事件
@@ -325,17 +332,20 @@ Component({
         // 多选
 
         if (this.data.range.startTime && this.data.range.endTime) {
-          this.data.range = { startTime: 0, endTime: 0 }
+          this.data.range = { startTime: 0, endTime: 0, value: [] }
         }
 
         if (!this.data.range.startTime) {
           this.data.range.startTime = curDays.time
+          this.data.range.value = [curDays]
         } else {
           if (curDays.time < this.data.range.startTime) {
             this.data.range.endTime = this.data.range.startTime
             this.data.range.startTime = curDays.time
+            this.data.range.value = [curDays, this.data.range.value[0]]
           } else {
             this.data.range.endTime = curDays.time
+            this.data.range.value.push(curDays)
           }
         }
         
@@ -358,14 +368,21 @@ Component({
       /**
        * bindchange: 点击确认
        */
-      this.setData({
-        showDate: this.data.calendar.item.solar.value
-      })
+
+      let value = ''
+
+      if (this.data.dateRange) {
+        value = this.data.range.value.map(s => s.solar.value).join('/')
+      } else {
+        value = this.data.calendar.item.solar.value
+      }
+      this.setData({ showDate: value })
       this.change()
     },
 
     change: function() {
-      this.triggerEvent('change', this.data.calendar.item)
+      
+      this.triggerEvent('change', this.data.dateRange ? { value: this.data.range.value } : this.data.calendar.item)
       this.showDatePicker()
     },
 

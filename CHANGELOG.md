@@ -1,6 +1,10 @@
 # 更改日志 
 
 ## v0.3.2
+### 2022/03/31
+- fix Alpha issue of colorPicker component
+- improve dateRange prop in datePicker component
+
 ### 2022/03/27
 - add ui.electronicSignature page
 - add ui.lottery page

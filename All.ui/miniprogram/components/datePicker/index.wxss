@@ -75,6 +75,10 @@ page {
   line-height: 30px;
 }
 
+.select-b_color {
+  border-radius: 6px !important;
+}
+
 .select-start {
   border-radius: 6px 0 0 6px !important;
   background-color: #438EDB !important;
@@ -88,6 +92,9 @@ page {
 .select-end  {
   border-radius: 0 6px 6px 0 !important;
   background-color: #438EDB !important;
+  color: #fff !important;
+}
+.select-start view:nth-of-type(2), .select-range view:nth-of-type(2), .select-end view:nth-of-type(2) {
   color: #fff !important;
 }
 

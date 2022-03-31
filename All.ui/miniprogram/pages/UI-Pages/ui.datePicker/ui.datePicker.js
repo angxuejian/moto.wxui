@@ -39,6 +39,14 @@ Page({
     })
   },
 
+  onCallbackChangeRange: function({ detail }) {
+    wx.showModal({
+      title: '区间选择',
+      content: `日期：${ detail.value.map(s => s.solar.value).join('/') }`,
+      showCancel: false
+    })
+  },
+
   open: function() {
     this.selectComponent('#datePicker').open()
   },

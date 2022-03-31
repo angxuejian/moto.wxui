@@ -14,7 +14,7 @@
       "list": [
         {
           "name": "pages/UI-Pages/ui.datePicker/ui.datePicker",
-          "pathName": "pages/UI-Pages/ui.datePicker/ui.datePicker",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },
