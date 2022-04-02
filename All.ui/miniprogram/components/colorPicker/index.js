@@ -1,6 +1,7 @@
 // components/colorPicker/colorPicker.js
 
-import Color from './color'
+import Color from '../../utils/color'
+const colo = new Color()
 
 const svRange = 100 // S、V 取值范围为 0.0 - 1.0(转为百分制)
 const deColor = '#438EDB' // 默认颜色
@@ -171,7 +172,7 @@ Component({
               e = c.substring(3, 5),
               x = c.substring(5, 7);
 
-        this.setRGB_XY(Color.hex_rgb([h, e, x]))
+        this.setRGB_XY(colo.hex_to_rgb([h, e, x]))
 
       } else if (c.match(/^[rR][gG][Bb][\(]([\d+,]*?)[\)]$/ig) !== null) {
 
@@ -193,18 +194,18 @@ Component({
     
     // setData x 和 y 的坐标
     setRGB_XY: function ([r, g, b], a = app.a) {
-      const { h, s, v } = Color.rgb_hsv(r, g, b)
+      const { h, s, v } = colo.rgb_to_hsv(r, g, b)
 
       app.h = h
 
-      this.data.ouColor.hex = Color.rgb_hex([r, g, b])
+      this.data.ouColor.hex = colo.rgb_to_hex([r, g, b])
       
       this.setAlpha(r, g, b, a)
 
       this.setData({
         hValue: app.h,
         aValue: this.data.aValue,
-        bcColor: Color.hsv_rgb(app.h, svRange, svRange).rgb,
+        bcColor: colo.hsv_to_rgb(app.h, svRange, svRange).rgb,
         prColor: this.data.prColor,
         alphaC: this.data.alphaC,
         x: Math.round(s * this.data.wSpeed),
@@ -238,7 +239,7 @@ Component({
       app.s = Math.round(x / this.data.wSpeed)
       app.v = svRange - Math.round(y / this.data.hSpeed)
 
-      const { rgb, hex, rgba } = Color.hsv_rgb(app.h, app.s, app.v, app.a)
+      const { rgb, hex, rgba } = colo.hsv_to_rgb(app.h, app.s, app.v, app.a)
       this.data.ouColor = { rgb, hex, rgba }
 
       const [r, g, b] = this.clearRgb(rgb)
@@ -259,7 +260,7 @@ Component({
       const { value } = detail
       app.h = value
 
-      const { rgb, hex, rgba } = Color.hsv_rgb(app.h, app.s, app.v, app.a)
+      const { rgb, hex, rgba } = colo.hsv_to_rgb(app.h, app.s, app.v, app.a)
 
       this.data.ouColor = { rgb, hex, rgba }
 
@@ -267,7 +268,7 @@ Component({
       this.setAlpha(r, g, b, app.a)
 
       this.setData({
-        bcColor: Color.hsv_rgb(app.h, svRange, svRange).rgb,
+        bcColor: colo.hsv_to_rgb(app.h, svRange, svRange).rgb,
         prColor: this.data.prColor,
         alphaC: this.data.alphaC
       })
