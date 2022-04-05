@@ -3,9 +3,8 @@ import { throttle } from '../../../utils/util'
 import {
   getDistance,
   getCanvasNode,
-  getWidthFix,
-  getHeightFix,
-  getRotateAxis
+  getRotateAxis,
+  getAspectFill
 } from './utils'
 import { drawInitImgSrc, drawCropImgSrc } from './draw'
 const app = getApp()
@@ -88,13 +87,11 @@ Page({
 
 
     // 获取图片的信息、并先图片的宽高绘制canvas标签上
-    let list = []
+    const list = getAspectFill(img.width, img.height, boxSize.w, boxSize.h)
 
-    if (img.width < img.height) {
-      list = getWidthFix(img.width, img.height, boxSize.w, img.height)
-    } else {
-      list = getHeightFix(img.height, img.width, img.height, boxSize.h)
-    }
+    console.log(list, '---0')
+    // list = getWidthFix(img.width, img.height, boxSize.w, img.height)
+
 
     imgSize.width  = list[0]
     imgSize.height = list[1]
@@ -118,6 +115,7 @@ Page({
     }
  
     const imgSrc = await drawInitImgSrc(d)
+    console.log(imgSrc, '--!')
     this.setData({ imgSrc })
   },
 
@@ -180,11 +178,16 @@ Page({
 
       this.data.touch.moveS = getDistance(touches[0], touches[1])
 
-      let zoom = this.data.touch.moveS / this.data.touch.startS
-      let scale = this.data.scale * zoom
+      const zoom = this.data.touch.moveS - this.data.touch.startS
+
+      let scale = this.data.scale + 0.005 * zoom
+      console.log(scale)
+      // console.log(this.data.touch, '---!')
+      // let zoom = this.data.touch.moveS / this.data.touch.startS
+      // let scale = this.data.scale * zoom
 
       if (scale > 3) scale = 3
-      else if (scale < 0.5) scale = 0.5
+      else if (scale <= 0.5) scale = 0.5
 
       this.setImgScale(scale)
     }

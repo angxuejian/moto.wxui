@@ -42,10 +42,11 @@ export const getRotateAxis = function(deg, imgSize, data) {
  * @returns 两指的距离
  */
 export const getDistance = function (start, end) {
-  let s = Math.abs(end.pageX - start.pageX) * 2
-  let e = Math.abs(end.pageY - start.pageY) * 2
+  console.log(start, end, '---')
+  let s = end.pageX - start.pageX
+  let e = end.pageY - start.pageY
 
-  return Math.sqrt(s + e)
+  return Math.sqrt(s * s + e * e)
 }
 
 
@@ -68,35 +69,22 @@ export const getCanvasNode =  function (id = 'crop') {
   })
 }
 
-/**
- * 获取图片以宽 缩放比率后的宽高大小
- * @returns 缩放比率后的宽高大小
- */
-export const getWidthFix = function (width, height, styleW, styleH) {
-  let [w, h, s] = []
+export function getAspectFill(width, height, styleW, styleH) {
 
-  // 获取图片本身宽高 与 样式宽高的比例
-  s = styleW / width
-
-  w = styleW
-  h = styleH * s
-
-  return [w, h]
-}
-
-/**
- * 获取图片以高 缩放比率后的宽高大小
- * @returns 缩放比率后的宽高大小
- */
-export const getHeightFix = function (width, height, styleW, styleH) {
-
-  let [w, h, s] = []
-
-  // 获取图片本身宽高 与 样式宽高的比例
-  s = styleH / height
-
-  w = styleW * s
-  h = styleH
-
+  let [x, y, w, h] = []
+  const scale = width / height // 宽高比例
+  
+  if (width < height) {
+    w = styleW 
+    h = styleW / scale
+    x = 0
+    y = (styleH - h) / 2
+    
+  } else {
+    w = styleH * scale
+    h = styleH
+    x = (styleW - w) / 2
+    y = 0
+  }
   return [w, h]
 }

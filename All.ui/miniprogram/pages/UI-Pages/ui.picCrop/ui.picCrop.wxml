@@ -7,8 +7,6 @@
   <view class="avatar">
   
     <image bindtap="onChooseImage" src="{{showSrc}}"></image>
-
-
     <view class="tips">点击选择头像</view>
   </view>
 
@@ -36,7 +34,7 @@
 
     <!-- 背景图片 -->
     <image catchtouchstart="onTouchStart" catchtouchmove="onTouchMove" catchtouchend="onTouchEnd"
-      style="width: {{imgSize.width}}px; height: {{imgSize.height}}px;  transform: scale({{scale}}) translate3d({{x / scale}}px, {{y / scale}}px, 0) rotate({{rotate}}deg); transform-origin: {{origin.val}};"
+      style="width: {{imgSize.width * scale}}px; height: {{imgSize.height * scale}}px;  transform: translate3d({{x}}px, {{y}}px, 0) rotate({{rotate}}deg); transform-origin: {{origin.val}};"
       src="{{imgSrc}}" alt=""></image>
   </view>
 
