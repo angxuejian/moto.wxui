@@ -1,4 +1,25 @@
 <!--pages/UI-Pages/ui.lottery/ui.lottery.wxml-->
-<text>pages/UI-Pages/ui.lottery/ui.lottery.wxml</text>
 
-<view bindtap="testWhile"> 按钮</view> 
+<!-- <view bindtap="testWhile"> 按钮</view> -->
+
+
+
+<view class="lottery">
+
+  <view class="lottery__light">
+    <view 
+      wx:for="{{18}}" 
+      style="transform: rotate({{ (360 / 18) * index }}deg);"  class="lottery__light__line"
+    ></view>
+  </view>
+
+  <!--   -->
+  <view class="lottery__round">
+    <view 
+      wx:for="{{4}}"
+      style="transform: rotate({{ (360 / 4) * index }}deg);" 
+      class="lottery__round__area"
+    ></view>
+  
+  </view>
+</view>

@@ -1,1 +1,82 @@
 /* pages/UI-Pages/ui.lottery/ui.lottery.wxss */
+
+.lottery {
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: calc((100% - 300px) / 2);
+  left: calc((100% - 300px) / 2);
+  border: 5px solid #ff0000;
+  box-shadow: 0 0 20px #ff0000;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: rgba(223, 133, 133, 0.2);
+}
+
+.lottery__light {
+  width: 270px;
+  height: 270px;
+  position: absolute;
+  left: calc((100% - 270px) / 2);
+  top: calc((100% - 270px) / 2);
+  border-radius: 50%;
+}
+.lottery__light__line {
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: calc((100% - 10px) / 2);
+  transform-origin: center center;
+}
+.lottery__light__line::before{
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  top: -3px;
+  left: 0;
+}
+.lottery__light__line:nth-of-type(even)::before {
+  background-color: blue;
+  animation: to-white 1s linear infinite;
+}
+.lottery__light__line:nth-of-type(odd)::before {
+  background-color: #fff;
+  animation: to-white 1s linear reverse infinite;
+}
+@keyframes to-white {
+  0% {
+    background-color: blue;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
+
+
+
+.lottery__round {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  left: calc((100% - 250px) / 2);
+  top: calc((100% - 250px) / 2);
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.lottery__round__area {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  transform-origin: right bottom;
+}
+.lottery__round__area:nth-of-type(even) {
+  background-color: blue;
+}
