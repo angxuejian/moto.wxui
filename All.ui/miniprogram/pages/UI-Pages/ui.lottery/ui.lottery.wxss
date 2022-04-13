@@ -57,7 +57,7 @@
 
 
 
-.lottery__round {
+.lottery__canvas {
   width: 250px;
   height: 250px;
   position: absolute;
@@ -68,15 +68,51 @@
   overflow: hidden;
 }
 
-.lottery__round__area {
-  width: 50%;
-  height: 50%;
+
+.lottery__round, .lottery__line {
+  width: 250px;
+  height: 250px;
   position: absolute;
+  left: calc((100% - 250px) / 2);
+  top: calc((100% - 250px) / 2);
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.lottery__line__area {
+  position: absolute;
+  left: 125px;
   top: 0;
-  left: 0;
+  width: 1px;
+  height: 125px;
   background-color: red;
-  transform-origin: right bottom;
+  overflow: hidden; 
+  transform-origin: 50% 125px;
+  z-index: 5;
+  box-sizing: border-box;
 }
-.lottery__round__area:nth-of-type(even) {
+
+.lottery__round__area {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(0, 0, 0, 0.329);
+}
+.lottery__round__area__text {
+  position: relative;
+  text-align: center; 
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  transform-origin: 50% 125px;
+  z-index: 6;
+  padding-top: 15px;
+  /* background-color: red; */
+}
+
+/* .lottery__round__area:nth-of-type(even){
   background-color: blue;
-}
+} */

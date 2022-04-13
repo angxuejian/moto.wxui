@@ -5,7 +5,6 @@
 
 
 <view class="lottery">
-
   <view class="lottery__light">
     <view 
       wx:for="{{18}}" 
@@ -13,13 +12,24 @@
     ></view>
   </view>
 
-  <!--   -->
-  <view class="lottery__round">
+  <!-- len = 8 -->
+  <!-- index * (1 / len) + ((1 / len) / 2) -->
+  <!-- <view class="lottery__line">
     <view 
-      wx:for="{{4}}"
-      style="transform: rotate({{ (360 / 4) * index }}deg);" 
-      class="lottery__round__area"
+      class="lottery__line__area"
+      wx:for="{{6}}"
+      style="transform: rotate({{ ((360 / 6) * index) + (360 / 6) / 2 }}deg);"
     ></view>
-  
   </view>
+
+  <view class="lottery__round">
+    <view class="lottery__round__area"  wx:for="{{6}}">
+      <view
+        class="lottery__round__area__text"
+        style="transform: rotate({{ (360 / 6) * index }}deg);"
+      >{{ index + 1 }}</view>
+    </view>
+  </view> -->
+
+  <canvas id='myCanvas' class="lottery__canvas" type="2d"></canvas>
 </view>

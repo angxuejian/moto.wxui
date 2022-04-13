@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initPrize()
+    // this.initPrize()
   },
 
   initPrize: function() {
@@ -69,6 +69,36 @@ Page({
    */
   onReady: function () {
 
+    const query = wx.createSelectorQuery()
+    query.select('#myCanvas')
+      .fields({ node: true, size: true })
+      .exec((res) => {
+        const canvas = res[0].node
+        const ctx = canvas.getContext('2d')
+        canvas.width = res[0].width
+        canvas.height = res[0].height
+
+        const part = 6
+        const angle = Math.PI * 2 / part
+        const x = canvas.width / 2
+        const y = canvas.height / 2
+
+        for (let i = 0; i < part; i++) {
+          const start = i * angle
+          const end = (i + 1) * angle
+          ctx.beginPath()
+          ctx.moveTo(x, y)
+          ctx.arc(x, y, 125, start, end)
+          ctx.fillStyle = i % 2 === 1 ? '#fff' : 'blue'
+          ctx.fill()
+          ctx.fillStyle = 'red'
+          ctx.fillText('123', canvas.width / 2 - 3, 20)
+
+        }
+
+        // ctx.fillText('123', 50, 20)
+        // ctx.rotate(angle)
+      })
   },
 
   /**
