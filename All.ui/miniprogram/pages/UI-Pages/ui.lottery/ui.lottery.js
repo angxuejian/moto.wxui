@@ -1,14 +1,25 @@
 // pages/UI-Pages/ui.lottery/ui.lottery.js
+let canvas = null
+let ctx = null
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    prizes: [],
+    prizes: [
+      { name: '二等奖', percent: 0.05, count: 3 },
+      { name: '未中奖', percent: 0.80, count: -1 },
+      { name: '三等奖', percent: 0.14, count: 10 },
+      { name: '未中奖', percent: 0.80, count: -1 },
+      { name: '一等奖', percent: 0.01, count: 1 },
+      { name: '未中奖', percent: 0.80, count: -1 },
+    ],
     nameArr: [],
     weightSum: 0,
     weightArr: [],
+    turntable: {},
+    turntable_src: ''
   },
 
   /**
@@ -19,12 +30,6 @@ Page({
   },
 
   initPrize: function() {
-    this.data.prizes = [
-      { name: '一等奖', percent: 0.01, count: 1 },
-      { name: '二等奖', percent: 0.05, count: 3 },
-      { name: '三等奖', percent: 0.14, count: 10 },
-      { name: '未中奖', percent: 0.80, count: -1 }
-    ]
     this.data.nameArr = []
     this.data.weightSum = 0
     this.data.weightArr = []
@@ -64,41 +69,179 @@ Page({
     }
   },
   
+
+
+  gameStart: function() {
+    const index = Math.floor(Math.random() * this.data.prizes.length)
+
+    const deg = (index + 5 * 1) * (360 / this.data.prizes.length)
+    const rotate = deg + 5 * 360
+
+    const animation = wx.createAnimation({
+      duration: 3000,
+      timingFunction: 'ease'
+    })
+    animation.rotate(rotate).step()
+    this.setData({
+      gameAnimation: animation.export()
+    })
+
+    // 初始化动画
+    setTimeout(() => {
+      animation.rotate(0).step({duration:10})
+      this.setData({
+        gameAnimation: animation.export()
+      })
+    }, 4000);
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
-   */
+  */
   onReady: function () {
+    this.initTurntable()
+  },
 
+  initTurntable: function() {
     const query = wx.createSelectorQuery()
-    query.select('#myCanvas')
+    query.select('#turntable')
       .fields({ node: true, size: true })
       .exec((res) => {
-        const canvas = res[0].node
-        const ctx = canvas.getContext('2d')
-        canvas.width = res[0].width
-        canvas.height = res[0].height
+        canvas = res[0].node
+        ctx = canvas.getContext('2d')
 
-        const part = 6
-        const angle = Math.PI * 2 / part
-        const x = canvas.width / 2
-        const y = canvas.height / 2
+        const dpr = wx.getSystemInfoSync().pixelRatio
+        canvas.width = res[0].width * dpr
+        canvas.height = res[0].height * dpr
+        ctx.scale(dpr, dpr)
 
-        for (let i = 0; i < part; i++) {
-          const start = i * angle
-          const end = (i + 1) * angle
-          ctx.beginPath()
-          ctx.moveTo(x, y)
-          ctx.arc(x, y, 125, start, end)
-          ctx.fillStyle = i % 2 === 1 ? '#fff' : 'blue'
-          ctx.fill()
-          ctx.fillStyle = 'red'
-          ctx.fillText('123', canvas.width / 2 - 3, 20)
-
+        this.data.turntable = {
+          angle: Math.PI * 2 / this.data.prizes.length,
+          x: res[0].width / 2,
+          y: res[0].height / 2,
+          dpr,
+          deg: 0
         }
-
-        // ctx.fillText('123', 50, 20)
-        // ctx.rotate(angle)
+        this.render()
       })
+  },
+  render: function() {
+    this.drawArc()
+    this.drawText()
+    // this.drawBtn()
+  },
+
+
+  drawArc: function() {
+    const { angle, x, y } = this.data.turntable
+    for (let i = 0; i < this.data.prizes.length; i++) {
+      const start = i * angle
+      const end = (i + 1) * angle
+      ctx.save()
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.arc(x, y, 125, start, end, false)   // 125 => 圆的半径
+      ctx.fillStyle = i % 2 === 1 ? 'white' : 'blue'
+      ctx.fill()
+      ctx.closePath()
+      ctx.restore()
+    }
+  },
+
+  drawText: function() {
+    const { angle, x, y, dpr } = this.data.turntable
+    for (let i = 0; i < this.data.prizes.length; i++) {
+      ctx.save()
+      ctx.beginPath()
+      ctx.translate(x, y)
+      ctx.rotate(i * angle + angle / 2 + Math.PI / 2)
+      ctx.fillStyle = 'red'
+      ctx.font = '18px Microsoft YaHei'
+
+      /**
+       * 字体换行
+       * 90 => 扇形顶部最大宽度，字体宽度最多可放 90
+       * -90 => 扇形底部与顶部的距离, 越大距离底部越近
+       * -20 => 每个字体的高度
+       */
+      const list = this.getTextWidth(ctx, this.data.prizes[i].name, 90)
+      list.forEach((text, index) => {
+        ctx.fillText(text, -ctx.measureText(text).width / 2, -90 - (-20 * index))
+      })
+      ctx.closePath()
+      ctx.restore()
+    }
+
+    this.exportImage(canvas, 'turntable_src')
+  },
+
+  drawBtn: function() {
+    const { x, y } = this.data.turntable
+    ctx.save()
+    ctx.beginPath()
+    ctx.fillStyle = 'red'
+    ctx.arc(x, y, 35, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+
+    ctx.save()
+    ctx.beginPath()
+    ctx.fillStyle = 'white'
+    ctx.font = '20px Microsoft YaHei'
+    ctx.translate(x, y)
+    ctx.fillText('开始', -ctx.measureText('开始').width / 2, 7)
+    ctx.restore()
+
+    ctx.save()
+    ctx.beginPath()
+    ctx.fillStyle = 'red'
+    ctx.moveTo(100, 100)
+    ctx.lineTo(125, 80)
+    ctx.lineTo(150, 100)
+    ctx.closePath()
+    ctx.fill()
+    ctx.restore()
+  },
+
+  exportImage: function(canvas, key) {
+    const { dpr } = this.data.turntable
+    wx.canvasToTempFilePath({
+      canvas: canvas,
+      width: canvas.width / dpr,
+      height: canvas.height / dpr,
+      destWidth: canvas.width,
+      destHeight: canvas.height,
+      success: res => {
+        this.setData({
+          [key]: res.tempFilePath
+        })
+      }
+    })
+  },
+
+  /**
+   * canvas 自动换行
+   * @param {object} ctx canvas
+   * @param {string} text fillText的内容
+   * @param {number} maxWidth 每一行的最大宽度
+   */
+  getTextWidth: function(ctx, text, maxWidth) {
+    const textList = text.split('')
+    const list = []
+    let str = ''
+
+    for (let i = 0; i < textList.length; i++) {
+      const el = textList[i];
+
+      if (ctx.measureText(str).width >= maxWidth) {
+        list.push(str)
+        maxWidth -= ctx.measureText(text[0]).width
+        str = ''
+      }
+      str += el
+    }
+    list.push(str)
+    return list
   },
 
   /**
