@@ -8,11 +8,11 @@ Page({
    */
   data: {
     prizes: [
+      { name: '一等奖', percent: 0.01, count: 1 },
       { name: '二等奖', percent: 0.05, count: 3 },
-      { name: '未中奖', percent: 0.80, count: -1 },
       { name: '三等奖', percent: 0.14, count: 10 },
       { name: '未中奖', percent: 0.80, count: -1 },
-      { name: '一等奖', percent: 0.01, count: 1 },
+      { name: '未中奖', percent: 0.80, count: -1 },
       { name: '未中奖', percent: 0.80, count: -1 },
     ],
     nameArr: [],
@@ -73,25 +73,41 @@ Page({
 
   gameStart: function() {
     const index = Math.floor(Math.random() * this.data.prizes.length)
+    // const index= 5
+    console.log(`本次抽奖结果：` + index + this.data.prizes[index].name)
 
-    const deg = (index + 5 * 1) * (360 / this.data.prizes.length)
-    const rotate = deg + 5 * 360
+    /**
+     * 240 => this.data.prizes 对应 0 的旋转度数
+     * 6 * 360 => 多转6圈
+     */
+    const deg = (index) * (360 / this.data.prizes.length)
+    const arc = 6 * 360
+    const rotate = (deg > 240 ? deg : deg <= 240 ? 240 - deg : (240 + deg)) + arc
 
     const animation = wx.createAnimation({
       duration: 3000,
       timingFunction: 'ease'
     })
+ 
     animation.rotate(rotate).step()
     this.setData({
       gameAnimation: animation.export()
     })
+ 
 
     // 初始化动画
     setTimeout(() => {
-      animation.rotate(0).step({duration:10})
-      this.setData({
-        gameAnimation: animation.export()
-      })
+      wx.showModal({
+        title: '本次抽奖结果',
+        content: this.data.prizes[index].name,
+        showCancel: false,
+        })
+      setTimeout(() => {
+        animation.rotate(0).step({duration:10})
+        this.setData({
+          gameAnimation: animation.export()
+        })
+      }, 1000);
     }, 4000);
   },
   
@@ -166,11 +182,16 @@ Page({
        */
       const list = this.getTextWidth(ctx, this.data.prizes[i].name, 90)
       list.forEach((text, index) => {
-        ctx.fillText(text, -ctx.measureText(text).width / 2, -90 - (-20 * index))
+        ctx.fillText(i + text, -ctx.measureText(text).width / 2, -90 - (-20 * index))
       })
       ctx.closePath()
       ctx.restore()
     }
+    // ctx.save()
+    // ctx.beginPath()
+    // ctx.translate(x, y)
+    // ctx.rotate(Math.PI / 6)
+    // ctx.closePath()
 
     this.exportImage(canvas, 'turntable_src')
   },

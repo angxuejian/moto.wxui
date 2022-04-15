@@ -60,7 +60,7 @@
 .lottery__canvas {
   width: 250px;
   height: 250px;
-  position: absolute;
+  position: fixed;
   /* left: calc((100% - 250px) / 2);
   top: calc((100% - 250px) / 2); */
   border-radius: 50%;
@@ -68,6 +68,8 @@
   overflow: hidden;
   left: -999px;
   top: -999px;
+  /* transform: rotateZ(90deg);
+  transform-origin: center center; */
 }
 .lottery__canvas__btn {
   position: absolute;
@@ -137,4 +139,5 @@
   border-radius: 50%;
   background-color: #fff;
   overflow: hidden;
+  /* transform: rotate(240deg); */
 }
