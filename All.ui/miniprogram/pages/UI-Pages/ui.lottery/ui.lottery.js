@@ -11,9 +11,9 @@ Page({
       { name: '一等奖', percent: 0.01, count: 1 },
       { name: '二等奖', percent: 0.05, count: 3 },
       { name: '三等奖', percent: 0.14, count: 10 },
-      { name: '未中奖', percent: 0.80, count: -1 },
-      { name: '未中奖', percent: 0.80, count: -1 },
-      { name: '未中奖', percent: 0.80, count: -1 },
+      { name: '未中奖', percent: 0.20, count: -1 },
+      { name: '未中奖', percent: 0.30, count: -1 },
+      { name: '未中奖', percent: 0.30, count: -1 },
     ],
     nameArr: [],
     weightSum: 0,
@@ -26,7 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.initPrize()
+    this.initPrize()
   },
 
   initPrize: function() {
@@ -58,56 +58,42 @@ Page({
       tip += '已被领取完 - 未中奖'
     }
 
-    console.log(tip)
+    this.gameStart(index, tip)
   },
 
-  testWhile: function() {
-    this.initPrize()
 
-    for (let i = 0; i < 100; i++) {
-      this.getLottery()
-    }
-  },
-  
-
-
-  gameStart: function() {
-    const index = Math.floor(Math.random() * this.data.prizes.length)
-    // const index= 5
-    console.log(`本次抽奖结果：` + index + this.data.prizes[index].name)
-
+  gameStart: function(index, tip) {
+    console.log(`本次抽奖结果：` + tip)
     /**
-     * 240 => this.data.prizes 对应 0 的旋转度数
-     * 6 * 360 => 多转6圈
+     * (360 * 3 / 4) => (0*angle)与指针的偏移量 => 270°
+     * (index * base) => 每块的角度
+     * (base / 2) => 每块角度的一半，指针指向区域
      */
-    const deg = (index) * (360 / this.data.prizes.length)
+    const base = 360 / this.data.prizes.length
     const arc = 6 * 360
-    const rotate = (deg > 240 ? deg : deg <= 240 ? 240 - deg : (240 + deg)) + arc
+    const deg = (360 * 3 / 4) - (index * base) - (base / 2)
+    const diff = 360 - deg
 
     const animation = wx.createAnimation({
       duration: 3000,
       timingFunction: 'ease'
     })
- 
-    animation.rotate(rotate).step()
+    this.data.turntable.deg += deg + arc
+    animation.rotate(this.data.turntable.deg).step()
     this.setData({
       gameAnimation: animation.export()
     })
- 
+    
+    this.data.turntable.deg += diff // 补全一圈360
+
 
     // 初始化动画
     setTimeout(() => {
       wx.showModal({
         title: '本次抽奖结果',
-        content: this.data.prizes[index].name,
+        content: tip,
         showCancel: false,
         })
-      setTimeout(() => {
-        animation.rotate(0).step({duration:10})
-        this.setData({
-          gameAnimation: animation.export()
-        })
-      }, 1000);
     }, 4000);
   },
   
@@ -157,7 +143,7 @@ Page({
       ctx.beginPath()
       ctx.moveTo(x, y)
       ctx.arc(x, y, 125, start, end, false)   // 125 => 圆的半径
-      ctx.fillStyle = i % 2 === 1 ? 'white' : 'blue'
+      ctx.fillStyle = i % 2 === 1 ? 'rgba(223, 133, 133, 0.2)' : 'white'
       ctx.fill()
       ctx.closePath()
       ctx.restore()
@@ -171,7 +157,7 @@ Page({
       ctx.beginPath()
       ctx.translate(x, y)
       ctx.rotate(i * angle + angle / 2 + Math.PI / 2)
-      ctx.fillStyle = 'red'
+      ctx.fillStyle = 'blue'
       ctx.font = '18px Microsoft YaHei'
 
       /**
@@ -182,16 +168,11 @@ Page({
        */
       const list = this.getTextWidth(ctx, this.data.prizes[i].name, 90)
       list.forEach((text, index) => {
-        ctx.fillText(i + text, -ctx.measureText(text).width / 2, -90 - (-20 * index))
+        ctx.fillText(text, -ctx.measureText(text).width / 2, -90 - (-20 * index))
       })
       ctx.closePath()
       ctx.restore()
     }
-    // ctx.save()
-    // ctx.beginPath()
-    // ctx.translate(x, y)
-    // ctx.rotate(Math.PI / 6)
-    // ctx.closePath()
 
     this.exportImage(canvas, 'turntable_src')
   },

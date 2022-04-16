@@ -61,15 +61,11 @@
   width: 250px;
   height: 250px;
   position: fixed;
-  /* left: calc((100% - 250px) / 2);
-  top: calc((100% - 250px) / 2); */
   border-radius: 50%;
   background-color: #fff;
   overflow: hidden;
   left: -999px;
   top: -999px;
-  /* transform: rotateZ(90deg);
-  transform-origin: center center; */
 }
 .lottery__canvas__btn {
   position: absolute;
@@ -84,6 +80,17 @@
   background-color: red;
   text-align: center;
   z-index: 999;
+}
+.lottery__canvas__btn::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: calc((100% - 40px) / 2);
+  width: 0px;
+  height: 0px;
+  border-bottom: 20px solid red;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
 }
 
 
@@ -139,5 +146,4 @@
   border-radius: 50%;
   background-color: #fff;
   overflow: hidden;
-  /* transform: rotate(240deg); */
 }

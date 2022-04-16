@@ -14,7 +14,7 @@
       "list": [
         {
           "name": "pages/UI-Pages/ui.picCrop/ui.picCrop",
-          "pathName": "pages/UI-Pages/ui.lottery/ui.lottery",
+          "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },

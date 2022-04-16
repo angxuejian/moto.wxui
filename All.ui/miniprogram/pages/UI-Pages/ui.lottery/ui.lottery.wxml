@@ -32,9 +32,7 @@
   </view> -->
 
   <image animation='{{gameAnimation}}' class="lottery__turntable" src="{{turntable_src}}" alt=""></image>
-  <view bindtap="gameStart" class="lottery__canvas__btn">开始</view>
+  <view bindtap="getLottery" class="lottery__canvas__btn">开始</view>
 
   <canvas id='turntable' class="lottery__canvas" type="2d"></canvas>
-  <!-- <canvas id='turntable_btn' class="lottery__canvas" type="2d"></canvas> -->
-
 </view>
