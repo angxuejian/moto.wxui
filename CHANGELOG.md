@@ -1,6 +1,11 @@
 # 更改日志 
 
 ## v0.3.2
+### 2022/05/6
+- fix initImgSrc function issue in ui.picCrop page
+- add lottery page
+- refactor color js and calendar js
+
 ### 2022/03/31
 - fix Alpha issue of colorPicker component
 - improve dateRange prop in datePicker component
