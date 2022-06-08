@@ -5,7 +5,7 @@ const funcArr = [
   { name: '消除背景', value: 'removeBG' },
   { name: '瀑布流', value: 'waterfallsFlow' },
   { name: '触摸滑动列表', value: 'touchlist' },
-  { name: '图片裁剪', value: 'picCrop' },
+  // { name: '图片裁剪', value: 'picCrop' },
   { name: '电子签名', value: 'electronicSignature' },
   { name: '抽奖', value: 'lottery' }
 ]

@@ -17,7 +17,10 @@ Page({
   data: {
     showSrc: app.globalData.DEFAULT_IMG,
     imgSrc: '', // 图片地址
-    boxSize: { w: 340, h: 340, top: 0, left: 0 }, // 裁剪框大小
+    boxSize: { 
+      width: 340, height: 340, top: 0, left: 0,
+      offsetTop: 0, offsetLeft: 0, offsetBottom: 0, offsetRight: 0
+    }, // 裁剪框大小
     imgSize: { width: 0, height: 0, x: 0, y: 0, src: '' }, // canvas需要裁剪的大小
 
     x: 0,
@@ -38,6 +41,9 @@ Page({
     sysInfo: {}, // 设备信息
     isScale: false, // 是否为手势缩放操作
     isTouch: false, // 是否为手势动作
+    isOnlyTouch: false, //是否为单手指触摸
+    isEnd: false,
+    isTouchEnd: false
   },
 
   /**
@@ -50,6 +56,7 @@ Page({
     // const src = 'https://images.pexels.com/photos/9699289/pexels-photo-9699289.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 
     // 
+    this.initImgSrc('https://dianjianoss.hzzwhl.com/hoswww/company-five-a.png')
   },
 
   onChooseImage: function() {
@@ -76,26 +83,30 @@ Page({
 
 
     // 计算裁剪框的最小宽度
-    if (this.data.boxSize.w > sys.windowWidth) {
+    if (this.data.boxSize.width > sys.windowWidth) {
       const wh = sys.windowWidth * 0.8
-      this.data.boxSize.w = wh
-      this.data.boxSize.h = wh
-      boxd.boxSize = this.data.boxSize
+      this.data.boxSize.width = wh
+      this.data.boxSize.height = wh
+      // boxd.boxSize = this.data.boxSize
     }
-
     const { boxSize, imgSize } = this.data
 
 
     // 获取图片的信息、并先图片的宽高绘制canvas标签上
-    const list = getAspectFill(img.width, img.height, boxSize.w, boxSize.h)
+    const list = getAspectFill(img.width, img.height, boxSize.width, boxSize.height)
 
-    console.log(list, '---0')
-    // list = getWidthFix(img.width, img.height, boxSize.w, img.height)
+    // list = getWidthFix(img.width, img.height, boxSize.width, img.height)
 
 
     imgSize.width  = list[0]
     imgSize.height = list[1]
-    this.setData({ imgSize, ...boxd })
+    console.log(imgSize.height, boxSize)
+    boxSize.offsetBottom = (imgSize.height - boxSize.height) / 2
+    boxSize.offsetLeft   = (imgSize.width - boxSize.width) / 2
+    boxSize.offsetRight  = -boxSize.offsetLeft
+    boxSize.offsetTop    = -boxSize.offsetBottom
+    
+    this.setData({ imgSize, boxSize })
 
 
     imgSize.initSrc = img.path // 背景图片、使用已加载到本地的图片
@@ -115,7 +126,6 @@ Page({
     }
  
     const imgSrc = await drawInitImgSrc(d)
-    console.log(imgSrc, '--!')
     this.setData({ imgSrc })
   },
 
@@ -127,21 +137,20 @@ Page({
   onTouchStart: function(event) {
     const { touches } = event
     this.data.isTouch = true
-
+    this.data.isTouchEnd = false
 
     if (touches.length === 1) {
       // 第二次触摸滑动时、要减去 x, y 的已移动的距离
       this.data.touch.startX = touches[0].pageX - this.data.x
       this.data.touch.startY = touches[0].pageY - this.data.y
-      this.data.isScale = false
+      this.data.isOnlyTouch = true
     } 
     
     else if (touches.length === 2) {
 
       // this.setOriginAxis(event)
-
       this.data.touch.startS = getDistance(touches[0], touches[1])
-      this.data.isScale = true
+      this.data.isOnlyTouch = false
     }
   },
 
@@ -149,10 +158,12 @@ Page({
   onTouchMove: throttle(function(event) {
 
     if (!this.data.isTouch) return
+     this.data.isTouchEnd = false
     const { touches } = event
-
+    const { boxSize } = this.data
+    let isEnd = false
     // 单指图片移动操作
-    if (touches.length === 1 && !this.data.isScale) {
+    if (touches.length === 1 && this.data.isOnlyTouch) {
       this.data.touch.moveX = touches[0].pageX
       this.data.touch.moveY = touches[0].pageY
 
@@ -169,40 +180,59 @@ Page({
       //     else y = 0
       //   }
       // }
+      if (x > boxSize.offsetLeft || x < boxSize.offsetRight) isEnd = true
+      // if (y > boxSize.offsetBottom) isEnd = true
+      // if () isEnd = true
+      // if (y < boxSize.offsetTop) isEnd = true
 
-      this.setData({ x, y })
+      this.setData({ x, y, isEnd })
     }
 
     // 双指图片缩放操作
-    else if (touches.length === 2 && this.data.isScale) {
+    else if (touches.length === 2 && !this.data.isScale) {
 
       this.data.touch.moveS = getDistance(touches[0], touches[1])
 
       const zoom = this.data.touch.moveS - this.data.touch.startS
 
-      let scale = this.data.scale + 0.005 * zoom
-      console.log(scale)
+      // let scale = this.data.scale + 0.005 * zoom
+      // console.log(scale)
       // console.log(this.data.touch, '---!')
       // let zoom = this.data.touch.moveS / this.data.touch.startS
       // let scale = this.data.scale * zoom
 
-      if (scale > 3) scale = 3
-      else if (scale <= 0.5) scale = 0.5
+      // if (scale > 3) scale = 3
+      // else if (scale <= 0.5) scale = 0.5
 
       this.setImgScale(scale)
     }
-  }, 15),
+  }, 10),
 
   // end touch
   onTouchEnd: function(event) {
+      // console.log('指向了》', event)
+      // this.setData({ isEnd: true })
 
-    if (!event.touches.length) {
-      if (this.data.scale < 1) {
-        this.data.scale = 1
-        this.setImgScale(this.data.scale)
-      }
-  
-      this.data.isScale = false
+    // if (!event.touches.length) {
+      let { x, y, boxSize } = this.data
+      // console.log(this.data.x, this.data.y, this.data.boxSize, '-->')
+      if (x > boxSize.offsetLeft) x = boxSize.offsetLeft
+      if (y > boxSize.offsetBottom) y = boxSize.offsetBottom
+      if (x < boxSize.offsetRight) x = boxSize.offsetRight
+      if (y < boxSize.offsetTop) y = boxSize.offsetTop
+
+
+      // console.log(x, y, '-->')
+      this.setData({ x, y })
+    // }
+
+  },
+
+  onTransitionEnd: function() {
+    if (this.data.isTouchEnd) {
+      this.setData({
+        isEnd: false
+      })
     }
 
   },
@@ -312,8 +342,8 @@ Page({
 
     // 获取图片的位置
     const diff = {
-      sysX: (sysInfo.windowWidth  - boxSize.w) / 2,
-      sysY: (sysInfo.windowHeight - boxSize.h) / 2,
+      sysX: (sysInfo.windowWidth  - boxSize.width) / 2,
+      sysY: (sysInfo.windowHeight - boxSize.height) / 2,
       imgX: (sysInfo.windowWidth  - (imgSize.width * scale)) / 2,
       imgY: (sysInfo.windowHeight - (imgSize.height * scale)) / 2,
     }

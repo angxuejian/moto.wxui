@@ -19,7 +19,6 @@ page {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: #fff;
 }
 .avatar .tips {
   font-size: 13px;
@@ -32,7 +31,7 @@ page {
 
 .box-bc view{
   position: fixed;
-  background-color: #000;
+  background-color: #666;
   z-index: 3;
   opacity: 0.7;
 }
@@ -43,7 +42,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ededed;
+  background-color: #000;
 }
 
 
@@ -115,4 +114,9 @@ canvas {
   top: -9999px;
   left: -9999px;
   opacity: 0;
+}
+
+
+.touch-img {
+  transition: transform 0.1s ease-out;
 }
