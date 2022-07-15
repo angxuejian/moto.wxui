@@ -43,11 +43,13 @@ Page({
   },
   getLottery: function() {
     const { prizes, weightArr, nameArr, weightSum } = this.data
-    
-    const random = Math.random() * weightSum
-    weightArr.push(random)
 
-    const sortWeightArr = weightArr.sort((a, b) => a - b )
+    const randomArr = JSON.parse(JSON.stringify(weightArr))
+    const random = Math.random() * weightSum
+
+    randomArr.push(random)
+
+    const sortWeightArr = randomArr.sort((a, b) => a - b )
     const index = Math.min(sortWeightArr.indexOf(random), prizes.length - 1)
 
     const itemPrize = prizes[index]
