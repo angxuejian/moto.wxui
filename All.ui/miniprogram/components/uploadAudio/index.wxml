@@ -1,0 +1,21 @@
+<!--components/uploadAudio/index.wxml-->
+
+<drawer-moto id='drawerMoto'>
+
+
+  <view class="timer-audio" slot='popupview'>
+    <view class="timer__title {{!isStart && timer ? 'timer-audio__stop--timer' : ''}}">{{timerName}}</view>
+
+    <view  class="audio__circle">
+      <view bindtap="audioStart" class="circle-image">
+        <image src="/assets/audio{{isStart ? '-selected' : ''}}.png"></image>
+      </view>
+      <view bindtap="audioStart" style="display: {{isStart ? 'block' : 'none' }}" class="circle-selected"></view>
+    </view>
+
+
+    <view style="{{!isStart && !timer ? 'height: 0px;' : ''}}" class="confirm">结束录制</view>
+  </view>
+
+
+</drawer-moto>

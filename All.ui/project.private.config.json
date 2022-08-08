@@ -7,7 +7,7 @@
       "list": [
         {
           "name": "pages/UI-Pages/ui.picCrop/ui.picCrop",
-          "pathName": "pages/UI-Pages/ui.picCrop/ui.picCrop",
+          "pathName": "pages/UI-Pages/ui.uploadAudio/ui.uploadAudio",
           "query": "",
           "launchMode": "default",
           "scene": null

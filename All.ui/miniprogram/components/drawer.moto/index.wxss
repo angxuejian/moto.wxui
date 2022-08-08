@@ -1,0 +1,76 @@
+/* components/drawer.moto/index.wxss */
+
+.drawer-moto__bc {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999998;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.drawer-moto__bc-show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.drawer-moto__bc-hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.drawer-moto__block {
+  width: 98%;
+  position: fixed;
+  bottom: 1%;
+  left: 1%;
+  background-color: #fff;
+  border-radius: 30px;
+  z-index: 999999;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+.drawer-moto__block-show {
+  animation: show 0.3s forwards;
+  opacity: 1;
+}
+@keyframes show {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.drawer-moto__block-hide {
+  animation: hide 0.3s forwards;
+}
+@keyframes hide {
+  from {
+    transform:  translateY(0%);
+  }
+  to {
+    transform:  translateY(110%);
+    display: none;
+    opacity: 0;
+  }
+}
+
+.drawer-moto__title {
+  width: 100%;
+  height: 30px;
+  /* margin-top: 15px; */
+  font-size: 17px;
+  color: #333;
+  font-weight: 400;
+  text-align: center;
+  line-height: 30px;
+}
+
+.drawer-moto__body {
+  width: 90%;
+  margin: 0 auto;
+}
