@@ -4,6 +4,7 @@
 ### 2022/08/09
 - rename uploadAudio to recorder
 - recorder component completed
+- add checkInDatePicker component
 
 ### 2022/08/08
 - add drawer.moto and uploadAudio conponents
