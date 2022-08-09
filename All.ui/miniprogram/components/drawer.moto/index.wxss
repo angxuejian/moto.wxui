@@ -68,6 +68,14 @@
   font-weight: 400;
   text-align: center;
   line-height: 30px;
+  position: relative;
+}
+.drawer-moto__title-close {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: 20px;
+  top: -2px;
 }
 
 .drawer-moto__body {

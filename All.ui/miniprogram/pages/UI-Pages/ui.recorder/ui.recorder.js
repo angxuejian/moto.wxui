@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    audioSrc: ''
   },
 
   /**
@@ -19,7 +19,17 @@ Page({
     this.selectComponent('#recorder').open()
   },
 
-  uploadAudio: function() {
+  onCallbackChange: function(event) {
+    this.data.audioSrc = event.detail.tempFilePath
+    this.setData({ audioSrc: this.data.audioSrc })
+  },
+
+  play: function() {
+    if (!this.data.audioSrc) return
+    const audio = wx.createInnerAudioContext()
+    audio.src = this.data.audioSrc
+    audio.autoplay = true
+    // audio.play()
 
   },
 

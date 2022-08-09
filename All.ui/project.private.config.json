@@ -7,7 +7,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/UI-Pages/ui.recorder/ui.recorder",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null

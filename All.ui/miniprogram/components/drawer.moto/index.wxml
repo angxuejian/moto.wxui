@@ -12,6 +12,7 @@
       
       <view class="drawer-moto__title">
         <!-- <view>录音</view> -->
+        <!-- <image class="drawer-moto__title-close" src="/assets/close.png"></image> -->
       </view>
 
       <view class="drawer-moto__body">

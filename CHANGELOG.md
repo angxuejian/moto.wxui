@@ -1,5 +1,14 @@
 # 更改日志 
 
+## v0.3.3
+### 2022/08/09
+- rename uploadAudio to recorder
+- recorder component completed
+
+### 2022/08/08
+- add drawer.moto and uploadAudio conponents
+
+
 ## v0.3.2
 ### 2022/05/6
 - fix initImgSrc function issue in ui.picCrop page
