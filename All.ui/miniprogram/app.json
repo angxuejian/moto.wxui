@@ -16,7 +16,7 @@
     "pages/UI-Pages/ui.picCrop/ui.picCrop",
     "pages/UI-Pages/ui.electronicSignature/ui.electronicSignature",
     "pages/UI-Pages/ui.lottery/ui.lottery",
-    "pages/UI-Pages/ui.uploadAudio/ui.uploadAudio"
+    "pages/UI-Pages/ui.recorder/ui.recorder"
   ],
   "window": {
     "backgroundTextStyle": "light",

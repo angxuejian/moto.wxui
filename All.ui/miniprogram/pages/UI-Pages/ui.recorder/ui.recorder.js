@@ -1,4 +1,4 @@
-// pages/UI-Pages/ui.uploadAudio/ui.uploadAudio.js
+// pages/UI-Pages/ui.recorder/ui.recorder.js
 Page({
 
   /**

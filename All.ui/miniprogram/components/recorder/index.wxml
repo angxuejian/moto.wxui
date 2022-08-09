@@ -1,4 +1,4 @@
-<!--components/uploadAudio/index.wxml-->
+<!--components/recorder/index.wxml-->
 
 <drawer-moto id='drawerMoto'>
 

@@ -1,14 +1,14 @@
-<!--pages/UI-Pages/ui.uploadAudio/ui.uploadAudio.wxml-->
+<!--pages/UI-Pages/ui.recorder/ui.recorder.wxml-->
 <view>
 
   <view class="item-btn">
     <text>默认</text>
     <view bindtap="open">
-      打开
+      打开录音
     </view>
   </view>
 </view>
 
 
-<upload-audio id='uploadAudio'></upload-audio>
+<recorder id='recorder'></recorder>
 

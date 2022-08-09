@@ -6,8 +6,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/UI-Pages/ui.picCrop/ui.picCrop",
-          "pathName": "pages/UI-Pages/ui.uploadAudio/ui.uploadAudio",
+          "name": "",
+          "pathName": "pages/UI-Pages/ui.recorder/ui.recorder",
           "query": "",
           "launchMode": "default",
           "scene": null

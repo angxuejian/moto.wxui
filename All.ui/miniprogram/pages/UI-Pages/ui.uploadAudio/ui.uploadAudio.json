@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "upload-audio": "/components/uploadAudio/index"
-  },
-  "navigationBarTitleText": "上传录音-UploadAudio"
-}
