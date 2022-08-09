@@ -2,5 +2,5 @@
   "usingComponents": {
     "recorder": "/components/recorder/index"
   },
-  "navigationBarTitleText": "录音-recorder"
+  "navigationBarTitleText": "录音-Recorder"
 }
