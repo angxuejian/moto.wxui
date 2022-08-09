@@ -16,7 +16,8 @@
     "pages/UI-Pages/ui.picCrop/ui.picCrop",
     "pages/UI-Pages/ui.electronicSignature/ui.electronicSignature",
     "pages/UI-Pages/ui.lottery/ui.lottery",
-    "pages/UI-Pages/ui.recorder/ui.recorder"
+    "pages/UI-Pages/ui.recorder/ui.recorder",
+    "pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -18,7 +18,8 @@ const compArr = [
   { name: '选择器', value: 'picker' },
   { name: '开关选择器', value: 'switch' },
   { name: '抽屉', value: 'drawer' },
-  { name: '录音', value : 'recorder' }
+  { name: '录音', value : 'recorder' },
+  { name: '入住日期选择器', value: 'checkInDatePicker' }
 ]
 
 const cleanArr = (list) => {
