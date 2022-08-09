@@ -16,7 +16,7 @@ Page({
   },
 
   open: function() {
-    this.selectComponent('#uploadAudio').open()
+    this.selectComponent('#recorder').open()
   },
 
   uploadAudio: function() {
