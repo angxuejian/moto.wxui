@@ -5,6 +5,7 @@
 - `[drawer.moto]` improve close function and props
 - `[recorder]` improve close function and title info
 - fix ui.page hover-class issue
+- `[checkInDatePicker]` add dom elements and css styles
 
 ### 2022/08/09
 - rename uploadAudio to recorder

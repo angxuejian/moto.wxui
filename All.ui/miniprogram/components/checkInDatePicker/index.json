@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "drawer-moto": "/components/drawer.moto/index"
+  }
 }

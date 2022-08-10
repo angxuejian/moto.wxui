@@ -7,7 +7,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/index/index",
+          "pathName": "pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker",
           "query": "",
           "launchMode": "default",
           "scene": null

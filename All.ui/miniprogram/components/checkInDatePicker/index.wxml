@@ -1,2 +1,52 @@
 <!--components/checkInDatePicker/index.wxml-->
-<text>components/checkInDatePicker/index.wxml</text>
+
+<drawer-moto title='选择日期' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
+
+
+  <view slot='popupview'>
+    <view class="weeks">
+      <view class="day-item" wx:for='{{weeks}}' wx:key='*this'>{{item}}</view>
+    </view>
+
+    <scroll-view scroll-y class="months">
+      <view class="month-item" wx:for="{{months}}" wx:key='*this'>
+        <view class="month-item__name">{{item.month}}</view>
+        <view class="month-item__days">
+          <view class="day-item" wx:for='{{item.days}}' wx:for-item='day' wx:for-index='ind' wx:key='*this'>
+            
+            {{day}}
+          
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+
+    <view class="confirm">
+
+        <view class="multiple-btn">
+          <view class="multiple-btn__show-date">
+            <view class="show-date-item">
+              <view>入住</view>
+              <view>09月11日 周日</view>
+            </view>
+            <view class="show-date-line">—</view>
+            <view class="show-date-item">
+              <view>离店</view>
+              <view style="{{endName ? '' : 'color: #c9c9c9'}}">{{ endName ? endName : '请选择日期' }}</view>
+            </view>
+          </view>
+
+          <view hover-class="hover" style="{{!nightNumber ? 'background-color:#dcdcdc' : ''}}" class="confirm-btn">
+            确认<text style="margin: 0 3px;">{{ nightNumber }}</text>晚
+          </view>
+        </view>
+
+        <!-- <view class="only-btn">
+          <view class="only-btn__show-date">08月23日 周二入住</view>
+          <view hover-class="hover" class="confirm-btn">确认</view>
+        </view> -->
+    </view>
+  </view>
+
+</drawer-moto>

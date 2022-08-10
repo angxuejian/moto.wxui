@@ -1,2 +1,10 @@
 <!--pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker.wxml-->
-<text>pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker.wxml</text>
+<view>
+
+  <view class="item-btn">
+    <text>Change事件</text>
+    <view bindtap="open" hover-class="hover-font">打开</view>
+  </view>
+</view>
+
+<checkin-date-picker bindchange='onCallbackChange' id='checkInDatePicker'></checkin-date-picker>
