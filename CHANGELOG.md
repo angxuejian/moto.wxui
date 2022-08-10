@@ -1,6 +1,11 @@
 # 更改日志 
 
 ## v0.3.3
+### 2022/08/10
+- `[drawer.moto]` improve close function and props
+- `[recorder]` improve close function and title info
+- fix ui.page hover-class issue
+
 ### 2022/08/09
 - rename uploadAudio to recorder
 - recorder component completed

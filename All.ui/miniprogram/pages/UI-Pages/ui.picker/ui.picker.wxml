@@ -6,7 +6,7 @@
     <text>单列选择器</text>
     <view>
       <mo-picker data-key='value1' mode='selector' range='{{onlyArr}}' range_key='value' bindchange='onCallbackChange'>
-        <view class="view-class" >{{ show.value1 || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class" >{{ show.value1 || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -14,7 +14,7 @@
     <text>多列选择器</text>
     <view>
       <mo-picker  bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{moreArr1}}' range_key='name' data-list='moreArr1' data-key='value2' bindchange='onCallbackChange'>
-        <view class="view-class">{{ show.value2 || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class">{{ show.value2 || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -23,7 +23,7 @@
     <text>日期时间</text>
     <view>
       <mo-picker data-key='value3' mode='dateTimeSelector'bindchange='onCallbackDateTimeChange'>
-        <view class="view-class">{{ show.value3 || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class">{{ show.value3 || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -31,7 +31,7 @@
   <view class="item-btn">
     <text>实例方法</text>
     <view>
-      <view bindtap="open">{{ show.value4 || '通过实例方法打开组件'}}</view>
+      <view  hover-class='hover-font' bindtap="open">{{ show.value4 || '通过实例方法打开组件'}}</view>
       <mo-picker data-key="value4" id='picker' mode='selector' range='{{onlyArr}}'  bindchange='onCallbackChange'>
       </mo-picker>
     </view>
@@ -41,7 +41,7 @@
     <text>默认值</text>
     <view>
       <mo-picker index='{{listIndex2}}'  bindcolumnchange='onCallbackColumnChange' mode='multiSelector' range='{{moreArr2}}' range_key='name' data-list='moreArr2' data-key='value5' bindchange='onCallbackChange'>
-        <view class="view-class" >{{ show.value5 || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class" >{{ show.value5 || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -50,7 +50,7 @@
     <text>日期</text>
     <view>
       <mo-picker date='{{dateVa}}' data-key="value6" mode='dateSelector'bindchange='onCallbackDateTimeChange'>
-        <view class="view-class">{{ show.value6 || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class">{{ show.value6 || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -59,7 +59,7 @@
     <text>时间</text>
     <view>
       <mo-picker date='{{dateVa}}' data-key="value7" mode='timeSelector' bindchange='onCallbackDateTimeChange' >
-        <view class="view-class">{{ show.value7  || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class">{{ show.value7  || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>
@@ -68,7 +68,7 @@
     <text>省市区</text>
     <view>
       <mo-picker value='{{["浙江省", "杭州市", "西湖区"]}}' data-key="value8" mode='region' bindchange='onCallbackChange' >
-        <view class="view-class">{{ show.value8  || "请选择"}}</view>
+        <view  hover-class='hover-font' class="view-class">{{ show.value8  || "请选择"}}</view>
       </mo-picker>
     </view>
   </view>

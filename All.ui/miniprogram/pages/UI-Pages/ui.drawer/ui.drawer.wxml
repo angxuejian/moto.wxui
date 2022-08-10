@@ -3,7 +3,7 @@
 
   <view wx:for='{{list}}' wx:key='index' class="item-btn">
     <text>位置大小</text>
-    <view bindtap="openDrawer" data-id='drawer{{index}}'>
+    <view  hover-class='hover-font' bindtap="openDrawer" data-id='drawer{{index}}'>
       {{ item.name }}
     </view>
   </view>
