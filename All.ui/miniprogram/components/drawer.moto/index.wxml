@@ -7,12 +7,14 @@
 
   <!-- 弹出view -->
   <view wx:if="{{isShow}}">
-    <view bindtap="close" class="drawer-moto__bc {{ isShow === 1 ? 'drawer-moto__bc-show' : 'drawer-moto__bc-hide'}}"></view>
+    <view bindtap="tapMaskClose" class="drawer-moto__bc {{ isShow === 1 ? 'drawer-moto__bc-show' : 'drawer-moto__bc-hide'}}"></view>
     <view class="drawer-moto__block {{ isShow === 1 ? 'drawer-moto__block-show' : 'drawer-moto__block-hide'}}">
       
       <view class="drawer-moto__title">
-        <!-- <view>录音</view> -->
-        <!-- <image class="drawer-moto__title-close" src="/assets/close.png"></image> -->
+        <view>{{ title }}</view>
+        <view bindtap="close" class="drawer-moto__title-close">
+          <image src="/assets/close.png"></image>
+        </view>
       </view>
 
       <view class="drawer-moto__body">

@@ -60,22 +60,31 @@
 }
 
 .drawer-moto__title {
-  width: 100%;
+  width: 90%;
   height: 30px;
-  /* margin-top: 15px; */
-  font-size: 17px;
+  font-size: 18px;
   color: #333;
-  font-weight: 400;
-  text-align: center;
+  font-weight: 600;
   line-height: 30px;
   position: relative;
+  margin: 0 auto;
+  margin-bottom: 15px;
 }
 .drawer-moto__title-close {
   position: absolute;
   width: 25px;
   height: 25px;
-  right: 20px;
-  top: -2px;
+  right: 0px;
+  top: calc((100% - 25px) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F3F3FD;
+  border-radius: 50%;
+}
+.drawer-moto__title-close image {
+  width: 18px;
+  height: 18px;
 }
 
 .drawer-moto__body {

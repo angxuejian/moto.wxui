@@ -8,7 +8,14 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    title: {
+      type: String,
+      value: ''
+    },
+    maskClose: {
+      type: Boolean,
+      value: true
+    }
   },
 
   /**
@@ -43,6 +50,11 @@ Component({
     close: function() {
       this.showDrawerMoto()
       this.triggerEvent('close')
+    },
+    tapMaskClose: function() {
+      if (!this.data.maskClose) return 
+
+      this.close()
     }
   }
 })
