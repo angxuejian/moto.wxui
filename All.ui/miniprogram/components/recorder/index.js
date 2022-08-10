@@ -71,7 +71,7 @@ Component({
       this.data.recorderManage.onResume(() => { console.log('录音继续了') })
     },
 
-    stop: function(isTapClose) {
+    stop: function() {
       // 遮罩层关闭的，就不执行定时关闭
 
       this.data.recorderManage.stop()
@@ -89,10 +89,10 @@ Component({
           isStart: this.data.isStart
         })
 
-        if (!isTapClose) return
-        setTimeout(() => {
-          this.selectComponent('#drawerMoto').close()
-        }, 800);
+        // if (!isTapClose) return
+        // setTimeout(() => {
+        //   this.selectComponent('#drawerMoto').close()
+        // }, 800);
       })
     },
 

@@ -1,6 +1,6 @@
 <!--components/recorder/index.wxml-->
 
-<drawer-moto bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
+<drawer-moto mask-close='{{false}}' title='录音' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
 
 
   <view class="timer-audio" slot='popupview'>

@@ -16,7 +16,6 @@
   </view>
 </view>
 
-<audio src="wxfile://tmp_eb10a747d0b1668ed8e8710efa9d13a7fbb9967da0631f3b.mp3"></audio>
 
 <recorder bindchange='onCallbackChange' id='recorder'></recorder>
 
