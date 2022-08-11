@@ -3,21 +3,23 @@
 
 ## 使用
 将UI组件引用到项目中
-```
+```json
 // index.json
-
 {
   "usingComponents": {
     "mo-color-picker": "/component/colorPicker/index"
   }
 }
 ```
-```
-// index.html
-
+```html
+<!-- index.wxml -->
 <view>
- <mo-color-picker></mo-color-picker>
+ <mo-color-picker id='colorPicker'></mo-color-picker>
 </view>
+```
+```js
+//  index.js
+this.selectComponent('#colorPicker').open()
 ```
 
 - **具体属性和方法** 详看docs文件夹下的 .md文件

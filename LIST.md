@@ -10,6 +10,8 @@
 瀑布流-waterfallsFlow|
 触摸滑动列表-Touchlist | 
 图片裁剪-PictureCropping | 
+电子签名-ElectronicSignature | 
+抽奖-Lottery |
 
 ## UI组件
 组件 | 文档
@@ -17,10 +19,12 @@
 顶部加载-Nprogress | [ >>> ](docs/nprogress.md)
 颜色选择器-ColorPicker | [ >>> ](docs/colorPicker.md)
 日期选择器-DatePicker | [ >>> ](docs/datePicker.md)
-图片模式-imgMode | [ >>> ](docs/imgMode.md)
+图片模式-ImgMode | [ >>> ](docs/imgMode.md)
 选择器-Picker    | [ >>> ](docs/picker.md)
 开关选择器-Switch | [ >>> ](docs/switch.md)
 抽屉-Drawer      | [ >>> ](docs/drawer.md)
+录音-Recorder    | [ >>> ](docs/recorder.md)
+入住时间选择器-CheckInDatePicker | [ >>> ](docs/checkInDatePicker.md)
 
 
 <!-- - **nprogress 加载进度条**： https://developers.weixin.qq.com/s/WMGBlvmi7xmd
