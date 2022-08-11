@@ -4,31 +4,47 @@
 
 
   <view slot='popupview'>
+ 
     <view class="weeks">
       <view class="day-item" wx:for='{{weeks}}' wx:key='*this'>{{item}}</view>
     </view>
 
     <scroll-view scroll-y class="months">
-      <view class="month-item" wx:for="{{months}}" wx:key='*this'>
+      <view class="month-item" wx:for="{{months}}" wx:key='index'>
         <view class="month-item__name">{{item.month}}</view>
         <view class="month-item__days">
-          <view class="day-item" wx:for='{{item.days}}' wx:for-item='day' wx:for-index='ind' wx:key='*this'>
+          <view
+          bindtap="selectCheckInDate"
+          data-item='{{d}}'
+          class="day-item {{((startTime <= d.time && endTime >= d.time) || (startTime === d.time || endTime === d.time)) ? 'day-item__day-bc-selected' : ''}} {{ startTime === d.time ? 'day-item__day-bc-start' : ''}} {{ endTime === d.time ? 'day-item__day-bc-end' : ''}}" 
+           wx:for='{{item.days}}'
+           wx:for-item='d' 
+           wx:for-index='i' 
+           wx:key='i'>
+
+            <view style="color: #FF2C3C" class="day-item__day-tip" wx:if='{{ startTime !== d.time && endTime !== d.time && d.title}}'>{{d.title }}</view>
             
-            {{day}}
+            <view class="day-item__day {{(startTime === d.time || endTime === d.time) ? 'day-item__day-selected' : ''}}" style="color:{{d.color}}">{{d.day}}</view>
           
+            <view wx:if='{{ startTime === d.time && multiple }}' class="day-item__day-tip">{{d.title}}入住</view>
+            <view wx:if='{{ endTime === d.time && multiple}}' class="day-item__day-tip">离店</view>
+
+            <view wx:if='{{ startTime === d.time && !multiple}}' class="day-item__day-tip">{{d.title}}预约</view>
           </view>
         </view>
       </view>
+
+      <view class="tips">- <text style="margin: 0 5px;">仅支持预订近半年的日期</text> -</view>
     </scroll-view>
 
 
     <view class="confirm">
 
-        <view class="multiple-btn">
+        <view wx:if='{{multiple}}' class="multiple-btn">
           <view class="multiple-btn__show-date">
             <view class="show-date-item">
               <view>入住</view>
-              <view>09月11日 周日</view>
+              <view>{{ startName }}</view>
             </view>
             <view class="show-date-line">—</view>
             <view class="show-date-item">
@@ -37,15 +53,15 @@
             </view>
           </view>
 
-          <view hover-class="hover" style="{{!nightNumber ? 'background-color:#dcdcdc' : ''}}" class="confirm-btn">
+          <view bindtap="confirm" hover-class="hover" style="{{!nightNumber ? 'background-color:#dcdcdc' : ''}}" class="confirm-btn">
             确认<text style="margin: 0 3px;">{{ nightNumber }}</text>晚
           </view>
         </view>
 
-        <!-- <view class="only-btn">
-          <view class="only-btn__show-date">08月23日 周二入住</view>
+        <view wx:else bindtap="confirm" class="only-btn">
+          <view class="only-btn__show-date">{{ startName }}</view>
           <view hover-class="hover" class="confirm-btn">确认</view>
-        </view> -->
+        </view>
     </view>
   </view>
 

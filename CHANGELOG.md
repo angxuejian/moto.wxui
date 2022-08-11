@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.3
+### 2022/08/11
+- `[checkInDatePicker] conponent completed`
+
 ### 2022/08/10
 - `[drawer.moto]` improve close function and props
 - `[recorder]` improve close function and title info

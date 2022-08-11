@@ -29,7 +29,7 @@ class Lunar {
    * @param {number} sm 阳历月 0-11
    * @param {number} sd 阳历日
    */
-  solar_to_lunar(sy, sm, sd) {
+  solar_to_lunar(sy, sm, sd, week) {
 
     this.getSolarTerms(sy) 
 
@@ -67,7 +67,7 @@ class Lunar {
         break
       }
     }
-    return this.getLunarDay(ly, lm, ld, { sy, sm:sm + 1, sd})
+    return this.getLunarDay(ly, lm, ld, { sy, sm:sm + 1, sd}, week)
   }
 
   /**
@@ -169,7 +169,7 @@ class Lunar {
    * @param {number}          ld 阴历日
    * @param {object}          sd 阳历年月日
    */
-  getLunarDay(ly, lm, ld, sd) {
+  getLunarDay(ly, lm, ld, sd, week) {
     let cy, cm, cd;
     ld = ld.toString()
     // if (ld == 1) {
@@ -208,6 +208,7 @@ class Lunar {
       month: cm,
       day: cd,
       value: `${cy} ${cm}${cd}`,
+      week: `周${this.weeks[week]}`,
       festival: [
         LUNAR_FESTIVAL[l_fes],  // 阴历节日
       ].filter(s => s),

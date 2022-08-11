@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    multiple: true
   },
 
   /**
@@ -15,11 +15,28 @@ Page({
 
   },
 
-  open: function() {
-    this.selectComponent('#checkInDatePicker').open()
+  open: function(event) {
+    const { multiple } = event.currentTarget.dataset
+    this.setData({ multiple }, () => {
+      this.selectComponent('#checkInDatePicker').open()
+    })
   },
   onCallbackChange: function(event) {
-    console.log(event)
+    const { detail } = event
+    if (this.data.multiple) {
+      wx.showModal({
+        title: `共${detail.nightNumber}晚`,
+        content: `${detail.startName} - ${detail.endName}`,
+        showCancel: false
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: `${detail.startName}`,
+        showCancel: false
+      })
+    }
+
   }, 
 
   /**
