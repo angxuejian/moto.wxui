@@ -3,6 +3,7 @@
 ## v0.3.3
 ### 2022/08/11
 - `[checkInDatePicker] conponent completed`
+- add checkInDatePicker.md file
 
 ### 2022/08/10
 - `[drawer.moto]` improve close function and props
