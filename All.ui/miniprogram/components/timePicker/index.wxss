@@ -1,0 +1,43 @@
+/* components/timePicker/index.wxss */
+
+
+
+.clock {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.07);
+  position: relative;
+  overflow: hidden;
+}
+
+.clock__center-point {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: calc((100% - 8px) / 2);
+  top: calc((100% - 8px) / 2);
+  border-radius: 50%;
+  background-color: #438edb;
+}
+
+.clock__numbers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.clock__number-item {
+  position: absolute;
+  font-size: 15px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  left: calc((100% - 30px) / 2);
+}

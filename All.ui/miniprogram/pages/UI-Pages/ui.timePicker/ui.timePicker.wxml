@@ -1,0 +1,11 @@
+<!--pages/UI-Pages/ui.timePicker/ui.timePicker.wxml-->
+<view>
+
+
+  <view class="item-btn">
+    <text>Change事件</text>
+    <view bindtap="open" hover-class="hover-font">打开</view>
+  </view>
+</view>
+
+<time-picker id='timePicker'></time-picker>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "time-picker": "/components/timePicker/index"
+  },
+
+  "navigationBarTitleText": "时间选择器-TimePicker"
+}

@@ -1,0 +1,17 @@
+<!--components/timePicker/index.wxml-->
+<drawer-moto title='选择时间' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
+
+
+  <view slot='popupview'>
+  
+    <view class="clock">
+      
+      <view class="clock__center-point"></view>
+      
+      <view class="clock__numbers">
+        <view class="clock__number-item">12</view>
+      </view>
+    </view>
+
+  </view>
+</drawer-moto>
