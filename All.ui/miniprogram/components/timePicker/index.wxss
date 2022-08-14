@@ -3,14 +3,12 @@
 
 
 .clock {
-  width: 220px;
-  height: 220px;
   margin: 0 auto;
   margin-bottom: 20px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.07);
   position: relative;
-  overflow: hidden;
+  /* padding: 1px; */
 }
 
 .clock__center-point {
@@ -21,23 +19,61 @@
   top: calc((100% - 8px) / 2);
   border-radius: 50%;
   background-color: #438edb;
+  z-index: 4;
+}
+.clock__center-pointer {
+  position: absolute;
+  top: 0;
+  left: calc((100% - 2px) / 2);
+  width: 2px;
+  height: 50%;
+  background-color: #438edb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center bottom 0px
+}
+.pointer-circle{
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  background-color: #438edb;
+  border-radius: 50%;
+  text-align: center;
 }
 
+.clock__center-line1 {
+  position: absolute;
+  left: 0;
+  top: calc((100% - 1px) / 2);
+  width: 100%;
+  height: 1px;
+  background-color: red;
+  z-index: 66;
+}
+.clock__center-line2 {
+  position: absolute;
+  left: calc((100% - 1px) / 2);
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: red;
+  z-index: 66;
+}
 .clock__numbers {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
 }
 .clock__number-item {
   position: absolute;
   font-size: 15px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
   text-align: center;
   border-radius: 50%;
-  left: calc((100% - 30px) / 2);
+}
+.clock__number-item__selected {
+  color: #fff !important;
 }

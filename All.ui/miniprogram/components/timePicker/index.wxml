@@ -4,12 +4,20 @@
 
   <view slot='popupview'>
   
-    <view class="clock">
+    <view id='clock__wrap' catchtouchstart="getClockAngle" catchtouchmove="getClockAngle" style="width:{{clock.width}}px;height:{{clock.height}}px;" class="clock">
       
       <view class="clock__center-point"></view>
-      
-      <view class="clock__numbers">
-        <view class="clock__number-item">12</view>
+      <view style="transform: rotateZ({{rotateZ}}deg);" class="clock__center-pointer">
+        <view style="width:{{number.width}}px;height:{{number.height}}px;line-height:{{number.height}}px;" class="pointer-circle"></view>
+      </view>
+
+
+
+      <!-- <view class="clock__center-line1"></view> -->
+      <!-- <view class="clock__center-line2"></view> -->
+
+      <view  id="clock__numbers__wrap" class="clock__numbers">
+        <view data-angle='{{item.angle}}' wx:for='{{hoursArr}}' wx:key='index' class="clock__number-item" style="{{item.style}}">{{item.value}}</view>
       </view>
     </view>
 

@@ -12,17 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log()
-    const myAngle = ((1 - 3) / 6) * Math.PI
-    const a = ((1 % 12) / 12) * Math.PI * 2 - Math.PI / 2;
-
-    console.log(myAngle, a)
-    return
-    const radius = 100
-    const myX = radius + radius * Math.cos(myAngle);
-    const myY = radius + radius * Math.sin(myAngle);
-
-    console.log(myX, myY)
+  
   },
 
   open: function() {
