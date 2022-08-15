@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.3
+### 2022/08/15
+- `[timePicker]` add clock touch movement angle
+
 ### 2022/08/14
 - `[timePicker]` add dom elements and css styles
 

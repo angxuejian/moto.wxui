@@ -23,7 +23,6 @@
 }
 .clock__center-pointer {
   position: absolute;
-  top: 0;
   left: calc((100% - 2px) / 2);
   width: 2px;
   height: 50%;
@@ -64,8 +63,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 220px;
-  height: 220px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 .clock__number-item {
@@ -73,6 +72,7 @@
   font-size: 15px;
   text-align: center;
   border-radius: 50%;
+  /* background-color: red; */
 }
 .clock__number-item__selected {
   color: #fff !important;

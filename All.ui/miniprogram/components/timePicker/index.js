@@ -1,5 +1,5 @@
 // components/timePicker/index.js
-import { getClockNumbers } from './clock'
+import { getClockNumbers, getClockAngle } from './clock'
 Component({
   /**
    * 组件的属性列表
@@ -19,10 +19,12 @@ Component({
     number: {
       width: 35,
       height: 35,
+      paddingTop: 0,
     },
     hoursArr: [],
     rotateZ: 0,
-    rect: {}
+    rect: {},
+    selectedIndex: 12
   },
 
   lifetimes: {
@@ -54,11 +56,10 @@ Component({
       const radius = (clock.width / 2) - (number.width / 2)
 
       for (let i = 1; i <= 12; i++) {
-        const { left, top, angle } = getClockNumbers(radius, i)
+        const { left, top } = getClockNumbers(radius, i)
         this.data.hoursArr.push({
           value: i,
-          angle,
-          style: `width: ${number.width}px;height: ${number.height}px; line-height:${number.height}px; top:${top}px;left:${left}px;`
+          style: `width: ${number.width}px;height: ${number.height}px; line-height:${number.height + number.paddingTop}px; top:${top}px;left:${left}px;`
         })
       }
       this.setData({
@@ -67,40 +68,27 @@ Component({
 
     },
     getContentHeight(id) {
-      const query = wx.createSelectorQuery().in(this);
-      const that = this;
-      //选择id
-      query
-        .select('#clock__wrap')
-        .boundingClientRect(function (rect) {
-          console.log(rect);// 这里包含内容 的宽高
-          that.data.rect = rect
-        })
-        .exec();
+      // 一定到settimeout后，才能获取到正确的宽高
+      setTimeout(() => {
+        const query = wx.createSelectorQuery().in(this);
+        const that = this;
+        //选择id
+        query
+          .select('#clock__wrap')
+          .boundingClientRect(function (rect) {
+            that.data.rect = rect
+          })
+          .exec();
+      }, 500);
     },
 
-
-    getClockAngle: function(event) {
-      console.log(event, '-->')
-      const { clock, number, rect } = this.data
-      const { pageX, pageY } = event.touches[0]
-      const radius = (clock.width / 2) - (number.width / 2)
-
-      const cx = radius
-      const cy = radius
-      const x = pageX - radius
-      const y = radius - pageY
-      // const x1 = pageX
-      // const y1 = pageY
-      // console.log(pageY, pageX)
-      // const angle = Math.atan2(cx, cy) - Math.atan2(x1, y1)
-      const a = Math.atan2(y, x)
-      let deg = a / (Math.PI / 180)
-      deg = -deg
-      console.log(deg)
-      this.setData({
-        rotateZ:  deg
-      })
+    onTouchMove: function(event) {
+      const { rect, clock } = this.data
+      const radius = clock.width / 2
+      const step = 30
+      const deg = getClockAngle(event.touches[0], rect, radius, step)
+      this.data.selectedIndex = deg / step
+      this.setData({ rotateZ: deg, selectedIndex: this.data.selectedIndex })
     }
   }
 })
