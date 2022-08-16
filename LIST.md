@@ -25,6 +25,7 @@
 抽屉-Drawer      | [ >>> ](docs/drawer.md)
 录音-Recorder    | [ >>> ](docs/recorder.md)
 入住时间选择器-CheckInDatePicker | [ >>> ](docs/checkInDatePicker.md)
+时间选择器-TimePicker | [ >>> ](docs/timePicker.md)
 
 
 <!-- - **nprogress 加载进度条**： https://developers.weixin.qq.com/s/WMGBlvmi7xmd

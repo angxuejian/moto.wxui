@@ -4,8 +4,13 @@
 
   <view class="item-btn">
     <text>Change事件</text>
-    <view bindtap="open" hover-class="hover-font">打开</view>
+    <view bindtap="timeOpen" hover-class="hover-font">打开</view>
+  </view>
+
+    <view class="item-btn">
+    <text>设置时间</text>
+    <view bindtap="setTimeOpen" hover-class="hover-font">打开</view>
   </view>
 </view>
 
-<time-picker id='timePicker'></time-picker>
+<time-picker timestamp='{{timer}}' bindchange='onCallbackChange' id='timePicker'></time-picker>

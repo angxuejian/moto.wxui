@@ -3,6 +3,8 @@
 ## v0.3.3
 ### 2022/08/16
 - `[timePicker]` fix the case where the pointer rotation angle is negative
+- `[timePicker]` component completed
+- `[timePicker]` add timePicker.md file
 
 ### 2022/08/15
 - `[timePicker]` add clock touch movement angle
@@ -14,7 +16,7 @@
 - `[timePicker]` create component and add popup
 
 ### 2022/08/11
-- `[checkInDatePicker] conponent completed`
+- `[checkInDatePicker]` conponent completed
 - add checkInDatePicker.md file
 - improve project md files 
 

@@ -20,14 +20,12 @@
       <view class="drawer-moto__body">
         <slot name='popupview'></slot>
       </view>
+
       <!-- 确认 and 取消 -->
-      <!-- <view class="time-btn">
-        <view class="time"></view>
-        <view class="btn">
-          <view bindtap="clear" class="clear" hover-class="hover-font">清空</view>
-          <view bindtap="confirm" hover-class="hover" class="confirm">确认</view>
-        </view>
-      </view> -->
+      <view wx:if='{{showConfirm}}' class="drawer-moto__btn">
+        <view bindtap="cancel" class="cancel" hover-class="hover-font">取消</view>
+        <view bindtap="confirm" hover-class="hover" class="confirm">确认</view>
+      </view>
 
     </view>
   </view>

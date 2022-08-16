@@ -7,7 +7,7 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/UI-Pages/ui.timePicker/ui.timePicker",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null

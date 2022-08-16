@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    timer: ''
   },
 
   /**
@@ -15,8 +15,31 @@ Page({
   
   },
 
-  open: function() {
-    this.selectComponent('#timePicker').open()
+  open: function(timer = '') {
+    this.data.timer = timer
+    this.setData({
+      timer: this.data.timer
+    }, () => {
+        this.selectComponent('#timePicker').open()
+    })
+  },
+  timeOpen: function() {
+    this.open()
+  },
+  setTimeOpen: function() {
+    this.open(new Date('2022-08-16 08:30').getTime())
+  },
+
+  
+
+  onCallbackChange: function(event) {
+    const { value } = event.detail
+
+    wx.showModal({
+      title: '提示',
+      content: `${value}`,
+      showCancel: false
+    })
   },
 
   /**

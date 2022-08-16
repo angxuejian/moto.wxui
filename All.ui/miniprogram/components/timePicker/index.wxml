@@ -1,14 +1,37 @@
 <!--components/timePicker/index.wxml-->
-<drawer-moto title='选择时间' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
+<drawer-moto 
+  show-confirm='{{true}}' 
+  title='选择时间' 
+  bindclose='onCallbackClose' 
+  bindopen='onCallbackOpen' 
+  bindcancel='onCallbackCancel'
+  bindconfirm='onCallbackConfirm'
+  id='drawerMoto'>
 
 
   <view slot='popupview'>
-  
-    <view id='clock__wrap' catchtouchstart="onTouchMove" catchtouchmove="onTouchMove" style="width:{{clock.width}}px;height:{{clock.height}}px;" class="clock">
+    
+
+    <view class="time">
+      <view class="time__value">
+
+
+        <text bindtap='selectType' data-type='hours' style="{{type==='hours' ? 'color:#333': ''}}">{{hours}}</text>:<text bindtap='selectType' data-type='minute' style="{{type==='minute' ? 'color:#333': ''}}">{{minute}}</text>
+        
+        <!-- :<text>{{second}}</text> -->
+      </view>
+
+      <swiper wx:if='{{ type === "hours"}}' bindchange="selectAmpm" class="swiper__wrap" current="{{isAmpm === 'am' ? 0 : 1}}" vertical>
+        <swiper-item><view class="swiper__wrap__item">上午</view></swiper-item>
+        <swiper-item><view class="swiper__wrap__item">下午</view></swiper-item>
+      </swiper>
+    </view>
+
+    <view id='clock__wrap' catchtouchstart="onTouchMove" catchtouchmove="onTouchMove" catchtouchend='onTouchEnd' style="width:{{clock.width}}px;height:{{clock.height}}px;" class="clock">
       
       <view class="clock__center-point"></view>
-      <view style="transform: rotateZ({{rotateZ}}deg); top:{{number.paddingTop}}px;" class="clock__center-pointer">
-        <view style="width:{{number.width}}px;height:{{number.height}}px;line-height:{{number.height}}px;" class="pointer-circle"></view>
+      <view style="transform: rotateZ({{rotateZ}}deg);" class="clock__center-pointer">
+        <view style="width:{{number.width}}px;height:{{number.height}}px;line-height:{{number.height}}px;" class="pointer-circle {{isPoint ? 'pointer-circle-white' : ''}}"></view>
       </view>
 
 
@@ -17,9 +40,14 @@
       <!-- <view class="clock__center-line2"></view> -->
 
       <view class="clock__numbers">
-        <view wx:for='{{hoursArr}}' wx:key='index' class="clock__number-item {{selectedIndex === item.value ? 'clock__number-item__selected' : ''}}" style="{{item.style}}">{{item.value}}</view>
+        <view wx:for='{{hoursArr}}' wx:key='index' class="clock__number-item {{isIndex === item.value ? 'clock__number-item__selected' : ''}}" style="{{item.style}}">{{item.label}}</view>
       </view>
     </view>
 
+
+    <!-- <view class="ampm">
+      <view bindtap="selecteAmpm" data-value='am' class="ampm-item {{isAmpm === 'am' ? 'ampm-item-selected' : ''}}">上午</view>
+      <view bindtap="selecteAmpm" data-value='pm' class="ampm-item {{isAmpm === 'pm' ? 'ampm-item-selected' : ''}}">下午</view>
+    </view> -->
   </view>
 </drawer-moto>

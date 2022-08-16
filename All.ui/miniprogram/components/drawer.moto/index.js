@@ -15,6 +15,10 @@ Component({
     maskClose: {
       type: Boolean,
       value: true
+    },
+    showConfirm: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -50,6 +54,12 @@ Component({
     close: function() {
       this.showDrawerMoto()
       this.triggerEvent('close')
+    },
+    cancel: function() {
+      this.triggerEvent('cancel')
+    },
+    confirm: function() {
+      this.triggerEvent('confirm')
     },
     tapMaskClose: function() {
       if (!this.data.maskClose) return 

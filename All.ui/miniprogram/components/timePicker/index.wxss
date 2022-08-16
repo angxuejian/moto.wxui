@@ -1,14 +1,45 @@
 /* components/timePicker/index.wxss */
 
 
+.time {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  /* background-color: red; */
+  position: relative;
+}
+.time__value {
+  font-size: 25px;
+  letter-spacing: 3px;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 600;
+}
+.swiper__wrap {
+  position: absolute;
+  width: 50px;
+  right: 0;
+  height: 35px;
+  /* background-color: #ededed; */
+}
+.swiper__wrap__item {
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  line-height: 35px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54);
+  /* background-color: yellow; */
+}
+
 
 .clock {
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.07);
   position: relative;
-  /* padding: 1px; */
 }
 
 .clock__center-point {
@@ -39,6 +70,16 @@
   background-color: #438edb;
   border-radius: 50%;
   text-align: center;
+}
+.pointer-circle-white::after {
+  position: absolute;
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #fff;
+  left: calc((100% - 5px) / 2);
+  top: calc((100% - 5px) / 2);
 }
 
 .clock__center-line1 {
@@ -76,4 +117,24 @@
 }
 .clock__number-item__selected {
   color: #fff !important;
+}
+
+.ampm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ampm-item {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+  border-radius: 50%;
+}
+.ampm-item-selected {
+  background-color: #438edb;
+  color: #fff;
 }
