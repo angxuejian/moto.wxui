@@ -5,6 +5,7 @@
 - `[timePicker]` fix the case where the pointer rotation angle is negative
 - `[timePicker]` component completed
 - `[timePicker]` add timePicker.md file
+- version v0.3.3 completed
 
 ### 2022/08/15
 - `[timePicker]` add clock touch movement angle

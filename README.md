@@ -3,7 +3,7 @@
 
 ## 使用
 将UI组件引用到项目中
-```json
+```js
 // index.json
 {
   "usingComponents": {
