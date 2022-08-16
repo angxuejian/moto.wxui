@@ -87,7 +87,8 @@ Component({
       const radius = clock.width / 2
       const step = 30
       const deg = getClockAngle(event.touches[0], rect, radius, step)
-      this.data.selectedIndex = deg / step
+      this.data.selectedIndex = deg / step || 12 // 等于0时 等于12点
+
       this.setData({ rotateZ: deg, selectedIndex: this.data.selectedIndex })
     }
   }
