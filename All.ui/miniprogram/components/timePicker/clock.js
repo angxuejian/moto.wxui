@@ -59,7 +59,7 @@ export function getClockAngle(touch, rect, radius, step = 30) {
   let deg = angle * (180 / Math.PI)
   deg = Math.round(deg / step) * step;
   deg += 90
-  deg = (deg + 360) % 360 // 解决第四象限为负数情况
+  deg = (deg + 360) % 360 // 解决第二象限为负数情况
   
   return deg
 }

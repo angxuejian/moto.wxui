@@ -1,6 +1,9 @@
 # 更改日志 
 
 ## v0.3.3
+### 2022/08/18
+- `[timePicker]` fix clock.js annotation error
+
 ### 2022/08/16
 - `[timePicker]` fix the case where the pointer rotation angle is negative
 - `[timePicker]` component completed
