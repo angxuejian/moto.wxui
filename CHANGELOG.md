@@ -1,6 +1,8 @@
 # 更改日志 
 
 ## v0.3.3
+### 2022/08/23
+- `[checkInDatePicker]` add "value" attribute to props
 ### 2022/08/18
 - `[timePicker]` fix clock.js annotation error
 

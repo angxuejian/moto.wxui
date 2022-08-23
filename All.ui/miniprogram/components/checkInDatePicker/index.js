@@ -14,6 +14,10 @@ Component({
     multiple: {
       type: Boolean,
       value: true
+    },
+    value: {
+      type: [Array,String,Number],
+      value: null
     }
   },
 
@@ -43,10 +47,37 @@ Component({
       this.selectComponent('#drawerMoto').close()
     },
     onCallbackOpen: function() {
-      const { list, object } = Calen.getSolarNumber()
-      this.data.months = list
-      console.log(list, '---')
-      this.formatTime('start', object, { months: this.data.months })
+      if (!this.data.months.length) {
+        const { list } = Calen.getSolarNumber()
+        this.data.months = list
+        this.setData({ months: this.data.months })
+      }
+
+      if (this.data.value) {
+        if (Array.isArray(this.data.value)) {
+          this.data.value.forEach((s, i) => {
+            this.setValues(i ? 'end' : 'start', s)
+          })
+        } else {
+          this.setValues('start', this.data.value)
+        }
+ 
+      } else {
+        // this.formatTime('start', object)
+        this.setValues('start', new Date())
+      }
+    },
+
+    setValues: function(type = 'start', time) {
+      const itemDate = Calen.getSolarDate(new Date(time))
+      const itemObj = Calen.formatDate({y: itemDate.year, m: itemDate.month, d: itemDate.day })
+      let d = {}
+
+      if (type === 'end') {
+        this.data.nightNumber = Math.floor((itemObj.time - this.data.startTime) / 86400000)
+        d = { nightNumber:  this.data.nightNumber }
+      }
+      this.formatTime(type, itemObj, d)
     },
     onCallbackClose: function() {
       this.data.startTime = 0
