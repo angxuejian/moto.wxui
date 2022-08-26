@@ -110,10 +110,14 @@ Component({
       }
 
       this.data.timer++
-      const minute = `${parseInt(this.data.timer / 60)}`
-      const minuteSecond = minute * 60
-      const second = `${ minute ? this.data.timer - minuteSecond : this.data.timer }`
 
+      const hours = `${parseInt(this.data.timer / 60 / 60)}`
+      const hoursSecond = hours ? this.data.timer - (hours * 60 * 60) : this.data.timer
+      
+      const minute = `${parseInt(hoursSecond / 60)}`
+      const minuteSecond = minute * 60
+
+      const second = `${ minute ? hoursSecond - minuteSecond : hoursSecond }`
       const name = [minute, second].map(s => s.padStart(2, 0)).join(":")
 
       this.setData({ timerName: name })
