@@ -58,21 +58,19 @@ class Color {
     const min = Math.min(red, green, blue);
     const l = max - min
 
-    v = max
-    s = l / max
-    const list = {
-      [red]: this.checkNaNIssue((green - blue), l) + (g < b ? 6 : 0),
-      [green]: 2 + this.checkNaNIssue((blue - red), l),
-      [blue]: 4 + this.checkNaNIssue((red - green), l),
-    }
+    if (l === 0) h = 0
+    else if (max === red) h = 60 * (this.checkNaNIssue((green - blue), l) % 6)
+    else if (max === green) h = 60 * (this.checkNaNIssue((blue - red), l) + 2)
+    else if (max === blue) h = 60 * (this.checkNaNIssue((red - green), l) + 4)
 
-    h = list[max] / 6
-    if (h < 0) h + 360
+    if (h < 0) h += 360
+    s = l / max
+    v = max
 
     const data = {
-      h: Math.round(h * 360),
-      s: Math.round(s * 100),
-      v: Math.round(v * 100)
+      h: Math.round(h),
+      s: Number((s * 100).toFixed(1)),
+      v: Number((v * 100).toFixed(1))
     }
     return data
   }
