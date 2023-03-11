@@ -1,0 +1,9 @@
+<!--pages/UI-Pages/ui.lazyLoadimage/ui.lazyLoadimage.wxml-->
+
+<view class="">
+
+  <view class="item-box" wx:for='{{list}}' wx:key="*this">
+    <lazy-loadimage custom-class='lazy-image' src='{{ item }}'></lazy-loadimage>
+  </view>
+  <view style="height: 20px;"></view>
+</view>

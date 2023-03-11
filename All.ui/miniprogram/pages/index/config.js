@@ -20,7 +20,8 @@ const compArr = [
   { name: '抽屉', value: 'drawer' },
   { name: '录音', value : 'recorder' },
   { name: '入住日期选择器', value: 'checkInDatePicker' },
-  { name: '时间选择器', value: 'timePicker'}
+  { name: '时间选择器', value: 'timePicker' },
+  { name: '图片懒加载', value: 'lazyLoadimage' }
 ]
 
 const cleanArr = (list) => {

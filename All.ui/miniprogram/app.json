@@ -18,7 +18,8 @@
     "pages/UI-Pages/ui.lottery/ui.lottery",
     "pages/UI-Pages/ui.recorder/ui.recorder",
     "pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker",
-    "pages/UI-Pages/ui.timePicker/ui.timePicker"
+    "pages/UI-Pages/ui.timePicker/ui.timePicker",
+    "pages/UI-Pages/ui.lazyLoadimage/ui.lazyLoadimage"
   ],
   "window": {
     "backgroundTextStyle": "light",

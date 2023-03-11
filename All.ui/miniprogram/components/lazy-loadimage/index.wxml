@@ -1,0 +1,15 @@
+<!--components/lazy-loadimage/index.wxml-->
+<view id='{{ uid }}' class="lazy-loadimage custom-class">
+  <image
+  src='{{src}}'
+  mode="aspectFill" 
+  class="loading-success {{ isShow ? 'loading-success__show' : ''}}"
+  wx:if='{{ isLoadImg && !isShowErr }}'
+  bindload='onLoadingSuccess'
+  binderror="onLoadingError"
+  ></image>
+
+  <view wx:elif="{{ isShowErr }}" class="loading-error">图片加载失败</view>
+
+  <view wx:if='{{ !isShow && !isShowErr }}' class="loading"></view>
+</view>
