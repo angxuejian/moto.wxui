@@ -27,6 +27,7 @@
     "navigationBarTitleText": "moto.wxui",
     "navigationBarTextStyle": "black"
   },
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

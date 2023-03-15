@@ -22,8 +22,8 @@
   </view>
 
 
-  <view wx:if='{{ !isMask && isAnim && predPhoto }}' class='tips'>Tips: 点击图片预览、长按保存！</view>
-
+  <!-- <view wx:if='{{ !isMask && isAnim && predPhoto }}' class='tips'>Tips: 点击图片预览、长按保存！</view> -->
+  <view wx:if='{{ !isMask && isAnim && predPhoto }}' class='tips'>Tips: 具体实现方式、https://www.remove.bg/zh</view>
   <view bindtap="getPhotoBG" hover-class="hover-btn" class="remove-btn {{ predPhoto && 'select-btn' }}">消除背景</view>
   <view bindtap="resetPhotoBG" hover-class="hover-btn-font" class="reset-btn">重置</view>
 

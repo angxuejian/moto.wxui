@@ -36,6 +36,7 @@ Component({
      * 选择颜色
      */
     selectColor: function() {
+      return
       this.selectComponent('#colorPicker').open()
     },
 
@@ -85,6 +86,7 @@ Component({
      * 选择图片
      */
     selectPhoto: function() {
+      return
       wx.chooseImage({
         count: 1,
         success: ({ tempFilePaths }) => {
@@ -118,6 +120,10 @@ Component({
       isAnim = false
       this.setData({ isRBG, isMask, isAnim })
 
+      this.data.predPhoto = '../../assets/avatar-done.jpg'
+      this.data.isMask = false
+      this.data.isRBG = false
+      return
       wx.cloud.callFunction({
         name: 'getRemoveBG',
         data: {
@@ -176,6 +182,7 @@ Component({
      * 预览图片
      */
     onPredPhoto: function() {
+      return
       wx.previewImage({
         urls: [this.data.predPhoto],
       })
