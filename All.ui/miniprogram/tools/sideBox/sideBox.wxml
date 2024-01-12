@@ -1,6 +1,6 @@
 <!--tools/sideBox/sideBox.wxml-->
 
-<mo-drawer bindclose='onCallbackClose' touch width='70%' id='drawer' position='left'>
+<mo-drawer bindclose='onCallbackClose' width='75%' id='drawer' position='left'>
   <view class="side-box">
     
     <view class="bc" style="height: {{height}}px;">

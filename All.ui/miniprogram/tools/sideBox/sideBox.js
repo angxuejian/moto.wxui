@@ -45,7 +45,7 @@ Component({
 
     gotoShare: function() {
       wx.navigateTo({
-        url: '/pages/UI-Pages/ui.share/ui.share',
+        url: '/pages/share/share',
       })
 
     },
