@@ -1,0 +1,48 @@
+/* pages/Ex-Pages/calendar/calendar.wxss */
+@import '../../../style/calendar.wxss';
+page {
+  padding: 0;
+}
+.calendar {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 30px;
+}
+
+.year {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.year .solar {
+  font-size: 20px;
+  color: #373C52;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.year .lunar {
+  font-size: 15px;
+  color: #333;
+}
+
+
+.date .day .line {
+  margin-top: 6px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.date .day .line image {
+  width: 25px;
+  height: 25px;
+  transform: rotate(270deg);
+}
+.date .day .line view {
+  width: 43%;
+  background-color: #ddd;
+  height: 1px;
+}

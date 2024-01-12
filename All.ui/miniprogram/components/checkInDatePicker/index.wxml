@@ -1,6 +1,6 @@
 <!--components/checkInDatePicker/index.wxml-->
 
-<drawer-moto title='选择日期' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerMoto'>
+<drawer-content title='选择日期' bindclose='onCallbackClose' bindopen='onCallbackOpen' id='drawerContent'>
 
 
   <view slot='popupview'>
@@ -65,4 +65,4 @@
     </view>
   </view>
 
-</drawer-moto>
+</drawer-content>

@@ -1,2 +1,0 @@
-<!--miniprogram/pages/UI-Pages/ui.waterfallsFlow/ui.waterfallsFlow.wxml-->
-<waterfalls-flow list='{{list}}'></waterfalls-flow>

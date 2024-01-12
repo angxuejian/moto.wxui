@@ -1,0 +1,16 @@
+<!--pages/Ex-Pages/electronicSignature/electronicSignature.wxml-->
+
+<view class="electronic-signature">
+
+<view class="signature">
+  <view class="tip">请在下面方框内签下您的名字</view>
+  <view class="canvas-view">
+    <canvas style="width: 100%; height: 100%;" catchtouchstart="onTouchStart" catchtouchmove="onTouchMove" catchtouchend="onTouchEnd" type="2d" id="myCanvas"></canvas>
+  </view>
+</view>
+
+<view class="btn">
+  <view bindtap="reset" hover-class="hover-font" class="btn-reset">重置</view>
+  <view bindtap="config" hover-class="hover" class="btn-config">确认</view>
+</view>
+</view>

@@ -16,7 +16,7 @@
         <view class="all-component">
           <block wx:for='{{item.list}}' wx:for-item='sub' wx:for-index='i' wx:key='i'>
 
-            <view bindtap="gotoUI" data-url='{{ sub.url }}' hover-class="hover" class="item-component">
+            <view bindtap="gotoUI" data-page='{{ item.page }}' data-url='{{ sub.url }}' hover-class="hover" class="item-component">
               <view style='background-image: url("{{ sub.svg }}")' class="image"></view>
               <text>{{ sub.name }}</text>
             </view>

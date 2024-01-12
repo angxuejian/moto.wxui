@@ -44,10 +44,10 @@ Component({
   methods: {
 
     open: function() {
-      this.selectComponent('#drawerMoto').open()
+      this.selectComponent('#drawerContent').open()
     },
     close: function() {
-      this.selectComponent('#drawerMoto').close()
+      this.selectComponent('#drawerContent').close()
     },
     
 

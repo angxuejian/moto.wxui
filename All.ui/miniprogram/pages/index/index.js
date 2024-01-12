@@ -17,10 +17,9 @@ Page({
 
 
   gotoUI: function({ currentTarget }) {
-    const { url } = currentTarget.dataset
-    const BASE = '/pages/UI-Pages'
+    const { url, page } = currentTarget.dataset
     wx.navigateTo({
-      url: `${BASE}/${url}/${url}`,
+      url: `/pages/${page}/${url}/${url}`,
     })
   },
 

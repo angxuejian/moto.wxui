@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "lazy-loadimage": "../../../components/lazyLoadimage/index"
+  },
+  "navigationBarTitleText": "图片懒加载-LazyLoadimage"
+}

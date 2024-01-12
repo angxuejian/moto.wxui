@@ -1,0 +1,2 @@
+<!--pages/Ex-Pages/waterfallsFlow/waterfallsFlow.wxml-->
+<waterfalls-flow list='{{list}}'></waterfalls-flow>

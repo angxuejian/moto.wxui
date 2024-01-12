@@ -1,0 +1,27 @@
+<!--pages/Ex-Pages/imgMode/imgMode.wxml-->
+
+<view>
+
+<view class="img-mode-info">
+  以下展示为图片模式能力, 随机布局, 每种模式下的其中一边为作者撰写, 另一边为小程序本身能力。
+</view>
+
+<view class="item" wx:for="{{ imgArr }}" wx:key='index'>
+  <view class="title">
+    {{ item.mode }}：<text>{{ item.info }}</text>
+  </view>
+  <view class="{{ item.isVer ? 'item-ver' : 'item-hor' }}">
+   
+    <image wx:if='{{isOddNumber}}' mode="{{item.mode}}" class="img" src="{{src}}"></image>
+
+    <mo-img-mode mode='{{item.mode}}' img-class="img" src="{{src}}"></mo-img-mode>
+
+    <image wx:if='{{!isOddNumber}}' mode="{{item.mode}}" class="img" src="{{src}}"></image>
+
+  </view>
+</view>
+
+<view class="img-mode-info">
+  你猜中了吗？{{ isOddNumber ? '右' : '左'}}边是作者写的✌️✌️
+</view>
+</view>

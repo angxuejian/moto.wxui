@@ -1,0 +1,66 @@
+/* pages/Ex-Pages/electronicSignature/electronicSignature.wxss */
+
+page {
+  padding: 0 !important;
+}
+
+.electronic-signature {
+  width: 100%;
+  padding: 0 5%;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signature {
+  width: 75%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.tip {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.canvas-view {
+  width: 90%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+
+.btn {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.btn-reset {
+  width: 100%;
+  height: 45px;
+  font-size: 14px;
+  line-height: 45px;
+  text-align: center;
+  border: 1px solid #438EDB;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color: #438EDB;
+  margin-bottom: 25px;
+}
+
+.btn-config {
+  width: 100%;
+  height: 45px;
+  font-size: 14px;
+  line-height: 45px;
+  text-align: center;
+  background-color: #438EDB;
+  border-radius: 25px;
+  color: #fff;
+}

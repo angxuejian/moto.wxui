@@ -1,12 +1,12 @@
 <!--components/timePicker/index.wxml-->
-<drawer-moto 
+<drawer-content 
   show-confirm='{{true}}' 
   title='选择时间' 
   bindclose='onCallbackClose' 
   bindopen='onCallbackOpen' 
   bindcancel='onCallbackCancel'
   bindconfirm='onCallbackConfirm'
-  id='drawerMoto'>
+  id='drawerContent'>
 
 
   <view slot='popupview'>
@@ -50,4 +50,4 @@
       <view bindtap="selecteAmpm" data-value='pm' class="ampm-item {{isAmpm === 'pm' ? 'ampm-item-selected' : ''}}">下午</view>
     </view> -->
   </view>
-</drawer-moto>
+</drawer-content>

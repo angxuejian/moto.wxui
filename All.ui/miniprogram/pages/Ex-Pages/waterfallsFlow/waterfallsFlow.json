@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "waterfalls-flow":"../../../components/waterfallsFlow/waterfallsFlow"
+
+  },
+  "navigationBarTitleText": "瀑布流-WaterfallsFlow",
+  "onReachBottomDistance": 50
+}
