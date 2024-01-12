@@ -1,40 +1,48 @@
 /* miniprogram/pages/UI-Pages/ui.share/ui.share.wxss */
 page {
   background: linear-gradient(#61687a, #A0A2A1);
-  padding-top: 1px;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.ui-share {
+  width: 100%;
+  height: 100%;
+}
+
+.share-box {
+  height: calc(100% - 100px);
 }
 
 .share-poster {
-  width: 75%;
-  height: 67vh;
+  width: 300px;
+  height: 450px;
   border-radius: 1px;
   margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 130px;
   position: relative;
+  top: calc((100% - 450px) / 2);
   background-color: #fff;
   padding: 10px 2.5%;
+  box-sizing: border-box;
 }
 .poster {
   width: 100%;
-  height: 70%;
+  height: 60%;
   border-radius: 1px;
 }
 
 .we-info {
-  width: 90%;
+  width: 100%;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
-  bottom: 40px;
-  left: 5%;
+  margin-top: 60px;
 }
 
 .user {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
   height: 60px;
@@ -60,12 +68,8 @@ page {
 }
 
 .logo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
+  margin-top: 32px;
   text-align: center;
   color: #666;
   font-size: 12px;
@@ -86,7 +90,7 @@ page {
   justify-content: space-around;
   z-index: 9999999999;
 }
-.item-btn1 {
+.item-share {
   width: 30%;
   display: flex;
   align-items: center;
@@ -94,7 +98,7 @@ page {
   flex-direction: column;
   position: relative;
 }
-.item-btn1 > view {
+.item-share > view {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -104,22 +108,22 @@ page {
   justify-content: center;
   margin-bottom: 8px;
 }
-.item-btn1 > view > image {
+.item-share > view > image {
   width: 28px;
   height: 28px;
 
 }
-.item-btn1 > text {
+.item-share > text {
   font-size: 13px;
   color: #333;
 }
 
-.item-btn1 button {
+.item-share button {
   position: absolute;
   left: 0;
   top: 0;
 }
-.item-btn1 button:not([size='mini']) {
+.item-share button:not([size='mini']) {
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -129,5 +133,4 @@ canvas {
   position: fixed;
   top: -10000px;
   left: 0;
-  /* background-color: #fff; */
 }

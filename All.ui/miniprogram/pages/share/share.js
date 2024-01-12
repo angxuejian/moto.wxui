@@ -20,13 +20,13 @@ Page({
 
         // 0.75 和 67 分别是 .share-poster 的 75% 和 67vh
         // 1vh = 屏幕高度 / 100 = 900 / 100 = 9px
-        this.data.pixel  = result.pixelRatio
+        this.data.pixel = result.pixelRatio
         // this.data.width  = result.windowWidth * 0.75
         // this.data.height = result.windowHeight / 100 * 67
 
         // 替换成固定宽高
-        this.data.width  = 375
-        this.data.height = 600
+        this.data.width = 300
+        this.data.height = 450
         this.setData({
           width: this.data.width,
           height: this.data.height
@@ -39,38 +39,18 @@ Page({
     this.drawPoster()
   },
 
-  open: function() {
+  open: function () {
     this.selectComponent('#showImage').open()
   },
 
 
-  checkSaveAlbum: function() {
+  checkSaveAlbum: function () {
 
     if (this.data.poster) this.showShare()
     else this.drawPoster()
-
-    // wx.authorize({
-    //   scope:'scope.writePhotosAlbum',
-    //   success: res => {
-    //     this.drawPoster()
-    //   },
-    //   fail: err => {
-    //     if (/auth deny/ig.test(err.errMsg)) {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '您需要授权后才可以保存到相册',
-    //         success: res => {
-    //           if (res.confirm) {
-    //             this.openSetting()
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
   },
 
-  openSetting: function() {
+  openSetting: function () {
     wx.openSetting({
       success: res => {
         if (res.authSetting['scope.writePhotosAlbum']) {
@@ -78,15 +58,15 @@ Page({
         } else {
           wx.showToast({
             title: '您未授权',
-            icon:'none'
+            icon: 'none'
           })
         }
       }
     })
   },
 
-  drawPoster: function() {
-    
+  drawPoster: function () {
+
     wx.showLoading({
       title: '绘制中',
       mask: true
@@ -97,48 +77,57 @@ Page({
 
     // 绘制背景颜色
     ctx.fillStyle = '#ffffff'
-    ctx.fillRect(0,0, width, height)
+    ctx.fillRect(0, 0, width, height)
 
     // 绘制顶部图片
     wx.getImageInfo({
-      src: '/assets/poster.jpeg',
+      src: '/assets/avatar.jpg',
       success: res => {
         // 0.05 为 左右边距
         // 0.95 为 实际宽度
+        // 0.6为图片高度
+        // 10为上下内边距
         let x = width * 0.05 / 2
         let p_width = width * 0.95
-        let p_heigth = (p_width / res.width) * res.height
+        let p_heigth = height * 0.6
 
-        ctx.drawImage('/assets/poster.jpeg', x, 10, p_width, p_heigth)
-        
+        ctx.drawImage('/assets/avatar.jpg', x, 10, p_width, p_heigth)
+
+        const textTop = 10 + p_heigth
 
         // 绘制 小程序二维码和 文字
-        // 90、60、110 都均为计算位置而设置的、可以改
+        // textTop: 图片高度
+        // textTop + 60: 距离图片上边距60px;
+        // +15 or -12： 减去或加上字体本身的高度，为了与右边图片对齐
         ctx.fillStyle = '#333333'
         ctx.font = 'normal bold 15px sans-serif'
-        ctx.fillText('唯有头顶之上一片晴空',x, height - 90)
+        ctx.fillText('唯有头顶之上一片晴空', x, textTop + 60 + 15)
 
         ctx.fillStyle = '#666666'
         ctx.font = 'normal 500 12px sans-serif'
-        ctx.fillText('angxuejian', x, height - 60)
+        ctx.fillText('angxuejian', x, textTop + 120 - 12)
 
-        // 60 为 图片宽高大小
-        let right_x = p_width - 60
-        ctx.drawImage('/assets/a.jpg',right_x, height-110, 60, 60)
+        // // 60 为 图片宽高大小
+        let right_x = p_width - 60 + x
+        ctx.drawImage('/assets/a.jpg', right_x, textTop + 60, 60, 60)
 
 
-        // 底部logo
+        // // 底部logo
         ctx.fillStyle = '#666666'
         ctx.font = 'normal 500 12px sans-serif'
-        ctx.fillText('Moto UI示例', right_x / 2, height - 10)
+        ctx.fillText('MotoUI示例库', right_x / 2, height - 10)
 
         ctx.draw(false, this.onCallbackSave)
       }
     })
   },
 
-  onCallbackSave: function() {
-    const { width, height, pixel } = this.data
+  onCallbackSave: function () {
+    const {
+      width,
+      height,
+      pixel
+    } = this.data
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
@@ -151,18 +140,17 @@ Page({
         wx.hideLoading()
         this.data.poster = res.tempFilePath
         this.showShare()
-        // this.saveAlbum(res.tempFilePath)
       }
     })
   },
 
-  showShare: function() {
+  showShare: function () {
     wx.showShareImageMenu({
       path: this.data.poster
     })
   },
 
-  saveAlbum: function(file) {
+  saveAlbum: function (file) {
     wx.saveImageToPhotosAlbum({
       filePath: file,
       success: res => {
@@ -226,9 +214,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    console.log('要分享了')
-    return  {
-      title: 'Moto UI示例',
+    return {
+      title: 'MotoUI示例库',
       path: '/pages/index/index',
     }
   },
@@ -238,7 +225,7 @@ Page({
    */
   onShareTimeline: function () {
     return {
-      title: 'Moto UI示例',
+      title: 'MotoUI示例库',
     }
   }
 })

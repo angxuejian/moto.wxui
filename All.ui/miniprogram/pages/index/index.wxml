@@ -2,7 +2,7 @@
 
 <view class="navbar" style="height: {{ height }}px; " >
   <view class="navbar-title">
-    <view>moto.wxui</view>
+    <view>MotoUI示例库</view>
     <image bindtap="open" src="/assets/list.png"></image>
 </view>
 </view>

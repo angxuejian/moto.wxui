@@ -1,0 +1,43 @@
+<!--miniprogram/pages/UI-Pages/ui.share/ui.share.wxml-->
+<view class="ui-share">
+
+
+  <view class="share-box">
+    <view class="share-poster">
+      <image class="poster" src="/assets/avatar.jpg"></image>
+
+      <view class="we-info">
+        <view class="user">
+          <view>唯有头顶之上一片晴空</view>
+          <text>angxuejian</text>
+        </view>
+        <image show-menu-by-longpress='true' src="/assets/a.jpg"></image>
+      </view>
+      <view class="logo">MotoUI示例库</view>
+    </view>
+  </view>
+
+
+  <view class="share-btn">
+
+    <view hover-class="hover-image" class="item-share">
+      <view>
+        <image src="/assets/weFriend.png"></image>
+      </view>
+      <text>分享朋友</text>
+      <button open-type="share">微信好友</button>
+    </view>
+
+
+    <view bindtap="checkSaveAlbum" hover-class="hover-image" class="item-share">
+      <view>
+        <image show-menu-by-longpress src="/assets/weAlbum.png"></image>
+      </view>
+      <text>分享海报</text>
+    </view>
+  </view>
+</view>
+
+<show-image id='showImage'></show-image>
+
+<canvas style="width:{{width}}px; height:{{height}}px" canvas-id='canvas'></canvas>

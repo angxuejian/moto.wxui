@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/share/share",
     "pages/UI-Pages/ui.calendar/ui.calendar",
     "pages/UI-Pages/ui.removeBG/ui.removeBG",
     "pages/UI-Pages/ui.colorPicker/ui.colorPicker",
     "pages/UI-Pages/ui.nprogress/ui.nprogress",
     "pages/UI-Pages/ui.datePicker/ui.datePicker",
     "pages/UI-Pages/ui.waterfallsFlow/ui.waterfallsFlow",
-    "pages/UI-Pages/ui.share/ui.share",
     "pages/UI-Pages/ui.imgMode/ui.imgMode",
     "pages/UI-Pages/ui.picker/ui.picker",
     "pages/UI-Pages/ui.switch/ui.switch",
@@ -24,10 +24,11 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "moto.wxui",
+    "navigationBarTitleText": "MotoUI示例库",
     "navigationBarTextStyle": "black"
   },
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
   "style": "v2"
 }
