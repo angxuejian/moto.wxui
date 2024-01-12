@@ -29,6 +29,5 @@
   },
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
   "style": "v2"
 }
