@@ -1,7 +1,8 @@
 # 版本日志
-## v0.3.4 - 
+## v0.3.4 - 2024/01/15
 > 修改代码布局
 > 去除云函数代码，优化分享海报页
+> 修复touchList、datePicker、drawer、checkInDatePicker组件问题
 
 ## v0.3.3 - 2022/08/16
 > 增加通用弹窗组件<br>
