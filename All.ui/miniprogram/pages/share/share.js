@@ -215,7 +215,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: 'MotoUI示例库',
+      title: '微信小程序的 UI / 工具示例库',
       path: '/pages/index/index',
     }
   },
@@ -225,7 +225,7 @@ Page({
    */
   onShareTimeline: function () {
     return {
-      title: 'MotoUI示例库',
+      title: '微信小程序的 UI / 工具示例库',
     }
   }
 })
