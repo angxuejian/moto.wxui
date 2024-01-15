@@ -8,8 +8,8 @@ Page({
     list: [
       { name: '默认位置与大小' },
       { name: '顶部打开', type: 'top', width: '100vw', height: '200px' },
-      { name: '底部打开 - 滑动关闭', type: 'bottom', width: '100vw', height: '500px', touch: true },
-      { name: '左边打开 - 滑动关闭', type: 'left', width: '200px', height: '100vh', touch: true },
+      { name: '底部打开', type: 'bottom', width: '100vw', height: '500px'},
+      { name: '左边打开', type: 'left', width: '200px', height: '100vh'},
       { name: '右边打开', type: 'right', width: '80vw', height: '100vh' },
       { name: '中间打开', type: 'center', width: '85vw', height: '300px' },
     ]

@@ -10,12 +10,13 @@
     catchtouchend="onTouchEnd"
    -->
    <!-- capture-bind -->
+
+  <!-- capture-bind:touchstart="onTouchStart" -->
+  <!-- capture-bind:touchmove="onTouchMove"  -->
+  <!-- capture-bind:touchend="onTouchEnd" -->
+  <!-- capture-bind:touchcancel="onTouchEnd" -->
   <view 
-  bindanimationend='onCallbackEnd' 
-  capture-bind:touchstart="onTouchStart"
-  capture-bind:touchmove="onTouchMove" 
-  capture-bind:touchend="onTouchEnd"
-  capture-bind:touchcancel="onTouchEnd"
+  bindanimationend='onCallbackEnd'
   style="{{style}}" 
   
   class="drawer-box {{type}} {{(isShow === 1 ? 'drawer-box-show-' : 'drawer-box-hide-') + type}}">

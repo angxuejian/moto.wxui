@@ -29,10 +29,10 @@ Component({
       type:Boolean,
       value: true
     },
-    touch: {
-      type:Boolean,
-      value: false
-    }
+    // touch: {
+    //   type:Boolean,
+    //   value: false
+    // }
   },
 
 
