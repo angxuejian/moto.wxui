@@ -20,12 +20,13 @@ Page({
    * @param {Object} event 
    */
   onCallbackChange: function({ detail }) {
-
+    if (!detail.hex) return
     wx.showModal({
       title: 'Change事件',
       content: `颜色：${detail.hex}`,
       showCancel: false
     })
+    console.log(`颜色：${detail.hex}`)
   },
 
   
