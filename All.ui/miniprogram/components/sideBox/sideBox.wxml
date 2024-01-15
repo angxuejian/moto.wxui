@@ -1,8 +1,9 @@
 <!--tools/sideBox/sideBox.wxml-->
 
-<mo-drawer bindclose='onCallbackClose' width='75%' id='drawer' position='left'>
-  <view class="side-box">
-    
+<!-- <mo-drawer width='75%' id='drawer' position='left'> -->
+<page-container bindafterleave='onCallbackAfterLeave' custom-style='width:70%; margin-left: 30%;' position='right' show="{{show}}">
+
+<view class="side-box">
     <view class="bc" style="height: {{height}}px;">
       <view class="title">🏷️🏷️🏷️</view>
     </view>
@@ -19,7 +20,7 @@
         <text>图标颜色</text>
       </view>
       <view>
-        <mo-color-picker bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></mo-color-picker>
+        <mo-color-picker id='colorPicker' bindchange='onCallbackChange'  predefined='#333333' width='28' height='28'></mo-color-picker>
       </view>
     </view>
 
@@ -34,4 +35,5 @@
       </view>
     </view>
   </view>
-</mo-drawer>
+</page-container>
+<!-- </mo-drawer> -->

@@ -2,8 +2,8 @@
 
 <view class="navbar" style="height: {{ height }}px; " >
   <view class="navbar-title">
+    <view bindtap="open" class="navbar-title__list"><image  src="/assets/list.png"></image></view>
     <view>MotoUI示例库</view>
-    <image bindtap="open" src="/assets/list.png"></image>
 </view>
 </view>
 

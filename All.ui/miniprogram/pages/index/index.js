@@ -78,5 +78,24 @@ Page({
         list
       })
     }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '微信小程序的 UI / 工具示例库',
+      path: '/pages/index/index',
+    }
+  },
+
+  /**
+   * 用户分享朋友圈
+   */
+  onShareTimeline: function () {
+    return {
+      title: '微信小程序的 UI / 工具示例库',
+    }
   }
 })
