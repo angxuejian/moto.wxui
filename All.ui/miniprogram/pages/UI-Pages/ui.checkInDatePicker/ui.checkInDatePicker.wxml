@@ -1,19 +1,21 @@
 <!--pages/UI-Pages/ui.checkInDatePicker/ui.checkInDatePicker.wxml-->
 <view>
 
-  <view class="item-btn">
+  <!-- <view class="item-btn">
     <text>Change事件</text>
     <view bindtap="open" data-multiple='{{true}}' hover-class="hover-font">打开</view>
-  </view>
+  </view> -->
 
   <view class="item-btn">
     <text>单选</text>
-    <view bindtap="open" data-multiple='{{false}}' hover-class="hover-font">打开</view>
+    <view data-multiple="{{false}}" data-key='singleValue' bindtap="openSingle" hover-class="hover-font">{{ singleName || '打开' }}</view>
   </view>
   <view class="item-btn">
-    <text>默认时间</text>
-    <view bindtap="openValue" hover-class="hover-font">{{valueName}}</view>
+    <text>多选</text>
+    <view data-multiple="{{true}}" data-key="multipleValue" bindtap="openMultiple" hover-class="hover-font">{{ multipleName }}</view>
   </view>
 </view>
 
-<checkin-date-picker value='{{value}}' multiple="{{multiple}}" bindchange='onCallbackChange' id='checkInDatePicker'></checkin-date-picker>
+<checkin-date-picker value='{{ multipleValue }}' bindchange='onCallbackChangeMultipe' id='checkInDateMultipePicker'></checkin-date-picker>
+
+<checkin-date-picker multiple='{{ false }}' bindchange='onCallbackChangeSingle' id='checkInDateSinglePicker'></checkin-date-picker>

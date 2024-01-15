@@ -1,7 +1,7 @@
 // components/checkInDatePicker/index.js
 import Calendar from '../../utils/calendar/index'
 const Calen = new Calendar()
-
+const nowYear = new Date().getFullYear()
 Component({
 
   options: {
@@ -33,7 +33,9 @@ Component({
     endTime: 0,
     startObj: {},
     endObj: {},
-    months: []
+    months: [],
+    startValue: '',
+    endValue: ''
   },
 
   /**
@@ -52,6 +54,7 @@ Component({
         this.data.months = list
         this.setData({ months: this.data.months })
       }
+      if (this.data.startName) return
 
       if (this.data.value) {
         if (Array.isArray(this.data.value)) {
@@ -66,6 +69,7 @@ Component({
         // this.formatTime('start', object)
         this.setValues('start', new Date())
       }
+     
     },
 
     setValues: function(type = 'start', time) {
@@ -80,21 +84,21 @@ Component({
       this.formatTime(type, itemObj, d)
     },
     onCallbackClose: function() {
-      this.data.startTime = 0
-      this.data.startName = ''
-      this.data.endTime = 0
-      this.data.endName = ''
-      this.data.nightNumber = 0
-      this.data.endObj = {}
-      this.data.startObj = {}
-      const d = {
-        endTime: this.data.endTime,
-        endName: this.data.endName,
-        startTime: this.data.startTime,
-        startName: this.data.startName,
-        nightNumber: this.data.nightNumber
-      }
-      this.setData(d)
+      // this.data.startTime = 0
+      // this.data.startName = ''
+      // this.data.endTime = 0
+      // this.data.endName = ''
+      // this.data.nightNumber = 0
+      // this.data.endObj = {}
+      // this.data.startObj = {}
+      // const d = {
+      //   endTime: this.data.endTime,
+      //   endName: this.data.endName,
+      //   startTime: this.data.startTime,
+      //   startName: this.data.startName,
+      //   nightNumber: this.data.nightNumber
+      // }
+      // this.setData(d)
     },
 
     selectCheckInDate: function(event) {
@@ -135,8 +139,9 @@ Component({
     },
 
     formatTime: function(key, obj, d = {}) {
-      const name = `${obj.month}月${obj.day}日 ${obj.lunar.week}`
+      let name = `${obj.month}月${obj.day}日 ${obj.lunar.week}`
       const time = obj.time
+      if (nowYear !== obj.year && !this.data.multiple) name = `${obj.year}年` + name
       this.data[`${key}Obj`] = obj
       this.data[`${key}Name`] = name
       this.data[`${key}Time`] = time

@@ -5,9 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    multiple: true,
-    value: [],
-    valueName: ''
+    multipleValue: [],
+    multipleName: '',
+    singleName: '',
+    singleValue: ''
   },
 
   /**
@@ -18,50 +19,65 @@ Page({
 
     const start = new Date(this.clear(s))
     const end = new Date(start.getTime() + (6 * 86400000))
-    this.data.value = [start, end].map(this.clear)
+    this.data.multipleValue = [start, end].map(this.clear)
     this.setData({
-      valueName: this.data.value.join('/'),
+      multipleName: this.data.multipleValue.join('/'),
+      multipleValue: this.data.multipleValue
     })
   },
 
-  clear: function(s) {
+  clear: function (s) {
     const yy = s.getFullYear()
     const mm = s.getMonth() + 1
     const dd = s.getDate()
     return [yy, mm, dd].join('-')
   },
 
-  open: function(event) {
-    const { multiple } = event.currentTarget.dataset
-    this.setData({ multiple }, () => {
-      this.selectComponent('#checkInDatePicker').open()
-    })
+  openSingle: function (event) {
+    this.selectComponent('#checkInDateSinglePicker').open()
   },
-  openValue: function() {
+  openMultiple: function () {
+    this.selectComponent('#checkInDateMultipePicker').open()
+  },
+  onCallbackChangeMultipe: function (event) {
+    const {
+      detail
+    } = event
+    const start = this.cleanName(detail.start)
+    const end = this.cleanName(detail.end)
+    wx.showModal({
+      title: `共${detail.nightNumber}晚`,
+      content: `${start} - ${end}`,
+      showCancel: false
+    })
+    this.data.multipleValue = [start, end]
     this.setData({
-      value: this.data.value,
-      multiple: true
-    }, () => {
-      this.selectComponent('#checkInDatePicker').open()
+      multipleName: [start, end].join('/')
     })
   },
-  onCallbackChange: function(event) {
-    const { detail } = event
-    if (this.data.multiple) {
-      wx.showModal({
-        title: `共${detail.nightNumber}晚`,
-        content: `${detail.startName} - ${detail.endName}`,
-        showCancel: false
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: `${detail.startName}`,
-        showCancel: false
-      })
-    }
 
-  }, 
+  onCallbackChangeSingle: function (event) {
+    const {
+      detail
+    } = event
+    const start = detail.start
+    const value = this.cleanName(detail.start)
+    const name = `${value} ${start.lunar.week}`
+    wx.showModal({
+      title: '提示',
+      content: name,
+      showCancel: false
+    })
+    this.data.singleValue = name
+    this.setData({
+      singleName: name
+    })
+  },
+
+  cleanName: function (d) {
+    let date = d.solar.value
+    return date
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

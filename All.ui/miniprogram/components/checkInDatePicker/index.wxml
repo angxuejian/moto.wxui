@@ -22,14 +22,14 @@
            wx:for-index='i' 
            wx:key='i'>
 
-            <view style="color: #FF2C3C" class="day-item__day-tip" wx:if='{{ startTime !== d.time && endTime !== d.time && d.title}}'>{{d.title }}</view>
+            <view style="color: #FF2C3C" class="day-item__day-tip" wx:if='{{ startTime !== d.time && endTime !== d.time && d.title}}'>{{d.title}}</view>
             
             <view class="day-item__day {{(startTime === d.time || endTime === d.time) ? 'day-item__day-selected' : ''}}" style="color:{{d.color}}">{{d.day}}</view>
           
             <view wx:if='{{ startTime === d.time && multiple }}' class="day-item__day-tip">{{d.title}}入住</view>
             <view wx:if='{{ endTime === d.time && multiple}}' class="day-item__day-tip">离店</view>
 
-            <view wx:if='{{ startTime === d.time && !multiple}}' class="day-item__day-tip">{{d.title}}预约</view>
+            <view wx:if='{{ startTime === d.time && d.title && !multiple}}' class="day-item__day-tip">{{d.title}}预约</view>
           </view>
         </view>
       </view>
