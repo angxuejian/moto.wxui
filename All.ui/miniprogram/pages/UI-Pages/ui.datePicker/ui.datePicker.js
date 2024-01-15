@@ -20,31 +20,20 @@ Page({
    * @param {Object} event 
    */
   onCallbackChange: function({ detail }) {
+    let value = ''
+    if (Array.isArray(detail)) {
+      value = detail.map(s => s.solar.value).join('/')
+    } else if (detail.solar) {
+      value = detail.solar.value
+      if (detail.lunar.value) value += `___${detail.lunar.value}`
+    }
+    if (!value) return
     wx.showModal({
       title: 'Change事件',
-      content: `日期：${ detail.solar.value }`,
+      content: `日期：${ value }`,
       showCancel: false
     })
-  },
-
-   /**
-   * datePicker组件--change事件回调--弹出阴历
-   * @param {Object} event 
-   */
-  onCallbackChangeLun: function({ detail }) {
-    wx.showModal({
-      title: 'Change事件',
-      content: `日期：${ detail.lunar.value }`,
-      showCancel: false
-    })
-  },
-
-  onCallbackChangeRange: function({ detail }) {
-    wx.showModal({
-      title: '区间选择',
-      content: `日期：${ detail.value.map(s => s.solar.value).join('/') }`,
-      showCancel: false
-    })
+    console.log(`日期：${ value }`)
   },
 
   open: function() {

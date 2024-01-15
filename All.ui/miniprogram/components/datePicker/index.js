@@ -356,8 +356,15 @@ Component({
 
     // 清空事件
     clear: function() {
+      console.log(this.data.calendar)
       this.setData({ 
-        showDate: ''
+        showDate: '',
+        range: {
+          startTime: 0,
+          endTime: 0,
+          value: []
+        },
+        calendar: {}
       })
 
       this.change()
@@ -382,7 +389,7 @@ Component({
 
     change: function() {
       
-      this.triggerEvent('change', this.data.dateRange ? { value: this.data.range.value } : this.data.calendar.item)
+      this.triggerEvent('change', this.data.dateRange ? this.data.range.value : this.data.calendar.item || {})
       this.showDatePicker()
     },
 
