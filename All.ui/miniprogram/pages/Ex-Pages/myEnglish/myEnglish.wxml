@@ -1,0 +1,15 @@
+<!--pages/Ex-Pages/myEnglish/myEnglish.wxml-->
+<swiper bind:touchstart="touchStart" bind:touchend="touchEnd" bindchange='swiperChange' class="swiper" circular current='{{ 1 }}'>
+  <swiper-item class="swiper-item" wx:for="{{ swiperList }}" wx:key="*this">
+    <view class="english-box">
+      <view bindtap='getCapyEnglish' data-value='{{item.name}}' class="english-box__title">{{ item.name }}</view>
+      <view class="english-box__desc">{{ item.desc }}</view>
+    </view>
+  </swiper-item>
+</swiper>
+
+<view class="serial">
+  <text>{{ todayEnglishIndex + 1 }}</text>
+  /
+  <text>{{ todayEnglish.length }}</text>
+</view>

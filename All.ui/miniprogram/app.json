@@ -19,7 +19,9 @@
     "pages/Ui-Pages/ui.drawer/ui.drawer",
     "pages/Ui-Pages/ui.recorder/ui.recorder",
     "pages/Ui-Pages/ui.checkInDatePicker/ui.checkInDatePicker",
-    "pages/Ui-Pages/ui.timePicker/ui.timePicker"
+    "pages/Ui-Pages/ui.timePicker/ui.timePicker",
+    "pages/Ex-Pages/myEnglish/myEnglish",
+    "pages/add/add"
   ],
   "window": {
     "backgroundTextStyle": "light",

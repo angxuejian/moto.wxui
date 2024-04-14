@@ -1,0 +1,68 @@
+/* pages/add/add.wxss */
+page {
+  padding: 0;
+}
+.item-form {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+ 
+}
+.header {
+  width: 100%;
+  font-size: 15px;
+  color: #333;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  /* margin-bottom: 10px; */
+}
+.form {
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 30px;
+  
+}
+.form__fade-in {
+  animation: fade-in ease 0.5s forwards;
+}
+.form__fade-out {
+  animation: fade-out ease 0.5s forwards;
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity:  1; }
+}
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity:  0; }
+}
+.form-lab {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  box-sizing: border-box;
+  color: #000;
+  border-bottom: 1px solid #ededed;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+.form-lab:nth-last-of-type(1) {
+  border-bottom: 0;
+}
+.form-lab__title {
+  text-align: center;
+  width: 15%;
+}
+.form-lab__content {
+  width: 82%;
+  height: 40px;
+  /* background-color: red; */
+}
+
+.submit-buton {
+  padding-top: 30px;
+}

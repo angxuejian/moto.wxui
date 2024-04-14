@@ -1,0 +1,54 @@
+/* pages/Ex-Pages/myEnglish/myEnglish.wxss */
+page {
+  margin: 0;
+  padding: 0;
+}
+.swiper {
+  width: 100vw;
+  height: 85vh;
+}
+.swiper-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.english-box {
+  position: absolute;
+  bottom: 0;
+  left: 2.5%;
+  width: 95%;
+  height: 266px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.english-box__title {
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #333;
+}
+.english-box__desc {
+  font-size: 12px;
+  color: #666;
+}
+
+.serial {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  left: 0;
+}
+.serial > text:nth-of-type(2) {
+  color: #438edb;
+}

@@ -10,7 +10,7 @@
 
     <view class="user">
       <image class="avatar" mode="aspectFill" src="/assets/avatar.jpg"></image>
-      <view class="author">angxuejian</view>
+      <view class="author">Oliver Jian</view>
     </view>
 
 
@@ -28,6 +28,17 @@
       <view>
         <image src="/assets/side/share.png"></image>
         <text>分享</text>
+      </view>
+
+      <view>
+        <image src="/assets/right-arrow.png"></image>
+      </view>
+    </view>
+
+    <view wx:if="{{ isShowAdd }}" bindtap="gotoAdd" hover-class="hover" class="btn">
+      <view>
+        <image src="/assets/side/add.png"></image>
+        <text>添加</text>
       </view>
 
       <view>

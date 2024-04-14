@@ -19,13 +19,15 @@ Component({
     isShow: 0, // 0:真关闭 1:打开 2:伪关闭
     height: 0,
     color: '',
-    show: false
+    show: false,
+    isShowAdd: false,
   },
 
   ready: function() {
     this.setData({
       height: app.globalData.bar
     })
+    this.getOpenId()
   },
 
   /**
@@ -43,7 +45,11 @@ Component({
       wx.navigateTo({
         url: '/pages/share/share',
       })
-
+    },
+    gotoAdd: function() {
+      wx.navigateTo({
+        url: '/pages/add/add',
+      })
     },
     onCallbackChange: function(event) {
       const { detail } = event
@@ -58,6 +64,17 @@ Component({
       if (self.data.isShow === 1) {
         self.open()
       }
+    },
+    getOpenId: function() {
+      const self = this
+      wx.cloud.callFunction({
+        name: 'checkUser',
+        success:( { result } ) => {
+          self.setData({
+            isShowAdd: 'o5vlw5VWKwEwyEO6fyLONlRa0B6U' === result
+          })
+        }
+      })
     }
   }
 })

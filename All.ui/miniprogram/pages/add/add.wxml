@@ -1,0 +1,23 @@
+<!--pages/add/add.wxml-->
+<view>
+  <view class="item-form">
+    <view class="header">My English</view>
+    <form wx:if="{{resetFormView}}" bindsubmit='onCallbackSubmit'>
+      <view class="form {{!isShowAnimation ? 'form__fade-out' : 'form__fade-in'}}">
+        <view class="form-lab">
+          <view class="form-lab__title">单词</view>
+          <input name='name' value="{{ myEnglish.name }}" class="form-lab__content form-lab__input" type="text" placeholder="请输入单词" />
+        </view>
+        <view class="form-lab">
+          <view class="form-lab__title">说明</view>
+          <textarea name='desc' value="{{ myEnglish.desc }}" class="form-lab__content form-lab__textarea" value="" maxlength="500" auto-height placeholder='请输入说明' />
+        </view>
+
+        <view class="submit-buton">
+          <button form-type="submit" type='primary'>提交</button>
+        </view>
+
+      </view>
+    </form>
+  </view>
+</view>
