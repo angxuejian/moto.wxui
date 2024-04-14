@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "消除背景-RemoveBG"
+  "navigationBarTitleText": "消除背景-RemoveBG",
+  "usingComponents": {
+    "mo-color-picker": "../../../components/colorPicker/index"
+  }
 }

@@ -2,7 +2,7 @@
 import {
   BASE_IMG
 } from './config'
-const BASE64 = 'data:image/png;base64,'
+
 Page({
 
 
@@ -18,15 +18,16 @@ Page({
 
     photo: BASE_IMG,
     predPhoto: '', // 最后消除背景后的 图片
-  },
 
+    isShowLoading: true,
+    timer: null
+  },
 
 
   /**
    * 选择颜色
    */
   selectColor: function () {
-    return
     this.selectComponent('#colorPicker').open()
   },
 
@@ -50,13 +51,19 @@ Page({
    * 动画结束的回调
    */
   onCallbackAnimEnd: function () {
-
-    let timer = setInterval(() => {
-
-      if (this.data.predPhoto) {
+  
+    if (!this.data.timer) {
+      wx.showLoading({
+        title: '消除中...',
+        mask: true
+      })
+    }
+    const setPhoto = () => {
+      if (this.data.isShowLoading && this.data.predPhoto) {
         wx.hideLoading()
-        clearInterval(timer)
-
+        this.data.timer = null
+        clearTimeout(this.data.timer)
+        this.data.isShowLoading = true
         this.data.isAnim = true
         this.setData({
           isAnim: this.data.isAnim,
@@ -64,15 +71,15 @@ Page({
           isRBG: this.data.isRBG,
           isMask: this.data.isMask
         })
+        return
       }
-    }, 500)
-
-
-    if (!this.data.predPhoto) {
-      wx.showLoading({
-        title: '加载中'
-      })
+      this.data.timer = setTimeout(() => {
+        setPhoto()
+      }, 500);
     }
+
+    setPhoto()
+
   },
 
 
@@ -80,23 +87,18 @@ Page({
    * 选择图片
    */
   selectPhoto: function () {
-    return
-    wx.chooseImage({
+    wx.chooseMedia({
+      mediaType: ['image'],
       count: 1,
+      sizeType: [],
       success: ({
-        tempFilePaths
+        tempFiles
       }) => {
-        const file = tempFilePaths[0]
+        const file = tempFiles[0].tempFilePath
 
-        wx.getFileSystemManager().readFile({
-          filePath: file,
-          encoding: 'base64',
-          success: res => {
-            this.data.photo = `${BASE64} ${res.data}`
-            this.setData({
-              photo: this.data.photo
-            })
-          }
+        this.data.photo = file
+        this.setData({
+          photo: this.data.photo
         })
       }
     })
@@ -128,28 +130,34 @@ Page({
       isAnim
     })
 
-    this.data.predPhoto = '/assets/avatar-done.jpg'
-    this.data.isMask = false
-    this.data.isRBG = false
-    return
+    // this.data.predPhoto = '/assets/avatar-done.jpg'
+    // this.data.isMask = false
+    // this.data.isRBG = false
+    // return
+    let d = {}
+    if (photo === BASE_IMG) {
+      d.image_file_b64 = photo
+    } else {
+      d.image_url = wx.cloud.CDN({
+        type: 'filePath',
+        filePath: photo,
+      })
+    }
     wx.cloud.callFunction({
-      name: 'getRemoveBG',
+      name: 'getNewPhoto',
       data: {
         data: {
-          image_file_b64: photo,
-          bg_color: deColor
+          bg_color: deColor,
+          ...d
         }
       },
       success: ({
         result
       }) => {
-
         if (result.status === 200) {
-
-          this.data.predPhoto = `${BASE64} ${wx.arrayBufferToBase64(result.data)}`
+          this.data.predPhoto = result.data
           this.data.isMask = false
           this.data.isRBG = false
-
         } else {
           this.onErrorModel(result.message)
         }
@@ -166,6 +174,7 @@ Page({
    */
 
   onErrorModel: function (content) {
+    this.data.isShowLoading = false
     wx.hideLoading()
     wx.showModal({
       title: '提示',
@@ -196,7 +205,6 @@ Page({
    * 预览图片
    */
   onPredPhoto: function () {
-    return
     wx.previewImage({
       urls: [this.data.predPhoto],
     })
