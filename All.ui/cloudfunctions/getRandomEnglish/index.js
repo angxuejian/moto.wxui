@@ -42,9 +42,10 @@ exports.main = async (event, context) => {
     }).get()
   }
   try {
-    const currentTimestamp = Date.now()
-    const currentDay = new Date(currentTimestamp).toISOString().split('T')[0]
-  
+
+    const date = new Date()
+    const currentDay = [date.getFullYear(),  date.getMonth() + 1, date.getDate()].join('-')
+
     const lastTimestamp = await db.collection('timestamp').where({
       day: currentDay
     }).get()
@@ -52,7 +53,6 @@ exports.main = async (event, context) => {
     const isArray = lastTimestamp.data.length
     const lastDay = isArray ? lastTimestamp.data[0] : null
     
-
     if (lastDay) {
       const { data } = await getTodayEnglish(lastDay.ids)
       const list = []
