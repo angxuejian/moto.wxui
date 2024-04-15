@@ -22,15 +22,15 @@ exports.main = async (event, context) => {
       _id: _.nin(ids)
      }).sample({ size }).end()
   }
-  const setRandom = function(ids) {
-    db.collection('english').where({
+  const setRandom = async function(ids) {
+    await db.collection('english').where({
       _id: _.in(ids)
     }).update({
       data: { random: true }
     })
   }
-  const addTimestamp = function(day, ids) {
-    db.collection('timestamp').add({
+  const addTimestamp = async function(day, ids) {
+    await db.collection('timestamp').add({
       data: {
         day, ids
       }
@@ -54,7 +54,12 @@ exports.main = async (event, context) => {
     
 
     if (lastDay) {
-      return await getTodayEnglish(lastDay.ids)
+      const { data } = await getTodayEnglish(lastDay.ids)
+      const list = []
+      lastDay.ids.forEach(id => {
+        list.push(data.find(item => item._id === id))
+      })
+      return { data: list }
     } else {
       
       const { list } = await getEnglish()
@@ -69,8 +74,8 @@ exports.main = async (event, context) => {
       }
       const ids = list.map(item => item._id)
   
-      setRandom(ids)
-      addTimestamp(currentDay, ids)
+      await setRandom(ids)
+      await addTimestamp(currentDay, ids)
       return { data: list }
     }
   } catch (error) {
