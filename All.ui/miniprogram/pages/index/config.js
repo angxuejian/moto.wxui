@@ -10,7 +10,7 @@ const funcArr = [
   { name: '抽奖', value: 'lottery' },
   { name: '图片模式', value: 'imgMode' },
   { name: '图片懒加载', value: 'lazyLoadimage' },
-  { name: '我的英语', value: 'myEnglish' },
+  { name: '英语', value: 'myEnglish' },
 
 ]
 

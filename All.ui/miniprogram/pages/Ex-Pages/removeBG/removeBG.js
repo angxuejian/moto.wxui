@@ -28,6 +28,7 @@ Page({
    * 选择颜色
    */
   selectColor: function () {
+    return;
     this.selectComponent('#colorPicker').open()
   },
 
@@ -87,6 +88,7 @@ Page({
    * 选择图片
    */
   selectPhoto: function () {
+    return;
     wx.chooseMedia({
       mediaType: ['image'],
       count: 1,
@@ -130,10 +132,10 @@ Page({
       isAnim
     })
 
-    // this.data.predPhoto = '/assets/avatar-done.jpg'
-    // this.data.isMask = false
-    // this.data.isRBG = false
-    // return
+    this.data.predPhoto = '/assets/avatar-done.jpg'
+    this.data.isMask = false
+    this.data.isRBG = false
+    return
     let d = {}
     if (photo === BASE_IMG) {
       d.image_file_b64 = photo
@@ -205,6 +207,7 @@ Page({
    * 预览图片
    */
   onPredPhoto: function () {
+    return;
     wx.previewImage({
       urls: [this.data.predPhoto],
     })

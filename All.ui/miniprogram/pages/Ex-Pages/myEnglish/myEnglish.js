@@ -1,4 +1,5 @@
 // pages/Ex-Pages/myEnglish/myEnglish.js
+import English from '../../../utils/english'
 Page({
 
   /**
@@ -20,7 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-  
+  console.log(English)
     
     this._loadData()
   },
@@ -30,19 +31,27 @@ Page({
       title: '加载中...',
       mask: true
     })
-    const self = this
-    wx.cloud.callFunction({
-      name: 'getRandomEnglish',
-      complete: function({ result }) {
-        wx.hideLoading()
-        self.data.todayEnglish = result.data
+     const self = this
+
+            wx.hideLoading()
+        self.data.todayEnglish = English
         self.data.swiperList = self.getTriplet(0)
         self.setData({
           swiperList: self.data.swiperList,
           todayEnglish: self.data.todayEnglish
         })
-      }
-    })
+    // wx.cloud.callFunction({
+    //   name: 'getRandomEnglish',
+    //   complete: function({ result }) {
+    //     wx.hideLoading()
+    //     self.data.todayEnglish = result.data
+    //     self.data.swiperList = self.getTriplet(0)
+    //     self.setData({
+    //       swiperList: self.data.swiperList,
+    //       todayEnglish: self.data.todayEnglish
+    //     })
+    //   }
+    // })
   },
 
   swiperChange: function(event) {
