@@ -1,14 +1,26 @@
 export default [
-  {
-    "name": "achieve",
-    "desc": "达到，取得，实现；获得成功"
-  },
-  {
-    "name": "basics",
-    "desc": "基本因素（或原理、原则、规律等）；基本设施；基本需要"
-  },
-  {
-    "name": "rack",
-    "desc": "架子；支架；机架；齿条；行李架"
-  }
-]
+  { name: "Export", desc: "出口，输出" },
+  { name: "Default", desc: "默认结果，缺省值" },
+  { name: "achieve", desc: "达到，取得，实现；获得成功" },
+  { name: "basics", desc: "基本因素（或原理、原则、规律等）；基本设施；基本需要" },
+  { name: "rack", desc: "架子；支架；机架；齿条；行李架" },
+  { name: "Methods", desc: "方式、方法；method复数" },
+  { name: "Active", desc: "积极，主动" },
+  { name: "Grid", desc: "网格，css的Grid布局" },
+  { name: "Refresh", desc: "刷新" },
+  { name: "Opacity", desc: "透明度" },
+  { name: "Scale", desc: "缩放" },
+  { name: "Spirit", desc: "精神、精灵" },
+  { name: "Micro", desc: "微小的、极小" },
+  { name: "Soft", desc: "软的、柔软" },
+  { name: "Container", desc: "容器、集装器" },
+  { name: "Instance", desc: "实例" },
+  { name: "Progress", desc: "进度" },
+  { name: "Drawer", desc: "抽屉" },
+  { name: "Recorder", desc: "录音机" },
+  { name: "Insert", desc: '插入' },
+  { name: "Install", desc: '安装' },
+  { name: 'Lock', desc: '锁' },
+  { name: 'Expire', desc: '某物的有效期结束或失效' },
+  { name: 'Protocol', desc: '协议' }
+];
