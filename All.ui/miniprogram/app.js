@@ -19,9 +19,15 @@ App({
     this.globalData = {
       bar: 0,
       DEFAULT_IMG: 'https://profile.csdnimg.cn/E/5/2/1_qq_43297527',
-      calendar: {}
+      calendar: {},
+      english: []
     }
-
+    wx.getStorage({
+      key: 'english',
+      success: res => {
+        this.globalData.english = res.data
+      }
+    })
     wx.getStorage({
       key: 'calendar',
       success: res => {
