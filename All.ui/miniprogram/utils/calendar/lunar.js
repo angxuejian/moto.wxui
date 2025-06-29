@@ -32,15 +32,15 @@ class Lunar {
   solar_to_lunar(sy, sm, sd, week) {
 
     this.getSolarTerms(sy) 
-
+    console.log('来到这里！')
     sm -= 1
-    let ly, lm, ld;
+    let ly, lm, ld = 0;
+    console.log(sy, sm, sd)
     let day_diff = (Date.UTC(sy, sm, sd) - Date.UTC(1949, 0, 29)) / (24 * 60 * 60 * 1000) + 1;
 
     // 阴历年
     for (let i = 0; i < LANR_ARR.length; i++) {
       let bly = this.decimal_to_binary(LANR_ARR[i])
-
       day_diff -= this.getLunarYearNumber(bly)
       if (day_diff <= 0) {
         ly = BASIS + i

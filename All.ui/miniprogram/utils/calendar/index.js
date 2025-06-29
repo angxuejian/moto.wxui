@@ -10,6 +10,7 @@ class Calendar extends Solar {
 
 
   getDays(year, month) {
+    console.log(year, month, 'index')
     return this.getSolar(year, month)
   }
 
@@ -20,11 +21,20 @@ class Calendar extends Solar {
     const month= curr.getMonth()
     const day  = curr.getDate()
     
+    const addMonths = (date, n) => {
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+    
+      const newDate = new Date(Date.UTC(year, month + n, day));
+      return newDate;
+    }
     const getMonthNumber = (i) => {
-      let  n = new Date(`${year}-${month === 0 ? '01' : month}-01`)
+      // let  n = new Date(`${year}-${month === 0 ? '01' : month}-01`)
 
-      if (i === '-1') n.setMonth(month - 1) 
-      else n.setMonth(month + 1)
+      // if (i === '-1') n.setMonth(month - 1) 
+      // else n.setMonth(month + 1)
+      const n = addMonths(curr, i === '-1' ? -1 : 1)
       return {
         yy: n.getFullYear(),
         mm: n.getMonth() + 1,

@@ -19,7 +19,6 @@ page{
   align-items: center;
   justify-content: space-between;
   position: relative;
-  background-color: #fff;
 }
 .blur {
   filter: blur(5px);
@@ -95,7 +94,6 @@ page{
   font-size: 10px;
   color: #999;
   height: 20px;
-  background-color: #fff;
 }
 
 .remove-btn {

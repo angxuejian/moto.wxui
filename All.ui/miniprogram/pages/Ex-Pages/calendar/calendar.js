@@ -45,14 +45,16 @@ Page({
       curr,
       next
     } = Calen.getAdjacentMonths(date)
+ 
     const lastMonth = Calen.getDays(last.yy, last.mm)
     const currMonth = Calen.getDays(curr.yy, curr.mm)
     const nextMonth = Calen.getDays(next.yy, next.mm)
-
+    console.log(lastMonth, 'zhix ? 2')
     const currIndex = this.data.listIndex
     const lastIndex = this.cleanListIndex(currIndex - 1)
     const nextIndex = this.cleanListIndex(currIndex + 1)
 
+    console.log(currMonth, '??x')
     this.renderCalendar(curr.yy, curr.mm, curr.dd, currMonth, 0)
     this.setData({
       ['listData[' + lastIndex + ']']: lastMonth,
@@ -279,7 +281,8 @@ Page({
    * @param {number | string} d 阳历日
    */
   renderCalendar: function (y, m, d, dotItem, timer = 500) {
-    const time = new Date([y, m, d].join('-')).getTime()
+    const time = new Date(Date.UTC(y,m,d)).getTime()
+    console.log(dotItem, time, 'error')
     const dayIndex = dotItem.findIndex(s => s.time === time)
     setTimeout(() => {
       this.setCalendar(dayIndex, dotItem)
